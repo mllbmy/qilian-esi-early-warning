@@ -57,13 +57,8 @@ The pressure--state--response (PSR) and DPSIR frameworks are widely used to orga
 
 Knowledge gaps remain: (1) reserve-scale studies usually apply the DPSIR--GM(1,1)--GeoDetector components in isolation or with a single weighting scheme; (2) the sensitivity of ES results to the weighting ratio $\alpha$ is rarely tested; (3) the suitability of GM(1,1) for non-monotonic ES series is seldom diagnosed; and (4) few studies translate early-warning results into zonal management recommendations.
 
-\subsection{Contributions}
-\begin{enumerate}
-\item An open-data early-warning pipeline for a national-park region that couples DPSIR-based composite indexing with forecasting and spatial attribution, including monotonicity diagnostics and a three-model forecast comparison.
-\item A weight-ratio sensitivity analysis ($\alpha = 0$--$1$) demonstrating that warning grades are robust to the subjective--objective balance.
-\item A real-data evidence chain (temporal trend, robustness, forecast, spatial drivers) for the Qilian Mountain region over 2005--2023, with a 5-year forecast (2024--2028).
-\item Zonal management recommendations derived from warning grades, with fully reproducible data and code.
-\end{enumerate}
+\subsection{Objectives of this study}
+The objectives of this study are to: (1) quantify the 2005--2023 dynamics and warning state of ecological security in the Qilian Mountain region from open data; (2) test the robustness of warning grades to the subjective--objective weighting ratio ($\alpha = 0$--$1$); (3) diagnose the suitability of grey forecasting models for the non-monotonic ESI series and produce a 2024--2028 forecast; and (4) identify the spatial drivers of ecological security and derive zonal management recommendations.
 
 % ============================================================
 \section{Study area and data}
@@ -97,7 +92,7 @@ Land cover & proportions of grassland, forest, water, cropland, barren & CLCD 30
 The data sources used in this study are summarized in Table~\ref{tab:data}. Land-cover proportions were computed per epoch (2005, 2010, 2015, 2020, 2023) and linearly interpolated to annual values; climate grids were aggregated to annual precipitation and annual mean temperature at the regional scale and the 11 county centroids; the county-level values are therefore centroid-window estimates rather than area-weighted statistics. Raster reprojection and cropping used open Python tooling (xarray, rasterio, pyproj); the full pipeline is openly available (see Data availability).
 
 % ============================================================
-\section{Ecological security early-warning model}
+\section{Methods}
 \label{sec:method}
 
 \subsection{DPSIR framework and indicator system}
