@@ -34,9 +34,9 @@ except ImportError:
     _AL_ORCID = "[ORCID]"
 FIG = os.path.join(BASE, "figures")
 OUTDIR = os.path.join(BASE, "out", "jms")
-OUT = os.path.join(OUTDIR, "论文_EN_JMSv3_2026-09-23.docx")
-OUT_TP = os.path.join(OUTDIR, "Title_Page_JMSv3_2026-09-23.docx")
-OUT_TXT = os.path.join(OUTDIR, "论文_EN_JMSv3_2026-09-23.txt")
+OUT = os.path.join(OUTDIR, "论文_EN_JMSv4_2026-09-24.docx")
+OUT_TP = os.path.join(OUTDIR, "Title_Page_JMSv4_2026-09-24.docx")
+OUT_TXT = os.path.join(OUTDIR, "论文_EN_JMSv4_2026-09-24.txt")
 def _jmsread(fn):
     p = os.path.join(BASE, "jms", fn)
     return io.open(p, encoding="utf-8").read() if os.path.isfile(p) else ""

@@ -10,9 +10,9 @@ from docx import Document
 # 路径自解析：仓库克隆/解压到任意目录均可运行
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTDIR = os.path.join(BASE, "out", "jms")
-MAIN = os.path.join(OUTDIR, "论文_EN_JMSv3_2026-09-23.docx")
-TP = os.path.join(OUTDIR, "Title_Page_JMSv3_2026-09-23.docx")
-TXT = os.path.join(OUTDIR, "论文_EN_JMSv3_2026-09-23.txt")
+MAIN = os.path.join(OUTDIR, "论文_EN_JMSv4_2026-09-24.docx")
+TP = os.path.join(OUTDIR, "Title_Page_JMSv4_2026-09-24.docx")
+TXT = os.path.join(OUTDIR, "论文_EN_JMSv4_2026-09-24.txt")
 
 FAIL, OK = [], []
 

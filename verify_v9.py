@@ -22,7 +22,7 @@ print("\n[E] v9 专项（Qoder R4 复核裁决 B）")
 tex = open(TEX, encoding="utf-8").read()
 ok = ("\\textbf{NGBM achieved" not in tex
       and "\\emph{NGBM" not in tex
-      and "models. NGBM achieved qualified accuracy" in tex)
+      and "The 2024--2028 ESI forecast declines gradually" in tex)
 print("  %s  §4.3 首句已改为普通文字（无 \\textbf、不用 \\emph）"
       % ("PASS " if ok else "FAIL "))
 if not ok:

@@ -84,8 +84,8 @@ chk('savefig(os.path.join(FIG, "fig3_esi_timeseries.png")' not in mm,
 chk("(Including the Qilian Mountain National Park)" not in tex,
     "m1 EN 标题不再含 (Including the Qilian Mountain National Park)")
 first_paras = "\n".join(p.text for p in d.paragraphs[:6])
-chk("祁连山区域生态安全预警评价及其驱动因子" in first_paras and "（含祁连山国家公园）" not in first_paras,
-    "m1 CN 首页标题已删「（含祁连山国家公园）」")
+chk("祁连山区域生态安全预警：时序动态、预测与空间驱动因子" in first_paras and "（含祁连山国家公园）" not in first_paras,
+    "m1 CN 首页标题（R11 去数模化版）已删「（含祁连山国家公园）」")
 
 # ---- 编译产物状态（本机已重编; 读 log 佐证）----
 log = open(os.path.join(PC, "manuscript.log"), encoding="utf-8", errors="replace").read()

@@ -2,7 +2,7 @@
 
 Reproducible analysis pipeline for the manuscript:
 
-> **Ecological Security Early-Warning Assessment and Driving Factors of the Qilian Mountain Region: An Integrated DPSIR–GM(1,1)–GeoDetector Framework**
+> **Ecological security early warning in the Qilian Mountain region, China: temporal dynamics, forecasts, and spatial drivers**
 >
 > Author-identifying metadata (names, affiliations, e-mail) is not included in this repository: the build
 > scripts read it from a local, Git-ignored module (`author_local.py`). Data, analysis code and results are unaffected.

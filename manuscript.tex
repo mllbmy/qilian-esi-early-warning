@@ -20,7 +20,7 @@
 
 \begin{frontmatter}
 
-\title{Ecological Security Early-Warning Assessment and Driving Factors of the Qilian Mountain Region: An Integrated DPSIR--GM(1,1)--GeoDetector Framework}
+\title{Ecological security early warning in the Qilian Mountain region, China: temporal dynamics, forecasts, and spatial drivers}
 
 \author[aff1]{[Author]\corref{cor1}}
 \ead{[email]}
@@ -29,7 +29,7 @@
 \cortext[cor1]{Corresponding author.}
 
 \begin{abstract}
-Nature reserves are critical for biodiversity conservation, yet their management often lacks quantitative early-warning tools that translate monitoring data into actionable signals. This study develops an integrated framework---combining the Driving--Pressure--State--Impact--Response (DPSIR) indicator system, combined subjective--objective weighting (analytic hierarchy process [AHP] and entropy method), the grey GM(1,1) model, and GeoDetector---to assess and forecast ecological security (ES) in the Qilian Mountain region (including the Qilian Mountain National Park, QMNP), China, over 2005--2023. An ecological security index (ESI) was constructed from nine indicators using real climate (CRU TS) and land-cover (China Land Cover Dataset, CLCD) data; AHP pairwise comparisons were derived from the DPSIR hierarchical priorities (consistency ratio CR $=$ 0.0034), and combined weights used a baseline ratio $\alpha=0.4$ with a full sensitivity analysis ($\alpha=0$--$1$). The regional ESI fluctuated within 0.26--0.71, peaking at 0.709 in 2010 (relatively safe) and declining to 0.486 in 2023 (mild warning); the warning grade was ``mild warning'' for 16 of 19 years, and the 2023 grade was invariant to $\alpha$. Among the 2024--2028 forecasts, the nonlinear grey Bernoulli model (NGBM) outperformed GM(1,1) (C $=$ 0.44, P $=$ 0.89, qualified) and ARIMA, all indicating a gradual decline within the mild-warning class; and GeoDetector identified barren/degraded proportion ($q=0.80$) and grassland proportion ($q=0.71$) as the dominant drivers of spatial ES heterogeneity (both $p<0.001$). We propose zonal management---strengthening grassland restoration in mild-warning zones and regulating cropland expansion. The framework is transferable to other nature reserves, offering a reproducible basis for reserve-scale early warning.
+Nature reserves are critical for biodiversity conservation, yet their management often lacks quantitative early-warning tools that translate monitoring data into actionable signals. We assess and forecast ecological security (ES) in the Qilian Mountain region (including the Qilian Mountain National Park), China, over 2005--2023, combining a Driving--Pressure--State--Impact--Response (DPSIR) indicator system with combined subjective--objective weighting, grey forecasting, and GeoDetector attribution, using only open climate (CRU TS) and land-cover (CLCD) data. The regional ecological security index (ESI) rose to a peak of 0.709 in 2010 (relatively safe), then declined and stabilized within the mild-warning band, reaching 0.486 in 2023; 16 of 19 years were classified as mild warning, and the 2023 grade was invariant to the subjective--objective weighting ratio. Forecasts for 2024--2028, obtained with the nonlinear grey Bernoulli model selected by a three-model comparison and rolling backtest, indicate a continued gradual decline within the mild-warning class. Spatially, barren/degraded proportion ($q=0.80$) and grassland proportion ($q=0.71$) dominate the heterogeneity of ecological security (both $p<0.001$): aridity and vegetation cover, not temperature, govern the pattern. We propose zonal management---strengthening grassland restoration in mild-warning zones and regulating cropland expansion---and provide a fully reproducible pipeline transferable to other reserves.
 \end{abstract}
 
 \begin{keyword}
@@ -59,7 +59,7 @@ Knowledge gaps remain: (1) reserve-scale studies usually apply the DPSIR--GM(1,1
 
 \subsection{Contributions}
 \begin{enumerate}
-\item An integrated DPSIR--combined-weight--GM(1,1)--GeoDetector framework designed for a national nature reserve, with monotonicity diagnostics and an NGBM/ARIMA comparison.
+\item An open-data early-warning pipeline for a national-park region that couples DPSIR-based composite indexing with forecasting and spatial attribution, including monotonicity diagnostics and a three-model forecast comparison.
 \item A weight-ratio sensitivity analysis ($\alpha = 0$--$1$) demonstrating that warning grades are robust to the subjective--objective balance.
 \item A real-data evidence chain (temporal trend, robustness, forecast, spatial drivers) for the Qilian Mountain region over 2005--2023, with a 5-year forecast (2024--2028).
 \item Zonal management recommendations derived from warning grades, with fully reproducible data and code.
@@ -237,7 +237,7 @@ The regional ESI rose from 0.258 (medium warning) in 2005 to a peak of 0.709 (re
 \end{figure}
 
 \subsection{Forecast comparison: GM(1,1), NGBM, and ARIMA}
-Table~\ref{tab:forecast} compares the three models. NGBM achieved qualified accuracy (RMSE 0.038; C $=$ 0.44, P $=$ 0.89), outperforming GM(1,1) (RMSE 0.052; C $=$ 0.60, P $=$ 0.79, barely qualified) and ARIMA (C $=$ 1.09, unqualified), validating the nonlinear grey-model choice for small-sample, non-stationary reserve-scale ES series \citep{althobaiti_ngbm2022}. A rolling backtest (training on 2005--2018, validating on 2019--2023) confirms NGBM's superiority (RMSE 0.034 vs.\ 0.065 for GM(1,1), a 47\% improvement). We therefore adopt NGBM as the primary forecasting model; its 2024--2028 forecast declines from 0.446 to 0.394, with parametric 95\% intervals of 0.358--0.533 (2024) and 0.306--0.482 (2028), spanning the medium- and mild-warning grades and indicating non-negligible forecast uncertainty.
+The 2024--2028 ESI forecast declines gradually from 0.446 to 0.394 under a no-intervention scenario, with parametric 95\% intervals of 0.358--0.533 (2024) and 0.306--0.482 (2028) that span the medium- and mild-warning grades, indicating non-negligible forecast uncertainty (Table~\ref{tab:forecast}; Fig.~\ref{fig:esi}). The forecast was produced with the nonlinear grey Bernoulli model (NGBM): among the three candidate models (Table~\ref{tab:forecast}), NGBM met the qualified accuracy grade (C $=$ 0.44, P $=$ 0.89), outperforming GM(1,1) (C $=$ 0.60, P $=$ 0.79, barely qualified) and ARIMA (C $=$ 1.09, unqualified), and a rolling-origin backtest (fitted on 2005--2018, evaluated on the withheld 2019--2023 observations) confirmed its superiority (RMSE 0.034 vs.\ 0.065 for GM(1,1), a 47\% improvement), supporting the nonlinear grey-model choice for small-sample, non-stationary reserve-scale ES series \citep{althobaiti_ngbm2022}.
 
 \begin{table}[htbp]
 \centering
@@ -361,9 +361,9 @@ The 2005--2010 ESI recovery is consistent with large-scale ecological restoratio
 For wildlife and biodiversity conservation, the mild-warning state and the projected decline carry a concrete message: habitat integrity in the Qilian Mountain region is not improving, and monitoring programs that rely on static habitat assessment may miss slow degradation. The early-warning signal formalized here links raw environmental data to actionable warning grades, the decision-support input envisioned by recent wildlife-monitoring frameworks \citep{kerry2022remote,bijl2022camera}.
 
 \subsection{Comparison with previous studies}
-The $\alpha$-sensitivity analysis demonstrates that warning grades are invariant to the weighting ratio, supporting the reliability of combined-weight approaches for PA early warning. The forecast comparison shows that the nonlinear grey Bernoulli model better captures the non-monotonic ESI dynamics than the linear GM(1,1), while ARIMA is unsuitable for such short, non-stationary series \citep{althobaiti_ngbm2022}; supporting the grey-model-based forecast for reserve-scale applications.
+Relative to the reserve-scale early-warning framework that combines DPSIR, combined weights, GM(1,1), and GeoDetector \citep{liu2023integrated}, our results confirm that this toolchain transfers to national-park regions, while extending it in the three respects summarized in Table~\ref{tab:compare}. First, warning grades were invariant to the weighting ratio $\alpha$ over its full 0--1 range, whereas comparable DPSIR-based assessments report a single weighting scheme \citep{changbai_dpsirm_2024,dpsir_dea_threegorges2023}; the warning conclusion for the current state therefore does not depend on the analyst's weighting choice. Second, the observed ESI series is non-monotonic and violates the monotonic-trend assumption of GM(1,1); the nonlinear grey Bernoulli model captured this behavior at the qualified accuracy grade while ARIMA was unqualified, consistent with evidence that nonlinear grey variants suit short, non-stationary series \citep{althobaiti_ngbm2022}.
 
-Compared with previous DPSIR-based assessments, our framework adds three elements: (i) an explicit weighting-ratio robustness check, (ii) a three-model forecast comparison with monotonicity diagnostics, and (iii) a spatial factor attribution linking regional time-series results to county-level heterogeneity (Table~\ref{tab:compare}). These elements directly test how ES results depend on the analyst's choices of weights, forecast model, and spatial scale.
+Third, linking the regional time series to grid- and county-level attribution reveals a scale dependence that single-scale studies cannot expose: the indicators dominating temporal variation (grassland change rate and cropland proportion; Table~\ref{tab:weights}) differ from those dominating spatial heterogeneity (barren/degraded and grassland proportions; Fig.~\ref{fig:qbar}). Early-warning design should therefore pair temporal monitoring of grassland and cropland dynamics with spatially targeted control of land degradation, rather than assuming one driver set serves both.
 
 \begin{table}[htbp]
 \centering
@@ -400,7 +400,7 @@ Limitations include the regional aggregation (county-level ESI is static and bas
 \section{Conclusion}
 \label{sec:conclusion}
 
-An integrated DPSIR--combined-weight--GM(1,1)--GeoDetector framework was applied to the Qilian Mountain region with fully real, open data, and the pipeline is reproducible. The regional ESI ranged 0.26--0.71 over 2005--2023; since 2011 the region has remained in a mild-warning state (2023 ESI $=$ 0.486).
+Using only open climate and land-cover data, we assessed and forecast ecological security in the Qilian Mountain region over 2005--2023 with a fully reproducible pipeline. The regional ESI ranged 0.26--0.71 over 2005--2023; since 2011 the region has remained in a mild-warning state (2023 ESI $=$ 0.486).
 
 Forecasts for 2024--2028 indicate a gradual decline (NGBM: 0.446$\rightarrow$0.394) under a no-intervention scenario, warranting proactive intervention. Warning grades are robust to the subjective--objective weighting ratio, and grassland dynamics and cropland pressure are the dominant signals; GeoDetector identified aridity (barren proportion) as the primary spatial driver. We recommend integrating ESI-based early warning into QMNP adaptive management, prioritizing grassland restoration in mild-warning zones and regulating cropland expansion; the framework is transferable to other nature reserves.
 
