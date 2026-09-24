@@ -1,0 +1,15 @@
+Author contribution
+
+The author conceived and designed the study, performed the data analysis and modelling, interpreted the results, and wrote the manuscript.
+
+Data availability
+
+Climate data are openly available from CRU TS 4.10 (https://crudata.uea.ac.uk/cru/data/hrg/); land cover data are available from the CLCD dataset (https://doi.org/10.5194/essd-13-3907-2021); elevation data are from the Copernicus DEM. The processed datasets and analysis code supporting this study are openly available at https://github.com/mllbmy/qilian-esi-early-warning.
+
+Competing interests
+
+Conflict of Interest: The author declares that he has no conflict of interest.
+
+Ethical statements
+
+This study did not involve human participants or animals. All datasets used are openly available, and the research was conducted in accordance with the ethical standards of the journal.

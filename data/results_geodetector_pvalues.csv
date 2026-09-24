@@ -1,0 +1,11 @@
+﻿factor,q,p
+temp,0.169739,0.001
+precip,0.506016,0.001
+grass,0.70771,0.001
+barren,0.802431,0.001
+grass+barren,0.818262,0.001
+precip+barren,0.833374,0.001
+precip+grass,0.80827,0.001
+temp+barren,0.849224,0.001
+temp+precip,0.529477,0.001
+temp+grass,0.722958,0.001

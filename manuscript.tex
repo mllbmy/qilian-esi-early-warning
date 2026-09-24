@@ -1,0 +1,427 @@
+% ============================================================
+% Ecological Security Early-Warning Assessment of the Qilian Mountain Region
+% Target: Journal for Nature Conservation (Elsevier)
+% Compile: pdflatex -> bibtex -> pdflatex -> pdflatex
+% ============================================================
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\emergencystretch=1em
+
+\journal{Journal for Nature Conservation}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Ecological Security Early-Warning Assessment and Driving Factors of the Qilian Mountain Region: An Integrated DPSIR--GM(1,1)--GeoDetector Framework}
+
+\author[aff1]{[Author]\corref{cor1}}
+\ead{[email]}
+\affiliation[aff1]{organization={[Affiliation]}}
+
+\cortext[cor1]{Corresponding author.}
+
+\begin{abstract}
+Nature reserves are critical for biodiversity conservation, yet their management often lacks quantitative early-warning tools that translate monitoring data into actionable signals. This study develops an integrated framework---combining the Driving--Pressure--State--Impact--Response (DPSIR) indicator system, combined subjective--objective weighting (analytic hierarchy process [AHP] and entropy method), the grey GM(1,1) model, and GeoDetector---to assess and forecast ecological security (ES) in the Qilian Mountain region (including the Qilian Mountain National Park, QMNP), China, over 2005--2023. An ecological security index (ESI) was constructed from nine indicators using real climate (CRU TS) and land-cover (China Land Cover Dataset, CLCD) data; AHP pairwise comparisons were derived from the DPSIR hierarchical priorities (consistency ratio CR $=$ 0.0034), and combined weights used a baseline ratio $\alpha=0.4$ with a full sensitivity analysis ($\alpha=0$--$1$). The regional ESI fluctuated within 0.26--0.71, peaking at 0.709 in 2010 (relatively safe) and declining to 0.486 in 2023 (mild warning); the warning grade was ``mild warning'' for 16 of 19 years, and the 2023 grade was invariant to $\alpha$. Among the 2024--2028 forecasts, the nonlinear grey Bernoulli model (NGBM) outperformed GM(1,1) (C $=$ 0.44, P $=$ 0.89, qualified) and ARIMA, all indicating a gradual decline within the mild-warning class; and GeoDetector identified barren/degraded proportion ($q=0.80$) and grassland proportion ($q=0.71$) as the dominant drivers of spatial ES heterogeneity (both $p<0.001$). We propose zonal management---strengthening grassland restoration in mild-warning zones and regulating cropland expansion. The framework is transferable to other nature reserves, offering a reproducible basis for reserve-scale early warning.
+\end{abstract}
+
+\begin{keyword}
+ecological security \sep early warning \sep DPSIR \sep GM(1,1) \sep GeoDetector \sep arid--semiarid region \sep Qilian Mountain region
+\end{keyword}
+
+\end{frontmatter}
+
+% ============================================================
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{Background}
+Global biodiversity is declining at an unprecedented rate: vertebrate population sizes have fallen by an average of 68\% since 1970, terrestrial mammal biomass has decreased by at least 85\% since the late Pleistocene, and illegal wildlife trade is valued at up to USD 23 billion per year \citep{wwf2020living,ipcc2014climate}. Habitat loss, climate change, and poaching jointly threaten ecosystem stability. Protected areas (PAs) have become the cornerstone of \emph{in-situ} biodiversity conservation worldwide.
+
+Yet the effectiveness of PAs is constrained by limited monitoring capacity. Conventional field surveys are labor-intensive and difficult to sustain over large or inaccessible areas; camera traps and remote sensing provide richer data but require systematic analytical frameworks to translate raw observations into management decisions \citep{kerry2022remote,bijl2022camera}. A recurring gap is the absence of \emph{early-warning} information: ecological degradation is often detected only after it has become severe, leaving little room for preventive intervention.
+
+This monitoring-to-warning gap has been repeatedly identified by conservation initiatives. For example, international calls to reduce illegal wildlife trade have proposed cloud-based monitoring platforms that combine sensor networks, remote sensing, and artificial intelligence to deliver real-time alerts for habitat threats \citep{wwf2020living,kerry2022remote}; the early-warning decision module of such platforms typically rests on composite ecological-security indicators that compress multidimensional environmental information into an actionable signal. Formalizing and empirically validating this warning module with real data, rather than at the design stage, is a direct contribution to conservation monitoring.
+
+An ecological security (ES) perspective offers such a systematic formalization. ES assessment compresses multidimensional environmental, social, and economic information into a composite index that can be tracked through time and space \citep{liu2023integrated,jinan_land_esp_2022}. We adopt this perspective and apply it to a national park where habitat integrity directly underpins wildlife conservation outcomes.
+
+\subsection{Research status and knowledge gaps}
+The pressure--state--response (PSR) and DPSIR frameworks are widely used to organize ES indicator systems \citep{changbai_dpsirm_2024,dpsir_dea_threegorges2023}. Subjective weighting (AHP) \citep{saaty1980analytic}, objective weighting (entropy method), and their combinations are mainstream. Grey models (GM(1,1)) \citep{deng1982control} are favored for small-sample ES time series; Liu et al.\ integrated DPSIR, combined weights, GM(1,1), and GeoDetector into a reserve-scale early-warning framework \citep{liu2023integrated}. The GeoDetector method \citep{wang2016measure,wang2012environmental} quantifies the contribution of individual factors to spatial ES heterogeneity \citep{westliaohe_esp_2026,china_ecoenv_2024,qilian_ez_2024}.
+
+Knowledge gaps remain: (1) reserve-scale studies usually apply the DPSIR--GM(1,1)--GeoDetector components in isolation or with a single weighting scheme; (2) the sensitivity of ES results to the weighting ratio $\alpha$ is rarely tested; (3) the suitability of GM(1,1) for non-monotonic ES series is seldom diagnosed; and (4) few studies translate early-warning results into zonal management recommendations.
+
+\subsection{Contributions}
+\begin{enumerate}
+\item An integrated DPSIR--combined-weight--GM(1,1)--GeoDetector framework designed for a national nature reserve, with monotonicity diagnostics and an NGBM/ARIMA comparison.
+\item A weight-ratio sensitivity analysis ($\alpha = 0$--$1$) demonstrating that warning grades are robust to the subjective--objective balance.
+\item A real-data evidence chain (temporal trend, robustness, forecast, spatial drivers) for the Qilian Mountain region over 2005--2023, with a 5-year forecast (2024--2028).
+\item Zonal management recommendations derived from warning grades, with fully reproducible data and code.
+\end{enumerate}
+
+% ============================================================
+\section{Study area and data}
+\label{sec:study}
+
+\subsection{Study area}
+The Qilian Mountain region, centered on the Qilian Mountain National Park (QMNP), is located in the northeastern margin of the Qinghai--Tibet Plateau, spanning the border of Gansu and Qinghai provinces (Fig.~\ref{fig:area}). The park protects typical alpine ecosystems---glaciers, snowfields, alpine meadows, and desert steppes---that provide critical water services for the Hexi Corridor. Because the authoritative park boundary vector was not openly accessible, we analyze a rectangular region ($36.0$--$40.5^{\circ}$N, $93.5$--$103.5^{\circ}$E) covering the park and its buffer counties; this is stated explicitly so that the conclusions are interpreted at the regional scale. The study region has an annual mean temperature of 0.8--2.0\,$^{\circ}$C and annual precipitation of 167--284\,mm over 2005--2023. Analysis units include the whole region and 11 counties (Tianzhu, Sunan, Subei, Aksai, Minle, Shandan, Menyuan, Qilian, Gangcha, Delingha, Tianjun).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\linewidth]{figures/fig1_study_area.png}
+\caption{Topography, the Qilian Mountain National Park, and county locations in the study region.}
+\label{fig:area}
+\end{figure}
+
+\subsection{Data sources}
+\begin{table}[htbp]
+\centering
+\caption{Data sources used in this study.}
+\label{tab:data}
+\small
+\begin{tabular}{lp{4.7cm}ll}
+\toprule
+Data type & Indicators & Source & Period \\
+\midrule
+Climate & precipitation (mm), mean temperature ($^{\circ}$C) & CRU TS 4.10 \citep{cru_ts410} & 2005--2023 \\
+Land cover & proportions of grassland, forest, water, cropland, barren & CLCD 30\,m \citep{yang2021clcd} & 2005--2023 \\
+\bottomrule
+\end{tabular}
+\end{table}
+The data sources used in this study are summarized in Table~\ref{tab:data}. Land-cover proportions were computed per epoch (2005, 2010, 2015, 2020, 2023) and linearly interpolated to annual values; climate grids were aggregated to annual precipitation and annual mean temperature at the regional scale and the 11 county centroids; the county-level values are therefore centroid-window estimates rather than area-weighted statistics. Raster reprojection and cropping used open Python tooling (xarray, rasterio, pyproj); the full pipeline is openly available (see Data availability).
+
+% ============================================================
+\section{Ecological security early-warning model}
+\label{sec:method}
+
+\subsection{DPSIR framework and indicator system}
+Following the DPSIR framework \citep{changbai_dpsirm_2024,dpsir_dea_threegorges2023}, nine indicators cover the criteria layers: Driving forces (precipitation, temperature), Pressure (barren/degraded proportion, cropland proportion), State (grassland, forest, water proportions), Impact (grassland change rate), and Response (ecological land proportion). The indicator set was chosen to (i) rely exclusively on open, reproducible data, and (ii) capture both the climate forcing and the land-surface response that dominate ecological security in arid--semiarid alpine ecosystems. Temperature and precipitation are assigned positive directions because heat and moisture jointly limit vegetation growth in this cold, arid setting; the competing effect of warming through increased evaporative stress is examined in the spatial attribution (Sec.~\ref{sec:results}). Table~\ref{tab:indicators} lists the full indicator set with directions and roles. Fig.~\ref{fig:framework} outlines how the DPSIR causal chain connects to the ESI-based warning pipeline; all indicators are min--max normalized to $[0,1]$ before weighting (Sec.~\ref{sec:esi}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1.0\linewidth]{figures/fig_dpsir_framework.pdf}
+\caption{Conceptual framework linking the DPSIR causal chain (nine indicators by layer, with positive/negative directions) to the ESI-based early-warning pipeline: combined weighting, five-grade warning, forecasting, and spatial attribution. Inputs are the open CRU TS 4.10 climate series and CLCD 30\,m land cover at five epochs (2005, 2010, 2015, 2020, 2023). The dashed arrow denotes management feedback from the zonal-management output to the driving forces.}
+\label{fig:framework}
+\end{figure}
+
+\begin{table}[htbp]
+\centering
+\caption{The DPSIR indicator system. ($+$/$-$ denote positive/negative directions for ecological security.)}
+\label{tab:indicators}
+\small
+\begin{tabular}{llll}
+\toprule
+Criteria layer & Indicator & Unit & Direction \\
+\midrule
+Driving (D) & Annual precipitation & mm & $+$ \\
+Driving (D) & Annual mean temperature & $^{\circ}$C & $+$ \\
+Pressure (P) & Barren/degraded proportion & \% & $-$ \\
+Pressure (P) & Cropland proportion & \% & $-$ \\
+State (S) & Grassland proportion & \% & $+$ \\
+State (S) & Forest proportion & \% & $+$ \\
+State (S) & Water proportion & \% & $+$ \\
+Impact (I) & Grassland change rate & \% yr$^{-1}$ & $+$ \\
+Response (R) & Ecological land proportion & \% & $+$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Combined weighting (AHP and entropy)}
+Entropy weights are $e_j=-\frac{1}{\ln n}\sum_i p_{ij}\ln p_{ij}$ with $p_{ij}=x'_{ij}/\sum_i x'_{ij}$ and $w^{E}_j=(1-e_j)/\sum_j(1-e_j)$. AHP weights $w^{A}_j$ follow the principal-eigenvector method \citep{saaty1980analytic}. Because ecological security is most directly indicated by the State and Response layers, the criterion-level pairwise comparison matrix (five criteria on the Saaty 1--9 scale; Table~\ref{tab:ahp}) was derived from the DPSIR hierarchical priorities (State $>$ Response $>$ Impact $>$ Driving $=$ Pressure), giving $\lambda_{\max}=5.015$, $CI=(\lambda_{\max}-n)/(n-1)=0.0038$, and $CR=CI/RI=0.0034<0.1$ ($RI=1.12$ at $n=5$), which satisfies the consistency requirement. Within each criterion, indicators share the criterion weight equally. The combined weight is
+\begin{equation}
+w_j=\alpha\,w^{A}_j+(1-\alpha)\,w^{E}_j,\qquad \alpha\in[0,1],
+\label{eq:weight}
+\end{equation}
+with $\alpha=0.4$ baseline and a full sensitivity analysis over $\alpha=0$--$1$ to test robustness to the subjective--objective balance.
+
+\begin{table}[htbp]
+\centering
+\caption{Criterion-level AHP pairwise comparison matrix (Saaty 1--9 scale) and the resulting criterion weights.}
+\label{tab:ahp}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Criteria & D & P & S & I & R & Weight \\
+\midrule
+Driving (D) & 1 & 1 & 1/5 & 1/2 & 1/3 & 0.081 \\
+Pressure (P) & 1 & 1 & 1/5 & 1/2 & 1/3 & 0.081 \\
+State (S) & 5 & 5 & 1 & 3 & 2 & 0.438 \\
+Impact (I) & 2 & 2 & 1/3 & 1 & 1/2 & 0.149 \\
+Response (R) & 3 & 3 & 1/2 & 2 & 1 & 0.250 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Ecological security index (ESI)}
+\label{sec:esi}
+Indicators are first min--max normalized into $[0,1]$:
+\begin{equation}
+x'_{ij}=\begin{cases}\dfrac{x_{ij}-\min_j}{\max_j-\min_j}, & \text{positive},\\[2mm]
+\dfrac{\max_j-x_{ij}}{\max_j-\min_j}, & \text{negative},\end{cases}
+\label{eq:norm}
+\end{equation}
+and the ESI is the weighted sum
+\begin{equation}
+\mathrm{ESI}_i=\sum_{j=1}^{m}w_j\,x'_{ij},\qquad \mathrm{ESI}\in[0,1].
+\label{eq:esi}
+\end{equation}
+
+\subsection{Prediction models and warning classification}
+The GM(1,1) model \citep{deng1982control} is built on the first-order accumulated series with least-squares estimates $(\hat a,\hat b)$:
+\begin{equation}
+\hat x^{(0)}(k+1)=\left(1-e^{\hat a}\right)\left(x^{(0)}(1)-\frac{\hat b}{\hat a}\right)e^{-\hat a k}.
+\label{eq:gm}
+\end{equation}
+GM(1,1) assumes a monotonic exponential trend, which the observed ESI series violates (it rises to a peak in 2010 before declining); we therefore additionally apply the nonlinear grey Bernoulli model (NGBM), which generalizes GM(1,1) with a power exponent $\gamma$: $x^{(0)}(k)+a z^{(1)}(k)=b[z^{(1)}(k)]^{\gamma}$, and compare both with ARIMA. Model quality is evaluated by the posterior-variance ratio $C=S_2/S_1$ and the small-error probability $P$; grades: excellent ($C<0.35$, $P>0.95$), qualified ($C<0.50$, $P>0.80$), barely qualified ($C<0.65$, $P>0.70$). Forecast accuracy is additionally verified by a rolling-origin backtest, in which each model is fitted on 2005--2018 and evaluated on the withheld 2019--2023 observations. Forecasts and observed ESI values are interpreted against five warning levels: safe $[0.8,1]$, relatively safe $[0.6,0.8)$, mild warning $[0.4,0.6)$, medium warning $[0.2,0.4)$, and severe warning $[0,0.2)$. Thresholds are set at equal 0.2 intervals across the normalized range $[0,1]$, consistent with the five-grade warning convention used in DPSIR-based ecological-security early-warning frameworks for Chinese nature reserves \citep{liu2023integrated}; equal spacing keeps grades comparable across studies and avoids sample-dependent breakpoints, and the grade of the observed series is shown below to be invariant to the weighting ratio.
+
+\subsection{Spatial driving-factor identification (GeoDetector)}
+\begin{equation}
+q=1-\frac{\sum_{h=1}^{L}N_h\sigma_h^2}{N\sigma^2},
+\label{eq:q}
+\end{equation}
+with significance tested by a permutation test (999 iterations) \citep{wang2016measure,wang2012environmental}; the interaction detector quantifies joint effects of factor pairs.
+
+% ============================================================
+\section{Results}
+\label{sec:results}
+
+Fig.~\ref{fig:trends} shows the raw indicator dynamics behind the ESI. Precipitation fluctuates between 166.9 and 284.4\,mm\,yr$^{-1}$ and falls from 228.0 (2005) to 166.9\,mm (2023); mean temperature rises from 1.29 to 1.92\,$^{\circ}$C. The land-cover indicators, linearly interpolated between the five CLCD epochs, change slowly: ecological land proportion (grassland, forest, and water combined) rises from 37.9\% in 2005 to 39.6\% in 2010 and remains near 39.0\% in 2023, the barren/degraded proportion declines from 58.2\% to 56.5\% and then returns to 57.0\%, water (1.75--2.12\%) and forest (1.15--1.29\%) proportions increase steadily, and cropland grows slightly (3.8--4.0\%). Grassland change rate is the most volatile signal ($-0.47$ to $+0.84$\%\,yr$^{-1}$). After normalization and combined weighting (Sec.~\ref{sec:esi}), these series yield the ESI trajectory analyzed below (Fig.~\ref{fig:esi}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\linewidth]{figures/fig_indicator_trends.pdf}
+\caption{Temporal trends of the nine DPSIR indicators, 2005--2023. Dots mark the five CLCD observation epochs (2005, 2010, 2015, 2020, 2023); land-cover-based indicators are linearly interpolated between epochs. The dashed line marks 2010, the year of the ESI peak.}
+\label{fig:trends}
+\end{figure}
+
+\subsection{Indicator weights}
+Entropy weighting (Table~\ref{tab:weights}) identifies grassland change rate ($w^{E}=0.245$) and cropland proportion ($w^{E}=0.171$) as the most informative signals. The AHP layer weights emphasize the State indicators (grassland, forest, water; 0.146 each) and ecological land proportion (0.250), while the combined weights ($\alpha=0.4$) rank grassland change rate (0.206), ecological land proportion (0.136), water proportion (0.128), and forest proportion (0.120) highest, indicating that grassland dynamics, ecological land extent, and water availability jointly dominate the temporal variation of ES (Fig.~\ref{fig:weights}).
+
+\begin{table}[htbp]
+\centering
+\caption{Indicator weights (entropy, AHP, and combined with $\alpha=0.4$).}
+\label{tab:weights}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Indicator & Direction & Entropy & AHP & Combined \\
+\midrule
+Precipitation (mm) & $+$ & 0.111 & 0.041 & 0.083 \\
+Temperature ($^{\circ}$C) & $+$ & 0.063 & 0.041 & 0.054 \\
+Grassland proportion & $+$ & 0.075 & 0.146 & 0.103 \\
+Forest proportion & $+$ & 0.103 & 0.146 & 0.120 \\
+Water proportion & $+$ & 0.115 & 0.146 & 0.128 \\
+Barren/degraded proportion & $-$ & 0.058 & 0.041 & 0.051 \\
+Cropland proportion & $-$ & 0.171 & 0.041 & 0.119 \\
+Grassland change rate & $+$ & 0.245 & 0.149 & 0.206 \\
+Ecological land proportion & $+$ & 0.059 & 0.250 & 0.136 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{ESI time series and warning grades (2005--2023)}
+The regional ESI rose from 0.258 (medium warning) in 2005 to a peak of 0.709 (relatively safe) in 2010, then declined and fluctuated within 0.45--0.59 (mild warning), reaching 0.486 in 2023 (Fig.~\ref{fig:esi}). The warning-grade distribution over 19 years is 1 medium-warning year (2005), 2 relatively-safe years (2009, 2010), and 16 mild-warning years. A Mann--Kendall test finds no significant post-2010 trend ($Z=-1.120$, $p=0.263$; Sen's slope $-0.0032$\,yr$^{-1}$), so the region remains in a stable yet vulnerable mild-warning state.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\linewidth]{figures/fig3_esi_timeseries.pdf}
+\caption{Observed ESI (2005--2023) and forecasts (2024--2028) with warning-level bands.}
+\label{fig:esi}
+\end{figure}
+
+\subsection{Forecast comparison: GM(1,1), NGBM, and ARIMA}
+Table~\ref{tab:forecast} compares the three models. NGBM achieved qualified accuracy (RMSE 0.038; C $=$ 0.44, P $=$ 0.89), outperforming GM(1,1) (RMSE 0.052; C $=$ 0.60, P $=$ 0.79, barely qualified) and ARIMA (C $=$ 1.09, unqualified), validating the nonlinear grey-model choice for small-sample, non-stationary reserve-scale ES series \citep{althobaiti_ngbm2022}. A rolling backtest (training on 2005--2018, validating on 2019--2023) confirms NGBM's superiority (RMSE 0.034 vs.\ 0.065 for GM(1,1), a 47\% improvement). We therefore adopt NGBM as the primary forecasting model; its 2024--2028 forecast declines from 0.446 to 0.394, with parametric 95\% intervals of 0.358--0.533 (2024) and 0.306--0.482 (2028), spanning the medium- and mild-warning grades and indicating non-negligible forecast uncertainty.
+
+\begin{table}[htbp]
+\centering
+\caption{Forecast comparison on the 2005--2023 ESI series.}
+\label{tab:forecast}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccccc}
+\toprule
+Model & RMSE & MAE & $C$ & $P$ & 2024 forecast & 2028 forecast \\
+\midrule
+GM(1,1) & 0.052 & 0.035 & 0.597 & 0.789 & 0.510 & 0.493 \\
+\textbf{NGBM} ($\gamma$=0.20) & \textbf{0.038} & \textbf{0.029} & \textbf{0.442} & \textbf{0.895} & 0.446 & 0.394 \\
+ARIMA(0,1,1) & 0.098 & 0.067 & 1.086 & 0.632 & 0.488 & 0.488 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Accuracy grades follow the grey-model convention: qualified ($C<0.50$, $P>0.80$), barely qualified ($C<0.65$, $P>0.70$), and unqualified otherwise; NGBM is the adopted model.}
+\end{table}
+
+\subsection{Robustness to the weighting ratio $\alpha$}
+Sensitivity analysis over $\alpha=0$--$1$ shows that the 2023 ESI increases from 0.425 (pure entropy, $\alpha=0$) to 0.578 (pure AHP, $\alpha=1$), while its warning grade remains ``mild warning'' throughout (Fig.~\ref{fig:alpha}). Across the 19-year series the number of mild-warning years falls from 16 at $\alpha=0.3$--$0.4$ to 5 at $\alpha\ge0.9$, and a severe-warning year appears once $\alpha\ge0.7$; the baseline $\alpha=0.4$ thus sits in the most stable regime. The early-warning conclusion for the current state is therefore robust to the subjective--objective weighting balance, although AHP-dominated weights amplify the spread of historical grades.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\linewidth]{figures/fig4_alpha_sensitivity.pdf}
+\caption{Sensitivity of the 2023 ESI to the weighting ratio $\alpha$. The warning grade is stable across all $\alpha$.}
+\label{fig:alpha}
+\end{figure}
+
+\subsection{County-level ESI, spatial driving factors, and obstacle factors}
+The static county ESI (2020), computed with the same combined weights as the regional analysis, ranks Sunan (0.466) and Tianzhu (0.395) highest and Aksai (0.074) lowest (Table~\ref{tab:county}; Fig.~\ref{fig:spatial}). Eastern counties with higher grassland cover (Sunan, Tianzhu, Qilian) score higher than the arid western counties (Aksai, Delingha), although the pattern is modulated by local land-cover composition (e.g., the crop-dominated county Minle scores lower than some western counties). The gradient implies that conservation resources and early-warning priority should be allocated heterogeneously across the region.
+
+\begin{table}[htbp]
+\centering
+\caption{Static county-level ESI (2020).}
+\label{tab:county}
+\small
+\begin{tabular}{lcccc}
+\toprule
+County & ESI (2020) & County & ESI (2020) \\
+\midrule
+Sunan & 0.466 & Gangcha & 0.289 \\
+Tianzhu & 0.395 & Shandan & 0.260 \\
+Qilian & 0.390 & Tianjun & 0.251 \\
+Delingha & 0.366 & Minle & 0.166 \\
+Subei & 0.344 & Aksai & 0.074 \\
+Menyuan & 0.306 & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GeoDetector on 1{,}914 grid samples identified barren/degraded proportion ($q=0.80$, $p<0.001$) as the dominant driver of spatial ES heterogeneity, followed by grassland proportion ($q=0.71$, $p<0.001$) and precipitation ($q=0.51$, $p<0.001$); temperature ($q=0.17$, $p<0.001$) and forest proportion were weak (permutation test, 999 iterations; Fig.~\ref{fig:qbar}). Aridity and vegetation cover, not temperature, govern the spatial pattern of ecological security in the Qilian Mountain region. The interaction detector further shows that all factor pairs show \emph{enhancing} interactions: the joint effects of temperature$\times$barren ($q=0.849$), precipitation$\times$barren ($q=0.833$), and grassland$\times$barren ($q=0.818$) all exceed their individual contributions ($p<0.001$), indicating that thermal--arid and moisture--vegetation couplings compound spatial ES heterogeneity (Table~\ref{tab:interaction}; Fig.~\ref{fig:interaction}).
+
+\begin{table}[htbp]
+\centering
+\caption{GeoDetector interaction detection (2020).}
+\label{tab:interaction}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Factor pair & $q_1$ & $q_2$ & $q_{\mathrm{int}}$ & Relation \\
+\midrule
+Grassland $\times$ Barren & 0.708 & 0.802 & 0.818 & enhance \\
+Precipitation $\times$ Barren & 0.506 & 0.802 & 0.833 & enhance \\
+Precipitation $\times$ Grassland & 0.506 & 0.708 & 0.808 & enhance \\
+Temperature $\times$ Barren & 0.170 & 0.802 & 0.849 & enhance \\
+Temperature $\times$ Grassland & 0.170 & 0.708 & 0.723 & enhance \\
+Temperature $\times$ Precipitation & 0.170 & 0.506 & 0.529 & enhance \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\linewidth]{figures/fig5_spatial_esi.png}
+\caption{Spatial distribution of point ESI (2020) in the Qilian Mountain region.}
+\label{fig:spatial}
+\end{figure}
+
+Moran's $I$ for the 2020 point ESI (1{,}914 samples, inverse-distance $k$-nearest-neighbour weights) is 0.643 ($p=0.005$, permutation test), indicating significant spatial clustering and supporting the GeoDetector attribution.
+
+Obstacle-factor analysis---following the obstacle-degree diagnosis of composite ecological-security indices \citep{jing2024obstacle}---reveals a phase shift in the constraints on ecological security: during the recovery phase (2005--2010) the main obstacles were water proportion (0.233), forest proportion (0.221), and ecological land proportion (0.151), reflecting water-resource and forest-scale deficits; during the plateau phase (2011--2023) the dominant obstacles shifted to grassland change rate (0.364) and cropland proportion (0.206), indicating that grassland dynamics and cropland expansion now govern ecological security, consistent with the weighting results (Fig.~\ref{fig:obstacle}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\linewidth]{figures/fig_weights.pdf}
+\caption{Entropy, AHP, and combined ($\alpha=0.4$) weights of the nine DPSIR indicators.}
+\label{fig:weights}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\linewidth]{figures/fig_geodetector_q.pdf}
+\caption{Single-factor detection $q$ statistics (2020; permutation test, 999 iterations; all $p<0.001$).}
+\label{fig:qbar}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.98\linewidth]{figures/fig_interaction.pdf}
+\caption{Interaction-detector $q$ values for the six factor pairs ($q_1$ and $q_2$ individual, $q_{\mathrm{int}}$ joint; all pairs enhance).}
+\label{fig:interaction}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\linewidth]{figures/fig_obstacle.pdf}
+\caption{Annual obstacle-degree profiles of the nine indicators, 2005--2023 (each annual profile sums to 1).}
+\label{fig:obstacle}
+\end{figure}
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Ecological security changes and their drivers}
+The 2005--2010 ESI recovery is consistent with large-scale ecological restoration (grazing-withdrawal and revegetation programs) and wetter years; the subsequent mild-warning plateau reflects persistent barren-dominated land cover ($\sim$56\%) and climate fluctuation. The dominant weighting of grassland dynamics corroborates the importance of alpine meadow ecosystems for regional ES, in line with findings that grassland degradation is the leading ecological-security constraint in alpine regions \citep{qilian_ez_2024,westliaohe_esp_2026}. The east--west county gradient and the GeoDetector results further indicate that aridity and vegetation cover---not temperature---control spatial heterogeneity, a pattern consistent with arid-zone studies in which moisture availability, not thermal regime, limits ecosystem productivity \citep{china_ecoenv_2024}.
+
+For wildlife and biodiversity conservation, the mild-warning state and the projected decline carry a concrete message: habitat integrity in the Qilian Mountain region is not improving, and monitoring programs that rely on static habitat assessment may miss slow degradation. The early-warning signal formalized here links raw environmental data to actionable warning grades, the decision-support input envisioned by recent wildlife-monitoring frameworks \citep{kerry2022remote,bijl2022camera}.
+
+\subsection{Comparison with previous studies}
+The $\alpha$-sensitivity analysis demonstrates that warning grades are invariant to the weighting ratio, supporting the reliability of combined-weight approaches for PA early warning. The forecast comparison shows that the nonlinear grey Bernoulli model better captures the non-monotonic ESI dynamics than the linear GM(1,1), while ARIMA is unsuitable for such short, non-stationary series \citep{althobaiti_ngbm2022}; supporting the grey-model-based forecast for reserve-scale applications.
+
+Compared with previous DPSIR-based assessments, our framework adds three elements: (i) an explicit weighting-ratio robustness check, (ii) a three-model forecast comparison with monotonicity diagnostics, and (iii) a spatial factor attribution linking regional time-series results to county-level heterogeneity (Table~\ref{tab:compare}). These elements directly test how ES results depend on the analyst's choices of weights, forecast model, and spatial scale.
+
+\begin{table}[htbp]
+\centering
+\caption{Methodological features of the proposed framework relative to representative reserve-scale ecological-security studies: Liu et al. \citep{liu2023integrated}, a Changbai Mountain DPSIRM assessment \citep{changbai_dpsirm_2024}, and a DPSIR--DEA assessment of the Three Gorges reservoir area \citep{dpsir_dea_threegorges2023}.}
+\label{tab:compare}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+Feature & Liu et al. & Changbai DPSIRM & DPSIR--DEA & This study \\
+\midrule
+DPSIR/PSR framework & Yes & Yes & Yes & Yes \\
+Combined weighting & Yes & AHP only & Entropy--DEA & Yes, $+$ $\alpha$ sensitivity \\
+GM(1,1) forecasting & Yes & No & No & Yes, vs.\ NGBM/ARIMA \\
+GeoDetector attribution & Yes & No & No & Yes, $+$ interactions \\
+County-level analysis & No & Yes & Yes & Yes \\
+Weighting robustness & No & No & No & Yes \\
+Open data and code & No & No & No & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Management implications}
+\begin{enumerate}
+\item \emph{Zonal priorities.} Mild-warning zones (dominant since 2011) should prioritize grassland restoration and grazing regulation, while the arid western counties (Aksai, Delingha) require desertification monitoring and water-resource management, not vegetation restoration \emph{per se}.
+\item \emph{Cropland regulation.} Cropland proportion carries the second-highest weight; expansion at the agropastoral ecotone should be controlled to curb land-use pressure.
+\item \emph{Threshold-triggered response.} The five-level warning classification enables an ESI-threshold-triggered response mechanism aligned with QMNP zoning, so that a drop across a warning boundary automatically escalates monitoring frequency and management attention---operationalizing the early-warning concept for habitat and wildlife conservation.
+\end{enumerate}
+
+\subsection{Limitations and future work}
+Limitations include the regional aggregation (county-level ESI is static and based on centroid windows pending finer administrative boundaries), the interpolation of land cover between five epochs, the moderate accuracy of grey models on non-monotonic series (mitigated by the NGBM/ARIMA comparison), and the absence of independent cross-validation of the ESI against external ecological indicators (e.g., NDVI, field grass-cover observations). Future work should (i) incorporate higher-temporal-resolution land cover and near-real-time warning updates, (ii) couple the ESI with wildlife population and habitat-quality indicators, (iii) extend the framework to a multi-reserve comparison to test transferability, and (iv) cross-validate the ESI against independent external indicators.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+An integrated DPSIR--combined-weight--GM(1,1)--GeoDetector framework was applied to the Qilian Mountain region with fully real, open data, and the pipeline is reproducible. The regional ESI ranged 0.26--0.71 over 2005--2023; since 2011 the region has remained in a mild-warning state (2023 ESI $=$ 0.486).
+
+Forecasts for 2024--2028 indicate a gradual decline (NGBM: 0.446$\rightarrow$0.394) under a no-intervention scenario, warranting proactive intervention. Warning grades are robust to the subjective--objective weighting ratio, and grassland dynamics and cropland pressure are the dominant signals; GeoDetector identified aridity (barren proportion) as the primary spatial driver. We recommend integrating ESI-based early warning into QMNP adaptive management, prioritizing grassland restoration in mild-warning zones and regulating cropland expansion; the framework is transferable to other nature reserves.
+
+% ============================================================
+\section*{Data availability}
+Climate data are openly available from CRU TS 4.10 (University of East Anglia Climatic Research Unit, crudata.uea.ac.uk). Land-cover data are openly available from the CLCD v1.0 dataset (Yang \& Huang, Zenodo, https://zenodo.org/records/12779975). The complete analysis pipeline (Python: xarray, rasterio, pyproj, statsmodels) and processed intermediate datasets are publicly available at https://github.com/mllbmy/qilian-esi-early-warning.
+
+\section*{CRediT authorship contribution statement}
+\textbf{[Author]}: Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Visualization, Writing -- original draft, Writing -- review \& editing.
+
+\section*{Declaration of competing interest}
+The author declares no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+\section*{Funding}
+This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
+
+\section*{Declaration of generative AI and AI-assisted technologies in the writing process}
+During the preparation of this work the author used DeepSeek (an AI language model) in order to assist with manuscript drafting, structuring, and language editing. After using this tool, the author reviewed and edited the content as needed and takes full responsibility for the content of the publication.
+
+\bibliographystyle{elsarticle-harv}
+\bibliography{manuscript}
+
+\end{document}
+

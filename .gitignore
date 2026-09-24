@@ -1,0 +1,50 @@
+# ---------------- 复现包：生成物不入库（2026-09-24）----------------
+out/
+figures/
+jms/figures_tiff/
+jms/_embed/
+jms/Cover_Letter_*.docx
+__pycache__/
+*.pyc
+.paperlab/
+
+# 地理底图数据(可从 Natural Earth CDN 重新下载,不入库)
+data/ne/
+data/_osm*.json
+
+# DEM 中间瓦片(可从 AWS S3 重新下载,不入库)
+data/cop90/
+data/_dem*.png
+data/_dem8*.png
+data/_dem8_merged.npy
+data/_tile_test.png
+data/_test_c30.tif
+
+# LaTeX 中间文件
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.blg
+*.bbl
+*.spl
+manuscript.pdf
+
+# 2026-09-24 复现库清理：原始栅格(2.4GB)/公式png/备份图/投稿流程材料
+data/cru/
+equations/
+jms/fig1_backup_300dpi.png
+审稿人评审报告.md
+cover-letter.md
+
+# 投稿流程材料(含推荐审稿人信息,不公开) + 已弃用底图数据
+jms/cover_letter_JMS_*.md
+data/china_dataV_full.json
+
+# 本地私有作者身份信息（构建脚本按需导入，不进入公开库）
+author_local.py
+
+# 原始输入数据（作者自备，可用环境变量 QILIAN_LC_DATA / QILIAN_CRU_DATA 指向别处）
+_raw/

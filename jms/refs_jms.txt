@@ -1,0 +1,19 @@
+Althobaiti S, Shabri A (2022) Prediction of CO2 emissions in Saudi Arabia using nonlinear grey Bernoulli Model NGBM(1,1) compared with GM(1,1) model. J Phys Conf Ser 2259: 012011. https://doi.org/10.1088/1742-6596/2259/1/012011
+Bijl H, Heltai M (2022) A narrative review on the use of camera traps and machine learning in wildlife research. Columella 9(2): 47-69. https://doi.org/10.18380/szie.colum.2022.9.2.47
+Deng JL (1982) Control problems of grey systems. Syst Control Lett 1(5): 288-294.
+Gao J, Pan N, Zhou D (2025) Integrating landscape ecological risk and ecosystem services for ecological zoning in the Qilian Mountain National Park. Ecosyst Health Sustain 11: 0441. https://doi.org/10.34133/ehs.0441
+Harris I, Osborn TJ, Jones P, et al. (2020) Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Sci Data 7: 109. https://doi.org/10.1038/s41597-020-0453-3
+Hou M, Li L, Yu H, et al. (2024) Ecological security evaluation of wetlands in Changbai Mountain area based on DPSIRM model. Ecol Indic 160: 111773. https://doi.org/10.1016/j.ecolind.2024.111773
+IPCC (2014) Climate Change 2014: Impacts, Adaptation, and Vulnerability. Part A: Global and Sectoral Aspects. Cambridge University Press, Cambridge, UK.
+Jing XD, Tao ST, Hu H, et al. (2024) Spatio-temporal evaluation of ecological security of cultivated land in China based on DPSIR-entropy weight TOPSIS model and analysis of obstacle factors. Ecol Indic 166: 112579. https://doi.org/10.1016/j.ecolind.2024.112579
+Kerry RG, Montalbo FJP, Das R, et al. (2022) An overview of remote monitoring methods in biodiversity conservation. Environ Sci Pollut Res 29(53): 80179-80221. https://doi.org/10.1007/s11356-022-23242-y
+Liu J, Cao X, Zhao L, et al. (2022) Spatiotemporal differentiation of land ecological security and its influencing factors: A case study in Jinan, Shandong Province, China. Front Environ Sci 10: 824254. https://doi.org/10.3389/fenvs.2022.824254
+Liu Y, Wang C, Wang H, et al. (2023) An integrated ecological security early-warning framework in the national nature reserve based on the gray model. J Nat Conserv 73: 126394. https://doi.org/10.1016/j.jnc.2023.126394
+Lyu X, Li XB, Wang K, et al. (2026) Anthropogenic activities amplify spatiotemporal variations in regional ecological security patterns dominated by natural factors: Evidence from the West Liaohe River Basin, China. J Arid Land 18: 752-773. https://doi.org/10.1016/j.jaridl.2026.05.002
+Saaty TL (1980) The Analytic Hierarchy Process. New York: McGraw-Hill.
+Wang JF, Hu Y (2012) Environmental health risk detection with GeogDetector. Environ Model Softw 33: 114-115. https://doi.org/10.1016/j.envsoft.2012.01.015
+Wang JF, Zhang TL, Fu BJ (2016) A measure of spatial stratified heterogeneity. Ecol Indic 67: 250-256. https://doi.org/10.1016/j.ecolind.2016.02.052
+WWF (2020) Living Planet Report 2020: Bending the curve of biodiversity loss. WWF International, Gland, Switzerland.
+Yang G, Gui Q, Liu J, et al. (2023) Spatial-temporal evolution and driving factors of ecological security in China based on DPSIR-DEA model: A case study of the Three Gorges reservoir area. Ecol Indic 154: 110777. https://doi.org/10.1016/j.ecolind.2023.110777
+Yang J, Huang X (2021) The 30 m annual land cover dataset and its dynamics in China from 1990 to 2019. Earth Syst Sci Data 13(8): 3907-3925. https://doi.org/10.5194/essd-13-3907-2021
+Zhang W, Liu Z, Qin K, et al. (2024) Long-term dynamic monitoring and driving force analysis of eco-environmental quality in China. Remote Sens 16(6): 1028. https://doi.org/10.3390/rs16061028
