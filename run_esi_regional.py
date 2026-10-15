@@ -1,5 +1,17 @@
 # -*- coding: utf-8 -*-
 """构建全真实 DPSIR 指标矩阵并运行 ESI 预警管线（方向 A+T3 实证主体）
+
+!! R22 加固说明（重要）!!
+    本脚本的 AHP 权重为 **等权**（`w_ahp = np.ones(9)/9`，见下方），**不是投稿口径**。
+    投稿口径（真实准则层判断矩阵，λmax=5.015284 / CI=0.003821 / CR=0.003412）由
+    `run_ahp_weights.py` + `rerun_pipeline_ahp.py` 给出，产出权威归档
+    `data/results_esi_regional.csv` / `data/results_weights.csv`。
+    两者 max|Δ| = 4.9e-02，且 2007 年预警等级判定不同（"轻警" vs "较安全"）。
+    为避免**静默覆盖**权威归档，本脚本已改写到带口径后缀的文件：
+        data/results_esi_regional_equalweight.csv
+        data/results_weights_equalweight.csv
+    **仅供对照，不得作为论文数值来源。**
+
 数据源：
   - 气候: paper-code/data/qilian_climate.csv (CRU 真实, 2005-2023, 区域+11县域)
   - 土地覆被: paper-code/data/qilian_landcover.csv (CLCD 真实, 2005/2010/2015/2020/2023, 区域)
@@ -75,12 +87,16 @@ print(f"精度等级: {grade}")
 print("=" * 70)
 
 # 保存 Results 素材
+# R22：加口径后缀，避免覆盖权威归档（真实 AHP 口径，由 rerun_pipeline_ahp.py 产出）
+OUT_ESI = os.path.join(BASE, "data", "results_esi_regional_equalweight.csv")
+OUT_W = os.path.join(BASE, "data", "results_weights_equalweight.csv")
 res = pd.DataFrame({
     "year": YEARS, "esi": esi.round(4), "warning": levels,
     "forecast": list(fut.round(4)) + [np.nan]*14,
     "fc_warning": fut_levels + [""]*14,
 })
-res.to_csv(os.path.join(BASE, "data", "results_esi_regional.csv"), index=False, encoding="utf-8-sig")
+res.to_csv(OUT_ESI, index=False, encoding="utf-8-sig")
 wdf = pd.DataFrame({"indicator": names, "entropy_w": w_ent.round(4), "combined_w": w.round(4), "direction": directions})
-wdf.to_csv(os.path.join(BASE, "data", "results_weights.csv"), index=False, encoding="utf-8-sig")
-print("Results 素材已保存: results_esi_regional.csv, results_weights.csv")
+wdf.to_csv(OUT_W, index=False, encoding="utf-8-sig")
+print("Results 素材已保存（等权口径，非投稿口径）: %s, %s"
+      % (os.path.basename(OUT_ESI), os.path.basename(OUT_W)))

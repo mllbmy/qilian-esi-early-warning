@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
-"""T3 权重敏感性分析：α∈[0,1] 下 ESI 与预警等级稳定性（方法贡献之一）"""
+"""T3 权重敏感性分析：α∈[0,1] 下 ESI 与预警等级稳定性（方法贡献之一）
+
+!! R22 加固说明（重要）!!
+    本脚本的 AHP 权重为 **等权**（`w_ahp = np.ones(9)/9`，见下方），**不是投稿口径**。
+    投稿口径的 α 敏感性表由 `rerun_pipeline_ahp.py`（真实 AHP）产出，归档为
+    `data/results_alpha_sensitivity.csv`。
+    为避免**静默覆盖**权威归档，本脚本已改写到：
+        data/results_alpha_sensitivity_equalweight.csv
+    **仅供对照，不得作为论文数值来源。**
+"""
 import os
 import sys, os
 import numpy as np
@@ -47,5 +56,7 @@ for alpha in np.arange(0, 1.01, 0.1):
     print(f"{alpha:.1f}  {esi[-1]:.4f}  {lv[-1]:<4}  {esi[-5:].mean():.4f}  {dict(cnt)}")
 
 df = pd.DataFrame(rows)
-df.to_csv(os.path.join(BASE, "data", "results_alpha_sensitivity.csv"), index=False, encoding="utf-8-sig")
-print("\n敏感性分析已保存: results_alpha_sensitivity.csv")
+# R22：加口径后缀，避免覆盖权威归档（真实 AHP 口径，由 rerun_pipeline_ahp.py 产出）
+OUT = os.path.join(BASE, "data", "results_alpha_sensitivity_equalweight.csv")
+df.to_csv(OUT, index=False, encoding="utf-8-sig")
+print("\n敏感性分析已保存（等权口径，非投稿口径）: results_alpha_sensitivity_equalweight.csv")

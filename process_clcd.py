@@ -19,9 +19,12 @@ except ImportError:
 
 # 祁连山区域（bbox: 与气候脚本一致，稍外扩）
 LAT0, LAT1, LON0, LON1 = 36.0, 40.5, 93.5, 103.5
-LC_DIR = os.environ.get("QILIAN_LC_DATA", os.path.join(os.path.dirname(os.path.abspath(__file__)), "_raw", "lc_data"))
 # 路径自解析：仓库克隆/解压到任意目录均可运行
 BASE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE)
+# R22 加固：共享 I/O 层（QILIAN_LC_DATA -> _raw/lc_data -> 递归兜底）
+import io_utils  # noqa: E402
+LC_DIR = io_utils.resolve_lc_dir()
 OUT = os.path.join(BASE, "data", "qilian_landcover.csv")
 
 def load_and_clip(path):
@@ -59,6 +62,21 @@ def main():
         print("未找到 CLCD tif 于", LC_DIR); sys.exit(1)
     years.sort()
     print("找到年份:", [y for y, _ in years])
+    # R22 加固：防静默覆盖。归档 data/qilian_landcover.csv 是 2005/2010/2015/2020/2023
+    # 五年分区指标（供区域 9 指标体系插值用）；若本地只放了部分年份的 tif，直接写出会
+    # 用不完整年份表**静默覆盖**归档文件，导致下游 ESI 全部错值。故显式拦截。
+    EXPECTED_YEARS = {2005, 2010, 2015, 2020, 2023}
+    got = {y for y, _ in years}
+    out_path = OUT
+    if got != EXPECTED_YEARS and os.path.exists(OUT):
+        out_path = os.path.join(BASE, "data", "results_landcover_partial_%s.csv"
+                                % "_".join(str(y) for y in sorted(got)))
+        print("!! 警告：本地 CLCD 年份 %s != 归档所需 %s。"
+              % (sorted(got), sorted(EXPECTED_YEARS)))
+        print("!! 为避免静默覆盖归档 data/qilian_landcover.csv，本次改写到：")
+        print("!!   " + out_path)
+        print("!! 该文件不是投稿口径，仅供对照；补齐 %s 的 CLCD tif 后才能重生成归档文件。"
+              % sorted(EXPECTED_YEARS))
     rows = []
     for y, path in years:
         arr, crs = load_and_clip(path)
@@ -82,8 +100,8 @@ def main():
             "built_pct": pct(d, 10), "crop_pct": pct(d, 1),
         })
     df = pd.DataFrame(out_rows)
-    df.to_csv(OUT, index=False, encoding="utf-8-sig")
-    print("已保存:", OUT)
+    df.to_csv(out_path, index=False, encoding="utf-8-sig")
+    print("已保存:", out_path)
     print(df.to_string(index=False))
 
 if __name__ == "__main__":

@@ -13,10 +13,16 @@ from pyproj import Transformer
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "eco_security"))
 from eco_security import minmax_normalize, entropy_weights, combined_weights, esi_series, geodetector_q
 
+io_utils_path = os.path.dirname(os.path.abspath(__file__))
+if io_utils_path not in sys.path:
+    sys.path.insert(0, io_utils_path)
+# R22 加固：共享 I/O 层（目录回退 + NetCDF 引擎回退）
+import io_utils  # noqa: E402
+
 # 路径自解析：仓库克隆/解压到任意目录均可运行
-BASE = os.path.dirname(os.path.abspath(__file__))
-LC_DIR = os.environ.get("QILIAN_LC_DATA", os.path.join(os.path.dirname(os.path.abspath(__file__)), "_raw", "lc_data"))
-CRU_DIR = os.environ.get("QILIAN_CRU_DATA", os.path.join(os.path.dirname(os.path.abspath(__file__)), "_raw", "cru_data"))
+BASE = io_utils_path
+LC_DIR = io_utils.resolve_lc_dir()
+CRU_DIR = io_utils.resolve_cru_dir()
 LAT0, LAT1, LON0, LON1 = 36.0, 40.5, 93.5, 103.5
 
 QILIAN_COUNTIES = {
@@ -73,18 +79,22 @@ w_ahp = np.ones(X2.shape[1]) / X2.shape[1]
 w = combined_weights(w_ahp, w_ent, 0.4)
 esi_c = esi_series(Xn, w)
 county_esi = pd.DataFrame({"unit": m.index, "esi_2020": esi_c.round(4)}).sort_values("esi_2020", ascending=False)
-county_esi.to_csv(os.path.join(BASE, "data", "results_county_esi.csv"), index=False, encoding="utf-8-sig")
+# 县域 ESI 的唯一权威产出脚本是 run_county_esi.py（本脚本的 CLCD 直读结果另存，不覆盖 Table 6 数据来源）
+county_esi.to_csv(os.path.join(BASE, "data", "results_county_esi_from_clcd.csv"), index=False, encoding="utf-8-sig")
 print("\n县域 ESI(2020 静态):")
 print(county_esi.to_string(index=False))
 
 # ---------- 2) 空间点采样 GeoDetector（2020）----------
 import xarray as xr
-pre_ds = xr.open_dataset(os.path.join(CRU_DIR, "cru_ts4.10.2001.2010.pre.dat.nc")).sel(time=slice("2005-01","2023-12"))
-tmp_ds = xr.open_dataset(os.path.join(CRU_DIR, "cru_ts4.10.2001.2010.tmp.dat.nc")).sel(time=slice("2005-01","2023-12"))
-# 合并 2011-2020, 2021-2023 段
+
+# R22：NetCDF 引擎回退（中文路径下 netcdf4 C 库会 FileNotFoundError，CRU 为 NetCDF3）
+_op_nc = io_utils.open_netcdf
+pre_ds = _op_nc(os.path.join(CRU_DIR, "cru_ts4.10.2001.2010.pre.dat.nc"))[0].sel(time=slice("2005-01","2023-12"))
+tmp_ds = _op_nc(os.path.join(CRU_DIR, "cru_ts4.10.2001.2010.tmp.dat.nc"))[0].sel(time=slice("2005-01","2023-12"))
+# 合并 2011-2020, 2021-2025 段
 for seg in ["2011.2020", "2021.2025"]:
-    p2 = xr.open_dataset(os.path.join(CRU_DIR, f"cru_ts4.10.{seg}.pre.dat.nc")).sel(time=slice("2005-01","2023-12"))
-    t2 = xr.open_dataset(os.path.join(CRU_DIR, f"cru_ts4.10.{seg}.tmp.dat.nc")).sel(time=slice("2005-01","2023-12"))
+    p2 = _op_nc(os.path.join(CRU_DIR, f"cru_ts4.10.{seg}.pre.dat.nc"))[0].sel(time=slice("2005-01","2023-12"))
+    t2 = _op_nc(os.path.join(CRU_DIR, f"cru_ts4.10.{seg}.tmp.dat.nc"))[0].sel(time=slice("2005-01","2023-12"))
     pre_ds = xr.concat([pre_ds, p2], dim="time")
     tmp_ds = xr.concat([tmp_ds, t2], dim="time")
 pre_ann = pre_ds["pre"].groupby("time.year").sum("time").mean("year")
@@ -142,4 +152,4 @@ for f in ["temp", "precip", "grass", "forest", "barren"]:
     q = geodetector_q(sdf["esi"].values, disc(sdf[f].values))
     print(f"  {f:<8} q = {q:.4f}")
 sdf[["lat","lon","esi"]].to_csv(os.path.join(BASE, "data", "spatial_esi_points.csv"), index=False, encoding="utf-8-sig")
-print("空间结果已保存: spatial_esi_points.csv, results_county_esi.csv")
+print("空间结果已保存: spatial_esi_points.csv, results_county_esi_from_clcd.csv")

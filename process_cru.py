@@ -3,14 +3,19 @@
 输入：paper-code/data/cru/ 下的 pre/tmp .nc.gz（1901-2025 完整序列，或 2001-2025 十年段）
 输出：paper-code/data/qilian_climate.csv（区域/县域逐年年降水、年均温）
 """
-import os, glob, gzip, shutil
+import os, sys, glob, gzip, shutil
 import numpy as np
 import pandas as pd
 import xarray as xr
 
-DATA = os.environ.get("QILIAN_CRU_DATA", os.path.join(os.path.dirname(os.path.abspath(__file__)), "_raw", "cru_data"))  # ASCII 路径（netCDF4 C 库不支持中文路径）
 # 路径自解析：仓库克隆/解压到任意目录均可运行
 BASE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE)
+# R22 加固：共享 I/O 层（目录回退 + NetCDF 引擎回退）
+import io_utils  # noqa: E402
+
+# 数据目录解析（QILIAN_CRU_DATA -> _raw/cru_data -> data/cru -> 递归兜底）
+DATA = io_utils.resolve_cru_dir()
 OUT = os.path.join(BASE, "data", "qilian_climate.csv")
 
 # 祁连山国家公园范围（初步：县域质心近似，边界数据到位后精化）
@@ -44,7 +49,7 @@ def load_var(var):
             path = nc
         else:
             path = f
-        ds_list.append(xr.open_dataset(path))
+        ds_list.append(io_utils.open_netcdf(path)[0])  # R22：引擎回退（netcdf4 -> scipy -> ...）
     ds = xr.concat(ds_list, dim="time") if len(ds_list) > 1 else ds_list[0]
     return ds, "1901.2025" in os.path.basename(files[0])
 
