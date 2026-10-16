@@ -1,0 +1,22 @@
+{
+  "title": "Data and code for the Qilian Mountain ESI early-warning study",
+  "upload_type": "software",
+  "access_right": "open",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Zhuang, Jianhui",
+      "orcid": "0009-0001-2044-6216"
+    }
+  ],
+  "keywords": [
+    "Qilian Mountain National Park",
+    "ecological security",
+    "early warning",
+    "DPSIR",
+    "grey prediction",
+    "GeoDetector",
+    "Qilian Mountains"
+  ],
+  "description": "Analysis pipeline and processed datasets for a reproducible ecological-security early-warning assessment of the Qilian Mountain region, China (2005-2023).\n\nContents\n- Analysis pipeline (Python): DPSIR indicator construction, combined AHP-entropy weighting, ESI time series, grey forecasting (GM(1,1), NGBM, ARIMA) with rolling-origin backtest, GeoDetector spatial attribution, and obstacle-degree diagnosis.\n- Processed datasets (CSV): regional and county indicators, weights, forecast results, GeoDetector statistics, and point-sampled spatial ESI.\n- Figure and table source data for the manuscript. run_county_esi.py reproduces the county-level ESI reported in Table 6 (see README_county_esi.md for the frozen specification).\n\nEnvironment: Python 3.11 (xarray, rasterio, pyproj, pandas, numpy, statsmodels, scikit-learn).\nInputs: CRU TS 4.10 (climate) and CLCD v1.0 (land cover), both openly available."
+}
