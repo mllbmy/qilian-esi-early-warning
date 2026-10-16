@@ -1,0 +1,7 @@
+﻿class,name,archived,rebuilt,diff
+1,耕地 cropland,75,75,0
+2,林地 forest,15,15,0
+4,草地 grassland,743,743,0
+5,水域 water,34,34,0
+6,冰雪 snow/ice,6,6,0
+7,裸地 barren,1041,1041,0

@@ -1,0 +1,9 @@
+﻿factor,variant,q_baseline,q_loo,delta_q,drop_pct,p_baseline,p_loo,note
+precip,loo_primary,0.506016,0.381115,-0.124901,-24.68,0.001,0.001,目标=剔除降水后的 ESI（剩 5 项），分层口径与基准相同的 precip 列
+temp,loo_primary,0.169739,0.273763,0.104025,61.29,0.001,0.001,目标=剔除气温后的 ESI（剩 5 项），分层口径与基准相同的 temp 列
+grass,loo_primary,0.70771,0.36643,-0.34128,-48.22,0.001,0.001,目标=剔除草地后的 ESI（剩 5 项），分层口径与基准相同的 grass 列
+barren,loo_primary,0.802431,0.711426,-0.091005,-11.34,0.001,0.001,目标=剔除裸地/退化后的 ESI（剩 5 项），分层口径与基准相同的 barren 列
+elev,exogenous,0.090367,0.090367,0.0,0.0,0.001,0.001,严格外生：高程 从未进入 ESI 构造，LOO 为空操作，q_loo=q_baseline，目标是完整 ESI
+slope,exogenous,0.06468,0.06468,0.0,0.0,0.001,0.001,严格外生：坡度 从未进入 ESI 构造，LOO 为空操作，q_loo=q_baseline，目标是完整 ESI
+grass,loo_strict,0.70771,0.003444,-0.704266,-99.51,0.001,0.011,严格变体：剔除 grass 且 barren_neg 重定义为 1-forest-water，彻底不含 grass
+barren,loo_strict,0.802431,0.711426,-0.091005,-11.34,0.001,0.001,严格变体：剔除 barren_neg 后仍用 barren(one-hot) 分层，检验结构化残差

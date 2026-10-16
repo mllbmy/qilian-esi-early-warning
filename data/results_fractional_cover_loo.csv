@@ -1,0 +1,21 @@
+﻿scheme,factor,factor_zh,q_baseline_fractional,q_loo_fractional,delta_q,drop_pct,p_baseline,p_loo,q_archived_onehot,delta_vs_archived,note
+fractional_sigma1,barren,裸地/退化,0.838492,0.691006,-0.147486,-17.59,0.001,0.001,0.802431,0.036061,分数覆被；负向项=实测 f_barren；LOO 目标不含 F
+fractional_sigma1,grass,草地,0.584235,0.282836,-0.301399,-51.59,0.001,0.001,0.70771,-0.123475,分数覆被；负向项=实测 f_barren；LOO 目标不含 F
+fractional_sigma1,precip,降水,0.600399,0.462091,-0.138307,-23.04,0.001,0.001,0.506016,0.094383,分数覆被；负向项=实测 f_barren；LOO 目标不含 F
+fractional_sigma1,temp,气温,0.178157,0.302838,0.124681,69.98,0.001,0.001,0.169739,0.008418,分数覆被；负向项=实测 f_barren；LOO 目标不含 F
+fractional_sigma1,forest,林地,0.0,0.0,0.0,,1.0,1.0,,,分数覆被；负向项=实测 f_barren；LOO 目标不含 F
+fractional_sigma1,water,水域,0.0,0.0,0.0,,1.0,1.0,,,分数覆被；负向项=实测 f_barren；LOO 目标不含 F
+fractional_sigma2_complement,precip,降水,0.593785,,,,0.001,,0.506016,0.087769,对照口径：负向项=1-forest-grass-water-crop（county_esi 字面补）
+fractional_sigma2_complement,temp,气温,0.174538,,,,0.001,,0.169739,0.004799,对照口径：负向项=1-forest-grass-water-crop（county_esi 字面补）
+fractional_sigma2_complement,grass,草地,0.587973,,,,0.001,,0.70771,-0.119737,对照口径：负向项=1-forest-grass-water-crop（county_esi 字面补）
+fractional_sigma2_complement,barren,裸地/退化,0.834472,,,,0.001,,0.802431,0.032041,对照口径：负向项=1-forest-grass-water-crop（county_esi 字面补）
+fractional_sigma2_complement_loo,grass,草地,0.587973,0.288916,-0.299057,-50.86,0.001,0.001,0.70771,-0.119737,补口径 LOO：目标经补项仍含 F 的成分 -> 切不干净（对照用）
+fractional_sigma2_complement_loo,barren,裸地/退化,0.834472,0.691006,-0.143466,-17.19,0.001,0.001,0.802431,0.032041,补口径 LOO：目标经补项仍含 F 的成分 -> 切不干净（对照用）
+fractional_sigma1_zeroinflated_strata,precip,降水,0.5606,,,,0.001,,0.506016,0.054584,稳健分层变体：先切0/>0，正值部分再切分位；该因子非零占比 100.0%，3 层
+fractional_sigma1_zeroinflated_strata,temp,气温,0.189763,,,,0.001,,0.169739,0.020024,稳健分层变体：先切0/>0，正值部分再切分位；该因子非零占比 69.5%，4 层
+fractional_sigma1_zeroinflated_strata,forest,林地,0.255322,,,,0.001,,,,稳健分层变体：先切0/>0，正值部分再切分位；该因子非零占比 16.1%，4 层
+fractional_sigma1_zeroinflated_strata,grass,草地,0.580823,,,,0.001,,0.70771,-0.126887,稳健分层变体：先切0/>0，正值部分再切分位；该因子非零占比 77.5%，4 层
+fractional_sigma1_zeroinflated_strata,water,水域,0.073725,,,,0.001,,,,稳健分层变体：先切0/>0，正值部分再切分位；该因子非零占比 15.9%，4 层
+fractional_sigma1_zeroinflated_strata,barren,裸地/退化,0.830625,,,,0.001,,0.802431,0.028194,稳健分层变体：先切0/>0，正值部分再切分位；该因子非零占比 87.1%，4 层
+fractional_sigma1_zeroinflated_strata_loo,forest,林地,0.255322,0.163056,-0.092265,-36.14,0.001,0.001,,,变体 LOO：目标剔除该因子，分层用零膨胀稳健口径（4 层）
+fractional_sigma1_zeroinflated_strata_loo,water,水域,0.073725,0.016233,-0.057492,-77.98,0.001,0.001,,,变体 LOO：目标剔除该因子，分层用零膨胀稳健口径（4 层）

@@ -250,7 +250,9 @@ pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   # pass 1
 pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   # pass 2
 ```
 
-Expected: exit code `0`, **0 warnings**, **21 pages**, `manuscript.pdf` ≈ 10.3 MB.
+Expected: exit code `0`, **0 warnings**, **22 pages**, `manuscript.pdf` ≈ 10.3 MB (the 2.0 manuscript
+adds the Table 1 terrain row and the leave-one-target / fractional-cover sentences, which pushes the
+build from 21 to 22 pages).
 `manuscript.bbl` is committed, so `bibtex` is not required for an identical build (and `.bbl` regeneration is
 not needed). Run the pass twice so that all `\ref`/`\label` cross-references resolve.
 
@@ -301,6 +303,31 @@ python polish_gate.py        # fact-layer drift gate vs 优化\baseline snapshot
 
 `data/results_backtest.csv`, `results_moran.csv`, `results_trend_test.csv` are auxiliary / historical
 tables kept for provenance.
+
+### 4.1 Numbers added in the 2.0 manuscript → output file → generating script
+
+Added by the R23 round (leave-one-target attribution, strictly exogenous control, fractional-cover
+recheck, centroid-window sensitivity). Every value below is read from a committed CSV at run time;
+none of them is hard-coded in the manuscript or in the scripts.
+
+| manuscript value (2.0) | value(s) | produced by | read from |
+|---|---|---|---|
+| Leave-one-target $q$ (abstract, §4.5, §6) | barren/degraded 0.802431 → 0.711426; precipitation 0.506016 → 0.381115; grassland 0.707710 → 0.366430; temperature 0.169739 → 0.273763 (all $p=0.001$) | `run_geodetector_loo.py` | `data/results_geodetector_loo.csv` (variant `loo_primary`) |
+| Fractional-cover leave-one-target $q$ (§5.4) | grassland 0.584235 → 0.282836 (−51.59 %); barren/degraded 0.838492 → 0.691006 (−17.59 %); precipitation 0.600399 → 0.462091; temperature 0.178157 → 0.302838 (all $p=0.001$) | `run_fractional_cover_loo.py` | `data/results_fractional_cover_loo.csv` (scheme `fractional_sigma1`) |
+| $r$(grassland, barren) = −0.884 as window-area fractions (§5.4) | −0.8836 | `run_fractional_cover_loo.py` | `data/results_fractional_cover_points.csv` |
+| `barren/degraded` factor vs the `barren_neg` ESI input differ at 81 points (§3.5) | 81 = 75 cropland + 6 snow/ice | `run_geodetector_loo.py` | `data/spatial_samples.csv` |
+| Terrain $q$: elevation 0.0904, slope 0.0647 (Fig. 8b, §4.5) | 0.090367 / 0.064680 | `run_exogenous_geodetector.py` | `data/results_geodetector_exogenous.csv` |
+| Indicator-overlap (leave-one-indicator) robustness (§5.4) | baseline vs reduced indicator sets | `run_robustness_loo_indicators.py` | `data/results_robustness_loo_indicators.csv` |
+| Four centroid windows ±0.05/0.10/0.20/0.30° (§5.4) | Spearman vs the ±0.10° baseline 0.6818 / 0.5091 / 0.4909; 1 of 11 counties keeps its rank; 7 of 11 span ≥ 3 positions; Delingha 1 → 4 → 10 → 9 | `run_county_window_sensitivity.py` | `data/results_county_window_multiscale.csv`, `data/results_county_window_stability.csv` |
+| Gangcha water fraction by window (§5.4) | ±0.10° 0.046 %, ±0.20° 16.29 %, ±0.30° 24.17 % | `run_county_window_sensitivity.py` | `data/results_county_window_landcover.csv` |
+| County-ESI support definition / window truncation | three support definitions (A/B/C), truncation shares | `run_county_support_sensitivity.py` | `data/results_county_support_sensitivity.csv`, `data/results_county_window_truncation.csv`, `data/results_county_window_vs_polygon.csv` |
+| Table 6 static county ESI (2020) | Sunan 0.5578 … Aksai 0.0673 | `run_county_esi.py` | `data/results_county_esi.csv` |
+
+Remaining committed intermediates behind the 2.0 numbers: `data/results_fractional_cover_windows.csv`,
+`data/results_county_point_support_check.csv`, `data/results_county_window_weights.csv`,
+`data/_aux_terrain_points.csv` (the Copernicus DEM samples behind Fig. 8b and
+`run_exogenous_geodetector.py`), and the self-check outputs `data/cru_verify_*.csv` /
+`data/results_clcd2020_*.csv`.
 
 ---
 
@@ -470,6 +497,15 @@ version).
 pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 1, exit 0)
 pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 2, exit 0)
 warnings in pass 2: 0        Output written on manuscript.pdf (21 pages, 10334465 bytes)
+```
+
+2.0 rebuild (R23 round; `manuscript.tex` md5 `2B2ED6C5B14136CB64A1D8DD3168F437`):
+
+```
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 1, exit 0)
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 2, exit 0)
+warnings in pass 2: 0        Output written on manuscript.pdf (22 pages, 10339079 bytes)
+manuscript.pdf md5: B3259A06F9AA4347047118C5FE8F782B
 ```
 
 ---

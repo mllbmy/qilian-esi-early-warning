@@ -1,0 +1,27 @@
+﻿item,value
+QILIAN_CRU_DATA,(未设置；回退 data/cru)
+QILIAN_LC_DATA,(未设置；回退 _raw/lc_data)
+CRU_DIR(实际使用),D:\比赛\论文\paper-code\data\cru
+LC_DIR(实际使用),D:\比赛\论文\paper-code\_raw\lc_data
+研究期,2005-2023（19 年，以 run_esi_regional.py L20 为准）
+open_engine_used,cru_ts4.10.2001.2010.pre.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2001.2010.tmp.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2011.2020.pre.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2011.2020.tmp.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2021.2025.pre.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2021.2025.tmp.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2001.2010.pre.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2011.2020.pre.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2021.2025.pre.dat.nc -> scipy
+月度缺口(合并段内),无
+1901-1910 gz 是否参与,否 —— process_cru.py L32-33 keep 白名单不含 '1901.1910'，且 .gz 未解压；该段在 2005-2023 研究期之外
+2021-2025 段覆盖,2021-01 ~ 2025-12（60 月）；研究期只需 2021-2023，2024-2025 超出研究期，不构成缺口
+研究期年度缺口,无（2005-01 ~ 2023-12 全部 228 个月齐备）
+pre_使用文件,cru_ts4.10.2001.2010.pre.dat.nc; cru_ts4.10.2011.2020.pre.dat.nc; cru_ts4.10.2021.2025.pre.dat.nc
+open_engine_used,cru_ts4.10.2001.2010.pre.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2011.2020.pre.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2021.2025.pre.dat.nc -> scipy
+tmp_使用文件,cru_ts4.10.2001.2010.tmp.dat.nc; cru_ts4.10.2011.2020.tmp.dat.nc; cru_ts4.10.2021.2025.tmp.dat.nc
+open_engine_used,cru_ts4.10.2001.2010.tmp.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2011.2020.tmp.dat.nc -> scipy
+open_engine_used,cru_ts4.10.2021.2025.tmp.dat.nc -> scipy

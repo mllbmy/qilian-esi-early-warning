@@ -1,0 +1,43 @@
+﻿metric,value
+CRU_pre_月份总数(合并后),300
+CRU_pre_时间范围,2001-01-01 ~ 2025-12-01
+CRU_pre_缺失月份数,0
+CRU_pre_重复月份数,0
+研究期2005-2023所需月份数,228
+研究期内缺失月份数,0
+研究期内月份总数,228
+气候_比对行数,228
+气候_降水最大绝对偏差(mm),5.684e-14
+气候_气温最大绝对偏差(°C),8.882e-16
+气候_降水最大相对偏差,1.795e-16
+气候_气温最大相对偏差,8.535e-15
+气候_|Δ|<1e-10 的行数,228/228
+气候_降水最大偏差所在,刚察 2008: arc=443.799988 new=443.799988
+气候_气温最大偏差所在,山丹 2017: arc=4.958333 new=4.958333
+区域ESI_ahp_csv_最大绝对偏差,4.675e-05
+区域ESI_ahp_csv_|Δ|<1e-10 的点数,0/19
+区域ESI_ahp_csv_四舍五入到4位后与归档相同,19/19
+区域ESI_ahp_csv_峰值年,2010（归档 2010）
+区域ESI_ahp_csv_峰值,0.709157（归档 0.709200）
+区域ESI_ahp_csv_预警等级序列与归档一致,True
+区域ESI_equal_最大绝对偏差,4.906e-02
+区域ESI_equal_|Δ|<1e-10 的点数,0/19
+区域ESI_equal_四舍五入到4位后与归档相同,0/19
+区域ESI_equal_峰值年,2010（归档 2010）
+区域ESI_equal_峰值,0.698736（归档 0.709200）
+区域ESI_equal_预警等级序列与归档一致,False
+区域ESI_归档_2023,0.486400
+区域ESI_归档_峰值年,2010
+对照_归档气候输入 ESI 与重建气候 ESI 最大差,1.110e-16
+对照_归档气候输入 ESI 与归档CSV 最大差（=取整残差）,4.675e-05
+县域覆被CLCD重采样_最大绝对偏差(pct),1.421e-14
+对照_县域_归档气候 ESI 与重建气候 ESI 最大差,4.858e-07
+县域ESI_vs_results_county_esi.csv_最大绝对偏差,4.600e-05
+县域ESI_vs_results_county_esi.csv_|Δ|<1e-10 的县数,1/11
+县域ESI_vs_results_county_esi.csv_最大偏差县,山丹
+县域ESI_vs_results_county_esi_from_clcd.csv_最大绝对偏差,4.600e-05
+县域ESI_vs_results_county_esi_from_clcd.csv_|Δ|<1e-10 的县数,1/11
+县域ESI_vs_results_county_esi_from_clcd.csv_最大偏差县,山丹
+阿克塞_ESI(重建),0.067263
+阿克塞_ESI(归档 results_county_esi.csv),0.067300
+阿克塞_ESI(归档 results_county_esi_from_clcd.csv),0.067300

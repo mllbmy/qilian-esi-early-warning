@@ -1,0 +1,14 @@
+﻿item,observed,expected,status
+md5,1274285BB18F9B1D443A3CC906B1310C,1274285BB18F9B1D443A3CC906B1310C,MATCH
+bytes,810739687,810739687,MATCH
+raster_readable,yes,yes,OK
+crs,"PROJCS[""unknown"",GEOGCS[""WGS 84"",DATUM[""WGS_1984"",SPHEROID[""",Albers Conic Equal Area,OK
+size,161378x135079,161378x135079,MATCH
+res_m,30.0,30.0,MATCH
+valid_pixels,10553393530,n/a,-
+valid_area_km2,9498054.2,n/a,-
+point_grid_same,yes,yes,OK
+point_match_n,1914,1914,-
+point_match_rate,1.0,>=0.99,PASS
+county_lc_max_dev_pp,0.0,<0.01,OK
+verdict,PASS,PASS,PASS
