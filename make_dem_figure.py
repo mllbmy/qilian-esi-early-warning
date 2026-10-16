@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-"""祁连山地形图 v5（R10 方案③：删除左上角中国位置示意图 inset，作者决定）：
-分层设色 + 省界 + 黄河。数据:Copernicus DEM 90m(高程) + Natural Earth(省界50m/黄河10m)。
+"""祁连山地形图 v5（R10：删除中国位置示意图 inset；R12：作者决定不画公园边界，
+图幅范围即分析窗口 93.5-103.5°E / 36.0-40.5°N，公园轮廓代码保留于 SHOW_PARK 开关）：
+分层设色 + 省界 + 黄河。数据:Copernicus DEM 90m(高程) + Natural Earth(省界50m/湖泊10m) + OSM(河流/哈拉湖等)。
+R24：湖面高程恒定→山体阴影全平、分层设色同色，青海湖/哈拉湖等呈"单色平斑"疑似渲染错误
+——以水体多边形（NE 10m + OSM way，data/lakes_region.json）统一着水体蓝并标注两大湖名。
 """
 import os
 import math
@@ -12,9 +15,24 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
+from matplotlib.patches import Rectangle, Polygon as MplPolygon
+import json as _json
 
-# JMS 指南§6（R10 MEDIUM-2）：图内文字 Times New Roman 8–9 pt
+# JMS 指南§6：图内文字 Times New Roman 8–9 pt
 import jms_style
+
+# R11（作者决定）：图内文字一律 Arial，覆盖 jms_style 的 TNR 设置
+from matplotlib import font_manager as _fm
+for _af in ("arial.ttf", "arialbd.ttf", "ariali.ttf", "arialbi.ttf"):
+    _ap = os.path.join(r"C:\Windows\Fonts", _af)
+    if os.path.exists(_ap):
+        try:
+            _fm.fontManager.addfont(_ap)
+        except Exception:
+            pass
+plt.rcParams.update({"font.family": "sans-serif",
+                     "font.sans-serif": ["Arial"],
+                     "mathtext.fontset": "dejavusans"})
 
 # 路径自解析：仓库克隆/解压到任意目录均可运行
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -31,6 +49,7 @@ QILIAN = {
 # 主图范围
 lon_min, lon_max, lat_min, lat_max = 93.0, 104.0, 36.0, 41.0
 TILE = 600
+SHOW_PARK = True           # R14（作者决定）：画出数字化公园轮廓；图内不再重复写公园名（图例已给出）
 
 # ---------- 1. 读 Copernicus DEM, 拼接 ----------
 rows = []
@@ -55,9 +74,10 @@ aspect = np.arctan2(-dx, dy)
 az, alt = math.radians(315), math.radians(45)
 shade = np.clip(np.sin(alt) * np.sin(slope) + np.cos(alt) * np.cos(slope) * np.cos(az - aspect), 0, 1)
 
+# R15：学术风低饱和大地色分层设色（参考 JMS 已发表研究区图的灰调 earth-tone）
 hyps = LinearSegmentedColormap.from_list("hyps", [
-    "#2f5d3f", "#6d9460", "#9fb56f", "#c9bd7f", "#b08a56",
-    "#8a5f45", "#75604f", "#8d8780", "#e8e3da"])
+    "#4f7757", "#7d9c6d", "#aab87e", "#cfc493", "#d3b47e",
+    "#b98f5e", "#966f4f", "#7c6757", "#96908a", "#ddd9d2"])
 
 # ---------- 2. 读省界(50m admin_1, 中国) ----------
 def parts_of(shape):
@@ -79,7 +99,7 @@ import json as _json
 osm_rivers = _json.load(open(os.path.join(BASE, "data", "_osm_key_rivers.json"), encoding="utf-8"))
 
 # ---------- 5. 绘图 ----------
-fig, ax = plt.subplots(figsize=(10.6, 6.4))
+fig, ax = plt.subplots(figsize=(6.6, 4.15))   # R13：按印刷尺寸设计（双栏宽约 17.5 cm），图内 8 pt 印出即 8 pt
 ax.imshow(shade, cmap="Greys", extent=[lon_min, lon_max, lat_min, lat_max],
           vmin=0, vmax=1, aspect="auto", interpolation="bilinear", zorder=1)
 im = ax.imshow(elev, cmap=hyps, extent=[lon_min, lon_max, lat_min, lat_max],
@@ -108,62 +128,149 @@ for r in osm_rivers:
     if len(xs) < 2:
         continue
     main = any(k in r["name"] for k in MAIN)
-    ax.plot(xs, ys, "-", color="#2b6cb0", lw=1.0 if main else 0.55,
+    ax.plot(xs, ys, "-", color="#33679e", lw=1.0 if main else 0.55,
             alpha=0.85 if main else 0.5, zorder=4, solid_joinstyle="round")
 
-# 省名
-ax.text(98.0, 39.05, "Gansu", fontsize=8, color="#333333", ha="center", style="italic", zorder=6)
-ax.text(95.9, 37.75, "Qinghai", fontsize=8, color="#333333", ha="center", style="italic", zorder=6)
-ax.text(101.9, 36.55, "Huang He", fontsize=8, color="#2b6cb0", rotation=8, style="italic", zorder=6)
+# 湖泊(R24): NE 10m 面多边形(青海湖/小柴旦湖) + OSM way(哈拉湖/苏干湖/尕海/更尕海)
+# 湖面 DEM 高程恒定→hillshade 与分层设色全平, 不覆盖会呈单色平斑
+C_LAKE = "#6f9fc6"                                   # 水体蓝(与河流 #33679e 同族、略浅)
+lakes = _json.load(open(os.path.join(BASE, "data", "lakes_region.json"), encoding="utf-8"))["lakes"]
+for L in lakes:
+    xs = [p[0] for p in L["pts"]]; ys = [p[1] for p in L["pts"]]
+    ax.fill(xs, ys, color=C_LAKE, alpha=0.88, ec="#2a5a8a", lw=0.6, zorder=4)
+
+# 省名/河名（R21：全部提到 zorder 12 与地标同层——红虚线 zorder 6 且绘制在后，同级会被压）
+# R25（作者决定）：全部注记去除白色底框；R26（作者决定）：注记改白色（黑字在深色地形上看不清）
+ax.text(97.40, 39.08, "Gansu", fontsize=8, color="white", ha="center", zorder=12)  # R22：左移，与 Sunan 县名错开
+ax.text(95.9, 37.75, "Qinghai", fontsize=8, color="white", ha="center", zorder=12)
+ax.text(102.35, 36.55, "Huang He", fontsize=8, color="white", rotation=8, zorder=12,
+        ha="center")
 for txt, x, y, rot in [
-    ("Heihe", 100.15, 39.25, -50), ("Shule", 97.5, 40.05, 0),
-    ("Datong", 101.15, 37.6, 35), ("Huangshui", 101.75, 36.6, 15),
-    ("Shiyang", 102.6, 38.25, 60), ("Danghe", 95.9, 39.4, 20),
+    ("Heihe", 100.60, 39.52, -50), ("Shule", 96.85, 39.82, 0), ("Danghe", 95.55, 39.32, 20),
+    ("Qinghai Lake", 100.20, 36.89, 0), ("Hala Lake", 97.60, 38.03, 0),   # R24：两大湖名（Hala 标注置于湖下方，不压湖面）
 ]:
-    ax.text(x, y, txt, fontsize=8, color="#1a5276", rotation=rot, style="italic",
-            ha="center", zorder=6, alpha=0.92)
+    ax.text(x, y, txt, fontsize=8, color="white", rotation=rot,
+            ha="center", zorder=12)
 
-# 县域点
+# 县域点（R13：画布缩到印刷尺寸后逐个微调注记偏移，避免相互压字/出框）
+SPECIAL = {"Sunan": (-40.0, 2.0), "Tianzhu": (-34.0, -9.0), "Aksai": (-10.0, -11.0),
+           "Qilian": (-38.0, -3.0), "Minle": (5.0, 5.0), "Shandan": (5.0, 5.5)}  # R22：县名两两错开，Minle/Shandan 上移、Qilian 放左侧
 for n, (la, lo) in QILIAN.items():
-    ax.plot(lo, la, "o", ms=4.5, mfc="#d73027", mec="white", mew=0.5, zorder=6)
-    ax.annotate(n, (lo, la), fontsize=8, xytext=(4.0, 3.5), textcoords="offset points",
-                zorder=7, color="#1a1a1a",
-                bbox=dict(boxstyle="round,pad=0.1", fc="white", alpha=0.75, ec="none"))
+    ax.plot(lo, la, "o", ms=4.5, mfc="#d73027", mec="white", mew=0.5, zorder=12)  # R19：地标点置顶，不被虚线/注记压住
+    _dx, _dy = SPECIAL.get(n, (4.0, 3.5))
+    ax.annotate(n, (lo, la), fontsize=8, xytext=(_dx, _dy), textcoords="offset points",
+                zorder=12, color="white",   # R26：县名改白色
+                arrowprops=dict(arrowstyle="-", color="white", lw=0.9,  # R26：引线同步白色
+                                shrinkA=1, shrinkB=3))                     # R25：去白底框
 
-ax.text(99.9, 38.95, "Qilian Mountains", fontsize=9, color="#2b2b2b",
-        rotation=-14, ha="center", zorder=7, style="italic",
-        bbox=dict(boxstyle="round,pad=0.2", fc="white", alpha=0.7, ec="none"))
-# 公园标注（R4-m1）：移至右下空白区，去掉实心白底块与边框，仅留淡底保证可读
-ax.text(102.30, 36.34, "Qilian Mountain National Park", fontsize=8, color="#1a5276",
-        ha="center", va="center", zorder=7,
-        bbox=dict(boxstyle="round,pad=0.18", fc="white", alpha=0.45, ec="none"))
+ax.text(100.12, 39.06, "Qilian Mountains", fontsize=9, color="white",  # R19：上移，避开 Sunan 点；R26：改白色
+        rotation=-14, ha="center", zorder=12)  # R20：山名同地标层；R25：去白底框
+# 公园标注（R11）：颜色与公园轮廓统一为蓝绿；半透明底加强，避开 Huang He 注记
+if not SHOW_PARK:   # R14：画出轮廓时名称由图例给出，避免与图例挤在一行
+    ax.text(100.85, 36.17, "Qilian Mountain National Park", fontsize=8, color="#1a5276",
+            ha="center", va="center", zorder=8)
 
-# 比例尺
+
+# ---------- 4b. 分析窗口（R12：图幅＝分析窗口，因此不画虚线框，也不需要图例）----------
+if SHOW_PARK:
+    _pk = _json.load(open(os.path.join(BASE, "data", "qmn_park_digitized.geojson"), encoding="utf-8"))
+    _exts = []
+    for _f in _pk["features"]:
+        _g = _f["geometry"]
+        _polys = [_g["coordinates"]] if _g["type"] == "Polygon" else _g["coordinates"]
+        for _poly in _polys:
+            _e = _poly[0]
+            _a = sum(_e[i][0] * _e[i + 1][1] - _e[i + 1][0] * _e[i][1] for i in range(len(_e) - 1)) / 2.0
+            if abs(_a) >= 0.003:                 # 去掉 <0.003 deg² 的碎屑
+                _exts.append(_e)
+    print("公园轮廓部件 %d 个" % len(_exts))
+    for _e in _exts:
+        _xs = [q[0] for q in _e]; _ys = [q[1] for q in _e]
+        ax.plot(_xs, _ys, color="#c0392b", lw=0.75, ls=(0, (4, 2)), zorder=6)  # R16：砖红虚线；R17：细一档
+    ax.plot([], [], color="#c0392b", lw=0.95, ls=(0, (4, 2)),         # 图例只加一条（避免每块多边形各占一行）
+            label="National park boundary (digitised, schematic)")    # R15：图内不写公园全名，全名留题注
+    ax.legend(loc="lower left", fontsize=8, framealpha=0.88, borderpad=0.5)
+
+# 研究区标注（图幅即范围，用一行文字点明；R18：下移，避免贴/出上边框；R25：去白底框；R26：改白色）
+ax.text(99.30, 40.25, "Study area 36.0-40.5$^\\circ$N, 93.5-103.5$^\\circ$E", fontsize=8,
+        color="white", ha="center", zorder=8)
+
+# 比例尺（R16：黑白相间分段式，学术风标准画法；标注 0 / 100 km 在条下方，参考 JMS 已发表图）
+import matplotlib.patheffects as _pe
 km = 111.32 * math.cos(math.radians(38.0))
 bl = 100.0 / km
-bx, by = 93.25, 36.22
-ax.plot([bx, bx + bl], [by, by], "-", color="black", lw=2, zorder=8)
-for b in (bx, bx + bl):
-    ax.plot([b, b], [by - 0.08, by + 0.08], "-", color="black", lw=1.3, zorder=8)
-ax.text(bx + bl / 2, by + 0.14, "100 km", ha="center", fontsize=8, zorder=8)
+bx, by = 94.05, 40.10
+_h = 0.045                                        # 条高（°）
+for _i in range(2):                               # 两段：黑 | 白
+    _x0 = bx + _i * bl / 2
+    ax.add_patch(MplPolygon([(_x0, by), (_x0 + bl / 2, by), (_x0 + bl / 2, by + _h), (_x0, by + _h)],
+                            closed=True, fc=("black" if _i == 0 else "white"),
+                            ec="black", lw=0.9, zorder=8))
+for _x, _t, _ha in ((bx, "0", "left"), (bx + bl, "100 km", "right")):
+    ax.text(_x, by - 0.045, _t, ha=_ha, va="top", fontsize=7.5, zorder=8,
+            path_effects=[_pe.withStroke(linewidth=1.8, foreground="white", alpha=0.85)])
 
-# 指北针
-nx0, ny0 = 103.35, 40.7
-ax.annotate("", xy=(nx0, ny0 + 0.26), xytext=(nx0, ny0 - 0.26),
-            arrowprops=dict(arrowstyle="-|>", color="black", lw=1.5), zorder=8)
-ax.text(nx0, ny0 + 0.4, "N", ha="center", fontsize=9, fontweight="bold", zorder=8)
+# R16b：先锁图幅再设经纬比例——罗盘用轴分数坐标，draw 取轴框时数据范围必须是最终窗口
+# （否则河流/省界 autoscale 的大范围会算错轴框，圆环变椭圆）
+VX0, VX1, VY0, VY1 = 93.5, 103.5, 36.0, 40.5
+ax.set_xlim(VX0, VX1); ax.set_ylim(VY0, VY1)
+ax.set_aspect(1.0 / math.cos(math.radians(38.0)))   # 按 38°N 真实经纬比例，消除纵向拉伸
 
-# 经纬网
-ax.set_xticks(np.arange(93, 105, 2)); ax.set_yticks(np.arange(36, 42, 2))
-ax.set_xticklabels([f"{v}°E" for v in np.arange(93, 105, 2)], fontsize=8.5)
-ax.set_yticklabels([f"{v}°N" for v in np.arange(36, 42, 2)], fontsize=8.5)
-ax.set_xlim(lon_min, lon_max); ax.set_ylim(lat_min, lat_max)
+# 指北针（R16b：按 JMS 已发表图（s11629-013-2558-z Fig.1）样式——圆环 + 内置四角星，
+# 黑白相间刻面 + 中心饰点；轴分数坐标绘制，先 draw 使 aspect 生效再换算横纵比，不变形不出框）
+fig.canvas.draw()
+_pos = ax.get_position()
+_kx = _pos.height * fig.get_figheight() / (_pos.width * fig.get_figwidth())  # y 分数→x 分数视觉等长换算
+_cx, _cy = 0.925, 0.820          # 罗盘中心（轴分数坐标，框内右上）
+_r = 0.075                       # 圆环半径（y 分数）
+_hn, _hs = 0.058, 0.046          # N 针 / S 针半高（y 分数，收进圆环内）
+_ex = 0.046 * _kx                # E/W 针半长（x 分数，视觉与 S 等长）
+_w = 0.0105                      # 针腰半宽（x 分数）
+from matplotlib.patches import Ellipse as _Ellipse
+ax.add_patch(_Ellipse((_cx, _cy), 2 * _r * _kx, 2 * _r, transform=ax.transAxes,   # 圆环底（x 向按 _kx 补偿，视觉为正圆）
+                      fc="white", alpha=0.72, ec="black", lw=1.0, zorder=9))
+def _tri(p1, p2, p3, fc):
+    ax.add_patch(MplPolygon([p1, p2, p3], closed=True, transform=ax.transAxes,
+                            fc=fc, ec="black", lw=0.6, zorder=10))
+_tri((_cx, _cy + _hn), (_cx - _w, _cy), (_cx, _cy), "black")           # N 左黑
+_tri((_cx, _cy + _hn), (_cx + _w, _cy), (_cx, _cy), "white")           # N 右白
+_tri((_cx, _cy - _hs), (_cx - _w * 0.8, _cy), (_cx, _cy), "white")     # S 左白
+_tri((_cx, _cy - _hs), (_cx + _w * 0.8, _cy), (_cx, _cy), "black")     # S 右黑
+_tri((_cx - _ex, _cy), (_cx, _cy + _w), (_cx, _cy - _w), "black")      # W 上黑
+_tri((_cx - _ex, _cy), (_cx, _cy - _w), (_cx, _cy + _w), "white")      # W 下白
+_tri((_cx + _ex, _cy), (_cx, _cy + _w), (_cx, _cy - _w), "white")      # E 上白
+_tri((_cx + _ex, _cy), (_cx, _cy - _w), (_cx, _cy + _w), "black")      # E 下黑
+ax.add_patch(_Ellipse((_cx, _cy), 0.012 * _kx, 0.012, transform=ax.transAxes,     # 中心饰点（正圆）
+                      fc="black", ec="white", lw=0.5, zorder=11))
+ax.text(_cx, _cy + _r + 0.013, "N", transform=ax.transAxes, ha="center", va="bottom",
+        fontsize=9, fontweight="bold", zorder=11,
+        path_effects=[_pe.withStroke(linewidth=1.8, foreground="white", alpha=0.85)])
+
+# 经纬网（R12；R15：加密至 0.5° 一级，整度线粗、半度线细；窗口范围已在上方锁定）
+for _v in np.arange(VY0 + 0.5, VY1, 0.5):
+    _int = abs(_v - round(_v)) < 1e-9
+    ax.axhline(_v, color="white", ls="--", lw=0.9 if _int else 0.25,
+               alpha=0.32 if _int else 0.11, zorder=3)   # R16：整度粗、半度细；R17：整体再变浅一档
+for _v in np.arange(VX0 + 0.5, VX1, 0.5):
+    _int = abs(_v - round(_v)) < 1e-9
+    ax.axvline(_v, color="white", ls="--", lw=0.9 if _int else 0.25,
+               alpha=0.32 if _int else 0.11, zorder=3)
+ax.set_xticks(np.arange(94, 104, 1))
+ax.set_xticklabels([f"{v}°E" for v in np.arange(94, 104, 1)], fontsize=8)
+_lat_t = np.arange(36.5, 40.01, 0.5)     # 36.5–40.0 每 0.5° 一条标注
+ax.set_yticks(_lat_t)
+ax.set_yticklabels([f"{v:g}°N" for v in _lat_t], fontsize=8)
+ax.tick_params(which="both", direction="out", length=3, width=0.6,
+               top=True, right=True, labeltop=False, labelright=False)
+ax.set_xlim(VX0, VX1); ax.set_ylim(VY0, VY1)
 ax.set_xlabel("Longitude", fontsize=9); ax.set_ylabel("Latitude", fontsize=9)
-ax.grid(alpha=0.18, lw=0.4, color="white", linestyle="--")
-for s in ("top", "right"):
-    ax.spines[s].set_visible(False)
+for s in ("top", "right", "left", "bottom"):   # R12：四边全显，边框即研究区边界
+    ax.spines[s].set_visible(True); ax.spines[s].set_linewidth(1.5); ax.spines[s].set_color("#1a1a1a")
 
-plt.savefig(os.path.join(FIG, "fig1_study_area.png"), dpi=600, bbox_inches="tight")
+# R11：不用 tight，输出严格保持 10.6:6.4 原比例
+plt.savefig(os.path.join(FIG, "fig1_study_area.png"), dpi=700, bbox_inches="tight")
+plt.savefig(os.path.join(FIG, "fig1_study_area.pdf"), dpi=300)  # R12：矢量版（文字线条矢量 + 底图 300 dpi，符合 Elsevier 半调图 ≥300 dpi；600 dpi PNG 另存为高分辨率源文件）
+plt.savefig(r"D:\比赛\论文\资料\公园边界\render\fig1_preview.png", dpi=140, bbox_inches="tight")
 plt.close()
 print("saved fig1_study_area.png")
 print("高程 %.0f-%.0f m; 省份 %d 个; 水系 %d 段" % (

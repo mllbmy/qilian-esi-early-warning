@@ -20,6 +20,8 @@ def eq(img, num):
     return add_equation(doc, builder(), num)
 
 from docx import Document
+
+from fix_inline_math import fix_inline_math
 from docx.shared import Pt, Cm
 from docx.oxml.ns import qn
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -101,39 +103,39 @@ doc.add_paragraph()
 
 # ================= 摘要 =================
 h1("摘要")
-para("自然保护区对生物多样性保护至关重要，但其管理往往缺乏能将监测数据转化为可操作信号的定量预警工具。本研究结合驱动力-压力-状态-影响-响应（DPSIR）指标体系、主客观组合赋权、灰色预测与地理探测器归因，仅使用公开气候（CRU TS）与土地覆被（CLCD）数据，对中国祁连山区域（含祁连山国家公园）2005-2023 年的生态安全（ES）进行评价与预测。区域生态安全指数（ESI）于 2010 年升至峰值 0.709（较安全），此后回落并在轻警区间趋于稳定，2023 年为 0.486；19 年中有 16 年为轻警等级，且 2023 年等级对主客观赋权比例不敏感。经三模型比较与滚动回测选定的非线性灰色伯努利模型给出的 2024-2028 年预测显示，生态安全将在轻警等级内继续缓慢下降。空间上，裸地/退化占比（q=0.80）与草地占比（q=0.71）主导生态安全的空间异质性（均 p<0.001）：决定格局的是干旱程度与植被覆盖，而非气温。据此提出分区管理建议——加强轻警区草地恢复、规范耕地扩张——并提供可推广至其他保护区的完全可复现流程。")
-para("关键词：生态安全；预警；国家公园；DPSIR；祁连山区域；青藏高原", 10, bold=True, indent=False)
+para("自然保护区对生物多样性保护至关重要，但其管理往往缺乏能将监测数据转化为可操作信号的定量预警工具。本研究结合驱动力-压力-状态-影响-响应（DPSIR）指标体系、主客观组合赋权、灰色预测与地理探测器归因，仅使用公开气候（CRU TS）与土地覆被（CLCD）数据，对中国祁连山区域（含祁连山国家公园）2005-2023 年的生态安全（ES）进行评价与预测。区域生态安全指数（ESI）于 2010 年升至峰值 0.709（较安全），此后回落并在轻警区间趋于稳定，2023 年为 0.486；19 年中有 16 年为轻警等级，且 2023 年等级对主客观赋权比例不敏感。经三模型比较与滚动回测选定的非线性灰色伯努利模型给出的 2024-2028 年预测显示，生态安全将在轻警等级内继续缓慢下降。空间上，裸地/退化占比（q=0.80）与草地占比（q=0.71）主导生态安全的空间异质性（均 p=0.001）：决定格局的是干旱程度与植被覆盖，而非气温。据此提出分区管理建议——加强轻警区草地恢复、规范耕地扩张——并提供可推广至其他保护区的完全可复现流程。")
+para("关键词：生态安全；预警；DPSIR；灰色预测；地理探测器；祁连山区域", 10, bold=True, indent=False)
 doc.add_paragraph()
 
 # ================= 1 引言 =================
 h1("1  引言")
 h2("1.1  背景")
-para("全球生物多样性正以前所未有的速度下降：自 1970 年以来脊椎动物种群规模平均下降 68%，晚更新世以来陆生哺乳动物生物量至少减少 85%，非法野生动物贸易年价值高达 230 亿美元 (WWF, 2020; IPCC, 2014)。栖息地丧失、气候变化与偷猎共同威胁着生态系统稳定。保护区已成为全球就地生物多样性保护的基石。")
-para("然而，保护区的有效性受制于有限的监测能力。常规野外调查劳动密集、成本高昂，难以在广大或难以到达的区域持续开展；红外相机与遥感提供了更丰富的数据，但需要系统的分析框架将原始观测转化为管理决策 (Kerry et al., 2022; Bijl and Heltai, 2022)。一个反复出现的缺口是缺乏“预警”信息：生态退化往往在已变得严重之后才被发现，留给预防性干预的空间很小。")
-para("这一“监测-预警”缺口已被多项保护倡议反复指出。例如，国际社会呼吁通过建立融合传感器网络、遥感与人工智能的云监测平台来减少非法野生动物贸易，实时发出栖息地威胁警报 (WWF, 2020; Kerry et al., 2022)；此类平台的预警决策模块通常依托于复合生态安全指标，将多维环境信息压缩为可操作信号。用真实数据对预警模块进行形式化与实证验证——而不是停留在平台蓝图层面——因此是对保护监测议程的直接贡献。")
-para("生态安全（ES）视角提供了这样一种系统化的形式化路径。生态安全评价将多维环境、社会与经济信息压缩为可在时空上追踪的复合指数，为分区、监测与预警提供定量基础 (Liu et al., 2023, 2022)。本研究采用该视角，并将其应用于栖息地完整性直接决定野生动物保护成效的国家公园。")
+para("全球生物多样性以前所未有的速度下降。自 1970 年以来，脊椎动物种群规模平均下降 68%，晚更新世以来陆生哺乳动物生物量至少减少 85%，非法野生动物贸易年价值高达 230 亿美元 (WWF, 2020; IPCC, 2014)。栖息地丧失、气候变化与偷猎共同威胁生态系统稳定。保护区已成为全球就地生物多样性保护的基石。")
+para("然而，监测能力有限制约着保护区的有效性。常规野外调查劳动密集、成本高昂，难以在大范围或难以到达的区域持续开展；红外相机与遥感提供了更丰富的数据，但需要系统的分析框架将原始观测转化为管理决策 (Kerry et al., 2022; Bijl and Heltai, 2022)。一个反复出现的缺口是缺乏“预警”信息：生态退化往往在变得严重之后才被发现，留给预防性干预的余地很小。")
+para("这一“监测-预警”缺口已被多项保护倡议反复指出。例如，国际社会呼吁建立融合传感器网络、遥感与人工智能的云监测平台，以减少非法野生动物贸易并实时发出栖息地威胁警报 (WWF, 2020; Kerry et al., 2022)。此类平台的预警决策模块通常依托复合生态安全指标，将多维环境信息压缩为可操作信号。本研究以真实数据对该预警环节进行形式化与实证验证。")
+para("生态安全（ES）视角提供了这样一条系统化的形式化路径。生态安全评价将多维环境、社会与经济信息压缩为可时空追踪的复合指数，为分区、监测与预警提供定量基础 (Liu et al., 2023, 2022)。本研究采用该视角，并将其应用于栖息地完整性直接决定野生动物保护成效的国家公园。")
 h2("1.2  研究现状与知识缺口")
-para("PSR 与 DPSIR 框架被广泛用于组织生态安全指标体系 (Hou et al., 2024; Yang et al., 2023)。主观赋权（AHP）(Saaty, 1980)、客观赋权（熵权法）及其组合是主流方法。灰色模型（GM(1,1)）(Deng, 1982) 适用于小样本生态安全时间序列；Liu 等将 DPSIR、组合赋权、GM(1,1) 与地理探测器集成到保护区尺度的预警框架中 (Liu et al., 2023)。地理探测器方法 (Wang et al., 2016; Wang and Hu, 2012) 可量化各因子对空间生态安全异质性的贡献 (Lyu et al., 2026; Zhang et al., 2024; Gao et al., 2025)。")
-para("现有研究仍存在知识缺口：（1）保护区尺度研究通常孤立地应用 DPSIR–GM(1,1)–GeoDetector 各组件，或采用单一赋权方案；（2）生态安全结果对权重比例 α 的敏感性很少被检验；（3）GM(1,1) 对非单调生态安全序列的适用性很少被诊断；（4）很少有研究将预警结果转化为具体的分区管理建议。")
+para("PSR 与 DPSIR 框架被广泛用于组织生态安全指标体系 (Hou et al., 2024; Yang et al., 2023)。已有研究在山地与保护区尺度评估生态安全，覆盖长白山地区、云南欠发达地区及邻近的兰西城市群 (Lu et al., 2014; Ou et al., 2017; Tong and Shi, 2020)。主观赋权（AHP）(Saaty, 1980)、客观赋权（熵权法）及其组合是主流方法。灰色模型（GM(1,1)）(Deng, 1982) 适用于小样本生态安全时间序列；Liu 等将 DPSIR、组合赋权、GM(1,1) 与地理探测器集成到保护区尺度的预警框架中 (Liu et al., 2023)。地理探测器方法 (Wang et al., 2016; Wang and Hu, 2012) 可量化各因子对空间生态安全异质性的贡献 (Lyu et al., 2026; Zhang et al., 2024; Gao et al., 2025; Zhang et al., 2019)。")
+para("现有研究仍存在知识缺口：（1）保护区尺度研究通常孤立地应用 DPSIR–GM(1,1)–GeoDetector 各组件，或仅采用单一赋权方案；（2）生态安全结果对权重比例 α 的敏感性鲜有检验；（3）GM(1,1) 对非单调生态安全序列的适用性缺乏诊断；（4）预警结果很少被转化为具体的分区管理建议。")
 h2("1.3  研究目标")
-para("本研究的目标是：（1）基于公开数据量化祁连山区域 2005-2023 年生态安全的动态与预警状态；（2）检验预警等级对主客观赋权比例（α=0-1）的稳健性；（3）诊断灰色预测模型对非单调 ESI 序列的适用性并给出 2024-2028 年预测；（4）识别生态安全的空间驱动因子并提出分区管理建议。")
+para("本研究旨在：（1）基于公开数据量化祁连山区域 2005-2023 年生态安全的动态与预警状态；（2）检验预警等级对主客观赋权比例（α=0-1）的稳健性；（3）诊断灰色预测模型对非单调 ESI 序列的适用性并给出 2024-2028 年预测；（4）识别生态安全的空间驱动因子并提出分区管理建议。")
 
 # ================= 2 研究区与数据 =================
 h1("2  研究区与数据")
 h2("2.1  研究区概况")
-para("祁连山区域以祁连山国家公园为核心，位于青藏高原东北缘，横跨甘肃与青海两省交界（图 1）。公园保护着典型的山地生态系统——冰川、雪原、高山草甸与荒漠草原——为河西走廊及内陆河流域提供关键水源服务。由于权威的公园边界矢量未公开获取，本文分析范围取覆盖公园及其缓冲县的矩形区域（36.0-40.5°N，93.5-103.5°E），因此结论在区域尺度上解读。研究区 2005-2023 年年均气温 0.8-2.0°C、年降水量 167-284 mm。分析单元包括整个区域及 11 个县（天祝、肃南、肃北、阿克塞、民乐、山丹、门源、祁连、刚察、德令哈、天峻）。")
-fig("fig1_study_area.png", "图1  祁连山区域地形、祁连山国家公园及县域位置", w=11.5)
+para("研究区以祁连山国家公园为核心，位于青藏高原东北缘，横跨甘肃与青海两省交界（图 1）。公园保护冰川、雪原、高山草甸与荒漠草原等典型山地生态系统，为河西走廊及内陆河流域提供关键水源服务 (Gao et al., 2023)。本文以公园及其缓冲县为中心的矩形区域（36.0-40.5°N，93.5-103.5°E）为分析范围。结论在区域尺度上解读。研究区 2005-2023 年年均气温 0.8-2.0°C、年降水量 167-284 mm。分析单元包括整个区域及 11 个县（天祝、肃南、肃北、阿克塞、民乐、山丹、门源、祁连、刚察、德令哈、天峻）。")
+fig("fig1_study_area.png", "图1  祁连山区域地形、祁连山国家公园及县域位置。图幅范围即分析窗口 36.0-40.5°N，93.5-103.5°E，红点为 11 个县级分析单元；虚线轮廓为据《祁连山国家公园总体规划》数字化的公园范围（审图号 GS(2019)46 号，仅示意；数字化面积 48,800 km²，与规划总面积 50,200 km² 相差 3% 以内）；底图为 Copernicus DEM 90 m，省界来自 Natural Earth 1:500 万，仅作参考", w=11.5)
 h2("2.2  数据来源")
 table(["数据类型", "指标", "来源", "时段"],
       [["气候", "降水量（mm）、年均气温（°C）", "CRU TS 4.10 (Harris et al., 2020)", "2005-2023"],
        ["土地覆被", "草地、森林、水域、耕地、裸地占比", "CLCD 30 m (Yang and Huang, 2021)", "2005-2023"]],
       "表1  本研究使用的数据来源")
-para("本研究使用的数据源汇总于表 1。土地覆被按 2005、2010、2015、2020、2023 五个时期计算并线性插值到年值；气候格网聚合到区域尺度与 11 个县域质心，因此县域数值为质心窗口估计而非面积加权统计。")
+para("本研究的数据源汇总于表 1。土地覆被分 2005、2010、2015、2020、2023 五期计算，并线性插值到逐年值。气候格网分别聚合到区域尺度与 11 个县域质心，故县域数值为质心窗口估计，而非全县面积加权统计。")
 
 # ================= 3 方法 =================
 h1("3  研究方法")
 h2("3.1  DPSIR 框架与指标体系")
-para("遵循 DPSIR 框架 (Hou et al., 2024; Yang et al., 2023)，九项指标覆盖各准则层：驱动力（降水、气温）、压力（裸地/退化占比、耕地占比）、状态（草地、森林、水域占比）、影响（草地变化率）、响应（生态用地占比）（表 2）。气温与降水取正向：在寒冷干旱的高寒环境中，热量与水分为植被生长的共同限制因子，升温带来的蒸散发增强等相反效应在空间归因分析中讨论。分析框架见图 2。")
+para("遵循 DPSIR 框架 (Hou et al., 2024; Yang et al., 2023)，九项指标覆盖各准则层：驱动力（降水、气温）、压力（裸地/退化占比、耕地占比）、状态（草地、森林、水域占比）、影响（草地变化率）、响应（生态用地占比）。指标选取兼顾两点：仅用公开可复现数据（CRU TS 4.10 气候与 CLCD 30 m 土地覆被），并同时刻画干旱—半干旱高寒生态系统中主导生态安全的气候驱动与地表响应。气温与降水均取正向：在寒冷干旱的高寒环境中，热量与水分同为植被生长的限制因子。升温带来的蒸散发增强等相反效应，则在空间归因分析中讨论。表 2 列出各指标的方向与角色，图 2 给出 DPSIR 因果链与 ESI 预警管线的衔接；赋权前所有指标均做 min-max 归一化到 [0,1]。")
 fig("fig_dpsir_framework.png", "图2  分析框架：DPSIR 因果链与 ESI 预警管线（虚线箭头为管理反馈）", w=16.0)
 table(["准则层", "指标", "单位", "方向"],
       [["驱动力 D", "年降水量", "mm", "+"],
@@ -147,7 +149,7 @@ table(["准则层", "指标", "单位", "方向"],
        ["响应 R", "生态用地占比", "%", "+"]],
       "表2  DPSIR 指标体系（+/− 表示对生态安全的正/负向）")
 h2("3.2  组合赋权（AHP + 熵权）")
-para("熵权：ej = −(1/ln n) Σi pij ln pij，pij = x′ij / Σi x′ij，wEj = (1 − ej) / Σj(1 − ej)。AHP 权重采用主特征向量法：准则层判断矩阵（5 个准则，Saaty 1-9 标度；表 3）依 DPSIR 层次优先级（状态 > 响应 > 影响 > 驱动力 = 压力）构造，得 λmax = 5.015、CI = (λmax − n)/(n − 1) = 0.0038、CR = CI/RI = 0.0034 < 0.1（n = 5 时 RI = 1.12），满足一致性检验 (Saaty, 1980)；各准则层内指标均分该层权重。组合权重为：")
+para("熵权为 ej = −(1/ln n) Σi pij ln pij，其中 pij = x′ij / Σi x′ij，wEj = (1 − ej) / Σj(1 − ej)。AHP 权重 wAj 采用主特征向量法 (Saaty, 1980)。因生态安全最直接由状态层与响应层体现，准则层判断矩阵（5 个准则，Saaty 1-9 标度；表 3）依 DPSIR 层次优先级（状态 > 响应 > 影响 > 驱动力 = 压力）构造，得 λmax = 5.015、CI = (λmax − n)/(n − 1) = 0.0038、CR = CI/RI = 0.0034 < 0.1（n = 5 时 RI = 1.12），满足一致性要求。各准则层内指标均分该层权重。组合权重为：")
 eq("eq_weight", 1)
 para("以 α = 0.4 为基线，并在 α = 0-1 全区间进行敏感性分析。")
 table(["准则层", "D", "P", "S", "I", "R", "权重"],
@@ -158,21 +160,23 @@ table(["准则层", "D", "P", "S", "I", "R", "权重"],
        ["响应 R", "3", "3", "1/2", "2", "1", "0.250"]],
       "表3  AHP 准则层判断矩阵（Saaty 1-9 标度）与准则层权重")
 h2("3.3  生态安全指数（ESI）")
-para("指标按方向标准化（式 2），正向指标越高生态越安全，负向指标反之：", 11)
+para("指标先按方向做 min-max 标准化到 [0,1]（式 2）：正向指标值越大越安全，负向指标反之。", 11)
 eq("eq_norm", 2)
+para("ESI 为各指标标准化值的加权和：", 11)
 eq("eq_esi", 3)
 h2("3.4  预警预测模型与等级划分")
-para("GM(1,1) 模型 (Deng, 1982) 基于一次累加序列，以最小二乘估计参数（â, b̂）：")
+para("GM(1,1) 模型 (Deng, 1982) 以一次累加序列为基础，用最小二乘估计参数（â, b̂）：")
 eq("eq_gm", 4)
-para("GM(1,1) 假设单调指数趋势，而观测 ESI 序列在 2010 年见顶后回落、违背了这一假设，故本文诊断该非单调性并额外采用广义灰色伯努利模型（NGBM，幂指数 γ）与 ARIMA 对比。模型精度由后验差比值 C = S2/S1 与小误差概率 P 评价：优（C<0.35，P>0.95）、合格（C<0.50，P>0.80）、勉强合格（C<0.65，P>0.70）。预警等级：安全 [0.8,1]、较安全 [0.6,0.8)、轻警 [0.4,0.6)、中警 [0.2,0.4)、重警 [0,0.2)；等级界限在归一化区间 [0,1] 上按 0.2 等距划分，与 DPSIR 类保护区生态安全预警框架的五级划分惯例一致 (Liu et al., 2023)，等距划分便于跨研究比较并避免样本相关的断点，后文将表明观测序列的预警等级对权重比例不敏感。模型精度另由滚动回测验证：以 2005-2018 年拟合、以留出的 2019-2023 年观测评估。")
+para("GM(1,1) 假定单调指数趋势，而观测 ESI 序列在 2010 年见顶后回落，违背该假定；本文因此额外采用以幂指数 γ 推广 GM(1,1) 的非线性灰色伯努利模型（NGBM），并与 ARIMA 对比。模型精度由后验差比值 C=S2/S1 与小误差概率 P 评价：优（C<0.35，P>0.95）、合格（C<0.50，P>0.80）、勉强合格（C<0.65，P>0.70）。模型精度另由滚动回测验证：以 2005-2018 年拟合，用留出的 2019-2023 年观测评估。")
+para("预警等级分为五级：安全 [0.8,1]、较安全 [0.6,0.8)、轻警 [0.4,0.6)、中警 [0.2,0.4)、重警 [0,0.2)。等级界限在归一化区间 [0,1] 上按 0.2 等距划分，与 DPSIR 类保护区生态安全预警框架的五级划分惯例一致 (Liu et al., 2023)；等距划分便于跨研究比较，且避免样本相关的断点。后文将表明，观测序列的预警等级对权重比例不敏感。")
 h2("3.5  空间驱动因子识别（GeoDetector）")
 
 eq("eq_q", 5)
 
 # ================= 4 结果 =================
 h1("4  结果与分析")
-fig("fig_indicator_trends.png", "图3  九项 DPSIR 指标变化趋势（2005-2023；圆点为五个土地覆被观测时点，虚线为 2010 年即 ESI 峰值年）", w=15.2)
-para("图 3 展示 ESI 背后的指标原始动态：降水量在 166.9-284.4 mm/年之间波动，由 2005 年的 228.0 mm 降至 2023 年的 166.9 mm；年均气温由 1.29°C 升至 1.92°C。土地覆被类指标（由五个 CLCD 时点线性插值）变化缓慢：生态用地占比（草地+森林+水域）由 2005 年的 37.9% 升至 2010 年的 39.6%，2023 年为 39.0%；裸地/退化占比先降（58.2%→56.5%）后微升（57.0%）；水域（1.75%-2.12%）与森林（1.15%-1.29%）占比稳步上升，耕地小幅增加（3.8%-4.0%）；草地变化率波动最大（-0.47% 至 +0.84%/年）。这些序列经标准化与组合赋权后即构成下文分析的 ESI 轨迹（图 4）。")
+fig("fig_indicator_trends.png", "图3  九项 DPSIR 指标变化趋势（2005-2023；圆点为五个 CLCD 土地覆被观测时点 2005、2010、2015、2020、2023，土地覆被类指标在时点间线性插值；虚线为 2010 年即 ESI 峰值年）", w=15.2)
+para("图 3 展示 ESI 背后的指标原始动态。降水量在 166.9-284.4 mm/年之间波动，由 2005 年的 228.0 mm 降至 2023 年的 166.9 mm；年均气温由 1.29°C 升至 1.92°C。土地覆被类指标（在五个 CLCD 时点间线性插值）变化缓慢：生态用地占比（草地+森林+水域）由 2005 年的 37.9% 升至 2010 年的 39.6%，2023 年仍接近 39.0%；裸地/退化占比先由 58.2% 降至 56.5%，随后微升至 57.0%；水域（1.75%-2.12%）与森林（1.15%-1.29%）占比稳步上升，耕地小幅增加（3.8%-4.0%）。草地变化率波动最大（-0.47% 至 +0.84%/年）。这些序列经标准化与组合赋权（3.3 节）后，构成下文分析的 ESI 轨迹（图 4）。")
 h2("4.1  指标权重")
 table(["指标", "方向", "熵权", "AHP", "组合"],
       [["降水（mm）", "+", "0.111", "0.041", "0.083"],
@@ -185,7 +189,7 @@ table(["指标", "方向", "熵权", "AHP", "组合"],
        ["草地变化率", "+", "0.245", "0.149", "0.206"],
        ["生态用地占比", "+", "0.059", "0.250", "0.136"]],
       "表4  指标权重（熵权、AHP 与组合权重，α=0.4）")
-para("熵权（表 4）识别出草地变化率（w=0.245）与耕地占比（w=0.171）为信息量最大的信号；组合权重（α=0.4）下草地变化率（0.206）、生态用地占比（0.136）与水域占比（0.128）权重最高，表明草地动态、生态用地规模与水资源共同主导生态安全的时序变化（图 7）。")
+para("熵权结果（表 4）显示，草地变化率（w=0.245）与耕地占比（w=0.171）的信息量最大。AHP 准则层权重突出状态层指标（草地、森林、水域，各 0.146）与生态用地占比（0.250）；组合权重（α=0.4）下，草地变化率（0.206）、生态用地占比（0.136）、水域占比（0.128）与森林占比（0.120）最高，表明草地动态、生态用地规模与水资源共同主导生态安全的时序变化（图 7）。")
 h2("4.2  ESI 时序与预警等级")
 fig("fig3_esi_timeseries.png", "图4  观测 ESI（2005-2023）与预测（2024-2028）及预警等级带", w=14.4)
 para("区域 ESI 从 2005 年的 0.258（中警）升至 2010 年的峰值 0.709（较安全），随后回落并在 0.45-0.59（轻警）间波动，2023 年为 0.486。Mann-Kendall 趋势检验表明，2005-2023 年 ESI 的下降趋势不显著（Z=-1.120，p=0.263），Sen 斜率为 -0.0032/年，说明区域处于稳定但脆弱的轻警状态，而非已确认的持续退化。")
@@ -204,18 +208,18 @@ fig("fig4_alpha_sensitivity.png", "图5  2023 年 ESI 对权重比例 α 的敏�
 para(f"α=0-1 全区间敏感性分析表明，2023 年 ESI 由 α=0（纯熵权）的 {alpha_df['esi_2023'].min():.3f} 升至 α=1（纯 AHP）的 {alpha_df['esi_2023'].max():.3f}，但预警等级在所有 α 取值下均为「轻警」（图 5）。19 年序列中轻警年数由 α=0.3-0.4 时的 16 年降至 α≥0.9 时的 5 年，且 α≥0.7 时出现 1 个重警年；基线 α=0.4 处于最稳定区间。当前状态的预警结论对主客观赋权平衡具有稳健性，但 AHP 主导的权重会放大历史等级的分散度。")
 h2("4.5  空间分布、驱动因子与障碍因子")
 table(["县域", "ESI（2020）", "县域", "ESI（2020）"],
-      [["肃南", "0.466", "刚察", "0.289"],
-       ["天祝", "0.395", "山丹", "0.260"],
-       ["祁连", "0.390", "天峻", "0.251"],
-       ["德令哈", "0.366", "民乐", "0.166"],
-       ["肃北", "0.344", "阿克塞", "0.074"],
-       ["门源", "0.306", "", ""]],
-      "表6  县域静态 ESI（2020）")
+      [["肃南", "0.558", "刚察", "0.398"],
+       ["天祝", "0.525", "山丹", "0.370"],
+       ["祁连", "0.474", "天峻", "0.337"],
+       ["德令哈", "0.446", "民乐", "0.278"],
+       ["门源", "0.443", "阿克塞", "0.067"],
+       ["肃北", "0.405", "", ""]],
+      "表6  县域静态 ESI（2020；指标为各县质心 ±0.1° 窗口内 2020 年土地覆被占比与该县 2005-2023 年均气候，在 11 个县级单元间标准化后按 α=0.4 组合赋权）")
 fig("fig5_spatial_esi.png", "图6  2020 年点尺度 ESI 空间分布", w=12.8)
-para("县域静态 ESI（2020，采用与区域分析相同的组合权重）以东部的肃南（0.466）与天祝（0.395）最高、西部的阿克塞（0.074）最低（表 6；图 6）。草地覆盖较高的东部县域（肃南、天祝、祁连）高于干旱的西部县域（阿克塞、德令哈），但格局受局地土地覆被构成调节（如以耕地为主的民乐低于部分西部县域）。该梯度表明保护资源与预警优先级应在区域内部差异化配置。")
-para("对 1,914 个格网样本的地理探测器分析识别出裸地/退化占比（q=0.80，p<0.001）为主导空间驱动因子，其次是草地占比（q=0.71，p<0.001）与降水（q=0.51，p<0.001）；气温（q=0.17，p<0.001）与森林占比较弱（置换检验 999 次；图 8）。干旱化与植被覆盖——而非气温——控制着祁连山区域生态安全的空间格局。交互探测器进一步表明所有因子对均呈“增强”交互：气温×裸地（q=0.849）、降水×裸地（q=0.833）与草地×裸地（q=0.818）的联合效应均超过各自单独贡献（p<0.001），说明热-旱与水分-植被耦合叠加了空间生态安全异质性（表 7；图 9）。")
+para("县域静态 ESI（2020，指标取各县质心 ±0.1° 窗口内 2020 年土地覆被占比与该县多年平均气候，沿用区域分析的 AHP-熵权组合赋权方案 α=0.4，并在 11 个县级单元间做 min-max 标准化）以东部的肃南（0.558）与天祝（0.525）最高、西部的阿克塞（0.067）最低（表 6；图 6）。草地覆盖较高的东部县域（肃南、天祝、祁连）高于干旱的西部县域（阿克塞、德令哈），但格局受局地土地覆被构成调节（如以耕地为主的民乐低于部分西部县域）。该梯度表明保护资源与预警优先级应在区域内部差异化配置。")
+para("对 1,914 个格网样本的地理探测器分析识别出裸地/退化占比（q=0.80，p=0.001）为主导空间驱动因子，其次是草地占比（q=0.71，p=0.001）与降水（q=0.51，p=0.001）；气温（q=0.17，p=0.001）与森林占比较弱（置换检验 999 次；图 8）。干旱化与植被覆盖——而非气温——控制着祁连山区域生态安全的空间格局。交互探测器进一步表明所有因子对均呈“增强”交互：气温×裸地（q=0.849）、降水×裸地（q=0.833）与草地×裸地（q=0.818）的联合效应均超过各自单独贡献（p=0.001），说明热-旱与水分-植被耦合叠加了空间生态安全异质性（表 7；图 9）。")
 fig("fig_weights.png", "图7  熵权、AHP 与组合权重（α=0.4）对比", w=13.5)
-fig("fig_geodetector_q.png", "图8  单因子探测 q 值（2020；置换检验 999 次，均 p<0.001）", w=10.5)
+fig("fig_geodetector_q.png", "图8  单因子探测 q 值（2020；置换检验 999 次，均 p=0.001）", w=10.5)
 fig("fig_interaction.png", "图9  六对因子的交互探测 q 值（q1/q2 单因子，q_int 联合；均呈增强）", w=14.2)
 table(["因子对", "q1", "q2", "q_int", "交互关系"],
       [["草地 × 裸地", "0.708", "0.802", "0.818", "增强"],
@@ -249,7 +253,7 @@ table(["方法特征", "Liu 等 (2023)", "长白山 DPSIRM", "DPSIR-DEA", "本�
 h2("5.3  管理启示")
 para("（1）轻警区应优先实施草地恢复与放牧调控；干旱的西部县（阿克塞、德令哈）需要荒漠化监测与水资源管理而非单纯的植被恢复。（2）农牧交错带的耕地扩张应加以控制。（3）五级预警分类可支撑与祁连山国家公园功能分区衔接的 ESI 阈值触发响应机制，使预警等级跨越边界时自动提升监测频率与管理关注——将预警概念落实为栖息地与野生动物保护的可操作机制。")
 h2("5.4  局限与展望")
-para("局限包括：区域聚合（县域 ESI 为基于质心窗口的静态评价，待更精细行政边界）、土地覆被在五个时期之间插值、灰色模型对非单调序列精度中等（已通过 NGBM/ARIMA 对比部分缓解），且 ESI 尚未与独立外部生态指标（如 NDVI、草地覆盖地面观测）交叉验证。未来工作应（i）纳入更高时间分辨率的土地覆被并实现近实时预警更新，（ii）将 ESI 与野生动物种群及栖息地质量指标耦合，（iii）将框架扩展至多保护区对比以检验可迁移性，（iv）以独立外部指标对 ESI 进行交叉验证。")
+para("局限包括：区域聚合（县域 ESI 为基于质心 ±0.1° 窗口，反映县城附近而非全县平均状况的静态评价，待更精细行政边界）、土地覆被在五个时期之间插值、灰色模型对非单调序列精度中等（已通过 NGBM/ARIMA 对比部分缓解），且 ESI 尚未与独立外部生态指标（如 NDVI、草地覆盖地面观测）交叉验证。未来工作应（i）纳入更高时间分辨率的土地覆被并实现近实时预警更新，（ii）将 ESI 与野生动物种群及栖息地质量指标耦合，（iii）将框架扩展至多保护区对比以检验可迁移性，（iv）以独立外部指标对 ESI 进行交叉验证。")
 
 # ================= 6 结论 =================
 h1("6  结论")
@@ -261,7 +265,7 @@ doc.add_paragraph()
 h1("作者贡献")
 para("作者构思并设计了本研究，完成数据分析与建模、结果解释与论文撰写。")
 h1("数据可获得性")
-para("气候数据公开获取自 CRU TS 4.10（https://crudata.uea.ac.uk/cru/data/hrg/）；土地覆被数据来自 CLCD 数据集（https://doi.org/10.5194/essd-13-3907-2021）；高程数据来自 Copernicus DEM。支撑本研究的处理后数据集与分析代码公开于 https://github.com/mllbmy/qilian-esi-early-warning。")
+para("气候数据公开获取自 CRU TS 4.10（https://crudata.uea.ac.uk/cru/data/hrg/）；土地覆被数据来自 CLCD 数据集（https://doi.org/10.5194/essd-13-3907-2021）；高程数据来自 Copernicus DEM。支撑本研究的处理后数据集与分析代码公开于 https://github.com/mllbmy/qilian-esi-early-warning，并已存档至 Zenodo：https://doi.org/10.5281/zenodo.23011183。")
 h1("利益竞争")
 para("利益冲突声明：作者声明不存在任何利益冲突。")
 h1("伦理声明")
@@ -273,28 +277,35 @@ para("在本工作准备过程中，作者使用 DeepSeek（人工智能语言�
 doc.add_paragraph()
 h1("参考文献")
 refs = [
-        "Althobaiti, S., Shabri, A., 2022. Prediction of CO2 emissions in Saudi Arabia using nonlinear grey Bernoulli model NGBM(1,1) compared with GM(1,1) model, in: Journal of Physics: Conference Series, IOP Publishing. p. 012011. doi: 10.1088/1742-6596/2259/1/012011.",
+        "Althobaiti, Z.F., Shabri, A., 2022. Prediction of CO2 emissions in Saudi Arabia using nonlinear grey Bernoulli model NGBM(1,1) compared with GM(1,1) model, in: Journal of Physics: Conference Series, IOP Publishing. p. 012011. doi: 10.1088/1742-6596/2259/1/012011.",
         "Bijl, H., Heltai, M., 2022. A narrative review on the use of camera traps and machine learning in wildlife research. Columella – Journal of Agricultural and Environmental Sciences 9, 47–69. doi: 10.18380/szie.colum.2022.9.2.47.",
         "Deng, J., 1982. Control problems of grey systems. Systems & Control Letters 1, 288–294.",
         "Gao, J., Pan, N., Zhou, D., 2025. Integrating landscape ecological risk and ecosystem services for ecological zoning in the Qilian Mountain National Park. Ecosystem Health and Sustainability 11, 0441. doi: 10.34133/ehs.0441.",
+        "Gao, X., Huang, X., Chang, S., Dang, Q., Wen, R., Lo, K., Li, J., Yan, A., 2023. Long-term improvements in water conservation functions at Qilian Mountain National Park, northwest China. Journal of Mountain Science 20, 2885–2897. doi: 10.1007/s11629-023-8034-5.",
         "Harris, I., Osborn, T.J., Jones, P., Lister, D., 2020. Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Scientific Data 7, 109. doi: 10.1038/s41597-020-0453-3.",
         "Hou, M., Li, L., Yu, H., Jin, R., Zhu, W., 2024. Ecological security evaluation of wetlands in Changbai Mountain area based on DPSIRM model. Ecological Indicators 160, 111773. doi: 10.1016/j.ecolind.2024.111773.",
         "IPCC, 2014. Climate Change 2014: Impacts, Adaptation, and Vulnerability. Part A: Global and Sectoral Aspects. Cambridge University Press.",
         "Jing, X., Tao, S., Hu, H., Sun, M., Wang, M., 2024. Spatio-temporal evaluation of ecological security of cultivated land in China based on DPSIR-entropy weight TOPSIS model and analysis of obstacle factors. Ecological Indicators 166, 112579. doi: 10.1016/j.ecolind.2024.112579.",
         "Kerry, R.G., Montalbo, F.J.P., Das, R., Patra, S., Mahapatra, G.P., Maurya, G.K., Nayak, V., Jena, A.B., Ukhurebor, K.E., Jena, R.C., Gouda, S., Majhi, S., Rout, J.R., 2022. An overview of remote monitoring methods in biodiversity conservation. Environmental Science and Pollution Research 29, 80179–80221. doi: 10.1007/s11356-022-23242-y.",
         "Liu, J., Cao, X., Zhao, L., Dong, G., Jia, K., 2022. Spatiotemporal differentiation of land ecological security and its influencing factors: A case study in Jinan, Shandong Province, China. Frontiers in Environmental Science 10, 824254. doi: 10.3389/fenvs.2022.824254.",
-        "Liu, Y., Wang, C., Wang, H., Chang, Y., Yang, X., Zang, F., 2023. An integrated ecological security early-warning framework in the national nature reserve based on the gray model. Journal for Nature Conservation 73, 126394. doi: 10.1016/j.jnc.2023.126394.",
+        "Liu, Y., Wang, C., Wang, H., Chang, Y., Yang, X., Zang, F., Liu, X., Zhao, C., 2023. An integrated ecological security early-warning framework in the national nature reserve based on the gray model. Journal for Nature Conservation 73, 126394. doi: 10.1016/j.jnc.2023.126394.",
+        "Lu, X., Zhang, J., Li, X., 2014. Geographical information system-based assessment of ecological security in Changbai Mountain region. Journal of Mountain Science 11, 86–97. doi: 10.1007/s11629-013-2293-5.",
         "Lyu, X., Li, X., Wang, K., Cao, W., Zhang, C., 2026. Anthropogenic activities amplify spatiotemporal variations in regional ecological security patterns dominated by natural factors: Evidence from the West Liaohe River Basin, China. Journal of Arid Land 18, 752–773. doi: 10.1016/j.jaridl.2026.05.002.",
+        "Ou, Z., Zhu, Q., Sun, Y., 2017. Regional ecological security and diagnosis of obstacle factors in underdeveloped regions: A case study in Yunnan Province, China. Journal of Mountain Science 14, 870–884. doi: 10.1007/s11629-016-4199-5.",
         "Saaty, T.L., 1980. The Analytic Hierarchy Process. McGraw-Hill, New York.",
+        "Tong, H., Shi, P., 2020. Using ecosystem service supply and ecosystem sensitivity to identify landscape ecology security patterns in the Lanzhou-Xining urban agglomeration, China. Journal of Mountain Science 17, 2758–2773. doi: 10.1007/s11629-020-6283-0.",
         "Wang, J.F., Hu, Y., 2012. Environmental health risk detection with geogdetector. Environmental Modelling & Software 33, 114–115. doi: 10.1016/j.envsoft.2012.01.015.",
         "Wang, J.F., Zhang, T.L., Fu, B.J., 2016. A measure of spatial stratified heterogeneity. Ecological Indicators 67, 250–256. doi: 10.1016/j.ecolind.2016.02.052.",
         "WWF, 2020. Living Planet Report 2020 – Bending the curve of biodiversity loss. Technical Report. WWF International. Gland, Switzerland.",
         "Yang, G., Gui, Q., Liu, J., Chen, X., Cheng, S., 2023. Spatial-temporal evolution and driving factors of ecological security in China based on DPSIR-DEA model: A case study of the Three Gorges reservoir area. Ecological Indicators 154, 110777. doi: 10.1016/j.ecolind.2023.110777.",
         "Yang, J., Huang, X., 2021. The 30 m annual land cover dataset and its dynamics in China from 1990 to 2019. Earth System Science Data 13, 3907–3925. doi: 10.5194/essd-13-3907-2021.",
-        "Zhang, W., Liu, Z., Qin, K., Dai, S., Lu, H., Lu, M., 2024. Long-term dynamic monitoring and driving force analysis of eco-environmental quality in China. Remote Sensing 16, 1028. doi: 10.3390/rs16061028.",
+        "Zhang, W., Liu, Z., Qin, K., Dai, S., Lu, H., Lu, M., Ji, J., Yang, Z., Chen, C., Jia, P., 2024. Long-term dynamic monitoring and driving force analysis of eco-environmental quality in China. Remote Sensing 16, 1028. doi: 10.3390/rs16061028.",
+        "Zhang, Y., Zhang, K., An, Z., Yu, Y., 2019. Quantification of driving factors on NDVI in oasis-desert ecotone using geographical detector method. Journal of Mountain Science 16, 2615–2624. doi: 10.1007/s11629-018-5361-7.",
         ]
 for r in refs:
     para(r, 9.5, indent=False)
 
+_n_eq = fix_inline_math(doc)
+print("   行内公式排版：重排 %d 处 run" % _n_eq)
 doc.save(OUT)
 print("OK:", OUT)

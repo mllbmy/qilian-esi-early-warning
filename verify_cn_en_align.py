@@ -140,7 +140,7 @@ cn_txt_list, en_txt_list = all_text(CN), all_text(EN_WORD)
 
 
 def ref_list(lst, head):
-    """作者-年制：参考文献无序号，取标题之后的全部非空段（应为 19 条）"""
+    """作者-年制：参考文献无序号，取标题之后的全部非空段（应为 23 条）"""
     if head not in lst:
         return []
     i = lst.index(head)
@@ -149,8 +149,8 @@ def ref_list(lst, head):
 
 cn_refs = ref_list(cn_txt_list, "参考文献")
 en_refs = ref_list(en_txt_list, "References")
-chk(len(cn_refs) == len(en_refs) == 19,
-    "参考文献条数 CN=%d, EN=%d（应均 19）" % (len(cn_refs), len(en_refs)))
+chk(len(cn_refs) == len(en_refs) == 24,
+    "参考文献条数 CN=%d, EN=%d（应均 24）" % (len(cn_refs), len(en_refs)))
 chk(cn_refs == en_refs, "CN 与 EN 参考文献逐字一致（同一份 bbl 文本，Harvard 无序号）")
 chk(not any(re.match(r"^\[\d+\]", p) for p in cn_refs + en_refs),
     "参考文献已无 [n] 序号前缀（作者-年制）")
@@ -164,7 +164,7 @@ if cn_refs != en_refs:
 print("\n[7] 正文引用号集合一致（含表格单元格）")
 
 
-AY = re.compile(r"([A-Z][A-Za-z\u00C0-\u024F'\-]+(?: et al\.| & [A-Z][A-Za-z'\-]+| and [A-Z][A-Za-z'\-]+)?), (\d{4})")
+AY = re.compile(r"([A-Z][A-Za-z\u00C0-\u024F'\-]+(?: et al\.| & [A-Z][A-Za-z'\-]+| and [A-Z][A-Za-z'\-]+)?), (\d{4}(?:, \d{4})*)")
 
 
 def body_cites(lst, stop):
@@ -174,7 +174,8 @@ def body_cites(lst, stop):
         if p == stop:
             break
         for m in AY.finditer(p):
-            out.add("%s, %s" % (m.group(1), m.group(2)))
+            for y in re.split(r",\s*", m.group(2)):
+                out.add("%s, %s" % (m.group(1), y))
         for b in re.findall(r"\[(\d{1,2}(?:[,-]\d{1,2})*)\]", p):
             ns = [int(x) for x in re.split(r"[,-]", b)]
             if all(n >= 1 for n in ns):

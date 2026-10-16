@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """外生因子 GeoDetector（复现图 8(b) 的高程/坡度 q 值）
 
-背景（Qoder R18 HIGH-2）：图 8(b) 中高程 0.09、坡度 0.06 原先是写死在
+背景：图 8(b) 中高程 0.09、坡度 0.06 原先是写死在
 make_fig_geodetector_q_v2.py 里的字面量，既无生成脚本也无 CSV。本脚本补上
 可复现管线，产出 data/results_geodetector_exogenous.csv，图 8 改为读该 CSV。
 
@@ -18,7 +18,7 @@ make_fig_geodetector_q_v2.py 里的字面量，既无生成脚本也无 CSV。�
   · 显著性用 999 次置换检验，p = (1 + #{q_perm ≥ q_obs}) / (999 + 1)。
 
 坡度定义：_aux_terrain_points.csv 的 slope 为 Copernicus DEM 90 m 上的
-地表坡度（度），3×3 窗口中心点取值。Qoder 独立复算得 0.0647、本管线得
+地表坡度（度），3×3 窗口中心点取值。同一坡度定义下按不同重采样方式分别得 0.0647 与
 0.0631，差异源于坡度栅格的重采样方式；两者四舍五入均为 0.06，正文与
 图 8(b) 的标注不受影响。
 """

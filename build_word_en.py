@@ -11,6 +11,8 @@ import re
 import sys
 
 from docx import Document
+
+from fix_inline_math import fix_inline_math
 from docx.shared import Pt, Cm
 from docx.oxml.ns import qn
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -425,6 +427,8 @@ for k in BBL_KEYS:
 for r in refs:                                # 作者-年制（Harvard）：参考文献无序号
     para(r, 9.5, indent=False)
 
+_n_eq = fix_inline_math(doc)
+print("   行内公式排版：重排 %d 处 run" % _n_eq)
 doc.save(OUT)
 print("OK:", OUT)
 print("段落 %d | 图 %d | 表 %d | 公式 %d | 参考文献 %d | Highlights %d"

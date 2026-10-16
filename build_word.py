@@ -180,7 +180,7 @@ para(f"Sensitivity analysis over α = 0–1 shows the 2023 ESI ranges from {alph
 h2("4.5 County-level ESI and spatial driving factors")
 fig("fig7_county_esi.png", "Fig. 7. County-level ESI (2020).")
 fig("fig5_spatial_esi.png", "Fig. 5. Spatial distribution of point ESI (2020).")
-para("County ESI (2020), computed with the same combined weights as the regional analysis, ranks Sunan (0.466) and Tianzhu (0.395) highest and Aksai (0.074) lowest; the pattern is modulated by local land-cover composition rather than a strict east–west gradient. GeoDetector on 1,914 grid samples identified barren proportion (q = 0.80) and grassland proportion (q = 0.71) as dominant drivers. The interaction detector shows all factor pairs enhance jointly, with temperature×barren (q = 0.849) strongest (Table 7).")
+para("County ESI (2020), computed with the same AHP-entropy combined-weighting scheme (alpha = 0.4) as the regional analysis and normalised across the 11 county units, ranks Sunan (0.558) and Tianzhu (0.525) highest and Aksai (0.067) lowest; the pattern is modulated by local land-cover composition rather than a strict east–west gradient. GeoDetector on 1,914 grid samples identified barren proportion (q = 0.80) and grassland proportion (q = 0.71) as dominant drivers. The interaction detector shows all factor pairs enhance jointly, with temperature×barren (q = 0.849) strongest (Table 7).")
 fig("fig8_interaction.png", "Fig. 8. GeoDetector interaction q (2020).")
 
 # ================= 5 Discussion =================

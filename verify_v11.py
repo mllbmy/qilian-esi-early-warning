@@ -60,15 +60,16 @@ for f in ["fig2_workflow.pdf", "fig3_esi_timeseries.pdf", "fig4_alpha_sensitivit
     chk(("Arial" in out) or ("Times" in out), "M2② %s 内嵌 TNR/Arial 字体" % f)
 
 # ---- M2③: 图2/3/4 矢量 PDF + tex 引用切换 ----
-for f in ["fig2_workflow.pdf", "fig3_esi_timeseries.pdf", "fig4_alpha_sensitivity.pdf"]:
+for f in ["fig1_study_area.pdf", "fig2_workflow.pdf", "fig3_esi_timeseries.pdf", "fig4_alpha_sensitivity.pdf"]:
     chk(os.path.exists(os.path.join(PC, "figures", f)), "M2③ figures/%s 存在" % f)
 tex = open(os.path.join(PC, "manuscript.tex"), encoding="utf-8").read()
-for f in ["fig_dpsir_framework.pdf", "fig_indicator_trends.pdf",
+for f in ["fig_dpsir_framework.pdf", "fig_indicator_trends.pdf", "fig1_study_area.pdf",
           "fig3_esi_timeseries.pdf", "fig4_alpha_sensitivity.pdf"]:
     chk(tex.count("figures/" + f) == 1, "M2③ tex 已引用矢量 PDF 图 %s" % f)
 chk("fig2_workflow.pdf" not in tex,
     "M2③ 技术路线图已从正文移除（v17 精简：EN 由 7 图回到 6 图）")
-chk(tex.count(".png}") == 2, "M2③ tex 仅剩 2 处 PNG 引用（图1/图5，位图保留）")
+chk(tex.count(".png}") == 1 and "fig5_spatial_esi.png" in tex,
+    "M2③ tex 仅剩 1 处 PNG 引用（图5 位图；图 1 已改矢量 PDF）")
 
 # ---- M2 卫生: 无被取代旧图块的回归陷阱 ----
 mf3 = open(os.path.join(PC, "make_fig3_clean.py"), encoding="utf-8").read()
@@ -91,7 +92,7 @@ chk("祁连山区域生态安全预警：时序动态、预测与空间驱动因
 log = open(os.path.join(PC, "manuscript.log"), encoding="utf-8", errors="replace").read()
 m = re.search(r"Output written on.*\((\d+) pages", log)
 pg = int(m.group(1)) if m else -1
-chk(pg in (14, 15, 16, 17), "EN 编译页数 14–17（实际 %s；v3 加图轮新增 4 图后上浮至 17）" % pg)
+chk(pg in (14, 15, 16, 17, 18), "EN 编译页数 14–18（实际 %s；v5 按指南补引 4 篇 JMS 文献后由 17 上浮至 18）" % pg)
 chk("Citation " not in log or "undefined" not in log, "无未定义引用")
 
 print("\n" + ("verify_v11: ALL PASS" if not fails else "verify_v11: %d FAIL" % len(fails)))

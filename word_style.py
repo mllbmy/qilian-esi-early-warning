@@ -13,6 +13,19 @@ W_NS = 'xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"'
 def R(t):
     return f'<m:r><m:t xml:space="preserve">{t}</m:t></m:r>'
 
+def RU(t):
+    r"""正体（upright）数学 run：用于 ln、min、max 等函数名/算子，
+    与 LaTeX 的 \ln、\max 一致，避免被 Word 斜体化。"""
+    return f'<m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t xml:space="preserve">{t}</m:t></m:r>'
+
+
+def SUM(sub, base):
+    r"""求和号（∑），上限槽隐藏——对应 LaTeX 的 \sum_{sub}（无上限）。"""
+    return ('<m:nary><m:naryPr><m:chr m:val="∑"/><m:limLoc m:val="undOvr"/>'
+            '<m:supHide m:val="1"/><m:subHide m:val="0"/></m:naryPr>'
+            f'<m:sub>{sub}</m:sub><m:sup/><m:e>{base}</m:e></m:nary>')
+
+
 def SUB(base, sub):
     return f'<m:sSub><m:e>{base}</m:e><m:sub>{sub}</m:sub></m:sSub>'
 
@@ -51,8 +64,8 @@ def EQNORM():
     """方向标准化：与 EN 式2 一致，一条 cases 公式（正向/负向两行）"""
     xpij = SUB(SUP(R("x"), R("'")), R("ij"))
     xij = SUB(R("x"), R("ij"))
-    minj = SUB(R("min"), R("j"))
-    maxj = SUB(R("max"), R("j"))
+    minj = SUB(RU("min"), R("j"))
+    maxj = SUB(RU("max"), R("j"))
     # 运算符必须包在 R() 里：裸文本会变成 <m:e> 下的 text 节点，Word 渲染时静默丢弃
     pos = FRAC(D(f"{xij}{R(' − ')}{minj}"), D(f"{maxj}{R(' − ')}{minj}"))
     neg = FRAC(D(f"{maxj}{R(' − ')}{xij}"), D(f"{maxj}{R(' − ')}{minj}"))
@@ -63,8 +76,8 @@ def EQNORM_EN():
     """EQNORM 的纯英文标注版（供 EN Word 使用）"""
     xpij = SUB(SUP(R("x"), R("'")), R("ij"))
     xij = SUB(R("x"), R("ij"))
-    minj = SUB(R("min"), R("j"))
-    maxj = SUB(R("max"), R("j"))
+    minj = SUB(RU("min"), R("j"))
+    maxj = SUB(RU("max"), R("j"))
     pos = FRAC(D(f"{xij}{R(' − ')}{minj}"), D(f"{maxj}{R(' − ')}{minj}"))
     neg = FRAC(D(f"{maxj}{R(' − ')}{xij}"), D(f"{maxj}{R(' − ')}{minj}"))
     rows = MAT2((pos, R(",  positive")), (neg, R(",  negative")))
@@ -74,16 +87,16 @@ def EQNORM_EN():
 def EQ1():
     xpij = SUB(SUP(R("x"), R("'")), R("ij"))
     xij = SUB(R("x"), R("ij"))
-    minj = SUB(R("min"), R("j"))
-    maxj = SUB(R("max"), R("j"))
+    minj = SUB(RU("min"), R("j"))
+    maxj = SUB(RU("max"), R("j"))
     return (xpij + R(" = ") + FRAC(D(xij + R(" − ") + minj), D(maxj + R(" − ") + minj))
             + R("    (positive)"))
 
 def EQ2():
     xpij = SUB(SUP(R("x"), R("'")), R("ij"))
     xij = SUB(R("x"), R("ij"))
-    minj = SUB(R("min"), R("j"))
-    maxj = SUB(R("max"), R("j"))
+    minj = SUB(RU("min"), R("j"))
+    maxj = SUB(RU("max"), R("j"))
     return (xpij + R(" = ") + FRAC(D(maxj + R(" − ") + xij), D(maxj + R(" − ") + minj))
             + R("    (negative)"))
 

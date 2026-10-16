@@ -4,7 +4,7 @@ The author conceived and designed the study, performed the data analysis and mod
 
 Data availability
 
-Climate data are openly available from CRU TS 4.10 (https://crudata.uea.ac.uk/cru/data/hrg/); land cover data are available from the CLCD dataset (https://doi.org/10.5194/essd-13-3907-2021); elevation data are from the Copernicus DEM. The processed datasets and analysis code supporting this study are openly available at https://github.com/mllbmy/qilian-esi-early-warning.
+Climate data are openly available from CRU TS 4.10 (https://crudata.uea.ac.uk/cru/data/hrg/); land cover data are available from the CLCD dataset (https://doi.org/10.5194/essd-13-3907-2021); elevation data are from the Copernicus DEM. The processed datasets and analysis code supporting this study are openly available at https://github.com/mllbmy/qilian-esi-early-warning and archived on Zenodo at https://doi.org/10.5281/zenodo.23011183.
 
 Competing interests
 

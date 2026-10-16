@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""去指标重叠稳健性检验：指标集留一（Leave-One-Out, LOO）——R19 复核脚本
+"""去指标重叠稳健性检验：指标集留一（Leave-One-Out, LOO）
 ================================================================================
 【问题】论文用 DPSIR 框架 9 项指标 + 组合赋权（熵权法 + AHP，α=0.4）计算区域生态
 安全指数 ESI（2005-2023）。指标体系内部存在三处重叠：
@@ -170,7 +170,7 @@ def run_scenario(mat: pd.DataFrame, keep_idx, ahp_all, kind: str, alpha: float =
 
     kind:
       reweight      : 重算权重（AHP 用准则层权重，缩减集上重归一化）
-      reweight_eq   : 重算权重，但 AHP 取等权（任务书字面口径，用于口径敏感性复核）
+      reweight_eq   : 重算权重，但 AHP 取等权（指定口径的字面读法，用于口径敏感性复核）
       control_renorm: 不重算权重，只把基准组合权重复归一化（区分权重效应 vs 序列效应）
     """
     X = mat[[INDICATORS[i][1] for i in keep_idx]].values.astype(float)
@@ -671,9 +671,9 @@ def write_report(S, series, lvls, weights_tbl, alpha_tbl, alpha_stat, effect,
             f"α 全区间轻警{'成立' if a['always_light'] else '**不成立（α≥' + format(a['first_nonlight_alpha'], '.2f') + ' 起升为' + a['first_nonlight_level'] + '）**'}；"
             f"与基准 Pearson r={s['pearson_r']:.4f}、Spearman ρ={s['spearman_rho']:.4f}。")
 
-    md = f"""# R19 去指标重叠稳健性检验（指标集留一）
+    md = f"""# 去指标重叠稳健性检验（指标集留一）
 
-- 复核日期：2026-10-03
+- 报告生成日期：2026-10-03
 - 脚本：`paper-code/run_robustness_loo_indicators.py`（可复现；**只新建文件，未改动任何既有文件**）
 - 结果数据：`paper-code/data/results_robustness_loo_indicators.csv`（长表，{n_csv_rows} 行，含逐情景 ESI、等级、权重、α 扫描、校验值）
 - 数据源：主口径 `data/qilian_climate.csv` + `data/qilian_landcover.csv`（与主导管线完全一致）；
@@ -706,7 +706,7 @@ def write_report(S, series, lvls, weights_tbl, alpha_tbl, alpha_stat, effect,
     ["S2", "剔除影响层 X8", "X8_草地变化率"],
     ["S3", "同时剔除 X8、X9", "X8_草地变化率、X9_生态用地%"],
     ["C1/C2/C3", "对照：**不重算权重**，仅把基准组合权重复归一化", "同 S1/S2/S3"],
-    ["S1eq/S2eq/S3eq", "口径变体：AHP 取**等权**（任务书字面口径）", "同 S1/S2/S3"],
+    ["S1eq/S2eq/S3eq", "口径变体：AHP 取**等权**（指定口径的字面读法）", "同 S1/S2/S3"],
 ])}
 
 S1/S2/S3 每一步都在缩减后的指标集上**重跑全流程**：极差标准化 → 熵权法 → AHP（准则层权重在存活层上
@@ -717,7 +717,7 @@ S1/S2/S3 每一步都在缩减后的指标集上**重跑全流程**：极差标�
 
 ### 1.3 AHP 口径说明（重要，先说清前提）
 
-任务书表述为「AHP 取等权」，但仓库中**已发表的基准序列并非等权 AHP**：
+预设口径表述为「AHP 取等权」，但仓库中**已发表的基准序列并非等权 AHP**：
 `data/results_esi_regional.csv` / `results_weights.csv` / `data/results_alpha_sensitivity.csv` 由
 `rerun_pipeline_ahp.py` 生成，AHP 用的是 `run_ahp_weights.py` 的准则层判断矩阵权重
 （λmax=5.015284，CI=0.003821，CR=0.003412；层内均分）。实测：
@@ -761,7 +761,7 @@ S1/S2/S3 每一步都在缩减后的指标集上**重跑全流程**：极差标�
 ### 2.3 熵权的代数性质（提前说明，避免误读）
 
 极差标准化逐列独立、熵权公式逐列独立（eⱼ 只依赖第 j 列），故**「在缩减集上重算熵权」在数学上恒等于
-「基准熵权在存活指标上重归一化」**。脚本仍按任务书逐情景真实调用 `minmax_normalize` + `entropy_weights`
+「基准熵权在存活指标上重归一化」**。脚本仍按预设口径逐情景真实调用 `minmax_normalize` + `entropy_weights`
 重算，并与重归一化结果对照验证：
 
 {t_sep}
@@ -881,7 +881,7 @@ Pearson 衡量数值一致性，Spearman 衡量年度排序一致性；两者在
 
 ## 11. 不确定性与局限（如实说明）
 
-1. **AHP 口径冲突**：任务书写「AHP 取等权」，已发表基准序列实为准则层判断矩阵权重。本报告以基准
+1. **AHP 口径冲突**：预设口径写「AHP 取等权」，已发表基准序列实为准则层判断矩阵权重。本报告以基准
    可比性优先采用准则层权重为主口径，并将等权情形作为变体并列报告；**两种口径的 α 稳健性结论不同**
    （准则层口径下 S2/S3 在 α 偏大时升为较安全；等权口径下全部情景恒为轻警）。最终口径须以论文
    正文/仓库已发表结果为准，本报告不代为决定。
@@ -891,7 +891,7 @@ Pearson 衡量数值一致性，Spearman 衡量年度排序一致性；两者在
 3. **归一化的样本期依赖性未变**：极差标准化 min/max 取自学区 2005–2023，去重叠不改变该口径，
    所有情景都是「同期同域」的相对指数，跨时期/跨区域比较仍不可行（与论文 Limitations 第 (3) 条一致）。
 4. **未消除全部结构重叠**：剔除 X9 后 X6 裸地荒漠%（负向）仍与 X3/X4/X5/X7 构成线性恒等式；
-   彻底去共线需再剔除 X6 或改用正交化。本次按任务书指定的三个情景执行，未额外扩展情景。
+   彻底去共线需再剔除 X6 或改用正交化。本次按预设口径指定的三个情景执行，未额外扩展情景。
 5. **X8 的 2005 年取值是构造值**：`pct_change().fillna(0)` 使 2005 年变化率被赋为 0，
    该年无前一年可比，属人为约定；由于 0 不是该列极值，它会影响 2005 年 X8 的标准化值，
    进而影响 2005 年 ESI（各情景 2005 年均为序列最小值，见 §3），但不影响 2010 年后的结论。

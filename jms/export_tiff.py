@@ -55,12 +55,10 @@ for n, fn, cap in MAP:
         continue
     dst = os.path.join(OUT, "JMS_Figure_%d.tif" % n)
     if fn.lower().endswith(".pdf"):
-        pre = os.path.join(TMP, "f%d" % n)
         r = 600
-        png = pre + ".png"
         for _ in range(3):                     # 若 PDF 物理尺寸偏大导致等效 dpi 不足，则提高栅格化分辨率
-            if os.path.isfile(png):
-                os.remove(png)
+            pre = os.path.join(TMP, "f%d_%d" % (n, r))   # 每轮独立文件名，避免删除临时文件
+            png = pre + ".png"
             subprocess.run(["pdftocairo", "-png", "-r", str(r), "-singlefile", src, pre],
                            check=True, capture_output=True)
             im = Image.open(png)

@@ -74,14 +74,14 @@ docx_t = os.path.getmtime(os.path.join(PC, "out", "论文_CN_latest.docx"))
 chk(png_t < docx_t, "CN docx 已在新图之后重建（时间戳 %s < %s）"
     % (png_t, docx_t))
 
-# ---- 投稿材料终检（Qoder F1/F2）：版本引用不过期 + Highlights 术语语序统一 ----
+# ---- 投稿材料终检：版本引用不过期 + Highlights 术语语序统一 ----
 tex_f = open(os.path.join(PC, "manuscript.tex"), encoding="utf-8").read()
 chk("\\section*{Highlights}" not in tex_f,
-    "F2 正文已无 Highlights 段（v20 起独立文件提交，两者不重复）")
+    "正文已无 Highlights 段（v20 起独立文件提交，两者不重复）")
 hl_txt = open(os.path.join(MAT, "Highlights.txt"),
               encoding="utf-8").read()
 chk("objective-subjective" not in hl_txt and "subjective-objective weighting ratio" in hl_txt,
-    "F2 Highlights.txt 项 3 语序已同步")
+    "Highlights.txt 项 3 语序已同步")
 _mat_glob = sorted(glob.glob(os.path.join(MAT, "cover_letter_*.md")))
 cl_txt = open(_mat_glob[-1], encoding="utf-8").read()   # 跟随最新日期的材料副本
 # F1 改为"跟随最新冻结稿"而非硬编码版本号：材料里写到的稿本文件必须真实存在
@@ -138,7 +138,7 @@ def spread(fn):
 cf_c, cf_n = spread("fig_dpsir_framework.png")
 chk(cf_c > 2 and cf_n > 150, "框架图非空白且色相充足（扁平图式；colored %.1f%%, 色数 %d）" % (cf_c, cf_n))
 
-# ---- 框架图"投稿版"版式锁（v18 集成 Qoder 美化 rev1：无死白画布 / 无边缘裁切 / 字号不缩水）----
+# ---- 框架图"投稿版"版式锁（无死白画布 / 无边缘裁切 / 字号不缩水）----
 import re as _re
 _fw = os.path.join(PC, "figures", "fig_dpsir_framework.pdf")
 _pg = subprocess.run(["pdfinfo", _fw], capture_output=True, text=True,
@@ -204,10 +204,10 @@ print(r2.stdout.rstrip())
 if "verify_cn_en_align: ALL PASS" not in (r2.stdout or ""):
     fails.append("verify_cn_en_align 未全部通过")
 
-# ---- v21：R6 复核新增锁定（声明唯一性 / 表图全引用 / Word 数字-单位渲染）----
+# ---- v21：新增锁定（声明唯一性 / 表图全引用 / Word 数字-单位渲染）----
 import re
 
-print("\n[J] 声明段唯一性（Word 不得重复输出；R6 HIGH-1）")
+print("\n[J] 声明段唯一性（Word 不得重复输出）")
 from docx import Document as _Doc
 _EN_DECL = ["Data availability", "CRediT authorship contribution statement",
             "Declaration of competing interest", "Funding",
@@ -244,9 +244,9 @@ _en_txt = " ".join(_word_ps["EN"])
 chk(("mm yr" in _en_txt) and ("⁻¹" in _en_txt), "EN Word 单位渲染为 'mm yr⁻¹'（细空格 + Unicode 上标）")
 _bad_unit = re.findall(r"\d(?:mm|yr|°C|m\b)", _en_txt)
 chk(not _bad_unit, "EN Word 无数字-单位粘连（命中 %s）" % (_bad_unit[:5] or "无"))
-chk("\\ref{tab:data}" in tex_f, "表 1 已在正文被引用（R6 HIGH-2）")
+chk("\\ref{tab:data}" in tex_f, "表 1 已在正文被引用")
 
-print("\n[M] 表 7 交互值与权威 CSV 三位小数逐一相等（R8-1 回归锁）")
+print("\n[M] 表 7 交互值与权威 CSV 三位小数逐一相等（回归锁）")
 _PAIR2LAB = {"grass+barren": ("Grassland", "Barren"), "precip+barren": ("Precipitation", "Barren"),
              "precip+grass": ("Precipitation", "Grassland"), "temp+barren": ("Temperature", "Barren"),
              "temp+grass": ("Temperature", "Grassland"), "temp+precip": ("Temperature", "Precipitation")}
@@ -272,7 +272,7 @@ for _pair in sorted(_int_rows):
     _want = ["%.3f" % round(float(x), 3) for x in _int_rows[_pair]]
     chk(_got == _want, "表 7 %-18s = %s（CSV 三位舍入 %s）" % (_pair, _got, _want))
 
-print("\n[N] 顶层投稿材料与最新冻结副本一致（Qoder R8 观察项）")
+print("\n[N] 顶层投稿材料与最新冻结副本一致")
 import hashlib as _hl
 _mat_work = MAT
 _mat_free = os.path.join(DLV, _ref_dir or "", "投稿材料")
@@ -294,7 +294,7 @@ else:
 chk(not _bad, "顶层投稿材料与 %s 副本双向齐全且 md5 一致（%s）" % (_ref_dir, _bad or "全部一致"))
 
 print("\n[O] 材料文档内部引用的材料文件名指向现行材料（防改名后引用不跟随）")
-_PREF = ("cover_letter", "投稿材料说明", "投稿执行清单", "数据DOI回填说明", "Qoder复核任务书")
+_PREF = ("cover_letter", "投稿材料说明", "投稿执行清单", "数据DOI回填说明", "复核任务书")
 _stale = []
 for _f in sorted(os.listdir(MAT)):
     if not _f.endswith(".md"):

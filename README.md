@@ -23,7 +23,7 @@ Target journal: *Journal of Mountain Science* (Springer).
 cd <this-repo>
 python run_clcd_verify.py     # CLCD land-cover chain   → expect: 一致率 1914/1914 = 100.00%, 判定: PASS
 python run_cru_verify.py      # CRU climate → ESI chain → expect: 19/19 & 11/11 identical at 4 dp
-python _hardening_backup\snapshot_md5.py before   # record md5 of every archived CSV + manuscript file
+python data_audit.py          # manuscript numbers ↔ data/*.csv → expect: 结论：65 项全部找到
 ```
 
 Expected output of the two verification scripts (frozen numbers):
@@ -38,9 +38,14 @@ Expected output of the two verification scripts (frozen numbers):
 | Rebuilt regional ESI vs `data/results_esi_regional.csv` | max \|Δ\| = **4.675e-05**; **identical to 4 dp 19/19**; peak year **2010**; warning levels identical |
 | Rebuilt county ESI vs `data/results_county_esi.csv` | max \|Δ\| = **4.600e-05**; **identical to 4 dp 11/11**; Aksai stays 0.067 |
 | direct CLCD → county ESI vs `data/results_county_esi.csv` | max \|Δ\| = **0.000000** |
+| every manuscript number vs `data/*.csv` (`data_audit.py`, tolerance 0.003) | **65 / 65 found** |
 
 The 4–5 × 10⁻⁵ residuals are **not** model error: the archived CSVs store 4 decimals (max rounding error 5e-5).
 `run_cru_verify.py` proves this with a control experiment (archived climate in → 4.675e-05; rebuilt climate in → 1.110e-16).
+
+The md5 snapshot tooling used while the archives were frozen (`_hardening_backup/snapshot_md5.py`) is not part
+of this repository; the md5 values it recorded are reproduced verbatim in §7.3 and §7.4, and §6 records what
+changed in the code.
 
 ---
 
@@ -214,8 +219,10 @@ python run_forecast_comparison.py         # results_forecast_accuracy.csv + resu
 python download_cop90.py          # only if data/cop90/ is absent
 python make_dem_figure.py         # needs data/ne/ (§9.1 item B), data/cop90/, data/lakes_region.json
 
-# Fig. 2  DPSIR framework -> figures/fig_dpsir_framework.pdf   (authoritative since v18)
-python beautify_framework.py      # self-contained; figures/fig_dpsir_framework.dot is the semantic baseline
+# Fig. 2  DPSIR framework -> figures/fig_dpsir_framework.pdf   (authoritative: make_fig2_redesign.py)
+python make_fig2_redesign.py      # authoritative for Fig. 2; figures/fig_dpsir_framework.dot remains the semantic baseline
+#         beautify_framework.py (v18) and make_fig_framework.py write the SAME filename and are superseded —
+#         running either one after make_fig2_redesign.py overwrites the Fig. 2 that manuscript.tex includes.
 
 # Fig. 3  indicator trends -> figures/fig_indicator_trends.pdf (+ rewrites data/results_indicators.csv)
 python make_fig_trends.py
@@ -359,7 +366,7 @@ Remaining committed intermediates behind the 2.0 numbers: `data/results_fraction
    **real-AHP** pipeline `rerun_pipeline_ahp.py`. `run_esi_regional.py` computes the same quantity with
    **equal** AHP weights and previously wrote to the *same* filename, overwriting the archive
    (R22 fix, see §7).
-6. **Claude/manuscript numeric provenance.** Every published number is read from a CSV in `data/` (see §4)
+6. **Manuscript numeric provenance.** Every published number is read from a CSV in `data/` (see §4)
    or, for the criterion AHP matrix, is a literal inside `run_ahp_weights.py` whose derived λmax/CI/CR are
    written to `data/results_ahp_consistency.csv`. `data_audit.py` (65/65 PASS) and `jms/verify_jms.py`
    (58 numeric anchors + 30 checks) check that correspondence.
@@ -476,13 +483,15 @@ Every archived value table is **UNCHANGED**, including `results_county_esi.csv`
 
 | file | md5 |
 |---|---|
-| `paper-code/manuscript.tex` | `C0E49A5C8E8F549FF5E8E307227CD878` |
+| `paper-code/manuscript.tex` | `6A4FD2F472600117542DD6EA2082CAA8` |
 | `paper-code/manuscript.bib` | `143E9487E76878FFA1AB78D0F555E429` |
 | `paper-code/manuscript.bbl` | `F89C9CDE0354B9D2ECD2F1A535C6DBD3` |
-| `投稿前优化/JMS CN 论文_R17修订版.docx` | `69D7325E6D650CC6407A6C8BD631F0D6` |
-| `交付/2.0版本/JMS CN 论文_2.0版本.docx` | `69D7325E6D650CC6407A6C8BD631F0D6` |
+| `投稿前优化/JMS CN 论文_R17修订版.docx` | `F6470BA5B6EB16544F8758CFB9DA57A5` |
+| `交付/2.0版本/JMS CN 论文_2.0版本.docx` | `F6470BA5B6EB16544F8758CFB9DA57A5` |
 
-`manuscript.tex`/`.bib`/`.bbl` and both `.docx` files are byte-identical to their state before this round.
+`manuscript.bib`/`.bbl` carry the md5 recorded earlier. The other three files changed with the §5.4 edit:
+`manuscript.tex` was `C0E49A5C8E8F549FF5E8E307227CD878`, and both `.docx` copies were
+`69D7325E6D650CC6407A6C8BD631F0D6`.
 `manuscript.pdf` was **rebuilt** by the two-pass `pdflatex` check in §7.5: the new file has the same size
 (10,334,465 B) and the same page count (21) as before, and its md5 moved from
 `46172C3E404664928756445332DCA6C4` to `975704DA38DBD166221832908724E1F9` because pdfTeX stamps a fresh
@@ -506,6 +515,15 @@ pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 1, exit 
 pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 2, exit 0)
 warnings in pass 2: 0        Output written on manuscript.pdf (22 pages, 10339079 bytes)
 manuscript.pdf md5: B3259A06F9AA4347047118C5FE8F782B
+```
+
+Rebuild after the §5.4 edit (`manuscript.tex` md5 `6A4FD2F472600117542DD6EA2082CAA8`):
+
+```
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 1, exit 0)
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 2, exit 0)
+warnings in pass 2: 0        Output written on manuscript.pdf (22 pages, 10339019 bytes)
+manuscript.pdf md5: 50804CAC60AA5D31752015DCCDAF3803
 ```
 
 ---

@@ -18,7 +18,7 @@ fails = []
 if "verify_v8: ALL PASS" not in (r.stdout or ""):
     fails.append("verify_v8 未全部通过")
 
-print("\n[E] v9 专项（Qoder R4 复核裁决 B）")
+print("\n[E] v9 专项")
 tex = open(TEX, encoding="utf-8").read()
 ok = ("\\textbf{NGBM achieved" not in tex
       and "\\emph{NGBM" not in tex

@@ -52,8 +52,8 @@ ax.barh(cnt["unit"], cnt["esi_2020"], color=colors, alpha=0.88)
 for i, v in enumerate(cnt["esi_2020"]):
     ax.text(v + 0.008, i, f"{v:.3f}", va="center", fontsize=7.5)
 ax.axvline(0.4, color="#888888", ls="--", lw=0.8)
-ax.text(0.405, -0.6, "mild-warning threshold", fontsize=7, color="#888888")
-ax.set_xlabel("ESI (2020)"); ax.set_xlim(0, 0.55)
+ax.text(0.405, -0.6, "regional mild-warning threshold (reference)", fontsize=6.5, color="#888888")
+ax.set_xlabel("ESI (2020)"); ax.set_xlim(0, 0.62)
 ax.grid(axis="x", alpha=0.25, lw=0.4)
 plt.tight_layout(); plt.savefig(os.path.join(FIG, "fig7_county_esi.png")); plt.close()
 

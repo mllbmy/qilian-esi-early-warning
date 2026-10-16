@@ -11,6 +11,8 @@ import re
 import sys
 
 from docx import Document
+
+from fix_inline_math import fix_inline_math
 from docx.shared import Pt, Cm
 from docx.oxml.ns import qn
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -34,9 +36,9 @@ except ImportError:
     _AL_ORCID = "[ORCID]"
 FIG = os.path.join(BASE, "figures")
 OUTDIR = os.path.join(BASE, "out", "jms")
-OUT = os.path.join(OUTDIR, "论文_EN_JMSv4_2026-09-24.docx")
-OUT_TP = os.path.join(OUTDIR, "Title_Page_JMSv4_2026-09-24.docx")
-OUT_TXT = os.path.join(OUTDIR, "论文_EN_JMSv4_2026-09-24.txt")
+OUT = os.path.join(OUTDIR, "论文_EN_JMSv5_2026-09-28.docx")
+OUT_TP = os.path.join(OUTDIR, "Title_Page_JMSv5_2026-09-28.docx")
+OUT_TXT = os.path.join(OUTDIR, "论文_EN_JMSv5_2026-09-28.txt")
 def _jmsread(fn):
     p = os.path.join(BASE, "jms", fn)
     return io.open(p, encoding="utf-8").read() if os.path.isfile(p) else ""
@@ -55,7 +57,7 @@ def rd(p):
 
 TEX = rd(os.path.join(BASE, "manuscript.tex"))
 # JMS：研究区须给经纬度 → 并入 Study Area 首段（仅加一句事实性范围，不改其他内容）
-if "GEO_JMS" not in TEX and os.path.isfile(os.path.join(BASE, "jms", "study_area_geo.txt")):
+if GEO_JMS and "93.5" not in TEX and os.path.isfile(os.path.join(BASE, "jms", "study_area_geo.txt")):
     _geo = io.open(os.path.join(BASE, "jms", "study_area_geo.txt"), encoding="utf-8").read().strip()
     _si = TEX.index(r"\subsection{Study area")
     _p = TEX.index("\n", _si) + 1
@@ -221,6 +223,10 @@ def _embed_path(img, w_cm):
     JMS 的 600 dpi 图件要求由独立 TIFF 文件满足；主文档需服从投稿系统单文件 ≤20 MB 上限。"""
     from PIL import Image
     src = os.path.join(FIG, img)
+    if not os.path.isfile(src) and img.lower().endswith(".pdf"):
+        _png = os.path.splitext(img)[0] + ".png"   # R14：正文图 1 已改矢量 PDF，Word 内嵌仍用 600 dpi PNG
+        if os.path.isfile(os.path.join(FIG, _png)):
+            src = os.path.join(FIG, _png)
     if not os.path.isfile(src):
         return src
     target = round(w_cm / 2.54 * 400)
@@ -230,7 +236,7 @@ def _embed_path(img, w_cm):
     d = os.path.join(OUTDIR, "_embed")
     os.makedirs(d, exist_ok=True)
     out = os.path.join(d, os.path.splitext(img)[0] + "_%dpx.png" % target)
-    # 缓存键含源图 mtime：源图更新（重出图/换字体）后自动重建，杜绝旧缓存复用（Qoder R10 复跑发现）
+    # 缓存键含源图 mtime：源图更新（重出图/换字体）后自动重建，杜绝旧缓存复用
     if not os.path.isfile(out) or os.path.getmtime(out) < os.path.getmtime(src):
         im.save(out, format="PNG", optimize=True)
     return out
@@ -413,7 +419,8 @@ while i < len(lines):
         frac = float(w.group(1)) if w else 0.9
         _cap_txt = tex2txt(cap.group(1))
         if fig_n == 1:   # R10 方案③：图1 已删除位置示意图，图注注明主图底图来源
-            _cap_txt += "  Base map: Copernicus DEM 90 m; Natural Earth 1:50m province boundaries."
+            if "Base map:" not in _cap_txt:   # R14：正文图注已含底图来源时不重复追加
+                _cap_txt += ("  Base map: Copernicus DEM 90 m; province boundaries from Natural Earth 1:50m, shown for reference only.")
         if "framework" in stem:      # 框架图按 JMS 上限 16 cm 放置，保证图内 8–9 pt 印刷字号
             _w = 16.0
         else:
@@ -471,9 +478,9 @@ for _i in range(0, len(_parts) - 1, 2):
     para(_parts[_i + 1])
     stats["para"] += 1
 doc.add_paragraph()
-# —— 参考文献（JMS 体例 19 条，字母序，无序号）——
+# —— 参考文献（JMS 体例 23 条，字母序，无序号）——
 h1("References")
-refs = list(REFS_JMS)
+refs = list(REFS_JMS)   # 24 条，与 manuscript.bbl 一一对应
 for r in refs:
     _p = para(r, 10, indent=False)
     _p.paragraph_format.left_indent = Pt(18)
@@ -505,9 +512,11 @@ def add_page_numbers(d):
 
 add_page_numbers(doc)
 os.makedirs(OUTDIR, exist_ok=True)
+_n_eq = fix_inline_math(doc)
+print("   行内公式排版：重排 %d 处 run" % _n_eq)
 doc.save(OUT)
 
-# ---- 主文档纯文本校对稿（带行号，供审阅与 Qoder 复核）----
+# ---- 主文档纯文本校对稿（带行号）----
 txt = []
 for i, p in enumerate(doc.paragraphs, 1):
     t = p.text.strip()

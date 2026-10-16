@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""分析框架图（投稿版）生成器 — 内容基线 = figures/fig_dpsir_framework.dot（dsh Graphviz 版）
+"""分析框架图（投稿版）生成器 — 内容基线 = figures/fig_dpsir_framework.dot（Graphviz 版）
 自 v18 起本脚本产出论文实际使用的 figures/fig_dpsir_framework.pdf/.png；.dot 保留为
 "内容与语义基线"（节点文字/层级/箭头/反馈环含义以 .dot 为准，逐字一致由 verify 断言）。
 版式要点：
@@ -24,7 +24,7 @@ plt.rcParams.update({"font.family": "Arial", "pdf.fonttype": 42,
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "figures")
 os.makedirs(OUT, exist_ok=True)
 
-# 与 dsh 版一致的层配色(D蓝/P红/S绿/I赭/R紫)
+# 与 .dot 基线一致的层配色(D蓝/P红/S绿/I赭/R紫)
 C_D, C_P, C_S, C_I, C_R = "#2a6f97", "#b23a48", "#2d6a4f", "#b06c1f", "#5a4a8a"
 EDGE, ARROW = "#5b6b7c", "#5b6b7c"
 BOX_BG, WARN_BG = "#f2f6fa", "#f6f4ef"
@@ -174,7 +174,7 @@ arrow(FX, Y0 + H / 2, xs[0] - 0.5, Y0 + H / 2, color="#8a97a5", lw=1.0, ms=11)
 ax.text(FX - 3.2, (OY + OH / 2 + Y0 + H / 2) / 2, "management feedback",
         rotation=90, ha="center", va="center", fontsize=8.4, style="italic", color="#7a8794")
 
-# ---------- 导出: 画布收紧到内容实际跨度, 消除死白(dsh 复核项) ----------
+# ---------- 导出: 画布收紧到内容实际跨度, 消除死白 ----------
 # axis("off") 后 axes 白底 patch 仍使 tight=整幅, 故不依赖 tight: 直接令
 # xlim/ylim=内容跨度, figsize=内容尺寸; SX/SY 与测量期一致 → 版式(英寸)零位移
 SX = (CANVAS_W + 20) / FIGW   # 横向 数据单位/英寸

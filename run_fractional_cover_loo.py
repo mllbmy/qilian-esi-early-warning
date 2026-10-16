@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """任务② 分数覆被（窗口内各类别面积占比）→ 干净留一目标 GeoDetector
 
-问题（R19/R20 审稿意见）
+问题
 ────────────────────────
 归档点尺度 ESI 的覆被项是 **3x3 邻域众数 one-hot**：
     grass/forest/water = 0/1 ；barren_neg = 1 - grass - forest - water

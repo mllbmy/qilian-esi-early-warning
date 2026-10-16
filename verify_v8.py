@@ -42,7 +42,7 @@ if keys_bib != keys_bib2:
 chk(keys_bib == keys_bib2, "两个 bib 文件条目一致（%d 条）" % len(keys_bib))
 chk(set(keys_bbl) <= keys_bib, "bbl 全部条目均能在 bib 中找到")
 chk(cite_tex <= keys_bib, "正文所有 \\cite 键均在 bib 中")
-chk(len(keys_bbl) == len(set(keys_bbl)) == 19, "bbl 条目数 = 19（含新增 jing2024obstacle），无重复")
+chk(len(keys_bbl) == len(set(keys_bbl)) == 24, "bbl 条目数 = 24（含新增 jing2024obstacle、4 条 JMS 与 gao2023water）")
 chk("jing2024obstacle" in keys_bbl, "新增文献已进入参考文献表")
 
 # ---------- B. R4 修改项落地 ----------
@@ -69,8 +69,8 @@ chk("**" not in tex, "无残留 Markdown 语法")
 print("\n[C] 数值基准（§11）")
 nums = ["0.052", "0.035", "0.597", "0.789", "0.038", "0.029", "0.442", "0.895",
         "0.098", "0.067", "1.086", "0.632", "0.446", "0.394", "0.510", "0.493",
-        "0.466", "0.395", "0.390", "0.344", "0.306", "0.289", "0.260", "0.251",
-        "0.166", "0.074", "0.80", "0.71", "0.849", "0.643", "0.486", "0.709",
+        "0.558", "0.525", "0.474", "0.405", "0.443", "0.398", "0.370", "0.337",
+        "0.278", "0.067", "0.80", "0.71", "0.849", "0.643", "0.486", "0.709",
         "0.263", "0.034", "0.425", "0.578", "0.0034", "1{,}914", "999"]
 missing = [s for s in nums if s not in tex]
 chk(not missing, "全部数值基准存在" + ("（缺: %s）" % missing if missing else ""))
@@ -109,7 +109,7 @@ chk("障碍度诊断 (Jing et al., 2024)" in paras,
     "m4 中文障碍度出处已同步（作者-年制 Jing et al., 2024）")
 chk("（1）将 DPSIR" not in paras, "m3 中文结论已段落化")
 chk("Jing, X." in paras,
-    "中文参考文献已同步 EN 的 Jing 2024（Harvard 无序号，19 条与 EN 逐字一致）")
+    "中文参考文献已同步 EN 的 Jing 2024（Harvard 无序号，23 条与 EN 逐字一致）")
 fc_hdr = next((h for h in tabs if "RMSE" in h), None)
 chk(fc_hdr is not None and len(fc_hdr) == 7 and "等级" not in fc_hdr,
     "m5 中文表5 表头 7 列且无“等级”列（实际: %s）" % fc_hdr)

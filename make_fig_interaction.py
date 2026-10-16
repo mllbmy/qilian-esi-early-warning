@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-import jms_style  # JMS 指南 §6：TNR 8-9 pt（R10 MEDIUM-2）
+import jms_style  # JMS 指南 §6：TNR 8-9 pt
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 df = pd.read_csv(os.path.join(BASE, "data", "results_interaction_detector.csv"))

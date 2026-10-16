@@ -10,9 +10,9 @@ from docx import Document
 # 路径自解析：仓库克隆/解压到任意目录均可运行
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTDIR = os.path.join(BASE, "out", "jms")
-MAIN = os.path.join(OUTDIR, "论文_EN_JMSv4_2026-09-24.docx")
-TP = os.path.join(OUTDIR, "Title_Page_JMSv4_2026-09-24.docx")
-TXT = os.path.join(OUTDIR, "论文_EN_JMSv4_2026-09-24.txt")
+MAIN = os.path.join(OUTDIR, "论文_EN_JMSv5_2026-09-28.docx")
+TP = os.path.join(OUTDIR, "Title_Page_JMSv5_2026-09-28.docx")
+TXT = os.path.join(OUTDIR, "论文_EN_JMSv5_2026-09-28.txt")
 
 FAIL, OK = [], []
 
@@ -66,12 +66,12 @@ chk("Conflict of Interest: The author declares that he has no conflict of intere
     "竞争利益官方模板句")
 chk("did not involve human participants or animals" in body, "伦理声明措辞")
 
-print("== 4. 参考文献（19 条 / JMS 体例 / 位置）==")
+print("== 4. 参考文献（24 条 / JMS 体例 / 位置）==")
 refs_jms = [l.strip() for l in io.open(os.path.join(BASE, "jms", "refs_jms.txt"), encoding="utf-8").read().split("\n") if l.strip()]
 found = [r for r in refs_jms if r in body]
-chk(len(found) == 19, "19 条 JMS 体例文献逐字落入主文档", "%d/19" % len(found))
+chk(len(found) == len(refs_jms), "JMS 体例文献逐字落入主文档（条数动态取自 refs_jms.txt）", "%d/%d" % (len(found), len(refs_jms)))
 chk(body.count(" doi:") == 0, "无 elsarticle 式 'doi:' 残留")
-chk("(In Chinese)" not in body, "文献体例：无 '(In Chinese)' 误标（本论文 19 条均为英文文献）")
+chk("(In Chinese)" not in body, "文献体例：无 '(In Chinese)' 误标（本论文 24 条均为英文文献）")
 i_ref = next((i for i, p in enumerate(paras) if p.strip() == "References"), -1)
 i_fig = next((i for i, p in enumerate(paras) if p.strip() == "Figures"), -1)
 i_tab = next((i for i, p in enumerate(paras) if p.strip() == "Tables"), -1)
@@ -88,6 +88,23 @@ good_cite = re.findall(r"\(([A-Z][A-Za-z\-]+(?:\s+et\s+al\.)?\s+(?:19|20)\d\d)",
 chk(len(good_cite) >= 20, "新体例引注数量", str(len(good_cite)))
 
 print("== 6. 数值锚点（红线：一个都不许变）==")
+# == 6a. 表 6 县域 ESI 与 data/results_county_esi.csv 一致性（R15 新增护栏）==
+_PN = {"肃南": "Sunan", "天祝": "Tianzhu", "祁连": "Qilian", "德令哈": "Delingha",
+       "肃北": "Subei", "门源": "Menyuan", "刚察": "Gangcha", "山丹": "Shandan",
+       "天峻": "Tianjun", "民乐": "Minle", "阿克塞": "Aksai"}
+_CSV = os.path.join(BASE, "data", "results_county_esi.csv")
+if os.path.isfile(_CSV):
+    import csv as _csv
+    _rows = list(_csv.DictReader(io.open(_CSV, encoding="utf-8-sig")))
+    _cells = body + "\n" + "\n".join(c.text for t in d.tables for r in t.rows for c in r.cells)
+    _bad = []
+    for _r in _rows:
+        _en = _PN.get(_r["unit"], _r["unit"])
+        _val = "%.3f" % float(_r["esi_2020"])
+        if not re.search(re.escape(_en) + r"[^0-9]{0,40}" + re.escape(_val), _cells):
+            _bad.append("%s=%s" % (_en, _val))
+    chk(not _bad, "表 6 县域 ESI 与 results_county_esi.csv 一致（%d 个县）" % len(_rows), "不一致: %s" % _bad)
+
 ANCHORS = ["0.052", "0.035", "0.597", "0.789", "0.038", "0.029", "0.44", "0.89",
            "0.098", "0.067", "1.086", "0.632", "0.446", "0.394", "0.510", "0.493",
            "0.488", "0.358", "0.533", "0.306", "0.482", "0.486", "0.709", "0.258",
@@ -102,6 +119,11 @@ _full = body + "\n" + "\n".join(
 _full_norm = re.sub(r"(?<=\d)[,\s\u2009\u00a0](?=\d\d\d(?!\d))", "", _full)
 missing = [a for a in ANCHORS if a not in _full_norm]
 chk(not missing, "全部 %d 个数值锚点在位" % len(ANCHORS), "缺失: %s" % missing)
+
+print("== 6c. Zenodo DOI（数据与代码存档）==")
+chk("zenodo.23011183" in body, "Data availability 含 Zenodo 概念 DOI")
+chk("XXXXXXX" not in body, "无 DOI 占位符残留")
+
 
 print("== 7. 与既有 EN 稿逐段对比（应只差：引注逗号 / 经纬度句 / 关键词 / 去题头）==")
 OLD = os.path.join(BASE, "out", "论文_EN_review.docx")

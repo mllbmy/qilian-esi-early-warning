@@ -26,7 +26,7 @@ WARN5 = [(0.0, 0.2, RED, "Severe"), (0.2, 0.4, ORANGE, "Medium"),
          (0.4, 0.6, "#f4d03f", "Mild"), (0.6, 0.8, "#7dcea0", "Rel. safe"),
          (0.8, 1.0, GREEN, "Safe")]
 
-import jms_style  # JMS 指南§6：图内文字 Times New Roman 8–9 pt（R10 MEDIUM-2）
+import jms_style  # JMS 指南§6：图内文字 Times New Roman 8–9 pt
 plt.rcParams.update({"axes.labelsize": 9, "xtick.labelsize": 8, "ytick.labelsize": 8,
                      "axes.edgecolor": "#444444", "axes.linewidth": 0.8,
                      "savefig.dpi": 600, "figure.dpi": 100})

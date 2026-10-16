@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""JMS 指南 §6（R10 MEDIUM-2）：图内文字 Times New Roman 8–9 pt。
+"""JMS 指南 §6：图内文字 Times New Roman 8–9 pt。
 
 各出图脚本在 import matplotlib 之后 import 本模块即可统一字体；
 仅改字体呈现，不改任何数据/坐标/数值（符合重排红线）。
