@@ -35,7 +35,8 @@ COUNTIES = {
     "门源": ["Menyuan"], "肃北": ["Subei"], "刚察": ["Gangcha"], "山丹": ["Shandan"],
     "天峻": ["Tianjun"], "民乐": ["Minle"], "阿克塞": ["Aksai"],
 }
-GADM = r"D:\比赛\论文\资料\边界\gadm41_CHN_3.json"
+# 外部 GADM 县级边界（约 10 MB，未入库）：优先读 QILIAN_GADM 环境变量，缺省回退到仓库内相对路径
+GADM = os.environ.get("QILIAN_GADM", os.path.join(BASE, "data", "gadm41_CHN_3.json"))
 
 
 def county_climate():

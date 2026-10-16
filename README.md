@@ -136,10 +136,11 @@ Verified working combination (this is the configuration the numbers below were p
 python -m pip install numpy pandas scipy xarray netCDF4 rasterio pyproj matplotlib statsmodels python-docx pillow pyshp
 ```
 
-- No output path is hard-coded: every script resolves the project directory from `__file__` and writes
-  inside the repository (or into the Git-ignored `out/` / `figures/` / `reports/` trees). The single
-  remaining machine-specific **input** path is the external GADM boundary file read by
-  `run_county_support_sensitivity.py` (§9.1 item F).
+- No output path is hard-coded and no input path is machine-specific: every script resolves the project
+  directory from `__file__` and writes inside the repository (or into the Git-ignored `out/` /
+  `figures/` / `reports/` trees). The one external **input** that a cold clone lacks — the GADM boundary
+  file read by `run_county_support_sensitivity.py` — is now resolved from the `QILIAN_GADM` environment
+  variable, falling back to `data/gadm41_CHN_3.json` inside the repository (§9.1 item F).
 - **Windows note:** `pdflatex` is available, but **Perl is not** — do **not** use `latexmk`, run `pdflatex` directly (see §3).
 - **Non-ASCII path note:** see §5, item 1. If the clone lives under a CJK path (e.g. `<含中文的目录>/<repo>`),
   that is exactly the case the engine fallback was written for.
@@ -579,7 +580,7 @@ untracked at that time and are tracked now.
 | C | Fig. 6 generator | `manuscript.tex` includes `figures/fig_spatial_maps.pdf`; no script in this repository writes that filename. `make_fig_indicator_maps.py` writes `投稿前优化\图件\定稿\Fig06_indicator_spatial_final.{pdf,png}`. The `fig_spatial_maps.pdf` build step lives outside the repo, so Fig. 6 requires that external step. |
 | D | Git-ignored figure tree | `figures/` and `manuscript.pdf` are in `.gitignore`, so a clone has none of the ten included PDFs and `pdflatex` needs stage 4 to run first. All figure inputs that are committed allow nine of the ten figures to be rebuilt; Fig. 6 is covered by item C. |
 | E | Optional **local** tools that are not in this repository | Four files are used locally but are **not** committed, so a cold clone does not contain them: `make_fig4_combo.py`, `build_word_cn_final.py`, `make_paste_doc.py`, and a root-level `refs_jms.txt`. They are optional local tools only: missing them does **not** affect any manuscript number, any of the ten included figures, or any table. Replacements, all committed: Fig. 4 comes from `make_fig3_clean.py` (traceability table §4); the Chinese-manuscript entry point is `build_word_cn.py` (Stage 6, writes `out/论文_CN_latest.docx`); the submission-form source texts are the committed `jms/refs_jms.txt`, `jms/keywords_jms.txt`, `jms/declarations_jms.txt`. `build_word_cn_final.py` is an **outdated 2026-09-24 snapshot** whose output is not the current Chinese manuscript — it must **not** be used as the Chinese-manuscript generation entry point. `make_fig4_combo.py` only re-renders preview PNG/PDF combos, and `make_paste_doc.py` emits a convenience `.docx` of Chinese paragraphs; neither changes a number or a figure. The root-level `refs_jms.txt` is a local variant and is not byte-identical to the committed `jms/refs_jms.txt`; use the committed one. |
-| F | External GADM boundary file | `run_county_support_sensitivity.py` reads a GADM county (level-3) polygon file, `gadm41_CHN_3.json` (**~10 MB**, not committed). The path in that script is still machine-specific, so point it at your own copy before running that one script; no other script in this repository reads it. This affects only the county-centroid-support sensitivity re-run — the committed `data/results_county_*.csv` tables and their md5s are unaffected. |
+| F | External GADM boundary file | `run_county_support_sensitivity.py` reads a GADM county (level-3) polygon file, `gadm41_CHN_3.json` (**~10 MB**, not committed). The script now resolves it from the `QILIAN_GADM` environment variable, falling back to `data/gadm41_CHN_3.json` inside the repository: set `QILIAN_GADM` (or drop your copy at that relative path) before running that one script; no other script in this repository reads it. Without that data the script cannot run, but this does not affect any committed `data/results_county_*.csv` value or its md5 — the county-centroid-support sensitivity re-run is the only thing gated by it. |
 
 ### 9.2 Residual uncertainties
 
