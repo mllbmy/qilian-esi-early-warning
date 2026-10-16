@@ -270,7 +270,9 @@ for s in ("top", "right", "left", "bottom"):   # R12：四边全显，边框即�
 # R11：不用 tight，输出严格保持 10.6:6.4 原比例
 plt.savefig(os.path.join(FIG, "fig1_study_area.png"), dpi=700, bbox_inches="tight")
 plt.savefig(os.path.join(FIG, "fig1_study_area.pdf"), dpi=300)  # R12：矢量版（文字线条矢量 + 底图 300 dpi，符合 Elsevier 半调图 ≥300 dpi；600 dpi PNG 另存为高分辨率源文件）
-plt.savefig(r"D:\比赛\论文\资料\公园边界\render\fig1_preview.png", dpi=140, bbox_inches="tight")
+_PREVIEW_OUT = os.path.join(BASE, "out", "fig1_preview.png")   # 仓库内相对落点（out/ 已 Git-ignore）
+os.makedirs(os.path.dirname(_PREVIEW_OUT), exist_ok=True)
+plt.savefig(_PREVIEW_OUT, dpi=140, bbox_inches="tight")
 plt.close()
 print("saved fig1_study_area.png")
 print("高程 %.0f-%.0f m; 省份 %d 个; 水系 %d 段" % (

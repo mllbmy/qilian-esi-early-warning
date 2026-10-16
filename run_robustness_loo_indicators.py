@@ -41,7 +41,7 @@
 
 【输出】只新建，不修改任何既有文件
   data/results_robustness_loo_indicators.csv        全部数值结果（长表，可机读）
-  ../审稿意见/R19-2026-10-03-去重叠稳健性（指标）.md   中文报告（表 + 原始数字 + 结论）
+  reports/robustness_loo_indicators.md              中文报告（表 + 原始数字 + 结论）
       报告中的每一句叙述都由脚本按算出的数值生成，不含硬编码结论。
 
 用法：python run_robustness_loo_indicators.py [--overwrite]
@@ -76,7 +76,7 @@ ALPHA = 0.4                                              # 论文主口径
 ALPHA_GRID = np.round(np.arange(0.0, 1.0001, 0.01), 2)   # 0→1 步长 0.01
 
 OUT_CSV = os.path.join(BASE, "data", "results_robustness_loo_indicators.csv")
-OUT_MD = os.path.join(BASE, "..", "审稿意见", "R19-2026-10-03-去重叠稳健性（指标）.md")
+OUT_MD = os.path.join(BASE, "reports", "robustness_loo_indicators.md")
 
 # DPSIR 九项指标：名称 → (数据列, 方向, 所属层)
 # 方向与论文表 2 一致：降水/气温/草地/森林/水域/生态用地为正；裸地/农田为负
@@ -273,6 +273,9 @@ def main():
     for p in (OUT_CSV, OUT_MD):
         if os.path.exists(p) and not args.overwrite:
             raise SystemExit(f"[中止] 输出文件已存在，未覆盖：{p}\n（确需覆盖请加 --overwrite）")
+
+    # 输出目录（仓库内 reports/）不存在时新建，保证冷克隆可直接运行
+    os.makedirs(os.path.dirname(OUT_MD), exist_ok=True)
 
     ahp_all = load_ahp_weights()
     mat_raw, src_raw = build_matrix_raw()
@@ -902,7 +905,7 @@ Pearson 衡量数值一致性，Spearman 衡量年度排序一致性；两者在
 ## 12. 复现命令
 
 ```powershell
-cd D:\\比赛\\论文\\paper-code
+cd <repo>
 python run_robustness_loo_indicators.py     # 输出文件已存在时会拒绝覆盖；确需覆盖加 --overwrite
 ```
 

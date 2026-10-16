@@ -136,10 +136,13 @@ Verified working combination (this is the configuration the numbers below were p
 python -m pip install numpy pandas scipy xarray netCDF4 rasterio pyproj matplotlib statsmodels python-docx pillow pyshp
 ```
 
-- No absolute path is hard-coded: every script resolves the project directory from `__file__`.
+- No output path is hard-coded: every script resolves the project directory from `__file__` and writes
+  inside the repository (or into the Git-ignored `out/` / `figures/` / `reports/` trees). The single
+  remaining machine-specific **input** path is the external GADM boundary file read by
+  `run_county_support_sensitivity.py` (§9.1 item F).
 - **Windows note:** `pdflatex` is available, but **Perl is not** — do **not** use `latexmk`, run `pdflatex` directly (see §3).
-- **Non-ASCII path note:** see §5, item 1. This repository lives under `D:\比赛\论文\...` (CJK characters),
-  which is exactly the case the engine fallback was written for.
+- **Non-ASCII path note:** see §5, item 1. If the clone lives under a CJK path (e.g. `<含中文的目录>/<repo>`),
+  that is exactly the case the engine fallback was written for.
 
 ---
 
@@ -267,9 +270,13 @@ not needed). Run the pass twice so that all `\ref`/`\label` cross-references res
 
 ```powershell
 python build_word_jms.py     # out/jms/ ... (author identity comes from author_local.py; neutral placeholders if absent)
-python build_word_cn.py      # out/论文_CN_latest.docx
+python build_word_cn.py      # out/论文_CN_latest.docx — the Chinese-manuscript entry point
 python jms\export_tiff.py    # jms/figures_tiff/ — TIFF ≥ 600 dpi, JMS requirement
 ```
+
+`build_word_cn.py` is the committed Chinese-manuscript entry point. A local `build_word_cn_final.py`
+exists on the author's machine but is an **outdated snapshot** and is not part of this repository; it is
+not a supported way to produce the Chinese manuscript (§9.1 item E).
 
 ### Stage 7 — submission gates
 
@@ -342,7 +349,7 @@ Remaining committed intermediates behind the 2.0 numbers: `data/results_fraction
 
 1. **CJK path breaks the netCDF4 engine.** xarray's default backend is netCDF4/HDF5, whose C library cannot
    open paths containing non-ASCII characters; it raises
-   `FileNotFoundError: [Errno 2] No such file or directory: '...\比赛\...'` although the file exists.
+   `FileNotFoundError: [Errno 2] No such file or directory: '...\<CJK 目录>\...'` although the file exists.
    CRU TS 4.10 is NetCDF3 classic, so the **scipy** engine (pure Python) works. All scripts now go through
    `io_utils.open_netcdf()`, which tries `netcdf4 → scipy → h5netcdf → xarray default` and returns the first
    engine that succeeds, raising a combined error with every engine's message if all fail.
@@ -418,9 +425,12 @@ Only I/O resolution and output filenames were touched. The manuscript (`.tex`/`.
 ### 7.1 Default-path runs (no environment variables set)
 
 ```
-[io_utils] CLCD 目录 = D:\比赛\论文\paper-code\_raw\lc_data  (默认回退)
-[io_utils] CRU 目录  = D:\比赛\论文\paper-code\data\cru      (默认回退)
+[io_utils] CLCD 目录 = <repo>\_raw\lc_data  (默认回退)
+[io_utils] CRU 目录  = <repo>\data\cru      (默认回退)
 ```
+
+`<repo>` abbreviates the clone directory (the sample lines above are log output; the directory
+resolution itself is relative to `__file__`, so a clone prints its own path here).
 
 * `process_cru.py` (in a sandbox copy) → `data/qilian_climate.csv` **byte-identical** to the committed file
   (md5 `1BA81D5502EF4A769E5D10B1A3C1CCC2`), `max |Δ|` = 0 for both precip and temp.
@@ -528,14 +538,18 @@ manuscript.pdf md5: 50804CAC60AA5D31752015DCCDAF3803
 
 ---
 
-## 8. Committing the fix for the stale `results_county_esi.csv` (author action)
+## 8. The stale `results_county_esi.csv` (historical author action, now applied)
 
-`data/results_county_esi.csv` in `HEAD` is the stale lineage (Sunan 0.46616203586085775, Aksai
-0.07406172156023644); the working-tree file is the correct, reproduced one (Sunan 0.5578, Aksai 0.0673, and
-byte-identical to `data/results_county_esi_from_clcd.csv`, md5 `8E6091F56ED42C577DA6A1D35E8E10C4`).
+`data/results_county_esi.csv` **was** on the stale lineage (Sunan 0.46616203586085775, Aksai
+0.07406172156023644); the reproduced file carries Sunan 0.5578, Aksai 0.0673, and is
+byte-identical to `data/results_county_esi_from_clcd.csv`, md5 `8E6091F56ED42C577DA6A1D35E8E10C4`.
+
+**Status:** this fix has since been **applied and committed** — `data/results_county_esi.csv` in the
+current `HEAD` already reads Aksai `0.0673` and hashes to the md5 above, and every script listed below
+is now tracked. The commands are kept verbatim as the historical record of that author action.
 
 ```powershell
-cd D:\比赛\论文\paper-code
+cd <repo>
 git add data/results_county_esi.csv
 git add data/results_county_esi_details.csv
 git add data/results_county_esi_from_clcd.csv
@@ -548,8 +562,9 @@ git add README.md
 git status --short          # review before committing
 ```
 
-**No commit is made by this hardening round.** `run_esi_regional.py`, `run_alpha_sensitivity.py` and
-`run_forecast_comparison.py` are currently untracked; add only the files whose changes you accept.
+**No commit was made by that hardening round itself** — the commit came afterwards, with the file list
+shown above. `run_esi_regional.py`, `run_alpha_sensitivity.py` and `run_forecast_comparison.py` were
+untracked at that time and are tracked now.
 
 ---
 
@@ -563,6 +578,8 @@ git status --short          # review before committing
 | B | verification inputs outside the repo | `verify_v12.py` reads `交付\投稿材料\Highlights.txt` (or `交付\JNC_投稿材料\`); `polish_gate.py` reads the `优化\baseline` snapshot. With those absent, `verify_v12.py` stops with `FileNotFoundError` and `polish_gate.py` reports drift against the 2026-09-24 baseline. `make_dem_figure.py` additionally needs `data/ne/` (Natural Earth 1:50m) and `data/cop90/`. |
 | C | Fig. 6 generator | `manuscript.tex` includes `figures/fig_spatial_maps.pdf`; no script in this repository writes that filename. `make_fig_indicator_maps.py` writes `投稿前优化\图件\定稿\Fig06_indicator_spatial_final.{pdf,png}`. The `fig_spatial_maps.pdf` build step lives outside the repo, so Fig. 6 requires that external step. |
 | D | Git-ignored figure tree | `figures/` and `manuscript.pdf` are in `.gitignore`, so a clone has none of the ten included PDFs and `pdflatex` needs stage 4 to run first. All figure inputs that are committed allow nine of the ten figures to be rebuilt; Fig. 6 is covered by item C. |
+| E | Optional **local** tools that are not in this repository | Four files are used locally but are **not** committed, so a cold clone does not contain them: `make_fig4_combo.py`, `build_word_cn_final.py`, `make_paste_doc.py`, and a root-level `refs_jms.txt`. They are optional local tools only: missing them does **not** affect any manuscript number, any of the ten included figures, or any table. Replacements, all committed: Fig. 4 comes from `make_fig3_clean.py` (traceability table §4); the Chinese-manuscript entry point is `build_word_cn.py` (Stage 6, writes `out/论文_CN_latest.docx`); the submission-form source texts are the committed `jms/refs_jms.txt`, `jms/keywords_jms.txt`, `jms/declarations_jms.txt`. `build_word_cn_final.py` is an **outdated 2026-09-24 snapshot** whose output is not the current Chinese manuscript — it must **not** be used as the Chinese-manuscript generation entry point. `make_fig4_combo.py` only re-renders preview PNG/PDF combos, and `make_paste_doc.py` emits a convenience `.docx` of Chinese paragraphs; neither changes a number or a figure. The root-level `refs_jms.txt` is a local variant and is not byte-identical to the committed `jms/refs_jms.txt`; use the committed one. |
+| F | External GADM boundary file | `run_county_support_sensitivity.py` reads a GADM county (level-3) polygon file, `gadm41_CHN_3.json` (**~10 MB**, not committed). The path in that script is still machine-specific, so point it at your own copy before running that one script; no other script in this repository reads it. This affects only the county-centroid-support sensitivity re-run — the committed `data/results_county_*.csv` tables and their md5s are unaffected. |
 
 ### 9.2 Residual uncertainties
 
@@ -572,7 +589,8 @@ git status --short          # review before committing
 2. **`results_forecast_comparison.csv` has two writers.** `rerun_pipeline_ahp.py` computes GM(1,1) inline;
    `run_forecast_comparison.py` calls `eco_security.gm11_forecast`. Both write the same filename and differ
    by max \|Δ\| = 1e-4 in the last printed digit. The file is not on the protected list and is read by
-   `make_fig3_clean.py` / `make_fig4_combo.py` / `make_figures.py` / the Word builders, so the filename was
+   `make_fig3_clean.py` / `make_fig4_combo.py` (local tool, not in this repository — §9.1 item E) /
+   `make_figures.py` / the Word builders, so the filename was
    kept: re-running Stage 3 after Stage 2 rewrites it at the 4th decimal.
 3. **`run_county_geodetector.py` writes four protected tables.** `qilian_county_landcover.csv`,
    `spatial_samples.csv`, `spatial_esi_points.csv` and `results_county_esi_from_clcd.csv` are its documented
@@ -598,7 +616,10 @@ git status --short          # review before committing
   `esi_series`, `gm11_forecast`, `classify_warning`, `geodetector_q`); imported via `sys.path`
 - `*.py` — processing scripts, figure builders, build scripts, verification gates
 - `jms/` — JMS-specific exporters and `verify_jms.py`; `refs_jms.txt`, `keywords_jms.txt`,
-  `declarations_jms.txt` are the submission-form source texts
+  `declarations_jms.txt` are the submission-form source texts (all committed under `jms/`; a
+  root-level `refs_jms.txt` may exist locally but is **not** in this repository — §9.1 item E)
+- `reports/` — in-repo landing point for generated Chinese reports (`run_robustness_loo_indicators.py`
+  writes `reports/robustness_loo_indicators.md` there; the directory is created on demand)
 - `figures/`, `out/`, `jms/figures_tiff/` — build artifacts (Git-ignored, regenerate with §3)
 - `_hardening_backup/` — R22 backups, md5 snapshots and audit tools
 
