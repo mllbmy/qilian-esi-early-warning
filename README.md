@@ -218,6 +218,11 @@ python run_forecast_comparison.py         # results_forecast_accuracy.csv + resu
 
 ### Stage 4 — figures (into `figures/`, Git-ignored)
 
+> **Note 2026-10-17:** `figures/` stays Git-ignored for regenerated outputs, but the **ten figure PDFs that
+> `manuscript.tex` includes are now tracked** (force-added against `.gitignore`) so that a clone compiles the
+> manuscript without running Stage 4 first. See §9.1 item D. Re-running any Stage 4 step rewrites the tracked
+> files in place; `git status` will then show them as modified.
+
 ```powershell
 # Fig. 1  study area      -> figures/fig1_study_area.pdf
 python download_cop90.py          # only if data/cop90/ is absent
@@ -266,6 +271,14 @@ adds the Table 1 terrain row and the leave-one-target / fractional-cover sentenc
 build from 21 to 22 pages).
 `manuscript.bbl` is committed, so `bibtex` is not required for an identical build (and `.bbl` regeneration is
 not needed). Run the pass twice so that all `\ref`/`\label` cross-references resolve.
+
+> **Correction 2026-10-17 (measured).** That sentence is **wrong as the repository stands**:
+> `manuscript.bbl` is **not tracked** (`.gitignore` line 31, `*.bbl`; `git ls-files --error-unmatch
+> manuscript.bbl` fails and `git cat-file -e origin/main:manuscript.bbl` exits 128). A cold clone therefore
+> has `manuscript.tex`, `manuscript.bib`, `elsarticle.cls` and `elsarticle-harv.bst` but **no `.bbl`**, so two
+> `pdflatex` passes alone leave the bibliography unresolved; run `bibtex manuscript` first, or commit the
+> `.bbl`. **Author decision required** — the `.bbl` was deliberately *not* added on 2026-10-17 because that
+> commit was scoped to the ten figure files.
 
 ### Stage 6 — Word deliverables (JMS submission + Chinese working copy)
 
@@ -329,6 +342,7 @@ none of them is hard-coded in the manuscript or in the scripts.
 |---|---|---|---|
 | Leave-one-target $q$ (abstract, §4.5, §6) | barren/degraded 0.802431 → 0.711426; precipitation 0.506016 → 0.381115; grassland 0.707710 → 0.366430; temperature 0.169739 → 0.273763 (all $p=0.001$) | `run_geodetector_loo.py` | `data/results_geodetector_loo.csv` (variant `loo_primary`) |
 | Fractional-cover leave-one-target $q$ (§5.4) | grassland 0.584235 → 0.282836 (−51.59 %); barren/degraded 0.838492 → 0.691006 (−17.59 %); precipitation 0.600399 → 0.462091; temperature 0.178157 → 0.302838 (all $p=0.001$) | `run_fractional_cover_loo.py` | `data/results_fractional_cover_loo.csv` (scheme `fractional_sigma1`) |
+| Point-scale sparse-class weight share (§5.4: "forest (15 samples) and water (34 samples) together carry 0.609 … 2.6 % of the samples carry 60.9 %") | forest combined weight **0.326387** + water **0.282556** = **0.608943**; sparse-class samples 15 + 34 = **49** of 1 914 = **2.5601 %** | **derived, not written by any generator** — recomputed with `eco_security.eco_security.minmax_normalize` + `entropy_weights` over the six point-scale ESI inputs (`temp`, `precip`, `grass`, `forest`, `water`, and `barren_neg = 1 − grass − forest − water`), AHP weights equal across the six, combination weight $\alpha=0.4$ | `data/spatial_samples.csv` (inputs and sample counts); the reconstructed point ESI matches the committed `data/spatial_esi_points.csv` to $1.2\times10^{-14}$. **No committed CSV stores the weight sum itself** |
 | $r$(grassland, barren) = −0.884 as window-area fractions (§5.4) | −0.8836 | `run_fractional_cover_loo.py` | `data/results_fractional_cover_points.csv` |
 | `barren/degraded` factor vs the `barren_neg` ESI input differ at 81 points (§3.5) | 81 = 75 cropland + 6 snow/ice | `run_geodetector_loo.py` | `data/spatial_samples.csv` |
 | Terrain $q$: elevation 0.0904, slope 0.0647 (Fig. 8b, §4.5) | 0.090367 / 0.064680 | `run_exogenous_geodetector.py` | `data/results_geodetector_exogenous.csv` |
@@ -578,7 +592,7 @@ untracked at that time and are tracked now.
 | A | CLCD epochs other than 2020 | `data/qilian_landcover.csv` is the five-epoch (2005/2010/2015/2020/2023) regional table driving indicators X3–X9. Only the 2020 tile is present locally, so `process_clcd.py` writes `data/results_landcover_partial_2020.csv` there. Regenerating the committed five-epoch table from raw data needs the remaining epochs from Zenodo record 8176941. |
 | B | verification inputs outside the repo | `verify_v12.py` reads `交付\投稿材料\Highlights.txt` (or `交付\JNC_投稿材料\`); `polish_gate.py` reads the `优化\baseline` snapshot. With those absent, `verify_v12.py` stops with `FileNotFoundError` and `polish_gate.py` reports drift against the 2026-09-24 baseline. `make_dem_figure.py` additionally needs `data/ne/` (Natural Earth 1:50m) and `data/cop90/`. |
 | C | Fig. 6 generator | `manuscript.tex` includes `figures/fig_spatial_maps.pdf`; no script in this repository writes that filename. `make_fig_indicator_maps.py` writes `投稿前优化\图件\定稿\Fig06_indicator_spatial_final.{pdf,png}`. The `fig_spatial_maps.pdf` build step lives outside the repo, so Fig. 6 requires that external step. |
-| D | Git-ignored figure tree | `figures/` and `manuscript.pdf` are in `.gitignore`, so a clone has none of the ten included PDFs and `pdflatex` needs stage 4 to run first. All figure inputs that are committed allow nine of the ten figures to be rebuilt; Fig. 6 is covered by item C. |
+| D | Git-ignored figure tree | **Updated 2026-10-17:** the **ten figure PDFs that `manuscript.tex` includes are now tracked** (added with `git add -f` against `.gitignore`), so a clone already contains them and `pdflatex` runs without Stage 4. `figures/` itself stays Git-ignored, so the other ~18 regeneration products (preview PNG/PDF combos, `.dot`, intermediate rasters) remain untracked. All figure inputs that are committed allow nine of the ten figures to be rebuilt; **Fig. 6** still needs the external step in item C. |
 | E | Optional **local** tools that are not in this repository | Four files are used locally but are **not** committed, so a cold clone does not contain them: `make_fig4_combo.py`, `build_word_cn_final.py`, `make_paste_doc.py`, and a root-level `refs_jms.txt`. They are optional local tools only: missing them does **not** affect any manuscript number, any of the ten included figures, or any table. Replacements, all committed: Fig. 4 comes from `make_fig3_clean.py` (traceability table §4); the Chinese-manuscript entry point is `build_word_cn.py` (Stage 6, writes `out/论文_CN_latest.docx`); the submission-form source texts are the committed `jms/refs_jms.txt`, `jms/keywords_jms.txt`, `jms/declarations_jms.txt`. `build_word_cn_final.py` is an **outdated 2026-09-24 snapshot** whose output is not the current Chinese manuscript — it must **not** be used as the Chinese-manuscript generation entry point. `make_fig4_combo.py` only re-renders preview PNG/PDF combos, and `make_paste_doc.py` emits a convenience `.docx` of Chinese paragraphs; neither changes a number or a figure. The root-level `refs_jms.txt` is a local variant and is not byte-identical to the committed `jms/refs_jms.txt`; use the committed one. |
 | F | External GADM boundary file | `run_county_support_sensitivity.py` reads a GADM county (level-3) polygon file, `gadm41_CHN_3.json` (**~10 MB**, not committed). The script now resolves it from the `QILIAN_GADM` environment variable, falling back to `data/gadm41_CHN_3.json` inside the repository: set `QILIAN_GADM` (or drop your copy at that relative path) before running that one script; no other script in this repository reads it. Without that data the script cannot run, but this does not affect any committed `data/results_county_*.csv` value or its md5 — the county-centroid-support sensitivity re-run is the only thing gated by it. |
 
