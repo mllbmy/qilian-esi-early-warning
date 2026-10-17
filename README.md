@@ -261,24 +261,62 @@ python make_fig_obstacle.py
 
 ### Stage 5 — manuscript PDF (English)
 
+**Canonical order — always run all four steps.** `bibtex` regenerates the bibliography, so this sequence is
+correct whether or not `manuscript.bbl` is present, and it is required whenever `manuscript.bib` or the
+citation set changes:
+
 ```powershell
-pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   # pass 1
-pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   # pass 2
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   # pass 1 -> manuscript.aux (citation keys)
+bibtex manuscript                                                 # pass 2 -> manuscript.bib -> manuscript.bbl
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   # pass 3 -> typesets the fresh .bbl
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   # pass 4 -> resolves \ref/\label and \bibcite
 ```
 
-Expected: exit code `0`, **0 warnings**, **22 pages**, `manuscript.pdf` ≈ 10.3 MB (the 2.0 manuscript
-adds the Table 1 terrain row and the leave-one-target / fractional-cover sentences, which pushes the
-build from 21 to 22 pages).
-`manuscript.bbl` is committed, so `bibtex` is not required for an identical build (and `.bbl` regeneration is
-not needed). Run the pass twice so that all `\ref`/`\label` cross-references resolve.
+Expected: every pass exits `0`; the final pass reports **0 `LaTeX Warning`** and **22 pages**,
+`manuscript.pdf` 10,340,644 B (the 2.0 manuscript adds the Table 1 terrain row and the leave-one-target /
+fractional-cover sentences, which pushed the build from 21 to 22 pages).
 
-> **Correction 2026-10-17 (measured).** That sentence is **wrong as the repository stands**:
-> `manuscript.bbl` is **not tracked** (`.gitignore` line 31, `*.bbl`; `git ls-files --error-unmatch
-> manuscript.bbl` fails and `git cat-file -e origin/main:manuscript.bbl` exits 128). A cold clone therefore
-> has `manuscript.tex`, `manuscript.bib`, `elsarticle.cls` and `elsarticle-harv.bst` but **no `.bbl`**, so two
-> `pdflatex` passes alone leave the bibliography unresolved; run `bibtex manuscript` first, or commit the
-> `.bbl`. **Author decision required** — the `.bbl` was deliberately *not* added on 2026-10-17 because that
-> commit was scoped to the ten figure files.
+Measured chain, empty directory, current source (`manuscript.tex` md5
+`AF55563B0C27ADE689F32FECAA891BA3`, `manuscript.bib` md5 `143E9487E76878FFA1AB78D0F555E429`); every pass
+exits `0`:
+
+| step | pages | bytes | `Citation … undefined` | undefined `\ref` | `LaTeX Warning` | `Label(s) may have changed` |
+|---|---|---|---|---|---|---|
+| pass 1 `pdflatex` | 19 | 10,329,520 | 49 (24 distinct keys) | 26 | 28 | yes |
+| `bibtex manuscript` | — | `.bbl` 13,026 B, md5 `F89C9CDE0354B9D2ECD2F1A535C6DBD3` | — | — | — | — |
+| pass 2 `pdflatex` | 21 | 10,340,763 | 49 (24 distinct keys) | 0 | 0 | no |
+| pass 3 `pdflatex` | 22 | 10,340,644 | 0 | 0 | 1 | yes |
+| pass 4 `pdflatex` | 22 | 10,340,644 | 0 | 0 | 0 | no |
+
+- **Two `pdflatex` passes alone are not enough.** With no `manuscript.bbl`, pass 1 gives **19 pages** with 49
+  `Citation … undefined` warnings over 24 distinct keys (plus 26 undefined `\ref`); pass 2 clears the `\ref`
+  warnings and resolves nothing else, so all 49 citation warnings remain and the bibliography is silently
+  missing — 19 pages, not 22. (The value previously recorded here, "45 undefined references", did not
+  reproduce; the measured count is 49 natbib warning occurrences over 24 distinct keys.)
+- Pass 2 of the sequence above grows the document to 21 pages — the bibliography now typesets — and still
+  warns about all 24 keys, because `\bibcite` is written into `manuscript.aux` only **during** that pass.
+- Pass 3 reaches the final **22 pages / 0 undefined** but still prints
+  `LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.`; pass 4 is the first
+  fully clean log. `Overfull \hbox` 1 and `Underfull \hbox` 2 appear in **every** pass from pass 1 on — they
+  are pre-existing and are not symptoms of an unresolved build.
+
+**`manuscript.bbl` is now tracked** — added 2026-10-17 with `git add -f` (`.gitignore` line 31, `*.bbl`,
+still lists it, hence the forced add), 13,026 B, md5 `F89C9CDE0354B9D2ECD2F1A535C6DBD3`. A cold clone
+therefore carries the bibliography and compiles **without** `bibtex`; measured on a cold clone: pass 1 →
+21 pages, pass 2 → **22 pages, 0 undefined** (`Citation` and `\ref` both 0), with the same
+`Label(s) may have changed` note in pass 2 that a third pass clears. Keep `bibtex` in the recipe anyway: it is
+what makes the build independent of the committed `.bbl` and it is mandatory as soon as the bibliography
+changes.
+
+> **Trap — verify in an empty directory, never inside the repository.** `pdflatex -output-directory=<dir>`
+> redirects only where files are **written**; TeX still **reads** `manuscript.aux` (and `manuscript.bbl`) from
+> the current, i.e. repository, directory. Measured: a directory holding `manuscript.tex`/`.bib` plus a stale
+> `manuscript.aux` carrying 24 `\bibcite` entries and **no `.bbl` at all**, compiled with
+> `-output-directory=out`, exits `0`, reports **0 undefined citations and 0 undefined `\ref`** and writes
+> **20 pages** — it silently resolved every citation from the old aux instead of building the bibliography.
+> A build inside the repository therefore cannot validate the source. Export to an empty directory first
+> (`git archive --format=tar -o head.tar HEAD`, unpack, then run the sequence above); the first build in a
+> fresh directory needs the extra pass to clear `Label(s) may have changed`.
 
 ### Stage 6 — Word deliverables (JMS submission + Chinese working copy)
 
@@ -508,22 +546,32 @@ Every archived value table is **UNCHANGED**, including `results_county_esi.csv`
 
 | file | md5 |
 |---|---|
-| `paper-code/manuscript.tex` | `6A4FD2F472600117542DD6EA2082CAA8` |
+| `paper-code/manuscript.tex` | `AF55563B0C27ADE689F32FECAA891BA3` |
 | `paper-code/manuscript.bib` | `143E9487E76878FFA1AB78D0F555E429` |
-| `paper-code/manuscript.bbl` | `F89C9CDE0354B9D2ECD2F1A535C6DBD3` |
-| `投稿前优化/JMS CN 论文_R17修订版.docx` | `F6470BA5B6EB16544F8758CFB9DA57A5` |
-| `交付/2.0版本/JMS CN 论文_2.0版本.docx` | `F6470BA5B6EB16544F8758CFB9DA57A5` |
+| `paper-code/manuscript.bbl` | `F89C9CDE0354B9D2ECD2F1A535C6DBD3` (**tracked** since 2026-10-17, 13,026 B) |
+| `paper-code/manuscript.pdf` | `19DD5A37917DCFBE087AF193110143C1` (22 pages, 10,340,644 B; Git-ignored, see the `/ModDate` caveat below) |
+| `投稿前优化/JMS CN 论文_R17修订版.docx` | `23122CF77EB6E71DA5A6CA6397A4F2DB` |
+| `交付/2.0版本/JMS CN 论文_2.0版本.docx` | `23122CF77EB6E71DA5A6CA6397A4F2DB` |
 
-`manuscript.bib`/`.bbl` carry the md5 recorded earlier. The other three files changed with the §5.4 edit:
-`manuscript.tex` was `C0E49A5C8E8F549FF5E8E307227CD878`, and both `.docx` copies were
+`manuscript.bib` carries the md5 recorded earlier; `manuscript.tex`, `manuscript.bbl`, the two `.docx`
+copies and `manuscript.pdf` were re-hashed on 2026-10-17 against the working tree (values in the table
+above; both `.docx` copies are byte-identical, 26,886,783 B). Earlier in the same lineage `manuscript.tex`
+was `C0E49A5C8E8F549FF5E8E307227CD878` and both `.docx` copies were
 `69D7325E6D650CC6407A6C8BD631F0D6`.
-`manuscript.pdf` was **rebuilt** by the two-pass `pdflatex` check in §7.5: the new file has the same size
-(10,334,465 B) and the same page count (21) as before, and its md5 moved from
-`46172C3E404664928756445332DCA6C4` to `975704DA38DBD166221832908724E1F9` because pdfTeX stamps a fresh
-`/ModDate` into each build. The pre-build file was not copied aside beforehand, so the byte-exact original
-is available only from the authors' own archive/CDN copy of `paper-code/manuscript.pdf`; the rebuild in
-§7.5 regenerates an equivalent artefact (`manuscript.pdf` is Git-ignored, so Git does not hold either
-version).
+
+`manuscript.pdf` (Git-ignored, so Git holds no version of it) was **rebuilt on 2026-10-17** in an empty
+directory from the current `manuscript.tex` by the §7.5 sequence: **22 pages, 10,340,644 B**, md5
+`19DD5A37917DCFBE087AF193110143C1` (page count confirmed independently with `pypdf`: 22). The file it
+replaced was `50804CAC60AA5D31752015DCCDAF3803` (22 pages, 10,339,019 B) and predated the last
+`manuscript.tex` edits, so it did not correspond to the committed source; it was overwritten without being
+archived. **A PDF md5 is not a stable fingerprint of the source:** pdfTeX stamps a fresh `/ModDate` (and
+with it a fresh `/ID`) into every build, so two consecutive `pdflatex` runs on an already-settled tree give
+the same page count and the same byte count but different md5 — measured on the current source:
+`6296614359CD811E14E924EEEFD1BC5F` and `CFBC625498A7E6B121DD7347AA3772F2`, whose only byte difference is the
+`/ModDate`/`/ID` region. Use **22 pages / 10,340,644 B / 0 undefined citations and 0 undefined `\ref`** as
+the reproducible checks. A byte-reproducible md5 needs a pinned clock: with
+`$env:SOURCE_DATE_EPOCH='1780000000'` the same source twice produced
+`00427DB708D163E2A154AB0CB3B835E6` at 10,340,632 B.
 
 ### 7.5 LaTeX build
 
@@ -550,6 +598,22 @@ pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 2, exit 
 warnings in pass 2: 0        Output written on manuscript.pdf (22 pages, 10339019 bytes)
 manuscript.pdf md5: 50804CAC60AA5D31752015DCCDAF3803
 ```
+
+Current rebuild (2026-10-17; `manuscript.tex` md5 `AF55563B0C27ADE689F32FECAA891BA3`), empty directory,
+`bibtex` included — the same per-pass table is in §3 Stage 5:
+
+```
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 1, exit 0)   19 pages, 10329520 bytes
+bibtex manuscript                                                 (exit 0)            manuscript.bbl 13026 bytes, md5 F89C9CDE0354B9D2ECD2F1A535C6DBD3
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 2, exit 0)   21 pages, 10340763 bytes, 49 citation warnings
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 3, exit 0)   22 pages, 10340644 bytes, 0 undefined, 1 LaTeX Warning (Label(s) may have changed)
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 4, exit 0)   22 pages, 10340644 bytes, 0 LaTeX Warning
+manuscript.pdf md5: 19DD5A37917DCFBE087AF193110143C1      (22 pages re-checked with pypdf)
+```
+
+The first three records above are historical two-pass builds kept verbatim; the current rebuild needed four
+`pdflatex` passes plus `bibtex`, and the repository `manuscript.pdf` now holds pass 4's output. Every build
+listed in this section carries the same `Overfull \hbox` 1 / `Underfull \hbox` 2 count.
 
 ---
 
@@ -622,7 +686,9 @@ untracked at that time and are tracked now.
 
 ## 10. Directory layout
 
-- `manuscript.tex/.bib/.bbl` — manuscript source (elsarticle, author-year); `manuscript.pdf` is Git-ignored
+- `manuscript.tex/.bib/.bbl` — manuscript source (elsarticle, author-year); all three are tracked, so a
+  clone compiles without `bibtex` (build order and traps: §3 Stage 5, evidence: §7.5); `manuscript.pdf` is
+  Git-ignored
 - `data/` — processed climate, land cover, county and result CSVs (the numeric source of every figure/table)
 - `data/cru/` — CRU TS 4.10 raw grids (Git-ignored, ~2.4 GB)
 - `_raw/lc_data/` — CLCD 30 m GeoTIFF (Git-ignored, ~810 MB)
