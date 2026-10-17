@@ -22,6 +22,12 @@ fut_gm, fit_gm, C_gm, P_gm = gm11_forecast(esi, n_pred=5)
 
 # ---------- 2) NGBM(1,1) 非线性灰色伯努利模型 ----------
 def ngbm(x0, gamma, n_pred=5):
+    # gamma = 1 makes the model degenerate: the 1/(1-gamma) exponent of the NGBM
+    # solution is undefined there. Without this guard NumPy returns an infinite
+    # expression that can collapse to a finite, spuriously small SSE (observed:
+    # SSE = 4.25) and be selected as the grid optimum. Skip the point instead.
+    if abs(1.0 - gamma) < 1e-9:
+        return None, None, (np.nan, np.nan)
     x1 = np.cumsum(x0)
     z1 = 0.5 * (x1[1:] + x1[:-1])
     B = np.column_stack([-z1, z1 ** gamma])
@@ -36,6 +42,8 @@ def ngbm(x0, gamma, n_pred=5):
     for k in range(1, len(x0)):
         x0_hat[k] = X1(k) - X1(k - 1)
     fut = [X1(len(x0) + k) - X1(len(x0) + k - 1) for k in range(1, n_pred + 1)]
+    if not (np.all(np.isfinite(x0_hat)) and np.all(np.isfinite(fut))):
+        return None, None, (a, b)  # 非有限解同样视为不可用
     return np.array(fut), x0_hat, (a, b)
 
 # 网格搜索最优 gamma

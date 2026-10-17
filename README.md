@@ -804,3 +804,15 @@ AVHRR/VIIRS files (list and access dates in `data/r28_external_ndvi_manifest.csv
 access is needed to reproduce any committed table.
 6. **`_r28_report_readouts.py` is deliberately not committed** (scratch read-out helper used
 while writing the manuscript).
+7. **`data/results_backtest.csv` — kept, with a provenance note.** This archived backtest table
+has **no generating script in this repository** (the archived accuracy table comes from
+`run_forecast_comparison.py`, but the backtest file itself does not). Its NGBM row corresponds to
+a power exponent selected with the evaluation period in view (γ = 0.10), a claim the manuscript has
+**withdrawn**: under training-only selection the NGBM holdout error rises from 0.034 to 0.0687 and
+the model ranking reverses (see `data/r28_ngbm_gamma_leakage.csv`,
+`data/r28_esi_leakage_channel.csv`). The file is retained for transparency about the earlier
+revision and must not be used as evidence of forecast skill.
+8. **`run_forecast_comparison.py` — γ = 1.0 guard added.** The NGBM solution contains a
+1/(1−γ) exponent, so γ = 1 is degenerate; the original code let NumPy return an infinite
+expression that collapsed to a spuriously small residual sum of squares (SSE = 4.25) which the
+grid search could select. The function now skips γ = 1 and rejects any non-finite solution.
