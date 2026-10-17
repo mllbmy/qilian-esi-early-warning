@@ -1,0 +1,58 @@
+﻿scheme,fold,horizon,train_window,target_year,model,hyper,observed,predicted,err,abs_err
+loocv_leave_one_year_out,holdout_2005,1,18 years (all except 2005),2005,"GM(1,1)",hyper=none,0.25809,0.493159,0.235069,0.235069
+loocv_leave_one_year_out,holdout_2005,1,18 years (all except 2005),2005,NGBM,gamma=0.10 (train SSE=0.026142),0.25809,0.460698,0.202608,0.202608
+loocv_leave_one_year_out,holdout_2005,1,18 years (all except 2005),2005,ARIMA,"order=(0, 1, 1) (train AIC=-43.77)",0.25809,0.500767,0.242676,0.242676
+loocv_leave_one_year_out,holdout_2006,1,18 years (all except 2006),2006,"GM(1,1)",hyper=none,0.467274,0.493159,0.025885,0.025885
+loocv_leave_one_year_out,holdout_2006,1,18 years (all except 2006),2006,NGBM,gamma=0.10 (train SSE=0.025721),0.467274,0.457359,-0.009915,0.009915
+loocv_leave_one_year_out,holdout_2006,1,18 years (all except 2006),2006,ARIMA,"order=(1, 1, 0) (train AIC=-28.80)",0.467274,0.495215,0.02794,0.02794
+loocv_leave_one_year_out,holdout_2007,1,18 years (all except 2007),2007,"GM(1,1)",hyper=none,0.563485,0.503787,-0.059699,0.059699
+loocv_leave_one_year_out,holdout_2007,1,18 years (all except 2007),2007,NGBM,gamma=0.20 (train SSE=0.029633),0.563485,0.43919,-0.124295,0.124295
+loocv_leave_one_year_out,holdout_2007,1,18 years (all except 2007),2007,ARIMA,"order=(1, 1, 0) (train AIC=-33.27)",0.563485,0.485108,-0.078378,0.078378
+loocv_leave_one_year_out,holdout_2008,1,18 years (all except 2008),2008,"GM(1,1)",hyper=none,0.544891,0.502181,-0.04271,0.04271
+loocv_leave_one_year_out,holdout_2008,1,18 years (all except 2008),2008,NGBM,gamma=0.20 (train SSE=0.029383),0.544891,0.437427,-0.107464,0.107464
+loocv_leave_one_year_out,holdout_2008,1,18 years (all except 2008),2008,ARIMA,"order=(1, 1, 0) (train AIC=-33.34)",0.544891,0.484265,-0.060626,0.060626
+loocv_leave_one_year_out,holdout_2009,1,18 years (all except 2009),2009,"GM(1,1)",hyper=none,0.642896,0.508448,-0.134448,0.134448
+loocv_leave_one_year_out,holdout_2009,1,18 years (all except 2009),2009,NGBM,gamma=0.20 (train SSE=0.027047),0.642896,0.446069,-0.196827,0.196827
+loocv_leave_one_year_out,holdout_2009,1,18 years (all except 2009),2009,ARIMA,"order=(1, 1, 0) (train AIC=-31.94)",0.642896,0.493083,-0.149813,0.149813
+loocv_leave_one_year_out,holdout_2010,1,18 years (all except 2010),2010,"GM(1,1)",hyper=none,0.709157,0.511281,-0.197876,0.197876
+loocv_leave_one_year_out,holdout_2010,1,18 years (all except 2010),2010,NGBM,gamma=0.20 (train SSE=0.014754),0.709157,0.450885,-0.258272,0.258272
+loocv_leave_one_year_out,holdout_2010,1,18 years (all except 2010),2010,ARIMA,"order=(1, 1, 0) (train AIC=-36.29)",0.709157,0.489298,-0.219859,0.219859
+loocv_leave_one_year_out,holdout_2011,1,18 years (all except 2011),2011,"GM(1,1)",hyper=none,0.550787,0.508041,-0.042746,0.042746
+loocv_leave_one_year_out,holdout_2011,1,18 years (all except 2011),2011,NGBM,gamma=0.20 (train SSE=0.026092),0.550787,0.442816,-0.107971,0.107971
+loocv_leave_one_year_out,holdout_2011,1,18 years (all except 2011),2011,ARIMA,"order=(0, 1, 1) (train AIC=-33.69)",0.550787,0.486157,-0.06463,0.06463
+loocv_leave_one_year_out,holdout_2012,1,18 years (all except 2012),2012,"GM(1,1)",hyper=none,0.571319,0.508005,-0.063314,0.063314
+loocv_leave_one_year_out,holdout_2012,1,18 years (all except 2012),2012,NGBM,gamma=0.20 (train SSE=0.027747),0.571319,0.443355,-0.127965,0.127965
+loocv_leave_one_year_out,holdout_2012,1,18 years (all except 2012),2012,ARIMA,"order=(0, 1, 1) (train AIC=-32.71)",0.571319,0.4879,-0.083419,0.083419
+loocv_leave_one_year_out,holdout_2013,1,18 years (all except 2013),2013,"GM(1,1)",hyper=none,0.57596,0.507901,-0.068059,0.068059
+loocv_leave_one_year_out,holdout_2013,1,18 years (all except 2013),2013,NGBM,gamma=0.20 (train SSE=0.027950),0.57596,0.44336,-0.1326,0.1326
+loocv_leave_one_year_out,holdout_2013,1,18 years (all except 2013),2013,ARIMA,"order=(0, 1, 1) (train AIC=-32.72)",0.57596,0.487635,-0.088325,0.088325
+loocv_leave_one_year_out,holdout_2014,1,18 years (all except 2014),2014,"GM(1,1)",hyper=none,0.582281,0.507631,-0.074651,0.074651
+loocv_leave_one_year_out,holdout_2014,1,18 years (all except 2014),2014,NGBM,gamma=0.20 (train SSE=0.028056),0.582281,0.443206,-0.139075,0.139075
+loocv_leave_one_year_out,holdout_2014,1,18 years (all except 2014),2014,ARIMA,"order=(0, 1, 1) (train AIC=-32.72)",0.582281,0.487774,-0.094507,0.094507
+loocv_leave_one_year_out,holdout_2015,1,18 years (all except 2015),2015,"GM(1,1)",hyper=none,0.587197,0.507322,-0.079875,0.079875
+loocv_leave_one_year_out,holdout_2015,1,18 years (all except 2015),2015,NGBM,gamma=0.20 (train SSE=0.027986),0.587197,0.442961,-0.144235,0.144235
+loocv_leave_one_year_out,holdout_2015,1,18 years (all except 2015),2015,ARIMA,"order=(0, 1, 1) (train AIC=-32.82)",0.587197,0.487639,-0.099558,0.099558
+loocv_leave_one_year_out,holdout_2016,1,18 years (all except 2016),2016,"GM(1,1)",hyper=none,0.525319,0.512428,-0.012891,0.012891
+loocv_leave_one_year_out,holdout_2016,1,18 years (all except 2016),2016,NGBM,gamma=0.20 (train SSE=0.026481),0.525319,0.447595,-0.077723,0.077723
+loocv_leave_one_year_out,holdout_2016,1,18 years (all except 2016),2016,ARIMA,"order=(0, 1, 1) (train AIC=-33.10)",0.525319,0.486769,-0.03855,0.03855
+loocv_leave_one_year_out,holdout_2017,1,18 years (all except 2017),2017,"GM(1,1)",hyper=none,0.546616,0.51026,-0.036356,0.036356
+loocv_leave_one_year_out,holdout_2017,1,18 years (all except 2017),2017,NGBM,gamma=0.20 (train SSE=0.027405),0.546616,0.445484,-0.101133,0.101133
+loocv_leave_one_year_out,holdout_2017,1,18 years (all except 2017),2017,ARIMA,"order=(0, 1, 1) (train AIC=-32.80)",0.546616,0.487178,-0.059438,0.059438
+loocv_leave_one_year_out,holdout_2018,1,18 years (all except 2018),2018,"GM(1,1)",hyper=none,0.532044,0.51202,-0.020024,0.020024
+loocv_leave_one_year_out,holdout_2018,1,18 years (all except 2018),2018,NGBM,gamma=0.20 (train SSE=0.027254),0.532044,0.44727,-0.084774,0.084774
+loocv_leave_one_year_out,holdout_2018,1,18 years (all except 2018),2018,ARIMA,"order=(0, 1, 1) (train AIC=-32.74)",0.532044,0.487149,-0.044895,0.044895
+loocv_leave_one_year_out,holdout_2019,1,18 years (all except 2019),2019,"GM(1,1)",hyper=none,0.539168,0.511027,-0.02814,0.02814
+loocv_leave_one_year_out,holdout_2019,1,18 years (all except 2019),2019,NGBM,gamma=0.20 (train SSE=0.027193),0.539168,0.446238,-0.09293,0.09293
+loocv_leave_one_year_out,holdout_2019,1,18 years (all except 2019),2019,ARIMA,"order=(0, 1, 1) (train AIC=-32.89)",0.539168,0.486714,-0.052454,0.052454
+loocv_leave_one_year_out,holdout_2020,1,18 years (all except 2020),2020,"GM(1,1)",hyper=none,0.451087,0.524992,0.073905,0.073905
+loocv_leave_one_year_out,holdout_2020,1,18 years (all except 2020),2020,NGBM,gamma=0.20 (train SSE=0.022381),0.451087,0.460964,0.009877,0.009877
+loocv_leave_one_year_out,holdout_2020,1,18 years (all except 2020),2020,ARIMA,"order=(0, 1, 1) (train AIC=-35.56)",0.451087,0.482521,0.031434,0.031434
+loocv_leave_one_year_out,holdout_2021,1,18 years (all except 2021),2021,"GM(1,1)",hyper=none,0.541264,0.509085,-0.032179,0.032179
+loocv_leave_one_year_out,holdout_2021,1,18 years (all except 2021),2021,NGBM,gamma=0.25 (train SSE=0.024360),0.541264,0.430981,-0.110283,0.110283
+loocv_leave_one_year_out,holdout_2021,1,18 years (all except 2021),2021,ARIMA,"order=(0, 1, 1) (train AIC=-33.57)",0.541264,0.486263,-0.055001,0.055001
+loocv_leave_one_year_out,holdout_2022,1,18 years (all except 2022),2022,"GM(1,1)",hyper=none,0.509453,0.515229,0.005776,0.005776
+loocv_leave_one_year_out,holdout_2022,1,18 years (all except 2022),2022,NGBM,gamma=0.20 (train SSE=0.026788),0.509453,0.450606,-0.058847,0.058847
+loocv_leave_one_year_out,holdout_2022,1,18 years (all except 2022),2022,ARIMA,"order=(0, 1, 1) (train AIC=-32.56)",0.509453,0.490412,-0.019042,0.019042
+loocv_leave_one_year_out,holdout_2023,1,18 years (all except 2023),2023,"GM(1,1)",hyper=none,0.486366,0.520142,0.033776,0.033776
+loocv_leave_one_year_out,holdout_2023,1,18 years (all except 2023),2023,NGBM,gamma=0.20 (train SSE=0.027593),0.486366,0.455783,-0.030583,0.030583
+loocv_leave_one_year_out,holdout_2023,1,18 years (all except 2023),2023,ARIMA,"order=(0, 1, 1) (train AIC=-32.82)",0.486366,0.511051,0.024685,0.024685

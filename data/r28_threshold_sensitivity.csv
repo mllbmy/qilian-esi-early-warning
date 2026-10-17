@@ -1,0 +1,27 @@
+﻿model,year,kind,value,p_below,grade_if_below,note
+NGBM_g0.20,2028,threshold_shift,0.38,0.4975,中警,阈值 0.400 平移 -0.020
+NGBM_g0.20,2028,threshold_shift,0.385,0.5235,中警,阈值 0.400 平移 -0.015
+NGBM_g0.20,2028,threshold_shift,0.39,0.5435,中警,阈值 0.400 平移 -0.010
+NGBM_g0.20,2028,threshold_shift,0.395,0.566,中警,阈值 0.400 平移 -0.005
+NGBM_g0.20,2028,threshold_shift,0.4,0.5875,中警,阈值 0.400 平移 +0.000
+NGBM_g0.20,2028,threshold_shift,0.405,0.605,轻警,阈值 0.400 平移 +0.005
+NGBM_g0.20,2028,threshold_shift,0.41,0.623,轻警,阈值 0.400 平移 +0.010
+NGBM_g0.20,2028,threshold_shift,0.415,0.6445,轻警,阈值 0.400 平移 +0.015
+NGBM_g0.20,2028,threshold_shift,0.42,0.663,轻警,阈值 0.400 平移 +0.020
+NGBM_g0.20,2028,rounding,0.393857,0.5875,中警,保留 6 位小数：0.393857，等级=中警 
+NGBM_g0.20,2028,rounding,0.3939,0.5875,中警,保留 4 位小数：0.3939，等级=中警 
+NGBM_g0.20,2028,rounding,0.394,0.5865,中警,保留 3 位小数：0.394，等级=中警 → 中警
+NGBM_g0.20,2028,rounding,0.39,0.566,中警,保留 2 位小数：0.39，等级=中警 → 中警
+NGBM_g0.20,2028,rounding,0.4,0.3385,轻警,保留 1 位小数：0.4，等级=轻警 → 轻警（等级翻转）
+NGBM_g0.20,2028,p_below_threshold,0.395,0.566,中警,同一 bootstrap 路径在阈值 0.395 下的 P(ESI<thr)
+NGBM_g0.20,2028,p_below_threshold,0.4,0.5875,中警,同一 bootstrap 路径在阈值 0.400 下的 P(ESI<thr)
+NGBM_g0.20,2028,p_below_threshold,0.405,0.605,轻警,同一 bootstrap 路径在阈值 0.405 下的 P(ESI<thr)
+"GM(1,1)",2028,p_below_threshold,0.395,0.2,中警,同一 bootstrap 路径在阈值 0.395 下的 P(ESI<thr)
+"GM(1,1)",2028,p_below_threshold,0.4,0.2095,中警,同一 bootstrap 路径在阈值 0.400 下的 P(ESI<thr)
+"GM(1,1)",2028,p_below_threshold,0.405,0.2175,轻警,同一 bootstrap 路径在阈值 0.405 下的 P(ESI<thr)
+"ARIMA(0,1,1)",2028,p_below_threshold,0.395,0.386,中警,同一 bootstrap 路径在阈值 0.395 下的 P(ESI<thr)
+"ARIMA(0,1,1)",2028,p_below_threshold,0.4,0.3965,中警,同一 bootstrap 路径在阈值 0.400 下的 P(ESI<thr)
+"ARIMA(0,1,1)",2028,p_below_threshold,0.405,0.408,轻警,同一 bootstrap 路径在阈值 0.405 下的 P(ESI<thr)
+NGBM_g0.20,2028,p_below_threshold_gamma_fixed,0.395,0.579,中警,γ 固定为 0.20（不含 γ 选择不确定性）时阈值 0.395 的 P(ESI<thr)
+NGBM_g0.20,2028,p_below_threshold_gamma_fixed,0.4,0.602,中警,γ 固定为 0.20（不含 γ 选择不确定性）时阈值 0.400 的 P(ESI<thr)
+NGBM_g0.20,2028,p_below_threshold_gamma_fixed,0.405,0.6155,轻警,γ 固定为 0.20（不含 γ 选择不确定性）时阈值 0.405 的 P(ESI<thr)

@@ -1,0 +1,855 @@
+﻿scope,scenario,weight_scheme,phase,rank,indicator,layer,mean_obstacle,share_of_phase_sum,note,year
+phase,baseline9,entropy,2005-2010,1.0,X5_水域占比%,State,0.227878,0.2279,2005-2010 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,baseline9,entropy,2005-2010,2.0,X4_森林占比%,State,0.20639,0.2064,2005-2010 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,baseline9,entropy,2005-2010,3.0,X7_农田占比%,Pressure,0.131741,0.1317,2005-2010 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,baseline9,entropy,2005-2010,4.0,X1_降水mm,Driving,0.109616,0.1096,2005-2010 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,baseline9,entropy,2005-2010,5.0,X3_草地占比%,State,0.086046,0.086,2005-2010 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase,baseline9,entropy,2005-2010,6.0,X6_裸地荒漠%,Pressure,0.071308,0.0713,2005-2010 阶段 · entropy 权重方案下第 6 位障碍因子,
+phase,baseline9,entropy,2005-2010,7.0,X9_生态用地%,Response,0.070603,0.0706,2005-2010 阶段 · entropy 权重方案下第 7 位障碍因子,
+phase,baseline9,entropy,2005-2010,8.0,X2_气温C,Driving,0.050371,0.0504,2005-2010 阶段 · entropy 权重方案下第 8 位障碍因子,
+phase,baseline9,entropy,2005-2010,9.0,X8_草地变化率,Impact,0.046046,0.046,2005-2010 阶段 · entropy 权重方案下第 9 位障碍因子,
+phase_topsummary,baseline9,entropy,2005-2010,,X5_水域占比% > X4_森林占比% > X7_农田占比%,,0.227878,,top3 排序（entropy）,
+phase,baseline9,entropy,2011-2023,1.0,X8_草地变化率,Impact,0.367522,0.3675,2011-2023 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,baseline9,entropy,2011-2023,2.0,X7_农田占比%,Pressure,0.26525,0.2653,2011-2023 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,baseline9,entropy,2011-2023,3.0,X1_降水mm,Driving,0.109598,0.1096,2011-2023 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,baseline9,entropy,2011-2023,4.0,X5_水域占比%,State,0.076693,0.0767,2011-2023 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,baseline9,entropy,2011-2023,5.0,X4_森林占比%,State,0.060612,0.0606,2011-2023 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase,baseline9,entropy,2011-2023,6.0,X2_气温C,Driving,0.046422,0.0464,2011-2023 阶段 · entropy 权重方案下第 6 位障碍因子,
+phase,baseline9,entropy,2011-2023,7.0,X3_草地占比%,State,0.037307,0.0373,2011-2023 阶段 · entropy 权重方案下第 7 位障碍因子,
+phase,baseline9,entropy,2011-2023,8.0,X9_生态用地%,Response,0.018858,0.0189,2011-2023 阶段 · entropy 权重方案下第 8 位障碍因子,
+phase,baseline9,entropy,2011-2023,9.0,X6_裸地荒漠%,Pressure,0.017738,0.0177,2011-2023 阶段 · entropy 权重方案下第 9 位障碍因子,
+phase_topsummary,baseline9,entropy,2011-2023,,X8_草地变化率 > X7_农田占比% > X1_降水mm,,0.367522,,top3 排序（entropy）,
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.238938,,该年最大障碍因子,2005.0
+year_top1,baseline9,entropy,,1.0,X5_水域占比%,State,0.237746,,该年最大障碍因子,2006.0
+year_top1,baseline9,entropy,,1.0,X5_水域占比%,State,0.270648,,该年最大障碍因子,2007.0
+year_top1,baseline9,entropy,,1.0,X5_水域占比%,State,0.209838,,该年最大障碍因子,2008.0
+year_top1,baseline9,entropy,,1.0,X5_水域占比%,State,0.234036,,该年最大障碍因子,2009.0
+year_top1,baseline9,entropy,,1.0,X7_农田占比%,Pressure,0.304213,,该年最大障碍因子,2010.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.294114,,该年最大障碍因子,2011.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.309381,,该年最大障碍因子,2012.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.303494,,该年最大障碍因子,2013.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.306333,,该年最大障碍因子,2014.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.304073,,该年最大障碍因子,2015.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.439621,,该年最大障碍因子,2016.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.469568,,该年最大障碍因子,2017.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.464382,,该年最大障碍因子,2018.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.478799,,该年最大障碍因子,2019.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.394456,,该年最大障碍因子,2020.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.360754,,该年最大障碍因子,2021.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.334698,,该年最大障碍因子,2022.0
+year_top1,baseline9,entropy,,1.0,X8_草地变化率,Impact,0.318107,,该年最大障碍因子,2023.0
+phase,baseline9,ahp,2005-2010,1.0,X4_森林占比%,State,0.245754,0.2458,2005-2010 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,baseline9,ahp,2005-2010,2.0,X5_水域占比%,State,0.242928,0.2429,2005-2010 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,baseline9,ahp,2005-2010,3.0,X9_生态用地%,Response,0.229647,0.2296,2005-2010 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,baseline9,ahp,2005-2010,4.0,X3_草地占比%,State,0.128086,0.1281,2005-2010 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,baseline9,ahp,2005-2010,5.0,X6_裸地荒漠%,Pressure,0.038318,0.0383,2005-2010 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase,baseline9,ahp,2005-2010,6.0,X1_降水mm,Driving,0.035104,0.0351,2005-2010 阶段 · ahp 权重方案下第 6 位障碍因子,
+phase,baseline9,ahp,2005-2010,7.0,X7_农田占比%,Pressure,0.029917,0.0299,2005-2010 阶段 · ahp 权重方案下第 7 位障碍因子,
+phase,baseline9,ahp,2005-2010,8.0,X2_气温C,Driving,0.028195,0.0282,2005-2010 阶段 · ahp 权重方案下第 8 位障碍因子,
+phase,baseline9,ahp,2005-2010,9.0,X8_草地变化率,Impact,0.022052,0.0221,2005-2010 阶段 · ahp 权重方案下第 9 位障碍因子,
+phase_topsummary,baseline9,ahp,2005-2010,,X4_森林占比% > X5_水域占比% > X9_生态用地%,,0.245754,,top3 排序（ahp）,
+phase,baseline9,ahp,2011-2023,1.0,X8_草地变化率,Impact,0.317183,0.3172,2011-2023 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,baseline9,ahp,2011-2023,2.0,X5_水域占比%,State,0.142708,0.1427,2011-2023 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,baseline9,ahp,2011-2023,3.0,X4_森林占比%,State,0.123979,0.124,2011-2023 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,baseline9,ahp,2011-2023,4.0,X9_生态用地%,Response,0.109353,0.1094,2011-2023 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,baseline9,ahp,2011-2023,5.0,X3_草地占比%,State,0.099782,0.0998,2011-2023 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase,baseline9,ahp,2011-2023,6.0,X7_农田占比%,Pressure,0.090062,0.0901,2011-2023 阶段 · ahp 权重方案下第 6 位障碍因子,
+phase,baseline9,ahp,2011-2023,7.0,X1_降水mm,Driving,0.057701,0.0577,2011-2023 阶段 · ahp 权重方案下第 7 位障碍因子,
+phase,baseline9,ahp,2011-2023,8.0,X2_气温C,Driving,0.042306,0.0423,2011-2023 阶段 · ahp 权重方案下第 8 位障碍因子,
+phase,baseline9,ahp,2011-2023,9.0,X6_裸地荒漠%,Pressure,0.016926,0.0169,2011-2023 阶段 · ahp 权重方案下第 9 位障碍因子,
+phase_topsummary,baseline9,ahp,2011-2023,,X8_草地变化率 > X5_水域占比% > X4_森林占比%,,0.317183,,top3 排序（ahp）,
+year_top1,baseline9,ahp,,1.0,X9_生态用地%,Response,0.288237,,该年最大障碍因子,2005.0
+year_top1,baseline9,ahp,,1.0,X9_生态用地%,Response,0.31059,,该年最大障碍因子,2006.0
+year_top1,baseline9,ahp,,1.0,X9_生态用地%,Response,0.290512,,该年最大障碍因子,2007.0
+year_top1,baseline9,ahp,,1.0,X4_森林占比%,State,0.233315,,该年最大障碍因子,2008.0
+year_top1,baseline9,ahp,,1.0,X4_森林占比%,State,0.284289,,该年最大障碍因子,2009.0
+year_top1,baseline9,ahp,,1.0,X4_森林占比%,State,0.352096,,该年最大障碍因子,2010.0
+year_top1,baseline9,ahp,,1.0,X5_水域占比%,State,0.248322,,该年最大障碍因子,2011.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.256011,,该年最大障碍因子,2012.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.276081,,该年最大障碍因子,2013.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.283936,,该年最大障碍因子,2014.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.300724,,该年最大障碍因子,2015.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.41366,,该年最大障碍因子,2016.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.416185,,该年最大障碍因子,2017.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.387989,,该年最大障碍因子,2018.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.383944,,该年最大障碍因子,2019.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.336709,,该年最大障碍因子,2020.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.286603,,该年最大障碍因子,2021.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.272424,,该年最大障碍因子,2022.0
+year_top1,baseline9,ahp,,1.0,X8_草地变化率,Impact,0.262902,,该年最大障碍因子,2023.0
+phase,baseline9,combined(alpha=0.4),2005-2010,1.0,X5_水域占比%,State,0.232338,0.2323,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2005-2010,2.0,X4_森林占比%,State,0.22169,0.2217,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2005-2010,3.0,X9_生态用地%,Response,0.143794,0.1438,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2005-2010,4.0,X3_草地占比%,State,0.105181,0.1052,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2005-2010,5.0,X7_农田占比%,Pressure,0.089115,0.0891,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2005-2010,6.0,X1_降水mm,Driving,0.076765,0.0768,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 6 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2005-2010,7.0,X6_裸地荒漠%,Pressure,0.055675,0.0557,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 7 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2005-2010,8.0,X2_气温C,Driving,0.040495,0.0405,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 8 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2005-2010,9.0,X8_草地变化率,Impact,0.034947,0.0349,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 9 位障碍因子,
+phase_topsummary,baseline9,combined(alpha=0.4),2005-2010,,X5_水域占比% > X4_森林占比% > X9_生态用地%,,0.232338,,top3 排序（combined(alpha=0.4)）,
+phase,baseline9,combined(alpha=0.4),2011-2023,1.0,X8_草地变化率,Impact,0.35113,0.3511,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2011-2023,2.0,X7_农田占比%,Pressure,0.209205,0.2092,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2011-2023,3.0,X5_水域占比%,State,0.097236,0.0972,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2011-2023,4.0,X1_降水mm,Driving,0.093045,0.093,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2011-2023,5.0,X4_森林占比%,State,0.080543,0.0805,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2011-2023,6.0,X3_草地占比%,State,0.057794,0.0578,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 6 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2011-2023,7.0,X9_生态用地%,Response,0.048517,0.0485,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 7 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2011-2023,8.0,X2_气温C,Driving,0.045065,0.0451,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 8 位障碍因子,
+phase,baseline9,combined(alpha=0.4),2011-2023,9.0,X6_裸地荒漠%,Pressure,0.017466,0.0175,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 9 位障碍因子,
+phase_topsummary,baseline9,combined(alpha=0.4),2011-2023,,X8_草地变化率 > X7_农田占比% > X5_水域占比%,,0.35113,,top3 排序（combined(alpha=0.4)）,
+year_top1,baseline9,combined(alpha=0.4),,1.0,X9_生态用地%,Response,0.182593,,该年最大障碍因子,2005.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.221958,,该年最大障碍因子,2006.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.249575,,该年最大障碍因子,2007.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.218944,,该年最大障碍因子,2008.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.25299,,该年最大障碍因子,2009.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.278652,,该年最大障碍因子,2010.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.278503,,该年最大障碍因子,2011.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.29185,,该年最大障碍因子,2012.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.295052,,该年最大障碍因子,2013.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.299525,,该年最大障碍因子,2014.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.3031,,该年最大障碍因子,2015.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.431812,,该年最大障碍因子,2016.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.452832,,该年最大障碍因子,2017.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.43945,,该年最大障碍因子,2018.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.44698,,该年最大障碍因子,2019.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.375881,,该年最大障碍因子,2020.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.335726,,该年最大障碍因子,2021.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.314015,,该年最大障碍因子,2022.0
+year_top1,baseline9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.299958,,该年最大障碍因子,2023.0
+phase,baseline9,equal,2005-2010,1.0,X4_森林占比%,State,0.195701,0.1957,2005-2010 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,baseline9,equal,2005-2010,2.0,X5_水域占比%,State,0.193599,0.1936,2005-2010 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,baseline9,equal,2005-2010,3.0,X6_裸地荒漠%,Pressure,0.115226,0.1152,2005-2010 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,baseline9,equal,2005-2010,4.0,X9_生态用地%,Response,0.112627,0.1126,2005-2010 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,baseline9,equal,2005-2010,5.0,X3_草地占比%,State,0.10815,0.1081,2005-2010 阶段 · equal 权重方案下第 5 位障碍因子,
+phase,baseline9,equal,2005-2010,6.0,X1_降水mm,Driving,0.097915,0.0979,2005-2010 阶段 · equal 权重方案下第 6 位障碍因子,
+phase,baseline9,equal,2005-2010,7.0,X7_农田占比%,Pressure,0.079933,0.0799,2005-2010 阶段 · equal 权重方案下第 7 位障碍因子,
+phase,baseline9,equal,2005-2010,8.0,X2_气温C,Driving,0.078215,0.0782,2005-2010 阶段 · equal 权重方案下第 8 位障碍因子,
+phase,baseline9,equal,2005-2010,9.0,X8_草地变化率,Impact,0.018634,0.0186,2005-2010 阶段 · equal 权重方案下第 9 位障碍因子,
+phase_topsummary,baseline9,equal,2005-2010,,X4_森林占比% > X5_水域占比% > X6_裸地荒漠%,,0.195701,,top3 排序（equal）,
+phase,baseline9,equal,2011-2023,1.0,X7_农田占比%,Pressure,0.218279,0.2183,2011-2023 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,baseline9,equal,2011-2023,2.0,X8_草地变化率,Impact,0.212496,0.2125,2011-2023 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,baseline9,equal,2011-2023,3.0,X1_降水mm,Driving,0.13677,0.1368,2011-2023 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,baseline9,equal,2011-2023,4.0,X2_气温C,Driving,0.100938,0.1009,2011-2023 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,baseline9,equal,2011-2023,5.0,X5_水域占比%,State,0.094093,0.0941,2011-2023 阶段 · equal 权重方案下第 5 位障碍因子,
+phase,baseline9,equal,2011-2023,6.0,X4_森林占比%,State,0.082566,0.0826,2011-2023 阶段 · equal 权重方案下第 6 位障碍因子,
+phase,baseline9,equal,2011-2023,7.0,X3_草地占比%,State,0.069027,0.069,2011-2023 阶段 · equal 权重方案下第 7 位障碍因子,
+phase,baseline9,equal,2011-2023,8.0,X9_生态用地%,Response,0.043998,0.044,2011-2023 阶段 · equal 权重方案下第 8 位障碍因子,
+phase,baseline9,equal,2011-2023,9.0,X6_裸地荒漠%,Pressure,0.041833,0.0418,2011-2023 阶段 · equal 权重方案下第 9 位障碍因子,
+phase_topsummary,baseline9,equal,2011-2023,,X7_农田占比% > X8_草地变化率 > X1_降水mm,,0.218279,,top3 排序（equal）,
+year_top1,baseline9,equal,,1.0,X3_草地占比%,State,0.14905,,该年最大障碍因子,2005.0
+year_top1,baseline9,equal,,1.0,X4_森林占比%,State,0.18391,,该年最大障碍因子,2006.0
+year_top1,baseline9,equal,,1.0,X4_森林占比%,State,0.210252,,该年最大障碍因子,2007.0
+year_top1,baseline9,equal,,1.0,X2_气温C,Driving,0.171478,,该年最大障碍因子,2008.0
+year_top1,baseline9,equal,,1.0,X4_森林占比%,State,0.215654,,该年最大障碍因子,2009.0
+year_top1,baseline9,equal,,1.0,X4_森林占比%,State,0.244139,,该年最大障碍因子,2010.0
+year_top1,baseline9,equal,,1.0,X1_降水mm,Driving,0.19328,,该年最大障碍因子,2011.0
+year_top1,baseline9,equal,,1.0,X2_气温C,Driving,0.267191,,该年最大障碍因子,2012.0
+year_top1,baseline9,equal,,1.0,X1_降水mm,Driving,0.217053,,该年最大障碍因子,2013.0
+year_top1,baseline9,equal,,1.0,X7_农田占比%,Pressure,0.223595,,该年最大障碍因子,2014.0
+year_top1,baseline9,equal,,1.0,X7_农田占比%,Pressure,0.25002,,该年最大障碍因子,2015.0
+year_top1,baseline9,equal,,1.0,X8_草地变化率,Impact,0.282416,,该年最大障碍因子,2016.0
+year_top1,baseline9,equal,,1.0,X8_草地变化率,Impact,0.307078,,该年最大障碍因子,2017.0
+year_top1,baseline9,equal,,1.0,X8_草地变化率,Impact,0.272904,,该年最大障碍因子,2018.0
+year_top1,baseline9,equal,,1.0,X8_草地变化率,Impact,0.282944,,该年最大障碍因子,2019.0
+year_top1,baseline9,equal,,1.0,X8_草地变化率,Impact,0.215498,,该年最大障碍因子,2020.0
+year_top1,baseline9,equal,,1.0,X7_农田占比%,Pressure,0.229957,,该年最大障碍因子,2021.0
+year_top1,baseline9,equal,,1.0,X7_农田占比%,Pressure,0.226758,,该年最大障碍因子,2022.0
+year_top1,baseline9,equal,,1.0,X1_降水mm,Driving,0.23088,,该年最大障碍因子,2023.0
+phase,drop_X9,entropy,2005-2010,1.0,X5_水域占比%,State,0.24552,0.2455,2005-2010 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,drop_X9,entropy,2005-2010,2.0,X4_森林占比%,State,0.222313,0.2223,2005-2010 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,drop_X9,entropy,2005-2010,3.0,X7_农田占比%,Pressure,0.138486,0.1385,2005-2010 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,drop_X9,entropy,2005-2010,4.0,X1_降水mm,Driving,0.117311,0.1173,2005-2010 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,drop_X9,entropy,2005-2010,5.0,X3_草地占比%,State,0.094319,0.0943,2005-2010 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase,drop_X9,entropy,2005-2010,6.0,X6_裸地荒漠%,Pressure,0.077985,0.078,2005-2010 阶段 · entropy 权重方案下第 6 位障碍因子,
+phase,drop_X9,entropy,2005-2010,7.0,X2_气温C,Driving,0.053829,0.0538,2005-2010 阶段 · entropy 权重方案下第 7 位障碍因子,
+phase,drop_X9,entropy,2005-2010,8.0,X8_草地变化率,Impact,0.050236,0.0502,2005-2010 阶段 · entropy 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X9,entropy,2005-2010,,X5_水域占比% > X4_森林占比% > X7_农田占比%,,0.24552,,top3 排序（entropy）,
+phase,drop_X9,entropy,2011-2023,1.0,X8_草地变化率,Impact,0.374913,0.3749,2011-2023 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,drop_X9,entropy,2011-2023,2.0,X7_农田占比%,Pressure,0.27059,0.2706,2011-2023 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,drop_X9,entropy,2011-2023,3.0,X1_降水mm,Driving,0.111869,0.1119,2011-2023 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,drop_X9,entropy,2011-2023,4.0,X5_水域占比%,State,0.077363,0.0774,2011-2023 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,drop_X9,entropy,2011-2023,5.0,X4_森林占比%,State,0.061292,0.0613,2011-2023 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase,drop_X9,entropy,2011-2023,6.0,X2_气温C,Driving,0.047121,0.0471,2011-2023 阶段 · entropy 权重方案下第 6 位障碍因子,
+phase,drop_X9,entropy,2011-2023,7.0,X3_草地占比%,State,0.038554,0.0386,2011-2023 阶段 · entropy 权重方案下第 7 位障碍因子,
+phase,drop_X9,entropy,2011-2023,8.0,X6_裸地荒漠%,Pressure,0.018298,0.0183,2011-2023 阶段 · entropy 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X9,entropy,2011-2023,,X8_草地变化率 > X7_农田占比% > X1_降水mm,,0.374913,,top3 排序（entropy）,
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.262464,,该年最大障碍因子,2005.0
+year_top1,drop_X9,entropy,,1.0,X5_水域占比%,State,0.266315,,该年最大障碍因子,2006.0
+year_top1,drop_X9,entropy,,1.0,X5_水域占比%,State,0.301679,,该年最大障碍因子,2007.0
+year_top1,drop_X9,entropy,,1.0,X5_水域占比%,State,0.223716,,该年最大障碍因子,2008.0
+year_top1,drop_X9,entropy,,1.0,X5_水域占比%,State,0.245155,,该年最大障碍因子,2009.0
+year_top1,drop_X9,entropy,,1.0,X7_农田占比%,Pressure,0.309304,,该年最大障碍因子,2010.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.296473,,该年最大障碍因子,2011.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.311335,,该年最大障碍因子,2012.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.304745,,该年最大障碍因子,2013.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.306969,,该年最大障碍因子,2014.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.304073,,该年最大障碍因子,2015.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.442604,,该年最大障碍因子,2016.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.476417,,该年最大障碍因子,2017.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.474483,,该年最大障碍因子,2018.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.49321,,该年最大障碍因子,2019.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.406672,,该年最大障碍因子,2020.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.375937,,该年最大障碍因子,2021.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.348929,,该年最大障碍因子,2022.0
+year_top1,drop_X9,entropy,,1.0,X8_草地变化率,Impact,0.332022,,该年最大障碍因子,2023.0
+phase,drop_X9,ahp,2005-2010,1.0,X4_森林占比%,State,0.315342,0.3153,2005-2010 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,drop_X9,ahp,2005-2010,2.0,X5_水域占比%,State,0.311963,0.312,2005-2010 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,drop_X9,ahp,2005-2010,3.0,X3_草地占比%,State,0.174598,0.1746,2005-2010 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,drop_X9,ahp,2005-2010,4.0,X6_裸地荒漠%,Pressure,0.05179,0.0518,2005-2010 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,drop_X9,ahp,2005-2010,5.0,X1_降水mm,Driving,0.04456,0.0446,2005-2010 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase,drop_X9,ahp,2005-2010,6.0,X2_气温C,Driving,0.035841,0.0358,2005-2010 阶段 · ahp 权重方案下第 6 位障碍因子,
+phase,drop_X9,ahp,2005-2010,7.0,X7_农田占比%,Pressure,0.035784,0.0358,2005-2010 阶段 · ahp 权重方案下第 7 位障碍因子,
+phase,drop_X9,ahp,2005-2010,8.0,X8_草地变化率,Impact,0.030122,0.0301,2005-2010 阶段 · ahp 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X9,ahp,2005-2010,,X4_森林占比% > X5_水域占比% > X3_草地占比%,,0.315342,,top3 排序（ahp）,
+phase,drop_X9,ahp,2011-2023,1.0,X8_草地变化率,Impact,0.359168,0.3592,2011-2023 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,drop_X9,ahp,2011-2023,2.0,X5_水域占比%,State,0.150571,0.1506,2011-2023 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,drop_X9,ahp,2011-2023,3.0,X4_森林占比%,State,0.13277,0.1328,2011-2023 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,drop_X9,ahp,2011-2023,4.0,X3_草地占比%,State,0.122785,0.1228,2011-2023 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,drop_X9,ahp,2011-2023,5.0,X7_农田占比%,Pressure,0.101999,0.102,2011-2023 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase,drop_X9,ahp,2011-2023,6.0,X1_降水mm,Driving,0.065704,0.0657,2011-2023 阶段 · ahp 权重方案下第 6 位障碍因子,
+phase,drop_X9,ahp,2011-2023,7.0,X2_气温C,Driving,0.046404,0.0464,2011-2023 阶段 · ahp 权重方案下第 7 位障碍因子,
+phase,drop_X9,ahp,2011-2023,8.0,X6_裸地荒漠%,Pressure,0.020599,0.0206,2011-2023 阶段 · ahp 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X9,ahp,2011-2023,,X8_草地变化率 > X5_水域占比% > X4_森林占比%,,0.359168,,top3 排序（ahp）,
+year_top1,drop_X9,ahp,,1.0,X3_草地占比%,State,0.23648,,该年最大障碍因子,2005.0
+year_top1,drop_X9,ahp,,1.0,X4_森林占比%,State,0.29944,,该年最大障碍因子,2006.0
+year_top1,drop_X9,ahp,,1.0,X4_森林占比%,State,0.324275,,该年最大障碍因子,2007.0
+year_top1,drop_X9,ahp,,1.0,X4_森林占比%,State,0.302293,,该年最大障碍因子,2008.0
+year_top1,drop_X9,ahp,,1.0,X4_森林占比%,State,0.347263,,该年最大障碍因子,2009.0
+year_top1,drop_X9,ahp,,1.0,X4_森林占比%,State,0.382303,,该年最大障碍因子,2010.0
+year_top1,drop_X9,ahp,,1.0,X5_水域占比%,State,0.26045,,该年最大障碍因子,2011.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.265657,,该年最大障碍因子,2012.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.283481,,该年最大障碍因子,2013.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.287799,,该年最大障碍因子,2014.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.300724,,该年最大障碍因子,2015.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.432849,,该年最大障碍因子,2016.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.456874,,该年最大障碍因子,2017.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.443078,,该年最大障碍因子,2018.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.459142,,该年最大障碍因子,2019.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.41024,,该年最大障碍因子,2020.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.369466,,该年最大障碍因子,2021.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.354738,,该年最大障碍因子,2022.0
+year_top1,drop_X9,ahp,,1.0,X8_草地变化率,Impact,0.346892,,该年最大障碍因子,2023.0
+phase,drop_X9,combined(alpha=0.4),2005-2010,1.0,X5_水域占比%,State,0.27462,0.2746,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2005-2010,2.0,X4_森林占比%,State,0.263541,0.2635,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2005-2010,3.0,X3_草地占比%,State,0.131697,0.1317,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2005-2010,4.0,X7_农田占比%,Pressure,0.093418,0.0934,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2005-2010,5.0,X1_降水mm,Driving,0.084544,0.0845,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2005-2010,6.0,X6_裸地荒漠%,Pressure,0.065542,0.0655,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 6 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2005-2010,7.0,X2_气温C,Driving,0.045664,0.0457,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 7 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2005-2010,8.0,X8_草地变化率,Impact,0.040974,0.041,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X9,combined(alpha=0.4),2005-2010,,X5_水域占比% > X4_森林占比% > X3_草地占比%,,0.27462,,top3 排序（combined(alpha=0.4)）,
+phase,drop_X9,combined(alpha=0.4),2011-2023,1.0,X8_草地变化率,Impact,0.369227,0.3692,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2011-2023,2.0,X7_农田占比%,Pressure,0.212129,0.2121,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2011-2023,3.0,X5_水域占比%,State,0.103132,0.1031,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2011-2023,4.0,X1_降水mm,Driving,0.095951,0.096,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2011-2023,5.0,X4_森林占比%,State,0.086501,0.0865,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2011-2023,6.0,X3_草地占比%,State,0.067157,0.0672,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 6 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2011-2023,7.0,X2_气温C,Driving,0.04683,0.0468,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 7 位障碍因子,
+phase,drop_X9,combined(alpha=0.4),2011-2023,8.0,X6_裸地荒漠%,Pressure,0.019072,0.0191,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X9,combined(alpha=0.4),2011-2023,,X8_草地变化率 > X7_农田占比% > X5_水域占比%,,0.369227,,top3 排序（combined(alpha=0.4)）,
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.212777,,该年最大障碍因子,2005.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.281981,,该年最大障碍因子,2006.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.311871,,该年最大障碍因子,2007.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.25705,,该年最大障碍因子,2008.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.286917,,该年最大障碍因子,2009.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.297124,,该年最大障碍因子,2010.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.282389,,该年最大障碍因子,2011.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.294289,,该年最大障碍因子,2012.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.297234,,该年最大障碍因子,2013.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.300232,,该年最大障碍因子,2014.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.302936,,该年最大障碍因子,2015.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.439269,,该年最大障碍因子,2016.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.469649,,该年最大障碍因子,2017.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.463418,,该年最大障碍因子,2018.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.481182,,该年最大障碍因子,2019.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.407867,,该年最大障碍因子,2020.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.373732,,该年最大障碍因子,2021.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.350864,,该年最大障碍因子,2022.0
+year_top1,drop_X9,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.336887,,该年最大障碍因子,2023.0
+phase,drop_X9,equal,2005-2010,1.0,X4_森林占比%,State,0.219965,0.22,2005-2010 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,drop_X9,equal,2005-2010,2.0,X5_水域占比%,State,0.217689,0.2177,2005-2010 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,drop_X9,equal,2005-2010,3.0,X6_裸地荒漠%,Pressure,0.132835,0.1328,2005-2010 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,drop_X9,equal,2005-2010,4.0,X3_草地占比%,State,0.125173,0.1252,2005-2010 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,drop_X9,equal,2005-2010,5.0,X1_降水mm,Driving,0.109098,0.1091,2005-2010 阶段 · equal 权重方案下第 5 位障碍因子,
+phase,drop_X9,equal,2005-2010,6.0,X2_气温C,Driving,0.087076,0.0871,2005-2010 阶段 · equal 权重方案下第 6 位障碍因子,
+phase,drop_X9,equal,2005-2010,7.0,X7_农田占比%,Pressure,0.086544,0.0865,2005-2010 阶段 · equal 权重方案下第 7 位障碍因子,
+phase,drop_X9,equal,2005-2010,8.0,X8_草地变化率,Impact,0.02162,0.0216,2005-2010 阶段 · equal 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X9,equal,2005-2010,,X4_森林占比% > X5_水域占比% > X6_裸地荒漠%,,0.219965,,top3 排序（equal）,
+phase,drop_X9,equal,2011-2023,1.0,X7_农田占比%,Pressure,0.228771,0.2288,2011-2023 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,drop_X9,equal,2011-2023,2.0,X8_草地变化率,Impact,0.222784,0.2228,2011-2023 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,drop_X9,equal,2011-2023,3.0,X1_降水mm,Driving,0.14335,0.1433,2011-2023 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,drop_X9,equal,2011-2023,4.0,X2_气温C,Driving,0.10463,0.1046,2011-2023 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,drop_X9,equal,2011-2023,5.0,X5_水域占比%,State,0.096118,0.0961,2011-2023 阶段 · equal 权重方案下第 5 位障碍因子,
+phase,drop_X9,equal,2011-2023,6.0,X4_森林占比%,State,0.084842,0.0848,2011-2023 阶段 · equal 权重方案下第 6 位障碍因子,
+phase,drop_X9,equal,2011-2023,7.0,X3_草地占比%,State,0.074524,0.0745,2011-2023 阶段 · equal 权重方案下第 7 位障碍因子,
+phase,drop_X9,equal,2011-2023,8.0,X6_裸地荒漠%,Pressure,0.04498,0.045,2011-2023 阶段 · equal 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X9,equal,2011-2023,,X7_农田占比% > X8_草地变化率 > X1_降水mm,,0.228771,,top3 排序（equal）,
+year_top1,drop_X9,equal,,1.0,X3_草地占比%,State,0.175157,,该年最大障碍因子,2005.0
+year_top1,drop_X9,equal,,1.0,X4_森林占比%,State,0.219352,,该年最大障碍因子,2006.0
+year_top1,drop_X9,equal,,1.0,X4_森林占比%,State,0.248828,,该年最大障碍因子,2007.0
+year_top1,drop_X9,equal,,1.0,X2_气温C,Driving,0.190061,,该年最大障碍因子,2008.0
+year_top1,drop_X9,equal,,1.0,X4_森林占比%,State,0.234491,,该年最大障碍因子,2009.0
+year_top1,drop_X9,equal,,1.0,X4_森林占比%,State,0.252208,,该年最大障碍因子,2010.0
+year_top1,drop_X9,equal,,1.0,X1_降水mm,Driving,0.196825,,该年最大障碍因子,2011.0
+year_top1,drop_X9,equal,,1.0,X2_气温C,Driving,0.270889,,该年最大障碍因子,2012.0
+year_top1,drop_X9,equal,,1.0,X1_降水mm,Driving,0.219237,,该年最大障碍因子,2013.0
+year_top1,drop_X9,equal,,1.0,X7_农田占比%,Pressure,0.224687,,该年最大障碍因子,2014.0
+year_top1,drop_X9,equal,,1.0,X7_农田占比%,Pressure,0.25002,,该年最大障碍因子,2015.0
+year_top1,drop_X9,equal,,1.0,X8_草地变化率,Impact,0.287586,,该年最大障碍因子,2016.0
+year_top1,drop_X9,equal,,1.0,X8_草地变化率,Impact,0.31955,,该年最大障碍因子,2017.0
+year_top1,drop_X9,equal,,1.0,X8_草地变化率,Impact,0.287856,,该年最大障碍因子,2018.0
+year_top1,drop_X9,equal,,1.0,X8_草地变化率,Impact,0.304794,,该年最大障碍因子,2019.0
+year_top1,drop_X9,equal,,1.0,X8_草地变化率,Impact,0.231255,,该年最大障碍因子,2020.0
+year_top1,drop_X9,equal,,1.0,X7_农田占比%,Pressure,0.253002,,该年最大障碍因子,2021.0
+year_top1,drop_X9,equal,,1.0,X7_农田占比%,Pressure,0.249545,,该年最大障碍因子,2022.0
+year_top1,drop_X9,equal,,1.0,X1_降水mm,Driving,0.254921,,该年最大障碍因子,2023.0
+phase,drop_X8,entropy,2005-2010,1.0,X5_水域占比%,State,0.238527,0.2385,2005-2010 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,drop_X8,entropy,2005-2010,2.0,X4_森林占比%,State,0.21596,0.216,2005-2010 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,drop_X8,entropy,2005-2010,3.0,X7_农田占比%,Pressure,0.13319,0.1332,2005-2010 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,drop_X8,entropy,2005-2010,4.0,X1_降水mm,Driving,0.114611,0.1146,2005-2010 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,drop_X8,entropy,2005-2010,5.0,X3_草地占比%,State,0.092264,0.0923,2005-2010 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase,drop_X8,entropy,2005-2010,6.0,X6_裸地荒漠%,Pressure,0.076217,0.0762,2005-2010 阶段 · entropy 权重方案下第 6 位障碍因子,
+phase,drop_X8,entropy,2005-2010,7.0,X9_生态用地%,Response,0.075549,0.0755,2005-2010 阶段 · entropy 权重方案下第 7 位障碍因子,
+phase,drop_X8,entropy,2005-2010,8.0,X2_气温C,Driving,0.053682,0.0537,2005-2010 阶段 · entropy 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X8,entropy,2005-2010,,X5_水域占比% > X4_森林占比% > X7_农田占比%,,0.238527,,top3 排序（entropy）,
+phase,drop_X8,entropy,2011-2023,1.0,X7_农田占比%,Pressure,0.425254,0.4253,2011-2023 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,drop_X8,entropy,2011-2023,2.0,X1_降水mm,Driving,0.167228,0.1672,2011-2023 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,drop_X8,entropy,2011-2023,3.0,X5_水域占比%,State,0.118116,0.1181,2011-2023 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,drop_X8,entropy,2011-2023,4.0,X4_森林占比%,State,0.094992,0.095,2011-2023 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,drop_X8,entropy,2011-2023,5.0,X2_气温C,Driving,0.073364,0.0734,2011-2023 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase,drop_X8,entropy,2011-2023,6.0,X3_草地占比%,State,0.061425,0.0614,2011-2023 阶段 · entropy 权重方案下第 6 位障碍因子,
+phase,drop_X8,entropy,2011-2023,7.0,X9_生态用地%,Response,0.030748,0.0307,2011-2023 阶段 · entropy 权重方案下第 7 位障碍因子,
+phase,drop_X8,entropy,2011-2023,8.0,X6_裸地荒漠%,Pressure,0.028874,0.0289,2011-2023 阶段 · entropy 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X8,entropy,2011-2023,,X7_农田占比% > X1_降水mm > X5_水域占比%,,0.425254,,top3 排序（entropy）,
+year_top1,drop_X8,entropy,,1.0,X5_水域占比%,State,0.230037,,该年最大障碍因子,2005.0
+year_top1,drop_X8,entropy,,1.0,X5_水域占比%,State,0.237746,,该年最大障碍因子,2006.0
+year_top1,drop_X8,entropy,,1.0,X5_水域占比%,State,0.271622,,该年最大障碍因子,2007.0
+year_top1,drop_X8,entropy,,1.0,X5_水域占比%,State,0.211111,,该年最大障碍因子,2008.0
+year_top1,drop_X8,entropy,,1.0,X5_水域占比%,State,0.236648,,该年最大障碍因子,2009.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.309374,,该年最大障碍因子,2010.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.28918,,该年最大障碍因子,2011.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.341809,,该年最大障碍因子,2012.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.36252,,该年最大障碍因子,2013.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.397862,,该年最大障碍因子,2014.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.423771,,该年最大障碍因子,2015.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.461241,,该年最大障碍因子,2016.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.516006,,该年最大障碍因子,2017.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.500994,,该年最大障碍因子,2018.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.526212,,该年最大障碍因子,2019.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.36986,,该年最大障碍因子,2020.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.462012,,该年最大障碍因子,2021.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.440955,,该年最大障碍因子,2022.0
+year_top1,drop_X8,entropy,,1.0,X7_农田占比%,Pressure,0.435874,,该年最大障碍因子,2023.0
+phase,drop_X8,ahp,2005-2010,1.0,X4_森林占比%,State,0.250379,0.2504,2005-2010 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,drop_X8,ahp,2005-2010,2.0,X5_水域占比%,State,0.247532,0.2475,2005-2010 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,drop_X8,ahp,2005-2010,3.0,X9_生态用地%,Response,0.236115,0.2361,2005-2010 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,drop_X8,ahp,2005-2010,4.0,X3_草地占比%,State,0.131818,0.1318,2005-2010 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,drop_X8,ahp,2005-2010,5.0,X6_裸地荒漠%,Pressure,0.039377,0.0394,2005-2010 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase,drop_X8,ahp,2005-2010,6.0,X1_降水mm,Driving,0.035742,0.0357,2005-2010 阶段 · ahp 权重方案下第 6 位障碍因子,
+phase,drop_X8,ahp,2005-2010,7.0,X7_农田占比%,Pressure,0.030144,0.0301,2005-2010 阶段 · ahp 权重方案下第 7 位障碍因子,
+phase,drop_X8,ahp,2005-2010,8.0,X2_气温C,Driving,0.028894,0.0289,2005-2010 阶段 · ahp 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X8,ahp,2005-2010,,X4_森林占比% > X5_水域占比% > X9_生态用地%,,0.250379,,top3 排序（ahp）,
+phase,drop_X8,ahp,2011-2023,1.0,X5_水域占比%,State,0.207349,0.2073,2011-2023 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,drop_X8,ahp,2011-2023,2.0,X4_森林占比%,State,0.181173,0.1812,2011-2023 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,drop_X8,ahp,2011-2023,3.0,X9_生态用地%,Response,0.16112,0.1611,2011-2023 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,drop_X8,ahp,2011-2023,4.0,X3_草地占比%,State,0.148092,0.1481,2011-2023 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,drop_X8,ahp,2011-2023,5.0,X7_农田占比%,Pressure,0.133214,0.1332,2011-2023 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase,drop_X8,ahp,2011-2023,6.0,X1_降水mm,Driving,0.082629,0.0826,2011-2023 阶段 · ahp 权重方案下第 6 位障碍因子,
+phase,drop_X8,ahp,2011-2023,7.0,X2_气温C,Driving,0.06151,0.0615,2011-2023 阶段 · ahp 权重方案下第 7 位障碍因子,
+phase,drop_X8,ahp,2011-2023,8.0,X6_裸地荒漠%,Pressure,0.024912,0.0249,2011-2023 阶段 · ahp 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X8,ahp,2011-2023,,X5_水域占比% > X4_森林占比% > X9_生态用地%,,0.207349,,top3 排序（ahp）,
+year_top1,drop_X8,ahp,,1.0,X9_生态用地%,Response,0.323831,,该年最大障碍因子,2005.0
+year_top1,drop_X8,ahp,,1.0,X9_生态用地%,Response,0.31059,,该年最大障碍因子,2006.0
+year_top1,drop_X8,ahp,,1.0,X9_生态用地%,Response,0.290934,,该年最大障碍因子,2007.0
+year_top1,drop_X8,ahp,,1.0,X4_森林占比%,State,0.234058,,该年最大障碍因子,2008.0
+year_top1,drop_X8,ahp,,1.0,X4_森林占比%,State,0.286095,,该年最大障碍因子,2009.0
+year_top1,drop_X8,ahp,,1.0,X4_森林占比%,State,0.356176,,该年最大障碍因子,2010.0
+year_top1,drop_X8,ahp,,1.0,X5_水域占比%,State,0.329434,,该年最大障碍因子,2011.0
+year_top1,drop_X8,ahp,,1.0,X5_水域占比%,State,0.339561,,该年最大障碍因子,2012.0
+year_top1,drop_X8,ahp,,1.0,X5_水域占比%,State,0.368034,,该年最大障碍因子,2013.0
+year_top1,drop_X8,ahp,,1.0,X5_水域占比%,State,0.374028,,该年最大障碍因子,2014.0
+year_top1,drop_X8,ahp,,1.0,X5_水域占比%,State,0.396294,,该年最大障碍因子,2015.0
+year_top1,drop_X8,ahp,,1.0,X5_水域占比%,State,0.317479,,该年最大障碍因子,2016.0
+year_top1,drop_X8,ahp,,1.0,X5_水域占比%,State,0.240208,,该年最大障碍因子,2017.0
+year_top1,drop_X8,ahp,,1.0,X9_生态用地%,Response,0.203156,,该年最大障碍因子,2018.0
+year_top1,drop_X8,ahp,,1.0,X9_生态用地%,Response,0.265852,,该年最大障碍因子,2019.0
+year_top1,drop_X8,ahp,,1.0,X9_生态用地%,Response,0.270227,,该年最大障碍因子,2020.0
+year_top1,drop_X8,ahp,,1.0,X9_生态用地%,Response,0.314382,,该年最大障碍因子,2021.0
+year_top1,drop_X8,ahp,,1.0,X9_生态用地%,Response,0.318924,,该年最大障碍因子,2022.0
+year_top1,drop_X8,ahp,,1.0,X9_生态用地%,Response,0.32848,,该年最大障碍因子,2023.0
+phase,drop_X8,combined(alpha=0.4),2005-2010,1.0,X5_水域占比%,State,0.239711,0.2397,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2005-2010,2.0,X4_森林占比%,State,0.227918,0.2279,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2005-2010,3.0,X9_生态用地%,Response,0.146119,0.1461,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2005-2010,4.0,X3_草地占比%,State,0.109353,0.1094,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2005-2010,5.0,X7_农田占比%,Pressure,0.092932,0.0929,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2005-2010,6.0,X1_降水mm,Driving,0.081487,0.0815,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 6 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2005-2010,7.0,X6_裸地荒漠%,Pressure,0.059454,0.0595,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 7 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2005-2010,8.0,X2_气温C,Driving,0.043026,0.043,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X8,combined(alpha=0.4),2005-2010,,X5_水域占比% > X4_森林占比% > X9_生态用地%,,0.239711,,top3 排序（combined(alpha=0.4)）,
+phase,drop_X8,combined(alpha=0.4),2011-2023,1.0,X7_农田占比%,Pressure,0.333846,0.3338,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2011-2023,2.0,X5_水域占比%,State,0.144544,0.1445,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2011-2023,3.0,X1_降水mm,Driving,0.141143,0.1411,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2011-2023,4.0,X4_森林占比%,State,0.12101,0.121,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2011-2023,5.0,X3_草地占比%,State,0.089487,0.0895,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2011-2023,6.0,X9_生态用地%,Response,0.072903,0.0729,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 6 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2011-2023,7.0,X2_气温C,Driving,0.069502,0.0695,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 7 位障碍因子,
+phase,drop_X8,combined(alpha=0.4),2011-2023,8.0,X6_裸地荒漠%,Pressure,0.027566,0.0276,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X8,combined(alpha=0.4),2011-2023,,X7_农田占比% > X5_水域占比% > X1_降水mm,,0.333846,,top3 排序（combined(alpha=0.4)）,
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X9_生态用地%,Response,0.21611,,该年最大障碍因子,2005.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.222913,,该年最大障碍因子,2006.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.251484,,该年最大障碍因子,2007.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.219402,,该年最大障碍因子,2008.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.254016,,该年最大障碍因子,2009.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.279948,,该年最大障碍因子,2010.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.241392,,该年最大障碍因子,2011.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.26575,,该年最大障碍因子,2012.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.293283,,该年最大障碍因子,2013.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.324257,,该年最大障碍因子,2014.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.354251,,该年最大障碍因子,2015.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.376076,,该年最大障碍因子,2016.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.407165,,该年最大障碍因子,2017.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.383346,,该年最大障碍因子,2018.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.392583,,该年最大障碍因子,2019.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.288876,,该年最大障碍因子,2020.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.350385,,该年最大障碍因子,2021.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.339368,,该年最大障碍因子,2022.0
+year_top1,drop_X8,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.338379,,该年最大障碍因子,2023.0
+phase,drop_X8,equal,2005-2010,1.0,X4_森林占比%,State,0.198931,0.1989,2005-2010 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,drop_X8,equal,2005-2010,2.0,X5_水域占比%,State,0.196818,0.1968,2005-2010 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,drop_X8,equal,2005-2010,3.0,X6_裸地荒漠%,Pressure,0.118045,0.118,2005-2010 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,drop_X8,equal,2005-2010,4.0,X9_生态用地%,Response,0.115432,0.1154,2005-2010 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,drop_X8,equal,2005-2010,5.0,X3_草地占比%,State,0.110932,0.1109,2005-2010 阶段 · equal 权重方案下第 5 位障碍因子,
+phase,drop_X8,equal,2005-2010,6.0,X1_降水mm,Driving,0.099495,0.0995,2005-2010 阶段 · equal 权重方案下第 6 位障碍因子,
+phase,drop_X8,equal,2005-2010,7.0,X7_农田占比%,Pressure,0.080342,0.0803,2005-2010 阶段 · equal 权重方案下第 7 位障碍因子,
+phase,drop_X8,equal,2005-2010,8.0,X2_气温C,Driving,0.080005,0.08,2005-2010 阶段 · equal 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X8,equal,2005-2010,,X4_森林占比% > X5_水域占比% > X6_裸地荒漠%,,0.198931,,top3 排序（equal）,
+phase,drop_X8,equal,2011-2023,1.0,X7_农田占比%,Pressure,0.279671,0.2797,2011-2023 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,drop_X8,equal,2011-2023,2.0,X1_降水mm,Driving,0.170382,0.1704,2011-2023 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,drop_X8,equal,2011-2023,3.0,X2_气温C,Driving,0.127472,0.1275,2011-2023 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,drop_X8,equal,2011-2023,4.0,X5_水域占比%,State,0.118593,0.1186,2011-2023 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,drop_X8,equal,2011-2023,5.0,X4_森林占比%,State,0.104714,0.1047,2011-2023 阶段 · equal 权重方案下第 5 位障碍因子,
+phase,drop_X8,equal,2011-2023,6.0,X3_草地占比%,State,0.08906,0.0891,2011-2023 阶段 · equal 权重方案下第 6 位障碍因子,
+phase,drop_X8,equal,2011-2023,7.0,X9_生态用地%,Response,0.056465,0.0565,2011-2023 阶段 · equal 权重方案下第 7 位障碍因子,
+phase,drop_X8,equal,2011-2023,8.0,X6_裸地荒漠%,Pressure,0.053642,0.0536,2011-2023 阶段 · equal 权重方案下第 8 位障碍因子,
+phase_topsummary,drop_X8,equal,2011-2023,,X7_农田占比% > X1_降水mm > X2_气温C,,0.279671,,top3 排序（equal）,
+year_top1,drop_X8,equal,,1.0,X3_草地占比%,State,0.164822,,该年最大障碍因子,2005.0
+year_top1,drop_X8,equal,,1.0,X4_森林占比%,State,0.18391,,该年最大障碍因子,2006.0
+year_top1,drop_X8,equal,,1.0,X4_森林占比%,State,0.210526,,该年最大障碍因子,2007.0
+year_top1,drop_X8,equal,,1.0,X2_气温C,Driving,0.171871,,该年最大障碍因子,2008.0
+year_top1,drop_X8,equal,,1.0,X4_森林占比%,State,0.216674,,该年最大障碍因子,2009.0
+year_top1,drop_X8,equal,,1.0,X4_森林占比%,State,0.246061,,该年最大障碍因子,2010.0
+year_top1,drop_X8,equal,,1.0,X1_降水mm,Driving,0.230189,,该年最大障碍因子,2011.0
+year_top1,drop_X8,equal,,1.0,X2_气温C,Driving,0.318851,,该年最大障碍因子,2012.0
+year_top1,drop_X8,equal,,1.0,X1_降水mm,Driving,0.263851,,该年最大障碍因子,2013.0
+year_top1,drop_X8,equal,,1.0,X7_农田占比%,Pressure,0.270419,,该年最大障碍因子,2014.0
+year_top1,drop_X8,equal,,1.0,X7_农田占比%,Pressure,0.304848,,该年最大障碍因子,2015.0
+year_top1,drop_X8,equal,,1.0,X7_农田占比%,Pressure,0.331652,,该年最大障碍因子,2016.0
+year_top1,drop_X8,equal,,1.0,X7_农田占比%,Pressure,0.370241,,该年最大障碍因子,2017.0
+year_top1,drop_X8,equal,,1.0,X7_农田占比%,Pressure,0.310861,,该年最大障碍因子,2018.0
+year_top1,drop_X8,equal,,1.0,X7_农田占比%,Pressure,0.323963,,该年最大障碍因子,2019.0
+year_top1,drop_X8,equal,,1.0,X1_降水mm,Driving,0.268516,,该年最大障碍因子,2020.0
+year_top1,drop_X8,equal,,1.0,X7_农田占比%,Pressure,0.286007,,该年最大障碍因子,2021.0
+year_top1,drop_X8,equal,,1.0,X7_农田占比%,Pressure,0.276701,,该年最大障碍因子,2022.0
+year_top1,drop_X8,equal,,1.0,X1_降水mm,Driving,0.278977,,该年最大障碍因子,2023.0
+phase,drop_X8_X9,entropy,2005-2010,1.0,X5_水域占比%,State,0.258548,0.2585,2005-2010 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,drop_X8_X9,entropy,2005-2010,2.0,X4_森林占比%,State,0.234019,0.234,2005-2010 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,drop_X8_X9,entropy,2005-2010,3.0,X7_农田占比%,Pressure,0.140036,0.14,2005-2010 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,drop_X8_X9,entropy,2005-2010,4.0,X1_降水mm,Driving,0.123403,0.1234,2005-2010 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,drop_X8_X9,entropy,2005-2010,5.0,X3_草地占比%,State,0.10203,0.102,2005-2010 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase,drop_X8_X9,entropy,2005-2010,6.0,X6_裸地荒漠%,Pressure,0.084066,0.0841,2005-2010 阶段 · entropy 权重方案下第 6 位障碍因子,
+phase,drop_X8_X9,entropy,2005-2010,7.0,X2_气温C,Driving,0.057899,0.0579,2005-2010 阶段 · entropy 权重方案下第 7 位障碍因子,
+phase_topsummary,drop_X8_X9,entropy,2005-2010,,X5_水域占比% > X4_森林占比% > X7_农田占比%,,0.258548,,top3 排序（entropy）,
+phase,drop_X8_X9,entropy,2011-2023,1.0,X7_农田占比%,Pressure,0.439835,0.4398,2011-2023 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,drop_X8_X9,entropy,2011-2023,2.0,X1_降水mm,Driving,0.172752,0.1728,2011-2023 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,drop_X8_X9,entropy,2011-2023,3.0,X5_水域占比%,State,0.119948,0.1199,2011-2023 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,drop_X8_X9,entropy,2011-2023,4.0,X4_森林占比%,State,0.096954,0.097,2011-2023 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,drop_X8_X9,entropy,2011-2023,5.0,X2_气温C,Driving,0.075391,0.0754,2011-2023 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase,drop_X8_X9,entropy,2011-2023,6.0,X3_草地占比%,State,0.064761,0.0648,2011-2023 阶段 · entropy 权重方案下第 6 位障碍因子,
+phase,drop_X8_X9,entropy,2011-2023,7.0,X6_裸地荒漠%,Pressure,0.03036,0.0304,2011-2023 阶段 · entropy 权重方案下第 7 位障碍因子,
+phase_topsummary,drop_X8_X9,entropy,2011-2023,,X7_农田占比% > X1_降水mm > X5_水域占比%,,0.439835,,top3 排序（entropy）,
+year_top1,drop_X8_X9,entropy,,1.0,X5_水域占比%,State,0.260747,,该年最大障碍因子,2005.0
+year_top1,drop_X8_X9,entropy,,1.0,X5_水域占比%,State,0.266315,,该年最大障碍因子,2006.0
+year_top1,drop_X8_X9,entropy,,1.0,X5_水域占比%,State,0.30289,,该年最大障碍因子,2007.0
+year_top1,drop_X8_X9,entropy,,1.0,X5_水域占比%,State,0.225164,,该年最大障碍因子,2008.0
+year_top1,drop_X8_X9,entropy,,1.0,X5_水域占比%,State,0.248023,,该年最大障碍因子,2009.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.314641,,该年最大障碍因子,2010.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.292477,,该年最大障碍因子,2011.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.344945,,该年最大障碍因子,2012.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.364669,,该年最大障碍因子,2013.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.399054,,该年最大障碍因子,2014.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.423771,,该年最大障碍因子,2015.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.466856,,该年最大障碍因子,2016.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.530379,,该年最大障碍因子,2017.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.521731,,该年最大障碍因子,2018.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.557463,,该年最大障碍因子,2019.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.389166,,该年最大障碍因子,2020.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.493169,,该年最大障碍因子,2021.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.469751,,该年最大障碍因子,2022.0
+year_top1,drop_X8_X9,entropy,,1.0,X7_农田占比%,Pressure,0.464418,,该年最大障碍因子,2023.0
+phase,drop_X8_X9,ahp,2005-2010,1.0,X4_森林占比%,State,0.324112,0.3241,2005-2010 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,drop_X8_X9,ahp,2005-2010,2.0,X5_水域占比%,State,0.320704,0.3207,2005-2010 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,drop_X8_X9,ahp,2005-2010,3.0,X3_草地占比%,State,0.18221,0.1822,2005-2010 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,drop_X8_X9,ahp,2005-2010,4.0,X6_裸地荒漠%,Pressure,0.053935,0.0539,2005-2010 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,drop_X8_X9,ahp,2005-2010,5.0,X1_降水mm,Driving,0.045758,0.0458,2005-2010 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase,drop_X8_X9,ahp,2005-2010,6.0,X2_气温C,Driving,0.037203,0.0372,2005-2010 阶段 · ahp 权重方案下第 6 位障碍因子,
+phase,drop_X8_X9,ahp,2005-2010,7.0,X7_农田占比%,Pressure,0.036078,0.0361,2005-2010 阶段 · ahp 权重方案下第 7 位障碍因子,
+phase_topsummary,drop_X8_X9,ahp,2005-2010,,X4_森林占比% > X5_水域占比% > X3_草地占比%,,0.324112,,top3 排序（ahp）,
+phase,drop_X8_X9,ahp,2011-2023,1.0,X5_水域占比%,State,0.226368,0.2264,2011-2023 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,drop_X8_X9,ahp,2011-2023,2.0,X4_森林占比%,State,0.203251,0.2033,2011-2023 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,drop_X8_X9,ahp,2011-2023,3.0,X3_草地占比%,State,0.202551,0.2026,2011-2023 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,drop_X8_X9,ahp,2011-2023,4.0,X7_农田占比%,Pressure,0.161973,0.162,2011-2023 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,drop_X8_X9,ahp,2011-2023,5.0,X1_降水mm,Driving,0.100559,0.1006,2011-2023 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase,drop_X8_X9,ahp,2011-2023,6.0,X2_气温C,Driving,0.07174,0.0717,2011-2023 阶段 · ahp 权重方案下第 6 位障碍因子,
+phase,drop_X8_X9,ahp,2011-2023,7.0,X6_裸地荒漠%,Pressure,0.033558,0.0336,2011-2023 阶段 · ahp 权重方案下第 7 位障碍因子,
+phase_topsummary,drop_X8_X9,ahp,2011-2023,,X5_水域占比% > X4_森林占比% > X3_草地占比%,,0.226368,,top3 排序（ahp）,
+year_top1,drop_X8_X9,ahp,,1.0,X3_草地占比%,State,0.279669,,该年最大障碍因子,2005.0
+year_top1,drop_X8_X9,ahp,,1.0,X4_森林占比%,State,0.29944,,该年最大障碍因子,2006.0
+year_top1,drop_X8_X9,ahp,,1.0,X4_森林占比%,State,0.324939,,该年最大障碍因子,2007.0
+year_top1,drop_X8_X9,ahp,,1.0,X4_森林占比%,State,0.303542,,该年最大障碍因子,2008.0
+year_top1,drop_X8_X9,ahp,,1.0,X4_森林占比%,State,0.349962,,该年最大障碍因子,2009.0
+year_top1,drop_X8_X9,ahp,,1.0,X4_森林占比%,State,0.387118,,该年最大障碍因子,2010.0
+year_top1,drop_X8_X9,ahp,,1.0,X5_水域占比%,State,0.351125,,该年最大障碍因子,2011.0
+year_top1,drop_X8_X9,ahp,,1.0,X5_水域占比%,State,0.356985,,该年最大障碍因子,2012.0
+year_top1,drop_X8_X9,ahp,,1.0,X5_水域占比%,State,0.381802,,该年最大障碍因子,2013.0
+year_top1,drop_X8_X9,ahp,,1.0,X5_水域占比%,State,0.381174,,该年最大障碍因子,2014.0
+year_top1,drop_X8_X9,ahp,,1.0,X5_水域占比%,State,0.396294,,该年最大障碍因子,2015.0
+year_top1,drop_X8_X9,ahp,,1.0,X5_水域占比%,State,0.343446,,该年最大障碍因子,2016.0
+year_top1,drop_X8_X9,ahp,,1.0,X5_水域占比%,State,0.283447,,该年最大障碍因子,2017.0
+year_top1,drop_X8_X9,ahp,,1.0,X3_草地占比%,State,0.254413,,该年最大障碍因子,2018.0
+year_top1,drop_X8_X9,ahp,,1.0,X3_草地占比%,State,0.361359,,该年最大障碍因子,2019.0
+year_top1,drop_X8_X9,ahp,,1.0,X3_草地占比%,State,0.369509,,该年最大障碍因子,2020.0
+year_top1,drop_X8_X9,ahp,,1.0,X3_草地占比%,State,0.441212,,该年最大障碍因子,2021.0
+year_top1,drop_X8_X9,ahp,,1.0,X3_草地占比%,State,0.436587,,该年最大障碍因子,2022.0
+year_top1,drop_X8_X9,ahp,,1.0,X3_草地占比%,State,0.443661,,该年最大障碍因子,2023.0
+phase,drop_X8_X9,combined(alpha=0.4),2005-2010,1.0,X5_水域占比%,State,0.284594,0.2846,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2005-2010,2.0,X4_森林占比%,State,0.272426,0.2724,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2005-2010,3.0,X3_草地占比%,State,0.138421,0.1384,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2005-2010,4.0,X7_农田占比%,Pressure,0.096388,0.0964,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2005-2010,5.0,X1_降水mm,Driving,0.089417,0.0894,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2005-2010,6.0,X6_裸地荒漠%,Pressure,0.070087,0.0701,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 6 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2005-2010,7.0,X2_气温C,Driving,0.048668,0.0487,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 7 位障碍因子,
+phase_topsummary,drop_X8_X9,combined(alpha=0.4),2005-2010,,X5_水域占比% > X4_森林占比% > X3_草地占比%,,0.284594,,top3 排序（combined(alpha=0.4)）,
+phase,drop_X8_X9,combined(alpha=0.4),2011-2023,1.0,X7_农田占比%,Pressure,0.346794,0.3468,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2011-2023,2.0,X5_水域占比%,State,0.156122,0.1561,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2011-2023,3.0,X1_降水mm,Driving,0.148912,0.1489,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2011-2023,4.0,X4_森林占比%,State,0.133223,0.1332,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2011-2023,5.0,X3_草地占比%,State,0.10956,0.1096,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2011-2023,6.0,X2_气温C,Driving,0.074027,0.074,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 6 位障碍因子,
+phase,drop_X8_X9,combined(alpha=0.4),2011-2023,7.0,X6_裸地荒漠%,Pressure,0.031363,0.0314,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 7 位障碍因子,
+phase_topsummary,drop_X8_X9,combined(alpha=0.4),2011-2023,,X7_农田占比% > X5_水域占比% > X1_降水mm,,0.346794,,top3 排序（combined(alpha=0.4)）,
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.26978,,该年最大障碍因子,2005.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.281336,,该年最大障碍因子,2006.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.312417,,该年最大障碍因子,2007.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.256966,,该年最大障碍因子,2008.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.287895,,该年最大障碍因子,2009.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.299167,,该年最大障碍因子,2010.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.256855,,该年最大障碍因子,2011.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.266479,,该年最大障碍因子,2012.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.284166,,该年最大障碍因子,2013.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.312093,,该年最大障碍因子,2014.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.339856,,该年最大障碍因子,2015.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.371526,,该年最大障碍因子,2016.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.41666,,该年最大障碍因子,2017.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.403197,,该年最大障碍因子,2018.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.429296,,该年最大障碍因子,2019.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.315171,,该年最大障碍因子,2020.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.394002,,该年最大障碍因子,2021.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.381719,,该年最大障碍因子,2022.0
+year_top1,drop_X8_X9,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.382184,,该年最大障碍因子,2023.0
+phase,drop_X8_X9,equal,2005-2010,1.0,X4_森林占比%,State,0.224352,0.2244,2005-2010 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,drop_X8_X9,equal,2005-2010,2.0,X5_水域占比%,State,0.222063,0.2221,2005-2010 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,drop_X8_X9,equal,2005-2010,3.0,X6_裸地荒漠%,Pressure,0.136761,0.1368,2005-2010 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,drop_X8_X9,equal,2005-2010,4.0,X3_草地占比%,State,0.129059,0.1291,2005-2010 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,drop_X8_X9,equal,2005-2010,5.0,X1_降水mm,Driving,0.111233,0.1112,2005-2010 阶段 · equal 权重方案下第 5 位障碍因子,
+phase,drop_X8_X9,equal,2005-2010,6.0,X2_气温C,Driving,0.089531,0.0895,2005-2010 阶段 · equal 权重方案下第 6 位障碍因子,
+phase,drop_X8_X9,equal,2005-2010,7.0,X7_农田占比%,Pressure,0.087001,0.087,2005-2010 阶段 · equal 权重方案下第 7 位障碍因子,
+phase_topsummary,drop_X8_X9,equal,2005-2010,,X4_森林占比% > X5_水域占比% > X6_裸地荒漠%,,0.224352,,top3 排序（equal）,
+phase,drop_X8_X9,equal,2011-2023,1.0,X7_农田占比%,Pressure,0.297465,0.2975,2011-2023 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,drop_X8_X9,equal,2011-2023,2.0,X1_降水mm,Driving,0.180776,0.1808,2011-2023 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,drop_X8_X9,equal,2011-2023,3.0,X2_气温C,Driving,0.133874,0.1339,2011-2023 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,drop_X8_X9,equal,2011-2023,4.0,X5_水域占比%,State,0.122102,0.1221,2011-2023 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,drop_X8_X9,equal,2011-2023,5.0,X4_森林占比%,State,0.108725,0.1087,2011-2023 阶段 · equal 权重方案下第 5 位障碍因子,
+phase,drop_X8_X9,equal,2011-2023,6.0,X3_草地占比%,State,0.098203,0.0982,2011-2023 阶段 · equal 权重方案下第 6 位障碍因子,
+phase,drop_X8_X9,equal,2011-2023,7.0,X6_裸地荒漠%,Pressure,0.058856,0.0589,2011-2023 阶段 · equal 权重方案下第 7 位障碍因子,
+phase_topsummary,drop_X8_X9,equal,2011-2023,,X7_农田占比% > X1_降水mm > X2_气温C,,0.297465,,top3 排序（equal）,
+year_top1,drop_X8_X9,equal,,1.0,X3_草地占比%,State,0.19735,,该年最大障碍因子,2005.0
+year_top1,drop_X8_X9,equal,,1.0,X4_森林占比%,State,0.219352,,该年最大障碍因子,2006.0
+year_top1,drop_X8_X9,equal,,1.0,X4_森林占比%,State,0.249213,,该年最大障碍因子,2007.0
+year_top1,drop_X8_X9,equal,,1.0,X2_气温C,Driving,0.190545,,该年最大障碍因子,2008.0
+year_top1,drop_X8_X9,equal,,1.0,X4_森林占比%,State,0.235698,,该年最大障碍因子,2009.0
+year_top1,drop_X8_X9,equal,,1.0,X4_森林占比%,State,0.254259,,该年最大障碍因子,2010.0
+year_top1,drop_X8_X9,equal,,1.0,X1_降水mm,Driving,0.235235,,该年最大障碍因子,2011.0
+year_top1,drop_X8_X9,equal,,1.0,X2_气温C,Driving,0.32413,,该年最大障碍因子,2012.0
+year_top1,drop_X8_X9,equal,,1.0,X1_降水mm,Driving,0.267085,,该年最大障碍因子,2013.0
+year_top1,drop_X8_X9,equal,,1.0,X7_农田占比%,Pressure,0.272019,,该年最大障碍因子,2014.0
+year_top1,drop_X8_X9,equal,,1.0,X7_农田占比%,Pressure,0.304848,,该年最大障碍因子,2015.0
+year_top1,drop_X8_X9,equal,,1.0,X7_农田占比%,Pressure,0.340174,,该年最大障碍因子,2016.0
+year_top1,drop_X8_X9,equal,,1.0,X7_农田占比%,Pressure,0.39234,,该年最大障碍因子,2017.0
+year_top1,drop_X8_X9,equal,,1.0,X7_农田占比%,Pressure,0.334778,,该年最大障碍因子,2018.0
+year_top1,drop_X8_X9,equal,,1.0,X7_农田占比%,Pressure,0.35995,,该年最大障碍因子,2019.0
+year_top1,drop_X8_X9,equal,,1.0,X1_降水mm,Driving,0.294056,,该年最大障碍因子,2020.0
+year_top1,drop_X8_X9,equal,,1.0,X7_农田占比%,Pressure,0.322549,,该年最大障碍因子,2021.0
+year_top1,drop_X8_X9,equal,,1.0,X7_农田占比%,Pressure,0.311399,,该年最大障碍因子,2022.0
+year_top1,drop_X8_X9,equal,,1.0,X1_降水mm,Driving,0.314855,,该年最大障碍因子,2023.0
+phase,primary6,entropy,2005-2010,1.0,X5_水域占比%,State,0.283497,0.2835,2005-2010 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,primary6,entropy,2005-2010,2.0,X4_森林占比%,State,0.256517,0.2565,2005-2010 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,primary6,entropy,2005-2010,3.0,X7_农田占比%,Pressure,0.148309,0.1483,2005-2010 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,primary6,entropy,2005-2010,4.0,X1_降水mm,Driving,0.13426,0.1343,2005-2010 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,primary6,entropy,2005-2010,5.0,X3_草地占比%,State,0.11432,0.1143,2005-2010 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase,primary6,entropy,2005-2010,6.0,X2_气温C,Driving,0.063097,0.0631,2005-2010 阶段 · entropy 权重方案下第 6 位障碍因子,
+phase_topsummary,primary6,entropy,2005-2010,,X5_水域占比% > X4_森林占比% > X7_农田占比%,,0.283497,,top3 排序（entropy）,
+phase,primary6,entropy,2011-2023,1.0,X7_农田占比%,Pressure,0.454898,0.4549,2011-2023 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,primary6,entropy,2011-2023,2.0,X1_降水mm,Driving,0.178475,0.1785,2011-2023 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,primary6,entropy,2011-2023,3.0,X5_水域占比%,State,0.12189,0.1219,2011-2023 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,primary6,entropy,2011-2023,4.0,X4_森林占比%,State,0.099026,0.099,2011-2023 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,primary6,entropy,2011-2023,5.0,X2_气温C,Driving,0.077521,0.0775,2011-2023 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase,primary6,entropy,2011-2023,6.0,X3_草地占比%,State,0.06819,0.0682,2011-2023 阶段 · entropy 权重方案下第 6 位障碍因子,
+phase_topsummary,primary6,entropy,2011-2023,,X7_农田占比% > X1_降水mm > X5_水域占比%,,0.454898,,top3 排序（entropy）,
+year_top1,primary6,entropy,,1.0,X5_水域占比%,State,0.300424,,该年最大障碍因子,2005.0
+year_top1,primary6,entropy,,1.0,X5_水域占比%,State,0.302421,,该年最大障碍因子,2006.0
+year_top1,primary6,entropy,,1.0,X5_水域占比%,State,0.342307,,该年最大障碍因子,2007.0
+year_top1,primary6,entropy,,1.0,X5_水域占比%,State,0.241435,,该年最大障碍因子,2008.0
+year_top1,primary6,entropy,,1.0,X5_水域占比%,State,0.261092,,该年最大障碍因子,2009.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.321172,,该年最大障碍因子,2010.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.296515,,该年最大障碍因子,2011.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.348766,,该年最大障碍因子,2012.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.36727,,该年最大障碍因子,2013.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.400487,,该年最大障碍因子,2014.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.423771,,该年最大障碍因子,2015.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.472213,,该年最大障碍因子,2016.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.544511,,该年最大障碍因子,2017.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.542659,,该年最大障碍因子,2018.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.590117,,该年最大障碍因子,2019.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.40906,,该年最大障碍因子,2020.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.525692,,该年最大障碍因子,2021.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.499271,,该年最大障碍因子,2022.0
+year_top1,primary6,entropy,,1.0,X7_农田占比%,Pressure,0.49334,,该年最大障碍因子,2023.0
+phase,primary6,ahp,2005-2010,1.0,X4_森林占比%,State,0.329153,0.3292,2005-2010 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,primary6,ahp,2005-2010,2.0,X5_水域占比%,State,0.325825,0.3258,2005-2010 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,primary6,ahp,2005-2010,3.0,X3_草地占比%,State,0.190582,0.1906,2005-2010 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,primary6,ahp,2005-2010,4.0,X7_农田占比%,Pressure,0.070463,0.0705,2005-2010 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,primary6,ahp,2005-2010,5.0,X1_降水mm,Driving,0.046264,0.0463,2005-2010 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase,primary6,ahp,2005-2010,6.0,X2_气温C,Driving,0.037713,0.0377,2005-2010 阶段 · ahp 权重方案下第 6 位障碍因子,
+phase_topsummary,primary6,ahp,2005-2010,,X4_森林占比% > X5_水域占比% > X3_草地占比%,,0.329153,,top3 排序（ahp）,
+phase,primary6,ahp,2011-2023,1.0,X7_农田占比%,Pressure,0.286438,0.2864,2011-2023 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,primary6,ahp,2011-2023,2.0,X5_水域占比%,State,0.199985,0.2,2011-2023 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,primary6,ahp,2011-2023,3.0,X4_森林占比%,State,0.180208,0.1802,2011-2023 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,primary6,ahp,2011-2023,4.0,X3_草地占比%,State,0.180045,0.18,2011-2023 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,primary6,ahp,2011-2023,5.0,X1_降水mm,Driving,0.089471,0.0895,2011-2023 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase,primary6,ahp,2011-2023,6.0,X2_气温C,Driving,0.063852,0.0639,2011-2023 阶段 · ahp 权重方案下第 6 位障碍因子,
+phase_topsummary,primary6,ahp,2011-2023,,X7_农田占比% > X5_水域占比% > X4_森林占比%,,0.286438,,top3 排序（ahp）,
+year_top1,primary6,ahp,,1.0,X3_草地占比%,State,0.30329,,该年最大障碍因子,2005.0
+year_top1,primary6,ahp,,1.0,X4_森林占比%,State,0.319859,,该年最大障碍因子,2006.0
+year_top1,primary6,ahp,,1.0,X4_森林占比%,State,0.340108,,该年最大障碍因子,2007.0
+year_top1,primary6,ahp,,1.0,X4_森林占比%,State,0.308016,,该年最大障碍因子,2008.0
+year_top1,primary6,ahp,,1.0,X4_森林占比%,State,0.342889,,该年最大障碍因子,2009.0
+year_top1,primary6,ahp,,1.0,X4_森林占比%,State,0.360755,,该年最大障碍因子,2010.0
+year_top1,primary6,ahp,,1.0,X5_水域占比%,State,0.324547,,该年最大障碍因子,2011.0
+year_top1,primary6,ahp,,1.0,X5_水域占比%,State,0.325051,,该年最大障碍因子,2012.0
+year_top1,primary6,ahp,,1.0,X5_水域占比%,State,0.340341,,该年最大障碍因子,2013.0
+year_top1,primary6,ahp,,1.0,X5_水域占比%,State,0.334623,,该年最大障碍因子,2014.0
+year_top1,primary6,ahp,,1.0,X5_水域占比%,State,0.340553,,该年最大障碍因子,2015.0
+year_top1,primary6,ahp,,1.0,X7_农田占比%,Pressure,0.302665,,该年最大障碍因子,2016.0
+year_top1,primary6,ahp,,1.0,X7_农田占比%,Pressure,0.330367,,该年最大障碍因子,2017.0
+year_top1,primary6,ahp,,1.0,X7_农田占比%,Pressure,0.316126,,该年最大障碍因子,2018.0
+year_top1,primary6,ahp,,1.0,X7_农田占比%,Pressure,0.336144,,该年最大障碍因子,2019.0
+year_top1,primary6,ahp,,1.0,X3_草地占比%,State,0.336445,,该年最大障碍因子,2020.0
+year_top1,primary6,ahp,,1.0,X3_草地占比%,State,0.394257,,该年最大障碍因子,2021.0
+year_top1,primary6,ahp,,1.0,X3_草地占比%,State,0.390018,,该年最大障碍因子,2022.0
+year_top1,primary6,ahp,,1.0,X3_草地占比%,State,0.395152,,该年最大障碍因子,2023.0
+phase,primary6,combined(alpha=0.4),2005-2010,1.0,X5_水域占比%,State,0.300726,0.3007,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,primary6,combined(alpha=0.4),2005-2010,2.0,X4_森林占比%,State,0.287079,0.2871,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,primary6,combined(alpha=0.4),2005-2010,3.0,X3_草地占比%,State,0.148546,0.1485,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,primary6,combined(alpha=0.4),2005-2010,4.0,X7_农田占比%,Pressure,0.115619,0.1156,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,primary6,combined(alpha=0.4),2005-2010,5.0,X1_降水mm,Driving,0.096116,0.0961,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase,primary6,combined(alpha=0.4),2005-2010,6.0,X2_气温C,Driving,0.051914,0.0519,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 6 位障碍因子,
+phase_topsummary,primary6,combined(alpha=0.4),2005-2010,,X5_水域占比% > X4_森林占比% > X3_草地占比%,,0.300726,,top3 排序（combined(alpha=0.4)）,
+phase,primary6,combined(alpha=0.4),2011-2023,1.0,X7_农田占比%,Pressure,0.395721,0.3957,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,primary6,combined(alpha=0.4),2011-2023,2.0,X5_水域占比%,State,0.149399,0.1494,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,primary6,combined(alpha=0.4),2011-2023,3.0,X1_降水mm,Driving,0.147996,0.148,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,primary6,combined(alpha=0.4),2011-2023,4.0,X4_森林占比%,State,0.127742,0.1277,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,primary6,combined(alpha=0.4),2011-2023,5.0,X3_草地占比%,State,0.106565,0.1066,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase,primary6,combined(alpha=0.4),2011-2023,6.0,X2_气温C,Driving,0.072576,0.0726,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 6 位障碍因子,
+phase_topsummary,primary6,combined(alpha=0.4),2011-2023,,X7_农田占比% > X5_水域占比% > X1_降水mm,,0.395721,,top3 排序（combined(alpha=0.4)）,
+year_top1,primary6,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.301773,,该年最大障碍因子,2005.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.309988,,该年最大障碍因子,2006.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.340183,,该年最大障碍因子,2007.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.267722,,该年最大障碍因子,2008.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.292388,,该年最大障碍因子,2009.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X5_水域占比%,State,0.292306,,该年最大障碍因子,2010.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.252488,,该年最大障碍因子,2011.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.292185,,该年最大障碍因子,2012.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.319371,,该年最大障碍因子,2013.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.348123,,该年最大障碍因子,2014.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.375791,,该年最大障碍因子,2015.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.413774,,该年最大障碍因子,2016.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.468023,,该年最大障碍因子,2017.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.45962,,该年最大障碍因子,2018.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.495692,,该年最大障碍因子,2019.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.367434,,该年最大障碍因子,2020.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.460391,,该年最大障碍因子,2021.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.445595,,该年最大障碍因子,2022.0
+year_top1,primary6,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.445885,,该年最大障碍因子,2023.0
+phase,primary6,equal,2005-2010,1.0,X4_森林占比%,State,0.260436,0.2604,2005-2010 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,primary6,equal,2005-2010,2.0,X5_水域占比%,State,0.257912,0.2579,2005-2010 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,primary6,equal,2005-2010,3.0,X3_草地占比%,State,0.155332,0.1553,2005-2010 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,primary6,equal,2005-2010,4.0,X1_降水mm,Driving,0.127632,0.1276,2005-2010 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,primary6,equal,2005-2010,5.0,X2_气温C,Driving,0.102731,0.1027,2005-2010 阶段 · equal 权重方案下第 5 位障碍因子,
+phase,primary6,equal,2005-2010,6.0,X7_农田占比%,Pressure,0.095959,0.096,2005-2010 阶段 · equal 权重方案下第 6 位障碍因子,
+phase_topsummary,primary6,equal,2005-2010,,X4_森林占比% > X5_水域占比% > X3_草地占比%,,0.260436,,top3 排序（equal）,
+phase,primary6,equal,2011-2023,1.0,X7_农田占比%,Pressure,0.317837,0.3178,2011-2023 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,primary6,equal,2011-2023,2.0,X1_降水mm,Driving,0.192771,0.1928,2011-2023 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,primary6,equal,2011-2023,3.0,X2_气温C,Driving,0.141251,0.1413,2011-2023 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,primary6,equal,2011-2023,4.0,X5_水域占比%,State,0.126093,0.1261,2011-2023 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,primary6,equal,2011-2023,5.0,X4_森林占比%,State,0.113313,0.1133,2011-2023 阶段 · equal 权重方案下第 5 位障碍因子,
+phase,primary6,equal,2011-2023,6.0,X3_草地占比%,State,0.108735,0.1087,2011-2023 阶段 · equal 权重方案下第 6 位障碍因子,
+phase_topsummary,primary6,equal,2011-2023,,X7_农田占比% > X1_降水mm > X2_气温C,,0.317837,,top3 排序（equal）,
+year_top1,primary6,equal,,1.0,X3_草地占比%,State,0.245872,,该年最大障碍因子,2005.0
+year_top1,primary6,equal,,1.0,X4_森林占比%,State,0.271998,,该年最大障碍因子,2006.0
+year_top1,primary6,equal,,1.0,X4_森林占比%,State,0.306087,,该年最大障碍因子,2007.0
+year_top1,primary6,equal,,1.0,X2_气温C,Driving,0.214385,,该年最大障碍因子,2008.0
+year_top1,primary6,equal,,1.0,X4_森林占比%,State,0.2597,,该年最大障碍因子,2009.0
+year_top1,primary6,equal,,1.0,X4_森林占比%,State,0.264917,,该年最大障碍因子,2010.0
+year_top1,primary6,equal,,1.0,X1_降水mm,Driving,0.241631,,该年最大障碍因子,2011.0
+year_top1,primary6,equal,,1.0,X2_气温C,Driving,0.330743,,该年最大障碍因子,2012.0
+year_top1,primary6,equal,,1.0,X1_降水mm,Driving,0.271098,,该年最大障碍因子,2013.0
+year_top1,primary6,equal,,1.0,X7_农田占比%,Pressure,0.273976,,该年最大障碍因子,2014.0
+year_top1,primary6,equal,,1.0,X7_农田占比%,Pressure,0.304848,,该年最大障碍因子,2015.0
+year_top1,primary6,equal,,1.0,X7_农田占比%,Pressure,0.348611,,该年最大障碍因子,2016.0
+year_top1,primary6,equal,,1.0,X7_农田占比%,Pressure,0.41571,,该年最大障碍因子,2017.0
+year_top1,primary6,equal,,1.0,X7_农田占比%,Pressure,0.360932,,该年最大障碍因子,2018.0
+year_top1,primary6,equal,,1.0,X7_农田占比%,Pressure,0.402009,,该年最大障碍因子,2019.0
+year_top1,primary6,equal,,1.0,X1_降水mm,Driving,0.322991,,该年最大障碍因子,2020.0
+year_top1,primary6,equal,,1.0,X7_农田占比%,Pressure,0.365903,,该年最大障碍因子,2021.0
+year_top1,primary6,equal,,1.0,X7_农田占比%,Pressure,0.351772,,该年最大障碍因子,2022.0
+year_top1,primary6,equal,,1.0,X1_降水mm,Driving,0.356325,,该年最大障碍因子,2023.0
+phase,substitute5,entropy,2005-2010,1.0,X7_农田占比%,Pressure,0.314366,0.3144,2005-2010 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,substitute5,entropy,2005-2010,2.0,X1_降水mm,Driving,0.264027,0.264,2005-2010 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,substitute5,entropy,2005-2010,3.0,X9_生态用地%,Response,0.202041,0.202,2005-2010 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,substitute5,entropy,2005-2010,4.0,X2_气温C,Driving,0.120038,0.12,2005-2010 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,substitute5,entropy,2005-2010,5.0,X8_草地变化率,Impact,0.099528,0.0995,2005-2010 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase_topsummary,substitute5,entropy,2005-2010,,X7_农田占比% > X1_降水mm > X9_生态用地%,,0.314366,,top3 排序（entropy）,
+phase,substitute5,entropy,2011-2023,1.0,X8_草地变化率,Impact,0.453742,0.4537,2011-2023 阶段 · entropy 权重方案下第 1 位障碍因子,
+phase,substitute5,entropy,2011-2023,2.0,X7_农田占比%,Pressure,0.328492,0.3285,2011-2023 阶段 · entropy 权重方案下第 2 位障碍因子,
+phase,substitute5,entropy,2011-2023,3.0,X1_降水mm,Driving,0.136159,0.1362,2011-2023 阶段 · entropy 权重方案下第 3 位障碍因子,
+phase,substitute5,entropy,2011-2023,4.0,X2_气温C,Driving,0.059051,0.0591,2011-2023 阶段 · entropy 权重方案下第 4 位障碍因子,
+phase,substitute5,entropy,2011-2023,5.0,X9_生态用地%,Response,0.022556,0.0226,2011-2023 阶段 · entropy 权重方案下第 5 位障碍因子,
+phase_topsummary,substitute5,entropy,2011-2023,,X8_草地变化率 > X7_农田占比% > X1_降水mm,,0.453742,,top3 排序（entropy）,
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.512779,,该年最大障碍因子,2005.0
+year_top1,substitute5,entropy,,1.0,X1_降水mm,Driving,0.516364,,该年最大障碍因子,2006.0
+year_top1,substitute5,entropy,,1.0,X9_生态用地%,Response,0.403949,,该年最大障碍因子,2007.0
+year_top1,substitute5,entropy,,1.0,X1_降水mm,Driving,0.318758,,该年最大障碍因子,2008.0
+year_top1,substitute5,entropy,,1.0,X7_农田占比%,Pressure,0.469699,,该年最大障碍因子,2009.0
+year_top1,substitute5,entropy,,1.0,X7_农田占比%,Pressure,0.599903,,该年最大障碍因子,2010.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.407719,,该年最大障碍因子,2011.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.42548,,该年最大障碍因子,2012.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.40349,,该年最大障碍因子,2013.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.397896,,该年最大障碍因子,2014.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.384191,,该年最大障碍因子,2015.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.533303,,该年最大障碍因子,2016.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.57152,,该年最大障碍因子,2017.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.557686,,该年最大障碍因子,2018.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.572133,,该年最大障碍因子,2019.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.451686,,该年最大障碍因子,2020.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.428461,,该年最大障碍因子,2021.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.393375,,该年最大障碍因子,2022.0
+year_top1,substitute5,entropy,,1.0,X8_草地变化率,Impact,0.371704,,该年最大障碍因子,2023.0
+phase,substitute5,ahp,2005-2010,1.0,X9_生态用地%,Response,0.609812,0.6098,2005-2010 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,substitute5,ahp,2005-2010,2.0,X7_农田占比%,Pressure,0.169381,0.1694,2005-2010 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,substitute5,ahp,2005-2010,3.0,X1_降水mm,Driving,0.09485,0.0948,2005-2010 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,substitute5,ahp,2005-2010,4.0,X2_气温C,Driving,0.074484,0.0745,2005-2010 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,substitute5,ahp,2005-2010,5.0,X8_草地变化率,Impact,0.051474,0.0515,2005-2010 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase_topsummary,substitute5,ahp,2005-2010,,X9_生态用地% > X7_农田占比% > X1_降水mm,,0.609812,,top3 排序（ahp）,
+phase,substitute5,ahp,2011-2023,1.0,X8_草地变化率,Impact,0.450516,0.4505,2011-2023 阶段 · ahp 权重方案下第 1 位障碍因子,
+phase,substitute5,ahp,2011-2023,2.0,X7_农田占比%,Pressure,0.25761,0.2576,2011-2023 阶段 · ahp 权重方案下第 2 位障碍因子,
+phase,substitute5,ahp,2011-2023,3.0,X9_生态用地%,Response,0.144681,0.1447,2011-2023 阶段 · ahp 权重方案下第 3 位障碍因子,
+phase,substitute5,ahp,2011-2023,4.0,X1_降水mm,Driving,0.083591,0.0836,2011-2023 阶段 · ahp 权重方案下第 4 位障碍因子,
+phase,substitute5,ahp,2011-2023,5.0,X2_气温C,Driving,0.063602,0.0636,2011-2023 阶段 · ahp 权重方案下第 5 位障碍因子,
+phase_topsummary,substitute5,ahp,2011-2023,,X8_草地变化率 > X7_农田占比% > X9_生态用地%,,0.450516,,top3 排序（ahp）,
+year_top1,substitute5,ahp,,1.0,X9_生态用地%,Response,0.643138,,该年最大障碍因子,2005.0
+year_top1,substitute5,ahp,,1.0,X9_生态用地%,Response,0.853902,,该年最大障碍因子,2006.0
+year_top1,substitute5,ahp,,1.0,X9_生态用地%,Response,0.845937,,该年最大障碍因子,2007.0
+year_top1,substitute5,ahp,,1.0,X9_生态用地%,Response,0.574946,,该年最大障碍因子,2008.0
+year_top1,substitute5,ahp,,1.0,X9_生态用地%,Response,0.508805,,该年最大障碍因子,2009.0
+year_top1,substitute5,ahp,,1.0,X7_农田占比%,Pressure,0.481718,,该年最大障碍因子,2010.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.442435,,该年最大障碍因子,2011.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.439138,,该年最大障碍因子,2012.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.461766,,该年最大障碍因子,2013.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.446877,,该年最大障碍因子,2014.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.451775,,该年最大障碍因子,2015.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.569551,,该年最大障碍因子,2016.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.568455,,该年最大障碍因子,2017.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.512354,,该年最大障碍因子,2018.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.500781,,该年最大障碍因子,2019.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.420138,,该年最大障碍因子,2020.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.369338,,该年最大障碍因子,2021.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.34509,,该年最大障碍因子,2022.0
+year_top1,substitute5,ahp,,1.0,X8_草地变化率,Impact,0.329013,,该年最大障碍因子,2023.0
+phase,substitute5,combined(alpha=0.4),2005-2010,1.0,X9_生态用地%,Response,0.40108,0.4011,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,substitute5,combined(alpha=0.4),2005-2010,2.0,X7_农田占比%,Pressure,0.244062,0.2441,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,substitute5,combined(alpha=0.4),2005-2010,3.0,X1_降水mm,Driving,0.182822,0.1828,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,substitute5,combined(alpha=0.4),2005-2010,4.0,X2_气温C,Driving,0.096309,0.0963,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,substitute5,combined(alpha=0.4),2005-2010,5.0,X8_草地变化率,Impact,0.075727,0.0757,2005-2010 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase_topsummary,substitute5,combined(alpha=0.4),2005-2010,,X9_生态用地% > X7_农田占比% > X1_降水mm,,0.40108,,top3 排序（combined(alpha=0.4)）,
+phase,substitute5,combined(alpha=0.4),2011-2023,1.0,X8_草地变化率,Impact,0.451609,0.4516,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 1 位障碍因子,
+phase,substitute5,combined(alpha=0.4),2011-2023,2.0,X7_农田占比%,Pressure,0.305081,0.3051,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 2 位障碍因子,
+phase,substitute5,combined(alpha=0.4),2011-2023,3.0,X1_降水mm,Driving,0.119254,0.1193,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 3 位障碍因子,
+phase,substitute5,combined(alpha=0.4),2011-2023,4.0,X9_生态用地%,Response,0.063702,0.0637,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 4 位障碍因子,
+phase,substitute5,combined(alpha=0.4),2011-2023,5.0,X2_气温C,Driving,0.060355,0.0604,2011-2023 阶段 · combined(alpha=0.4) 权重方案下第 5 位障碍因子,
+phase_topsummary,substitute5,combined(alpha=0.4),2011-2023,,X8_草地变化率 > X7_农田占比% > X1_降水mm,,0.451609,,top3 排序（combined(alpha=0.4)）,
+year_top1,substitute5,combined(alpha=0.4),,1.0,X9_生态用地%,Response,0.415196,,该年最大障碍因子,2005.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X9_生态用地%,Response,0.637857,,该年最大障碍因子,2006.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X9_生态用地%,Response,0.673331,,该年最大障碍因子,2007.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X9_生态用地%,Response,0.325059,,该年最大障碍因子,2008.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.390885,,该年最大障碍因子,2009.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X7_农田占比%,Pressure,0.562834,,该年最大障碍因子,2010.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.418173,,该年最大障碍因子,2011.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.429738,,该年最大障碍因子,2012.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.420393,,该年最大障碍因子,2013.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.412293,,该年最大障碍因子,2014.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.403418,,该年最大障碍因子,2015.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.54434,,该年最大障碍因子,2016.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.57054,,该年最大障碍因子,2017.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.542397,,该年最大障碍因子,2018.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.547289,,该年最大障碍因子,2019.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.441133,,该年最大障碍因子,2020.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.40767,,该年最大障碍因子,2021.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.376587,,该年最大障碍因子,2022.0
+year_top1,substitute5,combined(alpha=0.4),,1.0,X8_草地变化率,Impact,0.356948,,该年最大障碍因子,2023.0
+phase,substitute5,equal,2005-2010,1.0,X9_生态用地%,Response,0.322281,0.3223,2005-2010 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,substitute5,equal,2005-2010,2.0,X1_降水mm,Driving,0.244595,0.2446,2005-2010 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,substitute5,equal,2005-2010,3.0,X7_农田占比%,Pressure,0.196037,0.196,2005-2010 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,substitute5,equal,2005-2010,4.0,X2_气温C,Driving,0.191237,0.1912,2005-2010 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,substitute5,equal,2005-2010,5.0,X8_草地变化率,Impact,0.04585,0.0459,2005-2010 阶段 · equal 权重方案下第 5 位障碍因子,
+phase_topsummary,substitute5,equal,2005-2010,,X9_生态用地% > X1_降水mm > X7_农田占比%,,0.322281,,top3 排序（equal）,
+phase,substitute5,equal,2011-2023,1.0,X7_农田占比%,Pressure,0.306283,0.3063,2011-2023 阶段 · equal 权重方案下第 1 位障碍因子,
+phase,substitute5,equal,2011-2023,2.0,X8_草地变化率,Impact,0.297878,0.2979,2011-2023 阶段 · equal 权重方案下第 2 位障碍因子,
+phase,substitute5,equal,2011-2023,3.0,X1_降水mm,Driving,0.191856,0.1919,2011-2023 阶段 · equal 权重方案下第 3 位障碍因子,
+phase,substitute5,equal,2011-2023,4.0,X2_气温C,Driving,0.143327,0.1433,2011-2023 阶段 · equal 权重方案下第 4 位障碍因子,
+phase,substitute5,equal,2011-2023,5.0,X9_生态用地%,Response,0.060656,0.0607,2011-2023 阶段 · equal 权重方案下第 5 位障碍因子,
+phase_topsummary,substitute5,equal,2011-2023,,X7_农田占比% > X8_草地变化率 > X1_降水mm,,0.306283,,top3 排序（equal）,
+year_top1,substitute5,equal,,1.0,X9_生态用地%,Response,0.369116,,该年最大障碍因子,2005.0
+year_top1,substitute5,equal,,1.0,X9_生态用地%,Response,0.521068,,该年最大障碍因子,2006.0
+year_top1,substitute5,equal,,1.0,X9_生态用地%,Response,0.56982,,该年最大障碍因子,2007.0
+year_top1,substitute5,equal,,1.0,X2_气温C,Driving,0.368325,,该年最大障碍因子,2008.0
+year_top1,substitute5,equal,,1.0,X1_降水mm,Driving,0.334685,,该年最大障碍因子,2009.0
+year_top1,substitute5,equal,,1.0,X7_农田占比%,Pressure,0.445783,,该年最大障碍因子,2010.0
+year_top1,substitute5,equal,,1.0,X1_降水mm,Driving,0.299138,,该年最大障碍因子,2011.0
+year_top1,substitute5,equal,,1.0,X2_气温C,Driving,0.398593,,该年最大障碍因子,2012.0
+year_top1,substitute5,equal,,1.0,X1_降水mm,Driving,0.324124,,该年最大障碍因子,2013.0
+year_top1,substitute5,equal,,1.0,X7_农田占比%,Pressure,0.316112,,该年最大障碍因子,2014.0
+year_top1,substitute5,equal,,1.0,X7_农田占比%,Pressure,0.343913,,该年最大障碍因子,2015.0
+year_top1,substitute5,equal,,1.0,X8_草地变化率,Impact,0.386109,,该年最大障碍因子,2016.0
+year_top1,substitute5,equal,,1.0,X8_草地变化率,Impact,0.438052,,该年最大障碍因子,2017.0
+year_top1,substitute5,equal,,1.0,X8_草地变化率,Impact,0.374817,,该年最大障碍因子,2018.0
+year_top1,substitute5,equal,,1.0,X8_草地变化率,Impact,0.397554,,该年最大障碍因子,2019.0
+year_top1,substitute5,equal,,1.0,X8_草地变化率,Impact,0.27785,,该年最大障碍因子,2020.0
+year_top1,substitute5,equal,,1.0,X7_农田占比%,Pressure,0.319732,,该年最大障碍因子,2021.0
+year_top1,substitute5,equal,,1.0,X7_农田占比%,Pressure,0.308661,,该年最大障碍因子,2022.0
+year_top1,substitute5,equal,,1.0,X1_降水mm,Driving,0.311956,,该年最大障碍因子,2023.0
+phase_criterion,baseline9,combined(alpha=0.4),criterion,,peak/pettitt/maxmeandiff,,-0.007408,,"判据(a) ESI 峰值年 = 2010（论文分段点 2010/2011 与之一致）；判据(b) Pettitt 变点年 = 2016（K=56.00, p=0.1476）；判据(c) 分段均值差最大化点 = 2008（|Δmean|=0.12637）。论文 2005-2010 均值=0.5310、2011-2023 均值=0.5384，差=-0.0074。政策叙事判据（防护林/退牧还草工程期）无法用本文数据验证。",
+phase_criterion,drop_X9,combined(alpha=0.4),criterion,,peak/pettitt/maxmeandiff,,0.037402,,"判据(a) ESI 峰值年 = 2010（论文分段点 2010/2011 与之一致）；判据(b) Pettitt 变点年 = 2016（K=52.00, p=0.2114）；判据(c) 分段均值差最大化点 = 2008（|Δmean|=0.06188）。论文 2005-2010 均值=0.5365、2011-2023 均值=0.4991，差=0.0374。政策叙事判据（防护林/退牧还草工程期）无法用本文数据验证。",
+phase_criterion,drop_X8,combined(alpha=0.4),criterion,,peak/pettitt/maxmeandiff,,-0.177841,,"判据(a) ESI 峰值年 = 2017（论文分段点 2010/2011 与之不一致）；判据(b) Pettitt 变点年 = 2010（K=68.00, p=0.0429）；判据(c) 分段均值差最大化点 = 2008（|Δmean|=0.26135）。论文 2005-2010 均值=0.4415、2011-2023 均值=0.6193，差=-0.1778。政策叙事判据（防护林/退牧还草工程期）无法用本文数据验证。",
+phase_criterion,drop_X8_X9,combined(alpha=0.4),criterion,,peak/pettitt/maxmeandiff,,-0.153962,,"判据(a) ESI 峰值年 = 2019（论文分段点 2010/2011 与之不一致）；判据(b) Pettitt 变点年 = 2013（K=72.00, p=0.0269）；判据(c) 分段均值差最大化点 = 2009（|Δmean|=0.20825）。论文 2005-2010 均值=0.4315、2011-2023 均值=0.5855，差=-0.1540。政策叙事判据（防护林/退牧还草工程期）无法用本文数据验证。",
+phase_criterion,primary6,combined(alpha=0.4),criterion,,peak/pettitt/maxmeandiff,,-0.111174,,"判据(a) ESI 峰值年 = 2019（论文分段点 2010/2011 与之不一致）；判据(b) Pettitt 变点年 = 2015（K=82.00, p=0.0075）；判据(c) 分段均值差最大化点 = 2009（|Δmean|=0.15147）。论文 2005-2010 均值=0.4406、2011-2023 均值=0.5518，差=-0.1112。政策叙事判据（防护林/退牧还草工程期）无法用本文数据验证。",
+phase_criterion,substitute5,combined(alpha=0.4),criterion,,peak/pettitt/maxmeandiff,,0.271456,,"判据(a) ESI 峰值年 = 2010（论文分段点 2010/2011 与之一致）；判据(b) Pettitt 变点年 = 2015（K=88.00, p=0.0032）；判据(c) 分段均值差最大化点 = 2011（|Δmean|=0.27146）。论文 2005-2010 均值=0.6918、2011-2023 均值=0.4203，差=0.2715。政策叙事判据（防护林/退牧还草工程期）无法用本文数据验证。",

@@ -69,7 +69,7 @@ Nothing in `§1.2` or `§1.3` is committed; `_raw/` and `data/cru/` are Git-igno
 | item | value |
 |---|---|
 | product | **CLCD v01** (Yang & Huang, *ESSD* 2021), 30 m, Albers equal-area (`lon_0=105°`, `sp=25°/47°`) |
-| record | Zenodo record **8176941** — <https://zenodo.org/records/8176941> |
+| record | CLCD 2020 tile used here: Zenodo record **8176941** — <https://zenodo.org/records/8176941>; the full 1985–2023 annual collection cited by the manuscript is Zenodo record **12779975** — <https://doi.org/10.5281/zenodo.12779975> (CC-BY-4.0, accessed 2026-10-07) |
 | file | `CLCD_v01_2020_albert.tif` |
 | expected bytes | **810,739,687** |
 | expected md5 | **1274285BB18F9B1D443A3CC906B1310C** |
@@ -396,6 +396,61 @@ Remaining committed intermediates behind the 2.0 numbers: `data/results_fraction
 `run_exogenous_geodetector.py`), and the self-check outputs `data/cru_verify_*.csv` /
 `data/results_clcd2020_*.csv`.
 
+### 4.2 R28 sensitivity tables (`data/r28_*.csv`, 43 files)
+
+Every number added in the R28 revision comes from one of these files, all of which are
+produced by the 20 committed generators `run_r28_*.py` (shared helpers `r28_core.py`,
+`r28_trend.py`). They are the traceability layer for the de-redundancy section, the
+five validation schemes, the bootstrap intervals, the mechanical-share evidence, the
+independent-target check and the six Appendix tables. Run order: `run_r28_t1` →
+`run_r28_t8`, then the `run_r28_*` refinement scripts in any order.
+
+| File | One-line purpose |
+|---|---|
+| `r28_identity_recheck.csv` | Residuals of the three exact identities (X9, X8, X6) against the archived series |
+| `r28_identity_series.csv` | Year-by-year residual series behind those identities |
+| `r28_deredundancy_comparison.csv` | Six indicator specifications: rank correlation, max year-wise difference, peak year, grade changes, 2023 value/grade |
+| `r28_deredundancy_series.csv` | The year-by-year ESI and grade series of those six specifications |
+| `r28_interp_weight_sensitivity.csv` | Entropy/AHP/combined weights under four interpolation schemes of the five land-cover epochs |
+| `r28_esi_decomposition.csv` | Exact decomposition ΔESI = Σ w_j Δx′_j by segment, indicator and DPSIR layer |
+| `r28_esi_variance_decomposition.csv` | Point-scale variance shares (land-cover block 0.93 vs climate block 0.07) |
+| `r28_esi_leakage_channel.csv` | Effect of the second leakage channel (full-period normalisation and entropy weights) on model ranking |
+| `r28_ngbm_gamma_curve.csv` | γ grid with training-period, full-series and holdout SSE/RMSE (leakage diagnostic) |
+| `r28_ngbm_gamma_leakage.csv` | Selected γ and resulting accuracy under each γ-selection window and index construction |
+| `r28_rolling_origin.csv` | Rolling one-step (from 2013 and 2015) and five-step summary accuracy of the three models |
+| `r28_rolling_origin_detail.csv` | Fold-level observations, predictions and errors behind the rolling-origin runs |
+| `r28_loocv.csv` | Leave-one-out cross-validation summary for the three models |
+| `r28_loocv_detail.csv` | Fold-level leave-one-out details |
+| `r28_forecast_uncertainty.csv` | Bootstrap 95% intervals for 2024–2028 under parameter-only, iid-innovation and block-innovation scopes |
+| `r28_grade_probabilities.csv` | Five-grade probability of each forecast year under each model and uncertainty scope |
+| `r28_threshold_perturbation.csv` | Grade migration over the eight ±0.05 threshold-perturbation scenarios |
+| `r28_threshold_sensitivity.csv` | Effect of moving a single threshold on the 2023 and 2028 grades |
+| `r28_alpha_grade_matrix.csv` | Full 11 × 19 α matrix of ESI values and grades for both specifications |
+| `r28_alpha_grade_summary.csv` | Grade composition, number of changed years and rank correlation against α = 0.4 |
+| `r28_temperature_direction.csv` | Year-by-year ESI and grade with temperature positive, negative and dropped |
+| `r28_trend_tests.csv` | Mann–Kendall, Hamed–Rao, TFPW, Sen slope and CI for every specification and segment |
+| `r28_trend_break.csv` | Pettitt change point and segmented trends per specification |
+| `r28_moran_k_sensitivity.csv` | Moran's I and permutation p over 36 spatial weight definitions (k = 4–50, three distance schemes) |
+| `r28_spatial_weights.csv` | Moran's I, mean neighbours and residual R² per weight matrix |
+| `r28_stratification_sensitivity.csv` | Six stratification schemes × each factor: level counts, stratum sizes, q stability |
+| `r28_sampling_sensitivity.csv` | 200 bootstrap replicates and 1,500/1,000-point subsamples: q distribution and ranking stability |
+| `r28_exogenous_recheck.csv` | Strictly exogenous factors (elevation, slope): stratified q, joint q, OLS R² and partial correlations |
+| `r28_blockwise_q_matrix.csv` | Block-wise cross-detection q matrix used for the mechanical-share shares |
+| `r28_forest_small_sample.csv` | Forest factor (15 dominant points): degenerate stratification, binary/zero-inflated q and intervals |
+| `r28_interaction_uncertainty.csv` | Six factor pairs: interaction q, mechanical share and permutation excess |
+| `r28_pointscale_complement.csv` | Point-scale barren/degraded complement and the 81 cropland- or snow-dominated samples it misclassifies |
+| `r28_external_ndvi_points_2020.csv` | Independent target: growing-season NDVI at the 1,914 points, 2020 (NOAA CDR AVHRR/VIIRS) |
+| `r28_external_ndvi_annual.csv` | Independent target: regional annual growing-season NDVI, 2005–2023 |
+| `r28_external_ndvi_annual_commonmask.csv` | The same annual series under a common clear-pixel mask (sensor-continuity control) |
+| `r28_external_ndvi_point_trends.csv` | Point-level NDVI trends and their correlation with the static 2020 index |
+| `r28_external_ndvi_manifest.csv` | The 133 NOAA CDR source files with URL, version and access date (reproducible download list) |
+| `r28_external_validation.csv` | Independent-target summary: spatial r/ρ, two-way stratified q, NDVI-target attribution and interannual correlation |
+| `r28_obstacle_formula_check.csv` | Obstacle-degree formula check (row sums = 1) per indicator and year |
+| `r28_obstacle_sensitivity.csv` | Obstacle degrees under four weighting schemes, two phases, with ranks and leading-obstacle years |
+| `r28_county_uncertainty.csv` | County ranking across the 64 window × weight × source configurations, rank spans and area weighting |
+| `r28_county_window_audit.csv` | Pixel counts and class shares per window half-width (water entering and leaving the Qinghai Lake window) |
+| `r28_cru_box_sensitivity.csv` | Three climate boxes (current, declared domain, cosine-weighted) compared year by year |
+
 ---
 
 ## 5. Frozen conventions and traps (read before trusting a number)
@@ -709,3 +764,43 @@ untracked at that time and are tracked now.
 - Code (`.py`, `.tex`, `.cls`, `.bst`): MIT License, see `LICENSE`.
 - Processed data (`data/*.csv`): derived from public sources (CRU, CLCD, Copernicus, OSM); redistribution
   permitted under the upstream terms. Cite the upstream datasets in any reuse.
+
+## R28 change log (code, provenance and one known discrepancy)
+
+Added in the R28 revision; every item is reproducible from the committed files in §4.2.
+
+1. **`run_county_esi.py` line 48 — residual-barren fix.** The point-scale barren/degraded
+column is now derived as the residual `100 − grass − forest − water − cropland` instead of
+being read from CLCD class 7. The two definitions agree on 1,914 − 81 = 1,833 of the sampled
+points and are rank-identical at the regional scale (Spearman ρ = 1.0000); the 81 differing
+points are cropland- (75) or snow/ice-dominated (6) samples that the residual counts as
+barren (`data/r28_pointscale_complement.csv`). The change affects the point-scale tables only;
+the regional five-epoch series in `data/qilian_landcover.csv` is unchanged.
+2. **Identity de-duplication.** `run_r28_t1_identity.py` / `run_r28_t2_deredundancy.py` establish
+that ecological-land proportion = grass + forest + water, that the grassland change rate is the
+differenced grassland proportion with a 2005 convention, and that barren/degraded = 100 − the
+other four land-cover columns (all residuals exactly 0, `data/r28_identity_recheck.csv`), and
+that dropping the duplicate column (`drop_X9`, the manuscript's primary specification) leaves all
+19 grades unchanged while the other specifications move the peak year
+(`data/r28_deredundancy_comparison.csv`).
+3. **Obstacle table provenance gap — known and stated.** The phase means printed in the
+manuscript reproduce the archived `data/results_obstacle.csv` to the third decimal, but **no
+generating script for that archived table is present in this repository**. An independent
+reimplementation reproduces it to within 0.014 (largest difference: the derived grassland change
+rate and the ecological-land proportion; `data/r28_obstacle_sensitivity.csv`,
+`data/r28_obstacle_formula_check.csv`). The manuscript quotes the archived values (0.233 / 0.221 /
+0.151 and 0.364 / 0.206) and states the 0.014 agreement; the recomputed values are 0.2323 /
+0.2217 / 0.1438 and 0.3511 / 0.2092. Treat the archived table as an intermediate whose
+generator is missing, not as an independently verified result.
+4. **Second leakage channel.** Normalising the indicators and estimating entropy weights over the
+full 2005–2023 period is a second, less obvious leakage channel when the models are validated on
+that period; the strictly leakage-free variant reverses the model ranking
+(`data/r28_esi_leakage_channel.csv`, `data/r28_ngbm_gamma_leakage.csv`). The archived γ = 0.10
+(holdout RMSE 0.034) is reproducible only when the exponent is selected with the evaluation
+period in view; the manuscript therefore reports the training-only γ = 0.25.
+5. **New scripts.** 20 `run_r28_*.py` generators plus `r28_core.py` and `r28_trend.py`; the
+independent NDVI target uses `run_r28_independent_target.py`, which downloads 133 NOAA CDR
+AVHRR/VIIRS files (list and access dates in `data/r28_external_ndvi_manifest.csv`). No network
+access is needed to reproduce any committed table.
+6. **`_r28_report_readouts.py` is deliberately not committed** (scratch read-out helper used
+while writing the manuscript).

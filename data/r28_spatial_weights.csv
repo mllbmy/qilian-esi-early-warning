@@ -1,0 +1,73 @@
+﻿weight_matrix,description,row_standardised,variable,n,mean_neighbours,morans_i,p_perm,ols_r2_for_this_residual
+rook_grid,grid contiguity (rook_grid),False,esi,1914,3.901,0.666947,0.001,
+rook_grid,grid contiguity (rook_grid),False,resid_OLS_exogenous_terrain_only,1914,3.901,0.621537,0.001,0.081108
+rook_grid,grid contiguity (rook_grid),False,resid_OLS_exogenous4_precip_temp_elev_slope,1914,3.901,0.259356,0.001,0.541916
+rook_grid,grid contiguity (rook_grid),False,resid_OLS_all6,1914,3.901,0.302476,0.001,0.851448
+rook_grid,grid contiguity (rook_grid),True,esi,1914,3.901,0.666308,0.001,
+rook_grid,grid contiguity (rook_grid),True,resid_OLS_exogenous_terrain_only,1914,3.901,0.620556,0.001,0.081108
+rook_grid,grid contiguity (rook_grid),True,resid_OLS_exogenous4_precip_temp_elev_slope,1914,3.901,0.256325,0.001,0.541916
+rook_grid,grid contiguity (rook_grid),True,resid_OLS_all6,1914,3.901,0.295792,0.001,0.851448
+queen_grid,grid contiguity (queen_grid),False,esi,1914,7.704,0.640097,0.001,
+queen_grid,grid contiguity (queen_grid),False,resid_OLS_exogenous_terrain_only,1914,7.704,0.587926,0.001,0.081108
+queen_grid,grid contiguity (queen_grid),False,resid_OLS_exogenous4_precip_temp_elev_slope,1914,7.704,0.194744,0.001,0.541916
+queen_grid,grid contiguity (queen_grid),False,resid_OLS_all6,1914,7.704,0.260741,0.001,0.851448
+queen_grid,grid contiguity (queen_grid),True,esi,1914,7.704,0.640171,0.001,
+queen_grid,grid contiguity (queen_grid),True,resid_OLS_exogenous_terrain_only,1914,7.704,0.587863,0.001,0.081108
+queen_grid,grid contiguity (queen_grid),True,resid_OLS_exogenous4_precip_temp_elev_slope,1914,7.704,0.19241,0.001,0.541916
+queen_grid,grid contiguity (queen_grid),True,resid_OLS_all6,1914,7.704,0.252042,0.001,0.851448
+knn4,k-nearest neighbours k=4,False,esi,1914,4.0,0.665833,0.001,
+knn4,k-nearest neighbours k=4,False,resid_OLS_exogenous_terrain_only,1914,4.0,0.620309,0.001,0.081108
+knn4,k-nearest neighbours k=4,False,resid_OLS_exogenous4_precip_temp_elev_slope,1914,4.0,0.255102,0.001,0.541916
+knn4,k-nearest neighbours k=4,False,resid_OLS_all6,1914,4.0,0.29536,0.001,0.851448
+knn4,k-nearest neighbours k=4,True,esi,1914,4.0,0.665833,0.001,
+knn4,k-nearest neighbours k=4,True,resid_OLS_exogenous_terrain_only,1914,4.0,0.620309,0.001,0.081108
+knn4,k-nearest neighbours k=4,True,resid_OLS_exogenous4_precip_temp_elev_slope,1914,4.0,0.255102,0.001,0.541916
+knn4,k-nearest neighbours k=4,True,resid_OLS_all6,1914,4.0,0.29536,0.001,0.851448
+knn8,k-nearest neighbours k=8,False,esi,1914,8.0,0.637861,0.001,
+knn8,k-nearest neighbours k=8,False,resid_OLS_exogenous_terrain_only,1914,8.0,0.584474,0.001,0.081108
+knn8,k-nearest neighbours k=8,False,resid_OLS_exogenous4_precip_temp_elev_slope,1914,8.0,0.187559,0.001,0.541916
+knn8,k-nearest neighbours k=8,False,resid_OLS_all6,1914,8.0,0.251446,0.001,0.851448
+knn8,k-nearest neighbours k=8,True,esi,1914,8.0,0.637861,0.001,
+knn8,k-nearest neighbours k=8,True,resid_OLS_exogenous_terrain_only,1914,8.0,0.584474,0.001,0.081108
+knn8,k-nearest neighbours k=8,True,resid_OLS_exogenous4_precip_temp_elev_slope,1914,8.0,0.187559,0.001,0.541916
+knn8,k-nearest neighbours k=8,True,resid_OLS_all6,1914,8.0,0.251446,0.001,0.851448
+knn12,k-nearest neighbours k=12,False,esi,1914,12.0,0.625828,0.001,
+knn12,k-nearest neighbours k=12,False,resid_OLS_exogenous_terrain_only,1914,12.0,0.570742,0.001,0.081108
+knn12,k-nearest neighbours k=12,False,resid_OLS_exogenous4_precip_temp_elev_slope,1914,12.0,0.162946,0.001,0.541916
+knn12,k-nearest neighbours k=12,False,resid_OLS_all6,1914,12.0,0.203909,0.001,0.851448
+knn12,k-nearest neighbours k=12,True,esi,1914,12.0,0.625828,0.001,
+knn12,k-nearest neighbours k=12,True,resid_OLS_exogenous_terrain_only,1914,12.0,0.570742,0.001,0.081108
+knn12,k-nearest neighbours k=12,True,resid_OLS_exogenous4_precip_temp_elev_slope,1914,12.0,0.162946,0.001,0.541916
+knn12,k-nearest neighbours k=12,True,resid_OLS_all6,1914,12.0,0.203909,0.001,0.851448
+band_0p15,distance band 0.15 deg,False,esi,1914,2.3,0.756753,0.001,
+band_0p15,distance band 0.15 deg,False,resid_OLS_exogenous_terrain_only,1914,2.3,0.731846,0.001,0.081108
+band_0p15,distance band 0.15 deg,False,resid_OLS_exogenous4_precip_temp_elev_slope,1914,2.3,0.44757,0.001,0.541916
+band_0p15,distance band 0.15 deg,False,resid_OLS_all6,1914,2.3,0.478636,0.001,0.851448
+band_0p15,distance band 0.15 deg,True,esi,1914,2.3,0.76638,0.001,
+band_0p15,distance band 0.15 deg,True,resid_OLS_exogenous_terrain_only,1914,2.3,0.732844,0.001,0.081108
+band_0p15,distance band 0.15 deg,True,resid_OLS_exogenous4_precip_temp_elev_slope,1914,2.3,0.471971,0.001,0.541916
+band_0p15,distance band 0.15 deg,True,resid_OLS_all6,1914,2.3,0.539111,0.001,0.851448
+band_0p30,distance band 0.30 deg,False,esi,1914,10.078,0.656817,0.001,
+band_0p30,distance band 0.30 deg,False,resid_OLS_exogenous_terrain_only,1914,10.078,0.609835,0.001,0.081108
+band_0p30,distance band 0.30 deg,False,resid_OLS_exogenous4_precip_temp_elev_slope,1914,10.078,0.252889,0.001,0.541916
+band_0p30,distance band 0.30 deg,False,resid_OLS_all6,1914,10.078,0.292565,0.001,0.851448
+band_0p30,distance band 0.30 deg,True,esi,1914,10.078,0.664739,0.001,
+band_0p30,distance band 0.30 deg,True,resid_OLS_exogenous_terrain_only,1914,10.078,0.615421,0.001,0.081108
+band_0p30,distance band 0.30 deg,True,resid_OLS_exogenous4_precip_temp_elev_slope,1914,10.078,0.252592,0.001,0.541916
+band_0p30,distance band 0.30 deg,True,resid_OLS_all6,1914,10.078,0.301003,0.001,0.851448
+band_0p50,distance band 0.50 deg,False,esi,1914,33.45,0.598874,0.001,
+band_0p50,distance band 0.50 deg,False,resid_OLS_exogenous_terrain_only,1914,33.45,0.543408,0.001,0.081108
+band_0p50,distance band 0.50 deg,False,resid_OLS_exogenous4_precip_temp_elev_slope,1914,33.45,0.126347,0.001,0.541916
+band_0p50,distance band 0.50 deg,False,resid_OLS_all6,1914,33.45,0.157432,0.001,0.851448
+band_0p50,distance band 0.50 deg,True,esi,1914,33.45,0.601006,0.001,
+band_0p50,distance band 0.50 deg,True,resid_OLS_exogenous_terrain_only,1914,33.45,0.543526,0.001,0.081108
+band_0p50,distance band 0.50 deg,True,resid_OLS_exogenous4_precip_temp_elev_slope,1914,33.45,0.121652,0.001,0.541916
+band_0p50,distance band 0.50 deg,True,resid_OLS_all6,1914,33.45,0.149454,0.001,0.851448
+invdist_knn8,k-nearest neighbours k=8 (inverse distance),False,esi,1914,8.0,0.643305,0.001,
+invdist_knn8,k-nearest neighbours k=8 (inverse distance),False,resid_OLS_exogenous_terrain_only,1914,8.0,0.59154,0.001,0.081108
+invdist_knn8,k-nearest neighbours k=8 (inverse distance),False,resid_OLS_exogenous4_precip_temp_elev_slope,1914,8.0,0.201448,0.001,0.541916
+invdist_knn8,k-nearest neighbours k=8 (inverse distance),False,resid_OLS_all6,1914,8.0,0.262326,0.001,0.851448
+invdist_knn8,k-nearest neighbours k=8 (inverse distance),True,esi,1914,8.0,0.643095,0.001,
+invdist_knn8,k-nearest neighbours k=8 (inverse distance),True,resid_OLS_exogenous_terrain_only,1914,8.0,0.591192,0.001,0.081108
+invdist_knn8,k-nearest neighbours k=8 (inverse distance),True,resid_OLS_exogenous4_precip_temp_elev_slope,1914,8.0,0.200081,0.001,0.541916
+invdist_knn8,k-nearest neighbours k=8 (inverse distance),True,resid_OLS_all6,1914,8.0,0.259127,0.001,0.851448

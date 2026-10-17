@@ -1,0 +1,20 @@
+﻿year,sensor,ndvi_growing_season_mean,n_dates,mean_clear_pixels,source,access_date,catalog_url
+2005,AVHRR,0.156564,6,5800,NOAA CDR AVHRR-Land v005 (AVH13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2005/catalog.xml
+2006,AVHRR,0.128081,6,4925,NOAA CDR AVHRR-Land v005 (AVH13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2006/catalog.xml
+2007,AVHRR,0.131562,6,3717,NOAA CDR AVHRR-Land v005 (AVH13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2007/catalog.xml
+2008,AVHRR,0.156216,6,4744,NOAA CDR AVHRR-Land v005 (AVH13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2008/catalog.xml
+2009,AVHRR,0.123243,6,3337,NOAA CDR AVHRR-Land v005 (AVH13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2009/catalog.xml
+2010,AVHRR,0.156029,6,7686,NOAA CDR AVHRR-Land v005 (AVH13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2010/catalog.xml
+2011,AVHRR,0.137143,6,6612,NOAA CDR AVHRR-Land v005 (AVH13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2011/catalog.xml
+2012,AVHRR,0.150255,6,4902,NOAA CDR AVHRR-Land v005 (AVH13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2012/catalog.xml
+2013,AVHRR,0.153346,6,5468,NOAA CDR AVHRR-Land v005 (AVH13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2013/catalog.xml
+2014,VIIRS,0.162579,6,7586,NOAA CDR VIIRS-Land v001 (NPP13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2014/catalog.xml
+2015,VIIRS,0.163253,6,10931,NOAA CDR VIIRS-Land v001 (NPP13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2015/catalog.xml
+2016,VIIRS,0.135396,6,4563,NOAA CDR VIIRS-Land v001 (NPP13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2016/catalog.xml
+2017,VIIRS,0.15979,6,7143,NOAA CDR VIIRS-Land v001 (NPP13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2017/catalog.xml
+2018,VIIRS,0.172532,6,5853,NOAA CDR VIIRS-Land v001 (NPP13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2018/catalog.xml
+2019,VIIRS,0.160549,6,7656,NOAA CDR VIIRS-Land v001 (NPP13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2019/catalog.xml
+2020,VIIRS,0.183167,6,8009,NOAA CDR VIIRS-Land v001 (NPP13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2020/catalog.xml
+2021,VIIRS,0.137486,6,4931,NOAA CDR VIIRS-Land v001 (NPP13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2021/catalog.xml
+2022,VIIRS,0.121359,6,7430,NOAA CDR VIIRS-Land v001 (NPP13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2022/catalog.xml
+2023,VIIRS,0.190367,6,4939,NOAA CDR VIIRS-Land v001 (NPP13C1),2026-10-18,https://www.ncei.noaa.gov/thredds/catalog/cdr/ndvi/2023/catalog.xml

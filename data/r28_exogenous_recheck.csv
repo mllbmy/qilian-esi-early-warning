@@ -1,0 +1,67 @@
+﻿analysis,factor,metric,value,note
+variance_decomposition,precip,variance_share,0.1286,权重 w=0.0833，与 ESI 相关 0.728
+variance_decomposition,temp,variance_share,-0.0609,权重 w=0.0765，与 ESI 相关 -0.372
+variance_decomposition,forest,variance_share,0.0565,权重 w=0.3264，与 ESI 相关 0.255
+variance_decomposition,grass,variance_share,0.3699,权重 w=0.1174，与 ESI 相关 0.841
+variance_decomposition,water,variance_share,0.0905,权重 w=0.2826，与 ESI 相关 0.315
+variance_decomposition,barren_neg,variance_share,0.4153,权重 w=0.1139，与 ESI 相关 0.963
+variance_decomposition,气候块,variance_share_sum,0.0677,该块各项指标的方差份额之和
+variance_decomposition,覆被块,variance_share_sum,0.9322,该块各项指标的方差份额之和
+strictly_exogenous_single,elev,q_baseline|quantile4_baseline,0.090367,层数=4
+strictly_exogenous_single,elev,q_baseline|quantile5,0.105079,层数=5
+strictly_exogenous_single,elev,q_baseline|jenks4,0.083841,层数=4
+strictly_exogenous_single,elev,q_baseline|jenks5,0.089388,层数=5
+strictly_exogenous_single,elev,q_baseline|equal_interval4,0.076253,层数=4
+strictly_exogenous_single,elev,q_baseline|equal_interval5,0.085368,层数=5
+strictly_exogenous_single,slope,q_baseline|quantile4_baseline,0.06468,层数=4
+strictly_exogenous_single,slope,q_baseline|quantile5,0.0643,层数=5
+strictly_exogenous_single,slope,q_baseline|jenks4,0.025026,层数=4
+strictly_exogenous_single,slope,q_baseline|jenks5,0.026235,层数=5
+strictly_exogenous_single,slope,q_baseline|equal_interval4,0.024227,层数=3
+strictly_exogenous_single,slope,q_baseline|equal_interval5,0.024227,层数=3
+strictly_exogenous_joint,elev+slope,q_joint_overlay,0.165734,联合分层 16 层，置换 p=0.001
+strictly_exogenous_ols,elev+slope,ols_r2,0.081108,带截距，n=1914
+strictly_exogenous_partial_corr,elev,partial_corr,0.247152,无控制
+strictly_exogenous_partial_corr,slope,partial_corr,-0.150785,无控制
+strictly_exogenous_partial_corr,elev,partial_corr,0.024796,控制降水与气温
+strictly_exogenous_partial_corr,slope,partial_corr,-0.103645,控制降水与气温
+blockwise_cross_detection,precip,q_full_esi,0.506016,因子属于气候块
+blockwise_cross_detection,precip,q_own_block_index,0.293999,目标=本块子指数（块内权重归一化）
+blockwise_cross_detection,precip,q_cross_block_index,0.465781,目标=另一块子指数
+blockwise_cross_detection,precip,q_max_own_indicator,0.918157,同块单项指标的最大 q（构造性相关）
+blockwise_cross_detection,precip,q_max_cross_indicator,0.486083,跨块单项指标的最大 q（非构造性）
+blockwise_cross_detection,precip,mechanical_share_1_minus_cross_over_own,0.4706,1 - max跨块q / max同块q
+blockwise_cross_detection,temp,q_full_esi,0.169739,因子属于气候块
+blockwise_cross_detection,temp,q_own_block_index,0.183378,目标=本块子指数（块内权重归一化）
+blockwise_cross_detection,temp,q_cross_block_index,0.231191,目标=另一块子指数
+blockwise_cross_detection,temp,q_max_own_indicator,0.942556,同块单项指标的最大 q（构造性相关）
+blockwise_cross_detection,temp,q_max_cross_indicator,0.245618,跨块单项指标的最大 q（非构造性）
+blockwise_cross_detection,temp,mechanical_share_1_minus_cross_over_own,0.7394,1 - max跨块q / max同块q
+blockwise_cross_detection,grass,q_full_esi,0.70771,因子属于覆被块
+blockwise_cross_detection,grass,q_own_block_index,0.724932,目标=本块子指数（块内权重归一化）
+blockwise_cross_detection,grass,q_cross_block_index,0.064831,目标=另一块子指数
+blockwise_cross_detection,grass,q_max_own_indicator,1.0,同块单项指标的最大 q（构造性相关）
+blockwise_cross_detection,grass,q_max_cross_indicator,0.428441,跨块单项指标的最大 q（非构造性）
+blockwise_cross_detection,grass,mechanical_share_1_minus_cross_over_own,0.5716,1 - max跨块q / max同块q
+blockwise_cross_detection,barren,q_full_esi,0.802431,因子属于覆被块
+blockwise_cross_detection,barren,q_own_block_index,0.798198,目标=本块子指数（块内权重归一化）
+blockwise_cross_detection,barren,q_cross_block_index,0.124218,目标=另一块子指数
+blockwise_cross_detection,barren,q_max_own_indicator,0.841722,同块单项指标的最大 q（构造性相关）
+blockwise_cross_detection,barren,q_max_cross_indicator,0.485803,跨块单项指标的最大 q（非构造性）
+blockwise_cross_detection,barren,mechanical_share_1_minus_cross_over_own,0.4228,1 - max跨块q / max同块q
+blockwise_cross_detection,forest,q_full_esi,0.065237,因子属于覆被块
+blockwise_cross_detection,forest,q_own_block_index,0.060802,目标=本块子指数（块内权重归一化）
+blockwise_cross_detection,forest,q_cross_block_index,0.022732,目标=另一块子指数
+blockwise_cross_detection,forest,q_max_own_indicator,1.0,同块单项指标的最大 q（构造性相关）
+blockwise_cross_detection,forest,q_max_cross_indicator,0.023201,跨块单项指标的最大 q（非构造性）
+blockwise_cross_detection,forest,mechanical_share_1_minus_cross_over_own,0.9768,1 - max跨块q / max同块q
+blockwise_cross_detection,water,q_full_esi,0.099507,因子属于覆被块
+blockwise_cross_detection,water,q_own_block_index,0.105636,目标=本块子指数（块内权重归一化）
+blockwise_cross_detection,water,q_cross_block_index,0.003603,目标=另一块子指数
+blockwise_cross_detection,water,q_max_own_indicator,1.0,同块单项指标的最大 q（构造性相关）
+blockwise_cross_detection,water,q_max_cross_indicator,0.008331,跨块单项指标的最大 q（非构造性）
+blockwise_cross_detection,water,mechanical_share_1_minus_cross_over_own,0.9917,1 - max跨块q / max同块q
+blockwise_cross_detection,elev,q_max_any_indicator,0.506445,该因子不参与 ESI 构造，故不存在同块（机械）成分
+blockwise_cross_detection,elev,mechanical_share_1_minus_cross_over_own,,不适用：无同块指标
+blockwise_cross_detection,slope,q_max_any_indicator,0.113584,该因子不参与 ESI 构造，故不存在同块（机械）成分
+blockwise_cross_detection,slope,mechanical_share_1_minus_cross_over_own,,不适用：无同块指标

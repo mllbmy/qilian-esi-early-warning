@@ -1,0 +1,202 @@
+﻿scheme,fold,horizon,train_window,target_year,model,hyper,observed,predicted,err,abs_err
+rolling_1step_from2013,2013,1,2005-2013,2014,"GM(1,1)",hyper=none,0.582281,0.623862,0.04158,0.04158
+rolling_1step_from2013,2013,1,2005-2013,2014,NGBM,gamma=0.40 (train SSE=0.015559),0.582281,0.500046,-0.082235,0.082235
+rolling_1step_from2013,2013,1,2005-2013,2014,ARIMA,"order=(0, 1, 1) (train AIC=-9.20)",0.582281,0.568632,-0.013649,0.013649
+rolling_1step_from2013,2014,1,2005-2014,2015,"GM(1,1)",hyper=none,0.587197,0.615567,0.02837,0.02837
+rolling_1step_from2013,2014,1,2005-2014,2015,NGBM,gamma=0.35 (train SSE=0.016814),0.587197,0.506677,-0.080519,0.080519
+rolling_1step_from2013,2014,1,2005-2014,2015,ARIMA,"order=(0, 1, 1) (train AIC=-11.91)",0.587197,0.58647,-0.000727,0.000727
+rolling_1step_from2013,2015,1,2005-2015,2016,"GM(1,1)",hyper=none,0.525319,0.611676,0.086358,0.086358
+rolling_1step_from2013,2015,1,2005-2015,2016,NGBM,gamma=0.30 (train SSE=0.018297),0.525319,0.518345,-0.006973,0.006973
+rolling_1step_from2013,2015,1,2005-2015,2016,ARIMA,"order=(0, 1, 1) (train AIC=-14.74)",0.525319,0.587305,0.061986,0.061986
+rolling_1step_from2013,2016,1,2005-2016,2017,"GM(1,1)",hyper=none,0.546616,0.586295,0.039679,0.039679
+rolling_1step_from2013,2016,1,2005-2016,2017,NGBM,gamma=0.30 (train SSE=0.018384),0.546616,0.491645,-0.054971,0.054971
+rolling_1step_from2013,2016,1,2005-2016,2017,ARIMA,"order=(0, 1, 1) (train AIC=-17.22)",0.546616,0.502457,-0.044159,0.044159
+rolling_1step_from2013,2017,1,2005-2017,2018,"GM(1,1)",hyper=none,0.532044,0.575357,0.043313,0.043313
+rolling_1step_from2013,2017,1,2005-2017,2018,NGBM,gamma=0.30 (train SSE=0.019285),0.532044,0.481194,-0.05085,0.05085
+rolling_1step_from2013,2017,1,2005-2017,2018,ARIMA,"order=(0, 1, 1) (train AIC=-19.98)",0.532044,0.557425,0.02538,0.02538
+rolling_1step_from2013,2018,1,2005-2018,2019,"GM(1,1)",hyper=none,0.539168,0.562999,0.023831,0.023831
+rolling_1step_from2013,2018,1,2005-2018,2019,NGBM,gamma=0.25 (train SSE=0.019577),0.539168,0.483138,-0.056029,0.056029
+rolling_1step_from2013,2018,1,2005-2018,2019,ARIMA,"order=(0, 1, 1) (train AIC=-22.94)",0.539168,0.526668,-0.0125,0.0125
+rolling_1step_from2013,2019,1,2005-2019,2020,"GM(1,1)",hyper=none,0.451087,0.555636,0.104549,0.104549
+rolling_1step_from2013,2019,1,2005-2019,2020,NGBM,gamma=0.25 (train SSE=0.020773),0.451087,0.476481,0.025394,0.025394
+rolling_1step_from2013,2019,1,2005-2019,2020,ARIMA,"order=(0, 1, 1) (train AIC=-26.03)",0.451087,0.541886,0.090798,0.090798
+rolling_1step_from2013,2020,1,2005-2020,2021,"GM(1,1)",hyper=none,0.541264,0.528254,-0.01301,0.01301
+rolling_1step_from2013,2020,1,2005-2020,2021,NGBM,gamma=0.25 (train SSE=0.022069),0.541264,0.448657,-0.092607,0.092607
+rolling_1step_from2013,2020,1,2005-2020,2021,ARIMA,"order=(0, 1, 1) (train AIC=-27.99)",0.541264,0.435316,-0.105947,0.105947
+rolling_1step_from2013,2021,1,2005-2021,2022,"GM(1,1)",hyper=none,0.509453,0.527487,0.018034,0.018034
+rolling_1step_from2013,2021,1,2005-2021,2022,NGBM,gamma=0.20 (train SSE=0.026707),0.509453,0.462519,-0.046934,0.046934
+rolling_1step_from2013,2021,1,2005-2021,2022,ARIMA,"order=(0, 1, 1) (train AIC=-29.79)",0.509453,0.539332,0.029879,0.029879
+rolling_1step_from2013,2022,1,2005-2022,2023,"GM(1,1)",hyper=none,0.486366,0.520142,0.033776,0.033776
+rolling_1step_from2013,2022,1,2005-2022,2023,NGBM,gamma=0.20 (train SSE=0.027593),0.486366,0.455783,-0.030583,0.030583
+rolling_1step_from2013,2022,1,2005-2022,2023,ARIMA,"order=(0, 1, 1) (train AIC=-32.82)",0.486366,0.511051,0.024685,0.024685
+rolling_1step_from2015,2015,1,2005-2015,2016,"GM(1,1)",hyper=none,0.525319,0.611676,0.086358,0.086358
+rolling_1step_from2015,2015,1,2005-2015,2016,NGBM,gamma=0.30 (train SSE=0.018297),0.525319,0.518345,-0.006973,0.006973
+rolling_1step_from2015,2015,1,2005-2015,2016,ARIMA,"order=(0, 1, 1) (train AIC=-14.74)",0.525319,0.587305,0.061986,0.061986
+rolling_1step_from2015,2016,1,2005-2016,2017,"GM(1,1)",hyper=none,0.546616,0.586295,0.039679,0.039679
+rolling_1step_from2015,2016,1,2005-2016,2017,NGBM,gamma=0.30 (train SSE=0.018384),0.546616,0.491645,-0.054971,0.054971
+rolling_1step_from2015,2016,1,2005-2016,2017,ARIMA,"order=(0, 1, 1) (train AIC=-17.22)",0.546616,0.502457,-0.044159,0.044159
+rolling_1step_from2015,2017,1,2005-2017,2018,"GM(1,1)",hyper=none,0.532044,0.575357,0.043313,0.043313
+rolling_1step_from2015,2017,1,2005-2017,2018,NGBM,gamma=0.30 (train SSE=0.019285),0.532044,0.481194,-0.05085,0.05085
+rolling_1step_from2015,2017,1,2005-2017,2018,ARIMA,"order=(0, 1, 1) (train AIC=-19.98)",0.532044,0.557425,0.02538,0.02538
+rolling_1step_from2015,2018,1,2005-2018,2019,"GM(1,1)",hyper=none,0.539168,0.562999,0.023831,0.023831
+rolling_1step_from2015,2018,1,2005-2018,2019,NGBM,gamma=0.25 (train SSE=0.019577),0.539168,0.483138,-0.056029,0.056029
+rolling_1step_from2015,2018,1,2005-2018,2019,ARIMA,"order=(0, 1, 1) (train AIC=-22.94)",0.539168,0.526668,-0.0125,0.0125
+rolling_1step_from2015,2019,1,2005-2019,2020,"GM(1,1)",hyper=none,0.451087,0.555636,0.104549,0.104549
+rolling_1step_from2015,2019,1,2005-2019,2020,NGBM,gamma=0.25 (train SSE=0.020773),0.451087,0.476481,0.025394,0.025394
+rolling_1step_from2015,2019,1,2005-2019,2020,ARIMA,"order=(0, 1, 1) (train AIC=-26.03)",0.451087,0.541886,0.090798,0.090798
+rolling_1step_from2015,2020,1,2005-2020,2021,"GM(1,1)",hyper=none,0.541264,0.528254,-0.01301,0.01301
+rolling_1step_from2015,2020,1,2005-2020,2021,NGBM,gamma=0.25 (train SSE=0.022069),0.541264,0.448657,-0.092607,0.092607
+rolling_1step_from2015,2020,1,2005-2020,2021,ARIMA,"order=(0, 1, 1) (train AIC=-27.99)",0.541264,0.435316,-0.105947,0.105947
+rolling_1step_from2015,2021,1,2005-2021,2022,"GM(1,1)",hyper=none,0.509453,0.527487,0.018034,0.018034
+rolling_1step_from2015,2021,1,2005-2021,2022,NGBM,gamma=0.20 (train SSE=0.026707),0.509453,0.462519,-0.046934,0.046934
+rolling_1step_from2015,2021,1,2005-2021,2022,ARIMA,"order=(0, 1, 1) (train AIC=-29.79)",0.509453,0.539332,0.029879,0.029879
+rolling_1step_from2015,2022,1,2005-2022,2023,"GM(1,1)",hyper=none,0.486366,0.520142,0.033776,0.033776
+rolling_1step_from2015,2022,1,2005-2022,2023,NGBM,gamma=0.20 (train SSE=0.027593),0.486366,0.455783,-0.030583,0.030583
+rolling_1step_from2015,2022,1,2005-2022,2023,ARIMA,"order=(0, 1, 1) (train AIC=-32.82)",0.486366,0.511051,0.024685,0.024685
+rolling_5step_from2013,2013,1,2005-2013,2014,"GM(1,1)",hyper=none,0.582281,0.623862,0.04158,0.04158
+rolling_5step_from2013,2013,2,2005-2013,2015,"GM(1,1)",hyper=none,0.587197,0.634579,0.047382,0.047382
+rolling_5step_from2013,2013,3,2005-2013,2016,"GM(1,1)",hyper=none,0.525319,0.64548,0.120161,0.120161
+rolling_5step_from2013,2013,4,2005-2013,2017,"GM(1,1)",hyper=none,0.546616,0.656568,0.109952,0.109952
+rolling_5step_from2013,2013,5,2005-2013,2018,"GM(1,1)",hyper=none,0.532044,0.667847,0.135803,0.135803
+rolling_5step_from2013,2013,1,2005-2013,2014,NGBM,gamma=0.40 (train SSE=0.015559),0.582281,0.500046,-0.082235,0.082235
+rolling_5step_from2013,2013,2,2005-2013,2015,NGBM,gamma=0.40 (train SSE=0.015559),0.587197,0.467445,-0.119752,0.119752
+rolling_5step_from2013,2013,3,2005-2013,2016,NGBM,gamma=0.40 (train SSE=0.015559),0.525319,0.435016,-0.090303,0.090303
+rolling_5step_from2013,2013,4,2005-2013,2017,NGBM,gamma=0.40 (train SSE=0.015559),0.546616,0.403334,-0.143282,0.143282
+rolling_5step_from2013,2013,5,2005-2013,2018,NGBM,gamma=0.40 (train SSE=0.015559),0.532044,0.372793,-0.159251,0.159251
+rolling_5step_from2013,2013,1,2005-2013,2014,ARIMA,"order=(0, 1, 1) (train AIC=-9.20)",0.582281,0.568632,-0.013649,0.013649
+rolling_5step_from2013,2013,2,2005-2013,2015,ARIMA,"order=(0, 1, 1) (train AIC=-9.20)",0.587197,0.568632,-0.018564,0.018564
+rolling_5step_from2013,2013,3,2005-2013,2016,ARIMA,"order=(0, 1, 1) (train AIC=-9.20)",0.525319,0.568632,0.043314,0.043314
+rolling_5step_from2013,2013,4,2005-2013,2017,ARIMA,"order=(0, 1, 1) (train AIC=-9.20)",0.546616,0.568632,0.022016,0.022016
+rolling_5step_from2013,2013,5,2005-2013,2018,ARIMA,"order=(0, 1, 1) (train AIC=-9.20)",0.532044,0.568632,0.036588,0.036588
+rolling_5step_from2013,2014,1,2005-2014,2015,"GM(1,1)",hyper=none,0.587197,0.615567,0.02837,0.02837
+rolling_5step_from2013,2014,2,2005-2014,2016,"GM(1,1)",hyper=none,0.525319,0.623281,0.097962,0.097962
+rolling_5step_from2013,2014,3,2005-2014,2017,"GM(1,1)",hyper=none,0.546616,0.631092,0.084476,0.084476
+rolling_5step_from2013,2014,4,2005-2014,2018,"GM(1,1)",hyper=none,0.532044,0.639001,0.106957,0.106957
+rolling_5step_from2013,2014,5,2005-2014,2019,"GM(1,1)",hyper=none,0.539168,0.64701,0.107842,0.107842
+rolling_5step_from2013,2014,1,2005-2014,2015,NGBM,gamma=0.35 (train SSE=0.016814),0.587197,0.506677,-0.080519,0.080519
+rolling_5step_from2013,2014,2,2005-2014,2016,NGBM,gamma=0.35 (train SSE=0.016814),0.525319,0.47985,-0.045469,0.045469
+rolling_5step_from2013,2014,3,2005-2014,2017,NGBM,gamma=0.35 (train SSE=0.016814),0.546616,0.452993,-0.093623,0.093623
+rolling_5step_from2013,2014,4,2005-2014,2018,NGBM,gamma=0.35 (train SSE=0.016814),0.532044,0.426486,-0.105558,0.105558
+rolling_5step_from2013,2014,5,2005-2014,2019,NGBM,gamma=0.35 (train SSE=0.016814),0.539168,0.400607,-0.13856,0.13856
+rolling_5step_from2013,2014,1,2005-2014,2015,ARIMA,"order=(0, 1, 1) (train AIC=-11.91)",0.587197,0.58647,-0.000727,0.000727
+rolling_5step_from2013,2014,2,2005-2014,2016,ARIMA,"order=(0, 1, 1) (train AIC=-11.91)",0.525319,0.58647,0.061151,0.061151
+rolling_5step_from2013,2014,3,2005-2014,2017,ARIMA,"order=(0, 1, 1) (train AIC=-11.91)",0.546616,0.58647,0.039854,0.039854
+rolling_5step_from2013,2014,4,2005-2014,2018,ARIMA,"order=(0, 1, 1) (train AIC=-11.91)",0.532044,0.58647,0.054426,0.054426
+rolling_5step_from2013,2014,5,2005-2014,2019,ARIMA,"order=(0, 1, 1) (train AIC=-11.91)",0.539168,0.58647,0.047302,0.047302
+rolling_5step_from2013,2015,1,2005-2015,2016,"GM(1,1)",hyper=none,0.525319,0.611676,0.086358,0.086358
+rolling_5step_from2013,2015,2,2005-2015,2017,"GM(1,1)",hyper=none,0.546616,0.617752,0.071136,0.071136
+rolling_5step_from2013,2015,3,2005-2015,2018,"GM(1,1)",hyper=none,0.532044,0.623889,0.091844,0.091844
+rolling_5step_from2013,2015,4,2005-2015,2019,"GM(1,1)",hyper=none,0.539168,0.630086,0.090918,0.090918
+rolling_5step_from2013,2015,5,2005-2015,2020,"GM(1,1)",hyper=none,0.451087,0.636345,0.185257,0.185257
+rolling_5step_from2013,2015,1,2005-2015,2016,NGBM,gamma=0.30 (train SSE=0.018297),0.525319,0.518345,-0.006973,0.006973
+rolling_5step_from2013,2015,2,2005-2015,2017,NGBM,gamma=0.30 (train SSE=0.018297),0.546616,0.496948,-0.049668,0.049668
+rolling_5step_from2013,2015,3,2005-2015,2018,NGBM,gamma=0.30 (train SSE=0.018297),0.532044,0.475357,-0.056687,0.056687
+rolling_5step_from2013,2015,4,2005-2015,2019,NGBM,gamma=0.30 (train SSE=0.018297),0.539168,0.453823,-0.085344,0.085344
+rolling_5step_from2013,2015,5,2005-2015,2020,NGBM,gamma=0.30 (train SSE=0.018297),0.451087,0.432539,-0.018549,0.018549
+rolling_5step_from2013,2015,1,2005-2015,2016,ARIMA,"order=(0, 1, 1) (train AIC=-14.74)",0.525319,0.587305,0.061986,0.061986
+rolling_5step_from2013,2015,2,2005-2015,2017,ARIMA,"order=(0, 1, 1) (train AIC=-14.74)",0.546616,0.587305,0.040689,0.040689
+rolling_5step_from2013,2015,3,2005-2015,2018,ARIMA,"order=(0, 1, 1) (train AIC=-14.74)",0.532044,0.587305,0.05526,0.05526
+rolling_5step_from2013,2015,4,2005-2015,2019,ARIMA,"order=(0, 1, 1) (train AIC=-14.74)",0.539168,0.587305,0.048137,0.048137
+rolling_5step_from2013,2015,5,2005-2015,2020,ARIMA,"order=(0, 1, 1) (train AIC=-14.74)",0.451087,0.587305,0.136217,0.136217
+rolling_5step_from2013,2016,1,2005-2016,2017,"GM(1,1)",hyper=none,0.546616,0.586295,0.039679,0.039679
+rolling_5step_from2013,2016,2,2005-2016,2018,"GM(1,1)",hyper=none,0.532044,0.588273,0.056229,0.056229
+rolling_5step_from2013,2016,3,2005-2016,2019,"GM(1,1)",hyper=none,0.539168,0.590258,0.05109,0.05109
+rolling_5step_from2013,2016,4,2005-2016,2020,"GM(1,1)",hyper=none,0.451087,0.592249,0.141161,0.141161
+rolling_5step_from2013,2016,5,2005-2016,2021,"GM(1,1)",hyper=none,0.541264,0.594246,0.052983,0.052983
+rolling_5step_from2013,2016,1,2005-2016,2017,NGBM,gamma=0.30 (train SSE=0.018384),0.546616,0.491645,-0.054971,0.054971
+rolling_5step_from2013,2016,2,2005-2016,2018,NGBM,gamma=0.30 (train SSE=0.018384),0.532044,0.469679,-0.062365,0.062365
+rolling_5step_from2013,2016,3,2005-2016,2019,NGBM,gamma=0.30 (train SSE=0.018384),0.539168,0.447827,-0.091341,0.091341
+rolling_5step_from2013,2016,4,2005-2016,2020,NGBM,gamma=0.30 (train SSE=0.018384),0.451087,0.426277,-0.02481,0.02481
+rolling_5step_from2013,2016,5,2005-2016,2021,NGBM,gamma=0.30 (train SSE=0.018384),0.541264,0.405173,-0.136091,0.136091
+rolling_5step_from2013,2016,1,2005-2016,2017,ARIMA,"order=(0, 1, 1) (train AIC=-17.22)",0.546616,0.502457,-0.044159,0.044159
+rolling_5step_from2013,2016,2,2005-2016,2018,ARIMA,"order=(0, 1, 1) (train AIC=-17.22)",0.532044,0.502457,-0.029587,0.029587
+rolling_5step_from2013,2016,3,2005-2016,2019,ARIMA,"order=(0, 1, 1) (train AIC=-17.22)",0.539168,0.502457,-0.03671,0.03671
+rolling_5step_from2013,2016,4,2005-2016,2020,ARIMA,"order=(0, 1, 1) (train AIC=-17.22)",0.451087,0.502457,0.05137,0.05137
+rolling_5step_from2013,2016,5,2005-2016,2021,ARIMA,"order=(0, 1, 1) (train AIC=-17.22)",0.541264,0.502457,-0.038807,0.038807
+rolling_5step_from2013,2017,1,2005-2017,2018,"GM(1,1)",hyper=none,0.532044,0.575357,0.043313,0.043313
+rolling_5step_from2013,2017,2,2005-2017,2019,"GM(1,1)",hyper=none,0.539168,0.575835,0.036667,0.036667
+rolling_5step_from2013,2017,3,2005-2017,2020,"GM(1,1)",hyper=none,0.451087,0.576312,0.125225,0.125225
+rolling_5step_from2013,2017,4,2005-2017,2021,"GM(1,1)",hyper=none,0.541264,0.576791,0.035527,0.035527
+rolling_5step_from2013,2017,5,2005-2017,2022,"GM(1,1)",hyper=none,0.509453,0.577269,0.067816,0.067816
+rolling_5step_from2013,2017,1,2005-2017,2018,NGBM,gamma=0.30 (train SSE=0.019285),0.532044,0.481194,-0.05085,0.05085
+rolling_5step_from2013,2017,2,2005-2017,2019,NGBM,gamma=0.30 (train SSE=0.019285),0.539168,0.460042,-0.079126,0.079126
+rolling_5step_from2013,2017,3,2005-2017,2020,NGBM,gamma=0.30 (train SSE=0.019285),0.451087,0.43908,-0.012007,0.012007
+rolling_5step_from2013,2017,4,2005-2017,2021,NGBM,gamma=0.30 (train SSE=0.019285),0.541264,0.418459,-0.122805,0.122805
+rolling_5step_from2013,2017,5,2005-2017,2022,NGBM,gamma=0.30 (train SSE=0.019285),0.509453,0.398293,-0.11116,0.11116
+rolling_5step_from2013,2017,1,2005-2017,2018,ARIMA,"order=(0, 1, 1) (train AIC=-19.98)",0.532044,0.557425,0.02538,0.02538
+rolling_5step_from2013,2017,2,2005-2017,2019,ARIMA,"order=(0, 1, 1) (train AIC=-19.98)",0.539168,0.557425,0.018257,0.018257
+rolling_5step_from2013,2017,3,2005-2017,2020,ARIMA,"order=(0, 1, 1) (train AIC=-19.98)",0.451087,0.557425,0.106337,0.106337
+rolling_5step_from2013,2017,4,2005-2017,2021,ARIMA,"order=(0, 1, 1) (train AIC=-19.98)",0.541264,0.557425,0.016161,0.016161
+rolling_5step_from2013,2017,5,2005-2017,2022,ARIMA,"order=(0, 1, 1) (train AIC=-19.98)",0.509453,0.557425,0.047971,0.047971
+rolling_5step_from2013,2018,1,2005-2018,2019,"GM(1,1)",hyper=none,0.539168,0.562999,0.023831,0.023831
+rolling_5step_from2013,2018,2,2005-2018,2020,"GM(1,1)",hyper=none,0.451087,0.562124,0.111037,0.111037
+rolling_5step_from2013,2018,3,2005-2018,2021,"GM(1,1)",hyper=none,0.541264,0.56125,0.019986,0.019986
+rolling_5step_from2013,2018,4,2005-2018,2022,"GM(1,1)",hyper=none,0.509453,0.560378,0.050925,0.050925
+rolling_5step_from2013,2018,5,2005-2018,2023,"GM(1,1)",hyper=none,0.486366,0.559507,0.073141,0.073141
+rolling_5step_from2013,2018,1,2005-2018,2019,NGBM,gamma=0.25 (train SSE=0.019577),0.539168,0.483138,-0.056029,0.056029
+rolling_5step_from2013,2018,2,2005-2018,2020,NGBM,gamma=0.25 (train SSE=0.019577),0.451087,0.46546,0.014373,0.014373
+rolling_5step_from2013,2018,3,2005-2018,2021,NGBM,gamma=0.25 (train SSE=0.019577),0.541264,0.447896,-0.093368,0.093368
+rolling_5step_from2013,2018,4,2005-2018,2022,NGBM,gamma=0.25 (train SSE=0.019577),0.509453,0.430543,-0.07891,0.07891
+rolling_5step_from2013,2018,5,2005-2018,2023,NGBM,gamma=0.25 (train SSE=0.019577),0.486366,0.413478,-0.072888,0.072888
+rolling_5step_from2013,2018,1,2005-2018,2019,ARIMA,"order=(0, 1, 1) (train AIC=-22.94)",0.539168,0.526668,-0.0125,0.0125
+rolling_5step_from2013,2018,2,2005-2018,2020,ARIMA,"order=(0, 1, 1) (train AIC=-22.94)",0.451087,0.526668,0.07558,0.07558
+rolling_5step_from2013,2018,3,2005-2018,2021,ARIMA,"order=(0, 1, 1) (train AIC=-22.94)",0.541264,0.526668,-0.014596,0.014596
+rolling_5step_from2013,2018,4,2005-2018,2022,ARIMA,"order=(0, 1, 1) (train AIC=-22.94)",0.509453,0.526668,0.017214,0.017214
+rolling_5step_from2013,2018,5,2005-2018,2023,ARIMA,"order=(0, 1, 1) (train AIC=-22.94)",0.486366,0.526668,0.040301,0.040301
+loocv_leave_one_year_out,holdout_2005,1,18 years (all except 2005),2005,"GM(1,1)",hyper=none,0.25809,0.493159,0.235069,0.235069
+loocv_leave_one_year_out,holdout_2005,1,18 years (all except 2005),2005,NGBM,gamma=0.10 (train SSE=0.026142),0.25809,0.460698,0.202608,0.202608
+loocv_leave_one_year_out,holdout_2005,1,18 years (all except 2005),2005,ARIMA,"order=(0, 1, 1) (train AIC=-43.77)",0.25809,0.500767,0.242676,0.242676
+loocv_leave_one_year_out,holdout_2006,1,18 years (all except 2006),2006,"GM(1,1)",hyper=none,0.467274,0.493159,0.025885,0.025885
+loocv_leave_one_year_out,holdout_2006,1,18 years (all except 2006),2006,NGBM,gamma=0.10 (train SSE=0.025721),0.467274,0.457359,-0.009915,0.009915
+loocv_leave_one_year_out,holdout_2006,1,18 years (all except 2006),2006,ARIMA,"order=(1, 1, 0) (train AIC=-28.80)",0.467274,0.495215,0.02794,0.02794
+loocv_leave_one_year_out,holdout_2007,1,18 years (all except 2007),2007,"GM(1,1)",hyper=none,0.563485,0.503787,-0.059699,0.059699
+loocv_leave_one_year_out,holdout_2007,1,18 years (all except 2007),2007,NGBM,gamma=0.20 (train SSE=0.029633),0.563485,0.43919,-0.124295,0.124295
+loocv_leave_one_year_out,holdout_2007,1,18 years (all except 2007),2007,ARIMA,"order=(1, 1, 0) (train AIC=-33.27)",0.563485,0.485108,-0.078378,0.078378
+loocv_leave_one_year_out,holdout_2008,1,18 years (all except 2008),2008,"GM(1,1)",hyper=none,0.544891,0.502181,-0.04271,0.04271
+loocv_leave_one_year_out,holdout_2008,1,18 years (all except 2008),2008,NGBM,gamma=0.20 (train SSE=0.029383),0.544891,0.437427,-0.107464,0.107464
+loocv_leave_one_year_out,holdout_2008,1,18 years (all except 2008),2008,ARIMA,"order=(1, 1, 0) (train AIC=-33.34)",0.544891,0.484265,-0.060626,0.060626
+loocv_leave_one_year_out,holdout_2009,1,18 years (all except 2009),2009,"GM(1,1)",hyper=none,0.642896,0.508448,-0.134448,0.134448
+loocv_leave_one_year_out,holdout_2009,1,18 years (all except 2009),2009,NGBM,gamma=0.20 (train SSE=0.027047),0.642896,0.446069,-0.196827,0.196827
+loocv_leave_one_year_out,holdout_2009,1,18 years (all except 2009),2009,ARIMA,"order=(1, 1, 0) (train AIC=-31.94)",0.642896,0.493083,-0.149813,0.149813
+loocv_leave_one_year_out,holdout_2010,1,18 years (all except 2010),2010,"GM(1,1)",hyper=none,0.709157,0.511281,-0.197876,0.197876
+loocv_leave_one_year_out,holdout_2010,1,18 years (all except 2010),2010,NGBM,gamma=0.20 (train SSE=0.014754),0.709157,0.450885,-0.258272,0.258272
+loocv_leave_one_year_out,holdout_2010,1,18 years (all except 2010),2010,ARIMA,"order=(1, 1, 0) (train AIC=-36.29)",0.709157,0.489298,-0.219859,0.219859
+loocv_leave_one_year_out,holdout_2011,1,18 years (all except 2011),2011,"GM(1,1)",hyper=none,0.550787,0.508041,-0.042746,0.042746
+loocv_leave_one_year_out,holdout_2011,1,18 years (all except 2011),2011,NGBM,gamma=0.20 (train SSE=0.026092),0.550787,0.442816,-0.107971,0.107971
+loocv_leave_one_year_out,holdout_2011,1,18 years (all except 2011),2011,ARIMA,"order=(0, 1, 1) (train AIC=-33.69)",0.550787,0.486157,-0.06463,0.06463
+loocv_leave_one_year_out,holdout_2012,1,18 years (all except 2012),2012,"GM(1,1)",hyper=none,0.571319,0.508005,-0.063314,0.063314
+loocv_leave_one_year_out,holdout_2012,1,18 years (all except 2012),2012,NGBM,gamma=0.20 (train SSE=0.027747),0.571319,0.443355,-0.127965,0.127965
+loocv_leave_one_year_out,holdout_2012,1,18 years (all except 2012),2012,ARIMA,"order=(0, 1, 1) (train AIC=-32.71)",0.571319,0.4879,-0.083419,0.083419
+loocv_leave_one_year_out,holdout_2013,1,18 years (all except 2013),2013,"GM(1,1)",hyper=none,0.57596,0.507901,-0.068059,0.068059
+loocv_leave_one_year_out,holdout_2013,1,18 years (all except 2013),2013,NGBM,gamma=0.20 (train SSE=0.027950),0.57596,0.44336,-0.1326,0.1326
+loocv_leave_one_year_out,holdout_2013,1,18 years (all except 2013),2013,ARIMA,"order=(0, 1, 1) (train AIC=-32.72)",0.57596,0.487635,-0.088325,0.088325
+loocv_leave_one_year_out,holdout_2014,1,18 years (all except 2014),2014,"GM(1,1)",hyper=none,0.582281,0.507631,-0.074651,0.074651
+loocv_leave_one_year_out,holdout_2014,1,18 years (all except 2014),2014,NGBM,gamma=0.20 (train SSE=0.028056),0.582281,0.443206,-0.139075,0.139075
+loocv_leave_one_year_out,holdout_2014,1,18 years (all except 2014),2014,ARIMA,"order=(0, 1, 1) (train AIC=-32.72)",0.582281,0.487774,-0.094507,0.094507
+loocv_leave_one_year_out,holdout_2015,1,18 years (all except 2015),2015,"GM(1,1)",hyper=none,0.587197,0.507322,-0.079875,0.079875
+loocv_leave_one_year_out,holdout_2015,1,18 years (all except 2015),2015,NGBM,gamma=0.20 (train SSE=0.027986),0.587197,0.442961,-0.144235,0.144235
+loocv_leave_one_year_out,holdout_2015,1,18 years (all except 2015),2015,ARIMA,"order=(0, 1, 1) (train AIC=-32.82)",0.587197,0.487639,-0.099558,0.099558
+loocv_leave_one_year_out,holdout_2016,1,18 years (all except 2016),2016,"GM(1,1)",hyper=none,0.525319,0.512428,-0.012891,0.012891
+loocv_leave_one_year_out,holdout_2016,1,18 years (all except 2016),2016,NGBM,gamma=0.20 (train SSE=0.026481),0.525319,0.447595,-0.077723,0.077723
+loocv_leave_one_year_out,holdout_2016,1,18 years (all except 2016),2016,ARIMA,"order=(0, 1, 1) (train AIC=-33.10)",0.525319,0.486769,-0.03855,0.03855
+loocv_leave_one_year_out,holdout_2017,1,18 years (all except 2017),2017,"GM(1,1)",hyper=none,0.546616,0.51026,-0.036356,0.036356
+loocv_leave_one_year_out,holdout_2017,1,18 years (all except 2017),2017,NGBM,gamma=0.20 (train SSE=0.027405),0.546616,0.445484,-0.101133,0.101133
+loocv_leave_one_year_out,holdout_2017,1,18 years (all except 2017),2017,ARIMA,"order=(0, 1, 1) (train AIC=-32.80)",0.546616,0.487178,-0.059438,0.059438
+loocv_leave_one_year_out,holdout_2018,1,18 years (all except 2018),2018,"GM(1,1)",hyper=none,0.532044,0.51202,-0.020024,0.020024
+loocv_leave_one_year_out,holdout_2018,1,18 years (all except 2018),2018,NGBM,gamma=0.20 (train SSE=0.027254),0.532044,0.44727,-0.084774,0.084774
+loocv_leave_one_year_out,holdout_2018,1,18 years (all except 2018),2018,ARIMA,"order=(0, 1, 1) (train AIC=-32.74)",0.532044,0.487149,-0.044895,0.044895
+loocv_leave_one_year_out,holdout_2019,1,18 years (all except 2019),2019,"GM(1,1)",hyper=none,0.539168,0.511027,-0.02814,0.02814
+loocv_leave_one_year_out,holdout_2019,1,18 years (all except 2019),2019,NGBM,gamma=0.20 (train SSE=0.027193),0.539168,0.446238,-0.09293,0.09293
+loocv_leave_one_year_out,holdout_2019,1,18 years (all except 2019),2019,ARIMA,"order=(0, 1, 1) (train AIC=-32.89)",0.539168,0.486714,-0.052454,0.052454
+loocv_leave_one_year_out,holdout_2020,1,18 years (all except 2020),2020,"GM(1,1)",hyper=none,0.451087,0.524992,0.073905,0.073905
+loocv_leave_one_year_out,holdout_2020,1,18 years (all except 2020),2020,NGBM,gamma=0.20 (train SSE=0.022381),0.451087,0.460964,0.009877,0.009877
+loocv_leave_one_year_out,holdout_2020,1,18 years (all except 2020),2020,ARIMA,"order=(0, 1, 1) (train AIC=-35.56)",0.451087,0.482521,0.031434,0.031434
+loocv_leave_one_year_out,holdout_2021,1,18 years (all except 2021),2021,"GM(1,1)",hyper=none,0.541264,0.509085,-0.032179,0.032179
+loocv_leave_one_year_out,holdout_2021,1,18 years (all except 2021),2021,NGBM,gamma=0.25 (train SSE=0.024360),0.541264,0.430981,-0.110283,0.110283
+loocv_leave_one_year_out,holdout_2021,1,18 years (all except 2021),2021,ARIMA,"order=(0, 1, 1) (train AIC=-33.57)",0.541264,0.486263,-0.055001,0.055001
+loocv_leave_one_year_out,holdout_2022,1,18 years (all except 2022),2022,"GM(1,1)",hyper=none,0.509453,0.515229,0.005776,0.005776
+loocv_leave_one_year_out,holdout_2022,1,18 years (all except 2022),2022,NGBM,gamma=0.20 (train SSE=0.026788),0.509453,0.450606,-0.058847,0.058847
+loocv_leave_one_year_out,holdout_2022,1,18 years (all except 2022),2022,ARIMA,"order=(0, 1, 1) (train AIC=-32.56)",0.509453,0.490412,-0.019042,0.019042
+loocv_leave_one_year_out,holdout_2023,1,18 years (all except 2023),2023,"GM(1,1)",hyper=none,0.486366,0.520142,0.033776,0.033776
+loocv_leave_one_year_out,holdout_2023,1,18 years (all except 2023),2023,NGBM,gamma=0.20 (train SSE=0.027593),0.486366,0.455783,-0.030583,0.030583
+loocv_leave_one_year_out,holdout_2023,1,18 years (all except 2023),2023,ARIMA,"order=(0, 1, 1) (train AIC=-32.82)",0.486366,0.511051,0.024685,0.024685

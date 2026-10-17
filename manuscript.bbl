@@ -1,4 +1,4 @@
-\begin{thebibliography}{24}
+\begin{thebibliography}{25}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -217,6 +217,15 @@
 \newblock \bibinfo{journal}{Earth System Science Data} \bibinfo{volume}{13},
   \bibinfo{pages}{3907--3925}.
 \newblock \DOIprefix\doi{10.5194/essd-13-3907-2021}.
+%Type = Misc
+\bibitem[{Yang and Huang(2024)}]{yang2024clcd}
+\bibinfo{author}{Yang, J.}, \bibinfo{author}{Huang, X.}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{{CLCD}: {China} land cover dataset, 30 m annual land
+  cover (1985--2023), version 1.0}.
+\newblock \bibinfo{howpublished}{Zenodo dataset}.
+\newblock \URLprefix \url{https://doi.org/10.5281/zenodo.12779975},
+  \DOIprefix\doi{10.5281/zenodo.12779975}. \bibinfo{note}{cC-BY-4.0; accessed
+  2026-10-07}.
 %Type = Article
 \bibitem[{Zhang et~al.(2024)Zhang, Liu, Qin, Dai, Lu, Lu, Ji, Yang, Chen and
   Jia}]{china_ecoenv_2024}

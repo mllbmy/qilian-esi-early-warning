@@ -48,3 +48,7 @@ author_local.py
 
 # 原始输入数据（作者自备，可用环境变量 QILIAN_LC_DATA / QILIAN_CRU_DATA 指向别处）
 _raw/
+
+# R28: local backups / scratch build dirs (never committed)
+*.bak*
+_r28_build*/

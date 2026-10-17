@@ -1,0 +1,38 @@
+﻿analysis,metric,value,note
+spatial_agreement,pearson_r,0.705413,ESI vs 独立 NDVI，n=1785
+spatial_agreement,spearman_rho,0.737252,同上
+spatial_agreement,q_ndvi_strata_to_esi,0.547937,四分位分层，目标=ESI
+spatial_agreement,q_esi_strata_to_ndvi,0.527336,四分位分层，目标=NDVI
+attribution_external,q_target_esi,0.548,因子 precip
+attribution_external,q_target_ndvi,0.6257,因子 precip
+attribution_external,q_target_esi,0.1965,因子 temp
+attribution_external,q_target_ndvi,0.1781,因子 temp
+attribution_external,q_target_esi,0.8135,因子 grass
+attribution_external,q_target_ndvi,0.3784,因子 grass
+attribution_external,q_target_esi,0.8179,因子 barren
+attribution_external,q_target_ndvi,0.5476,因子 barren
+attribution_external,q_target_esi,0.0918,因子 elev
+attribution_external,q_target_ndvi,0.0793,因子 elev
+attribution_external,q_target_esi,0.0751,因子 slope
+attribution_external,q_target_ndvi,0.0899,因子 slope
+attribution_external,rank_spearman,0.7714,两套 q 排序：barren>grass>precip>temp>elev>slope || precip>barren>grass>temp>slope>elev
+attribution_external,ols_r2_exogenous_to_ndvi,0.058533,elev+slope → 独立 NDVI
+temporal_agreement,ndvi_slope_per_yr|全体晴空像元均值,0.001323,全期 2005-2023
+temporal_agreement,esi_slope_per_yr|全体晴空像元均值,0.00062,全期 2005-2023
+temporal_agreement,level_corr|全体晴空像元均值,-0.17057,全期 2005-2023
+temporal_agreement,ndvi_slope_per_yr|全体晴空像元均值,0.001077,AVHRR 段 2005-2013
+temporal_agreement,esi_slope_per_yr|全体晴空像元均值,0.028708,AVHRR 段 2005-2013
+temporal_agreement,level_corr|全体晴空像元均值,-0.165144,AVHRR 段 2005-2013
+temporal_agreement,ndvi_slope_per_yr|全体晴空像元均值,0.000154,VIIRS 段 2014-2023
+temporal_agreement,esi_slope_per_yr|全体晴空像元均值,-0.009735,VIIRS 段 2014-2023
+temporal_agreement,level_corr|全体晴空像元均值,-0.269571,VIIRS 段 2014-2023
+temporal_agreement,ndvi_slope_per_yr|共同掩膜均值,-0.000997,全期 2005-2023
+temporal_agreement,esi_slope_per_yr|共同掩膜均值,0.00062,全期 2005-2023
+temporal_agreement,level_corr|共同掩膜均值,-0.104775,全期 2005-2023
+temporal_agreement,ndvi_slope_per_yr|共同掩膜均值,-0.0002,AVHRR 段 2005-2013
+temporal_agreement,esi_slope_per_yr|共同掩膜均值,0.028708,AVHRR 段 2005-2013
+temporal_agreement,level_corr|共同掩膜均值,-0.609108,AVHRR 段 2005-2013
+temporal_agreement,ndvi_slope_per_yr|共同掩膜均值,-0.001156,VIIRS 段 2014-2023
+temporal_agreement,esi_slope_per_yr|共同掩膜均值,-0.009735,VIIRS 段 2014-2023
+temporal_agreement,level_corr|共同掩膜均值,0.435469,VIIRS 段 2014-2023
+temporal_agreement,corr_point_ndvi_trend_vs_static_esi,-0.030179,逐点 2005-2023 NDVI 斜率 vs 2020 静态 ESI，n=250

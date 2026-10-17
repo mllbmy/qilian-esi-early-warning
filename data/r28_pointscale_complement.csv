@@ -1,0 +1,11 @@
+﻿item,value
+n_samples,1914.0
+n_three_class_zero,1122.0
+n_barren_class7,1041.0
+n_three_class_zero_and_not_class7,81.0
+n_crop_class1,75.0
+n_snow_class6,6.0
+n_three_zero_and_crop,75.0
+n_three_zero_and_snow,6.0
+max_abs_delta_all,1.0
+max_abs_delta_where_three_sum_gt0,0.0

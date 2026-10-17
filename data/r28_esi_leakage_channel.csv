@@ -1,0 +1,14 @@
+﻿metric,value,note
+rebuild_vs_archive_max_abs_delta_esi,4.675e-05,论文口径 ESI 重建 vs results_esi_regional.csv（4 位小数舍入）
+train_only_normalisation_max_abs_delta_esi,0.055668,仅训练期 min-max 区间+熵权 vs 全时段口径的逐年 ESI 最大绝对差
+train_only_delta_esi_sd,0.02519,同一差异的标准差
+train_only_eval_window_mean_abs_delta_esi,0.018792,仅评估期 2019-2023 的平均绝对差
+entropy_weight|X1_降水mm,0.146621,训练期熵权；全时段熵权 = 0.110915，组合权重(α=0.4) = 0.082826
+entropy_weight|X2_气温C,0.068771,训练期熵权；全时段熵权 = 0.063284，组合权重(α=0.4) = 0.054247
+entropy_weight|X3_草地占比%,0.064471,训练期熵权；全时段熵权 = 0.074544，组合权重(α=0.4) = 0.103176
+entropy_weight|X4_森林占比%,0.098145,训练期熵权；全时段熵权 = 0.103237，组合权重(α=0.4) = 0.120392
+entropy_weight|X5_水域占比%,0.091182,训练期熵权；全时段熵权 = 0.115154，组合权重(α=0.4) = 0.127542
+entropy_weight|X6_裸地荒漠%,0.065312,训练期熵权；全时段熵权 = 0.058326，组合权重(α=0.4) = 0.051272
+entropy_weight|X7_农田占比%,0.23985,训练期熵权；全时段熵权 = 0.170789，组合权重(α=0.4) = 0.118750
+entropy_weight|X8_草地变化率,0.160914,训练期熵权；全时段熵权 = 0.244792，组合权重(α=0.4) = 0.206326
+entropy_weight|X9_生态用地%,0.064733,训练期熵权；全时段熵权 = 0.058959，组合权重(α=0.4) = 0.135468

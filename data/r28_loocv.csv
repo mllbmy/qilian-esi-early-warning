@@ -1,0 +1,4 @@
+﻿scheme,model,n_predictions,n_folds,rmse,mae,mape_pct,bias,rmse_in_fold_units_mean,n_folds_best,best_fold_share,best_folds,rank_in_scheme
+loocv_leave_one_year_out,"GM(1,1)",19,19,0.089242,0.066704,14.1814,-0.027292,0.066704,15,0.7895,"holdout_2007, holdout_2008, holdout_2009, holdout_2010, holdout_2011, holdout_2012, holdout_2013, holdout_2014, holdout_2015, holdout_2016, holdout_2017, holdout_2018, holdout_2019, holdout_2021, holdout_2022",1
+loocv_leave_one_year_out,ARIMA,19,19,0.100741,0.080802,16.6593,-0.046408,0.080802,1,0.0526,holdout_2023,2
+loocv_leave_one_year_out,NGBM,19,19,0.127342,0.111441,21.5675,-0.089074,0.111441,3,0.1579,"holdout_2005, holdout_2006, holdout_2020",3

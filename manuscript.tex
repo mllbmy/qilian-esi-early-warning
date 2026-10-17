@@ -10,6 +10,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{multirow}
+\usepackage{url}
 \usepackage[table]{xcolor}
 \usepackage[margin=2.5cm]{geometry}
 \emergencystretch=1em
@@ -20,7 +21,7 @@
 
 \begin{frontmatter}
 
-\title{Ecological security early warning in the Qilian Mountain region, China: temporal dynamics, forecasts, and spatial drivers}
+\title{Ecological security early warning in the Qilian Mountain region, China: temporal dynamics, forecasts, and spatial associations}
 
 \author[aff1]{[Author]\corref{cor1}}
 \ead{[email]}
@@ -29,7 +30,7 @@
 \cortext[cor1]{Corresponding author.}
 
 \begin{abstract}
-Nature reserves are critical for biodiversity conservation, yet their management often lacks quantitative early-warning tools that translate monitoring data into actionable signals. We assess and forecast ecological security (ES) in the Qilian Mountain region (including the Qilian Mountain National Park), China, over 2005--2023, building on a Driving--Pressure--State--Impact--Response (DPSIR) indicator system and combining subjective--objective weighting, grey forecasting, and GeoDetector attribution, using only open climate (CRU TS) and land-cover (CLCD) data. The ecological security index (ESI) rose to a peak of 0.709 in 2010 (relatively safe), then declined and stabilized within the mild-warning band, reaching 0.486 in 2023; 16 of 19 years were in the mild-warning grade, and the 2023 grade was invariant to the subjective--objective weighting ratio. Forecasts for 2024--2028, obtained with the nonlinear grey Bernoulli model selected by a three-model comparison and holdout validation (2005--2018 fit, 2019--2023 held out), show a gradual decline from 0.446 to 0.394, with the grade lying between mild and medium warning. Spatially, the barren/degraded class ($q=0.80$) and the grassland class ($q=0.71$) have the highest explanatory power, followed by precipitation ($q=0.51$) and temperature ($q=0.17$) (all $p \le 0.001$), but all four are themselves components of the ESI; under a leave-one-target detection, in which the target ESI is recomputed after removing the factor under test, the first and last positions are unchanged (barren/degraded remains highest, temperature remains lowest), while grassland and precipitation swap the second and third positions---barren/degraded 0.711 $>$ precipitation 0.381 $>$ grassland 0.366 $>$ temperature 0.274 (all $p = 0.001$)---and the strictly exogenous terrain factors explain only 6--9\% of the variance (elevation $q=0.09$, slope $q=0.06$). We propose zonal management: strengthening grassland restoration in mild-warning zones and regulating cropland expansion, together with a pipeline transferable to other reserves whose analysis scripts, processed result tables, the ten figure files, and documented Stage~0--7 run order are openly available.
+Nature reserves are critical for biodiversity conservation, yet their management often lacks quantitative early-warning tools that translate monitoring data into actionable signals. We assess and forecast ecological security (ES) in the Qilian Mountain region (including the Qilian Mountain National Park), China, over 2005--2023, building on a Driving--Pressure--State--Impact--Response (DPSIR) indicator system and combining subjective--objective weighting, three forecasting models (GM(1,1), the nonlinear grey Bernoulli model and ARIMA), and GeoDetector association analysis, using only open climate (CRU TS 4.10) and land-cover (CLCD) data. The ecological security index (ESI) rose to a peak of 0.709 in 2010 (relatively safe), then declined and stabilized within the mild-warning band, reaching 0.486 in 2023; 16 of 19 years were in the mild-warning grade, and the 2023 grade was invariant to the subjective--objective weighting ratio. The indicator system contains three exact identities, including an ecological-land proportion that duplicates grassland $+$ forest $+$ water with zero residual; deleting that duplicate column leaves all 19 warning grades unchanged, and the eight-indicator set is therefore adopted as the primary specification. Because the grades are relative to a study-specific normalisation range and to the indicator set, they are reported as relative grades accompanied by the continuous ESI and its uncertainty rather than as stand-alone management triggers. Forecasts for 2024--2028, obtained with the nonlinear grey Bernoulli model (NGBM), decline gradually from 0.446 to 0.394; the 2028 value lies below the 0.400 mild-warning boundary and is therefore medium warning under the thresholds used here, and bootstrap resampling (2,000 replicates) gives 2028 intervals of 0.342--0.462 (parameter uncertainty) to 0.257--0.587 (parameter plus accumulated innovation uncertainty), with a 2028 probability of medium warning of 0.56--0.59. The accuracy of the three models is comparable and their ranking depends on the validation scheme (single holdout over 2019--2023: RMSE 0.0687 NGBM, 0.0652 GM(1,1), 0.0400 ARIMA; rolling-origin and leave-one-out schemes reorder them), so no single model is claimed to be most accurate; the NGBM power exponent selected on 2005--2018 alone is 0.25, whereas the exponent of 0.20 used for the projection is selected on the full record available at the projection origin. Spatially, the barren/degraded class ($q=0.80$) and the grassland class ($q=0.71$) show the strongest stratified associations with the point-scale ESI, followed by precipitation ($q=0.51$) and temperature ($q=0.17$) (all $p \le 0.001$); all four are themselves components of the ESI, so these values contain a mechanical-correlation component, and a leave-one-target sensitivity, in which the factor under test is removed from the target, reduces the grassland $q$ by 48\% (to 0.37) and reverses the ordering of the two weakest factors; the strictly exogenous terrain factors explain only 6--9\% of the variance (elevation $q=0.09$, slope $q=0.06$). We propose management zoning aligned with the functional zoning of the Qilian Mountain National Park together with a grade--response table, and a pipeline transferable to other reserves whose analysis scripts, processed result tables, the ten figure files, and documented Stage~0--7 run order are openly available.
 \end{abstract}
 
 \begin{keyword}
@@ -55,10 +56,10 @@ An ecological security (ES) perspective offers such a systematic formalization. 
 \subsection{Research status and knowledge gaps}
 The pressure--state--response (PSR) and DPSIR frameworks are widely used to organize ES indicator systems \citep{changbai_dpsirm_2024,dpsir_dea_threegorges2023}. ES assessments at mountain and reserve scale include the Changbai Mountain region, Yunnan's underdeveloped areas, and the adjacent Lanzhou--Xining urban agglomeration \citep{lu2014changbai,ou2017yunnan,tong2020lanzhou}. Subjective weighting (AHP) \citep{saaty1980analytic}, objective weighting (entropy method), and their combinations are mainstream. Grey models (GM(1,1)) \citep{deng1982control} are favored for small-sample ES time series; Liu et al.\ integrated DPSIR, combined weights, GM(1,1), and GeoDetector into a reserve-scale early-warning framework \citep{liu2023integrated}. The GeoDetector method \citep{wang2016measure,wang2012environmental} quantifies the contribution of individual factors to spatial ES heterogeneity \citep{westliaohe_esp_2026,china_ecoenv_2024,qilian_ez_2024,zhang2019geodetector}.
 
-Knowledge gaps remain: (1) reserve-scale studies usually apply the DPSIR--GM(1,1)--GeoDetector components in isolation or with a single weighting scheme; (2) the sensitivity of ES results to the weighting ratio $\alpha$ is rarely tested; (3) the suitability of GM(1,1) for non-monotonic ES series is seldom diagnosed; and (4) few studies translate early-warning results into zonal management recommendations.
+Knowledge gaps remain: (1) reserve-scale studies usually apply the DPSIR--GM(1,1)--GeoDetector components in isolation or with a single weighting scheme; (2) the sensitivity of ES results to the weighting ratio $\alpha$ is rarely tested; (3) the internal independence of the indicator system is seldom checked, although composite indices routinely contain duplicated or derived columns; (4) forecast accuracy is usually reported for a single validation split, and the probability that a forecast falls in each warning grade is rarely quantified; (5) the spatially stratified factors are often themselves components of the target index, so part of their explanatory power is mechanical; and (6) few studies translate early-warning results into management zoning.
 
 \subsection{Objectives of this study}
-This study aims to (1) quantify the 2005--2023 dynamics and warning state of ecological security in the Qilian Mountain region from open data; (2) test the robustness of warning grades to the subjective--objective weighting ratio ($\alpha = 0$--$1$); (3) diagnose the suitability of grey forecasting models for the non-monotonic ESI series and produce a 2024--2028 forecast; and (4) identify the spatial drivers of ecological security and derive zonal management recommendations.
+This study aims to (1) quantify the 2005--2023 dynamics and warning state of ecological security in the Qilian Mountain region from open data; (2) test the robustness of the ESI and its warning grades to the subjective--objective weighting ratio ($\alpha = 0$--$1$) and to the grade thresholds; (3) test the internal independence of the indicator system and remove exactly duplicated indicators; (4) compare three forecasting models under five validation schemes, quantify the probability of each warning grade in the projection, and produce a 2024--2028 forecast; (5) quantify the spatially stratified associations between candidate factors and the point-scale ESI while separating the mechanical component contributed by factors that are themselves index inputs; and (6) derive management zoning aligned with the functional zoning of the Qilian Mountain National Park.
 
 % ============================================================
 \section{Study area and data}
@@ -80,24 +81,31 @@ The Qilian Mountain region, centered on the Qilian Mountain National Park (QMNP)
 \caption{Data sources used in this study.}
 \label{tab:data}
 \small
-\begin{tabular}{lp{4.7cm}ll}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lp{3.4cm}p{4.5cm}l}
 \toprule
-Data type & Indicators & Source & Period \\
+Data type & Indicators & Source (dataset, version, resolution, coverage; access date) & Years used \\
 \midrule
-Climate & precipitation (mm), mean temperature ($^{\circ}$C) & CRU TS 4.10 \citep{cru_ts410} & 2005--2023 \\
-Terrain & elevation, slope & Copernicus DEM 90\,m & --- \\
-Land cover & proportions of grassland, forest, water, cropland, barren & CLCD 30\,m \citep{yang2021clcd} & 2005--2023 \\
+Climate & precipitation (mm), mean temperature ($^{\circ}$C) & CRU TS 4.10, monthly, 0.5$^\circ$, 1901--2025; accessed 2026-04-09 \citep{cru_ts410} & 2005--2023 \\
+Terrain & elevation, slope & Copernicus DEM GLO-90 (2021 release; digital surface model), 3\,arcsec ($\sim$90\,m); accessed 2026-09-07 & static (no temporal dimension) \\
+Land cover & proportions of grassland, forest, water, cropland, barren & China Land Cover Dataset (CLCD), 30\,m, annual, 1985--2023; accessed 2026-10-07 (2020 tile \citep{yang2021clcd,yang2024clcd}) & 2005, 2010, 2015, 2020, 2023 \\
 \bottomrule
 \end{tabular}
+
+\vspace{2pt}
+{\footnotesize Notes: Land-cover proportions were computed only at the five epochs listed and linearly interpolated to annual values, so 14 of the 19 years analysed are interpolated rather than observed. Only the 2020 CLCD tile can be retrieved and re-processed alongside this repository; the remaining four epochs are an archived intermediate table whose source tiles are identified by the data record cited above. Regional climate is the unweighted mean of the 0.5$^\circ$ grid cells within 36.5--40.0$^\circ$N, 94.0--103.0$^\circ$E, which is slightly smaller than the declared study window (36.0--40.5$^\circ$N, 93.5--103.5$^\circ$E); county climate is the nearest 0.5$^\circ$ cell to each county centroid and county land cover is a $\pm$0.1$^\circ$ centroid window, so county values are not area-weighted statistics.}
 \end{table}
-The data sources used in this study are summarized in Table~\ref{tab:data}. Land-cover proportions were computed per epoch (2005, 2010, 2015, 2020, 2023) and linearly interpolated to annual values; climate grids were aggregated to annual precipitation and annual mean temperature at the regional scale and the 11 county centroids; the county-level values are therefore centroid-window estimates rather than area-weighted statistics. Raster reprojection and cropping used open Python tooling (xarray, rasterio, pyproj); the full pipeline is openly available (see Data availability).
+The data sources used in this study are summarized in Table~\ref{tab:data}. Land-cover proportions were computed per epoch (2005, 2010, 2015, 2020, 2023) and linearly interpolated to annual values; 2005 and 2023 are observation epochs of the CLCD record rather than extrapolations, and the 19-year series therefore contains 14 interpolated years. Regional climate was aggregated as the unweighted arithmetic mean of the 0.5$^\circ$ CRU TS 4.10 grid cells within 36.5--40.0$^\circ$N, 94.0--103.0$^\circ$E, and county climate as the nearest 0.5$^\circ$ cell to each county centroid; climate and county land-cover values are therefore centroid or unweighted-grid estimates rather than area-weighted statistics. Re-aggregating regional climate over the declared window (36.0--40.5$^\circ$N, 93.5--103.5$^\circ$E) changes annual precipitation by at most 28\,mm (mean $-19$\,mm, 12\% of the mean) and annual temperature by at most 1.3\,$^{\circ}$C, but changes the ESI by at most 0.003 and leaves all 19 warning grades unchanged; cosine-latitude area weighting changes precipitation and temperature by at most 1.6\,mm and 0.03\,$^{\circ}$C. Raster reprojection and cropping used open Python tooling (xarray, rasterio, pyproj); the full pipeline is openly available (see Data availability).
 
 % ============================================================
 \section{Methods}
 \label{sec:method}
 
 \subsection{DPSIR framework and indicator system}
-Following the DPSIR framework \citep{changbai_dpsirm_2024,dpsir_dea_threegorges2023}, nine indicators cover the criteria layers: Driving forces (precipitation, temperature), Pressure (barren/degraded proportion, cropland proportion), State (grassland, forest, water proportions), Impact (grassland change rate), and Response (ecological land proportion). The set relies exclusively on open, reproducible data (CRU TS 4.10 climate; CLCD 30\,m land cover) and captures both the climate forcing and the land-surface response that dominate ecological security in arid--semiarid alpine ecosystems. Temperature and precipitation are assigned positive directions because heat and moisture jointly limit vegetation growth in this cold, arid setting. The competing effect of warming through increased evaporative stress is examined in the spatial attribution (Sec.~\ref{sec:results}). Table~\ref{tab:indicators} lists all indicators with their directions. Fig.~\ref{fig:framework} outlines how the DPSIR causal chain connects to the ESI-based warning pipeline; all indicators are min--max normalized to $[0,1]$ before weighting (Sec.~\ref{sec:esi}).
+Following the DPSIR framework \citep{changbai_dpsirm_2024,dpsir_dea_threegorges2023}, nine indicators cover the criteria layers: Driving forces (precipitation, temperature), Pressure (barren/degraded proportion, cropland proportion), State (grassland, forest, water proportions), Impact (grassland change rate), and Response (ecological land proportion). The set relies exclusively on open, reproducible data (CRU TS 4.10 climate; CLCD 30\,m land cover) and captures both the climate forcing and the land-surface response that dominate ecological security in arid--semiarid alpine ecosystems. Temperature is assigned a positive direction because heat limits vegetation growth in this cold setting; reversing the direction and dropping the indicator entirely are both reported as sensitivities (Sec.~\ref{sec:tempdir}). Table~\ref{tab:indicators} lists all indicators with their directions. Fig.~\ref{fig:framework} outlines how the DPSIR causal chain connects to the ESI-based warning pipeline; all indicators are min--max normalized to $[0,1]$ before weighting (Sec.~\ref{sec:esi}).
+
+Three exact linear identities exist within this set and were verified against the source tables at full precision (Sec.~\ref{sec:deredundancy}). (i) The Response-layer ecological land proportion equals grassland $+$ forest $+$ water, with a residual of exactly zero: it is the same column under two names. (ii) The Impact-layer grassland change rate is the annual rate of change of the State-layer grassland proportion, i.e. a derivative of a state variable, and its 2005 value is a convention of the differencing step rather than an observation. (iii) The Pressure-layer barren/degraded proportion equals $100-$ grassland $-$ forest $-$ water $-$ cropland, also with a zero residual, and correlates with the grassland proportion at $r=-0.92$; because the interannual ranges of forest, water and cropland are small, this column is close to a rescaled copy of the grassland proportion. The first identity duplicates information exactly, so the eight-indicator set obtained by deleting the ecological land proportion is adopted as the primary specification; the derivative and the complement are retained in the primary set for comparability with the DPSIR structure and are examined as sensitivities. At the point scale the barren/degraded indicator is the complement $1-$grassland$-$forest$-$water of a land-cover table without a cropland column, so 81 of the 1{,}914 samples that are dominated by cropland (75) or snow/ice (6) are counted as barren/degraded (Sec.~\ref{sec:spatial}).
 
 \begin{figure}[htbp]
 \centering
@@ -135,24 +143,27 @@ Entropy weights are $e_j=-\frac{1}{\ln n}\sum_i p_{ij}\ln p_{ij}$ with $p_{ij}=x
 w_j=\alpha\,w^{A}_j+(1-\alpha)\,w^{E}_j,\qquad \alpha\in[0,1],
 \label{eq:weight}
 \end{equation}
-with $\alpha=0.4$ baseline and a full sensitivity analysis over $\alpha=0$--$1$ to test robustness to the subjective--objective balance.
+with $\alpha=0.4$ baseline and a full sensitivity analysis over $\alpha=0$--$1$ to test robustness to the subjective--objective balance. Entropy weights measure the interannual dispersion of an indicator rather than its ecological importance, which is consequential here because the grassland change rate is a difference of an interpolated series: its entropy weight ranges from 0.117 to 0.245 across interpolation schemes (linear, cubic spline, PCHIP, and the five observation epochs taken alone), and from 0.127 to 0.260 for the eight-indicator set, whereas no other indicator's entropy weight varies by more than 0.06 (Sec.~\ref{sec:weights}).
 
 \begin{table}[htbp]
 \centering
-\caption{Criterion-level AHP pairwise comparison matrix (Saaty 1--9 scale) and the resulting criterion weights.}
+\caption{Criterion-level AHP pairwise comparison matrix (Saaty 1--9 scale) and the resulting criterion weights. Reciprocal entries are written both as fractions and as decimals, so that the decimals can be read directly against the integer judgements.}
 \label{tab:ahp}
 \small
 \begin{tabular}{lcccccc}
 \toprule
 Criteria & D & P & S & I & R & Weight \\
 \midrule
-Driving (D) & 1 & 1 & 1/5 & 1/2 & 1/3 & 0.081 \\
-Pressure (P) & 1 & 1 & 1/5 & 1/2 & 1/3 & 0.081 \\
+Driving (D) & 1 & 1 & 1/5 (0.20) & 1/2 (0.50) & 1/3 (0.33) & 0.081 \\
+Pressure (P) & 1 & 1 & 1/5 (0.20) & 1/2 (0.50) & 1/3 (0.33) & 0.081 \\
 State (S) & 5 & 5 & 1 & 3 & 2 & 0.438 \\
-Impact (I) & 2 & 2 & 1/3 & 1 & 1/2 & 0.149 \\
-Response (R) & 3 & 3 & 1/2 & 2 & 1 & 0.250 \\
+Impact (I) & 2 & 2 & 1/3 (0.33) & 1 & 1/2 (0.50) & 0.149 \\
+Response (R) & 3 & 3 & 1/2 (0.50) & 2 & 1 & 0.250 \\
 \bottomrule
 \end{tabular}
+
+\vspace{2pt}
+{\footnotesize Driving and Pressure receive identical judgements because the pairwise matrix was elicited at criterion level (D, P, S, I, R), not at indicator level; the identical rows are therefore not a typesetting error. Consistency ratio $CR=0.0034<0.1$ ($\lambda_{\max}=5.0153$, $n=5$).}
 \end{table}
 
 \subsection{Ecological security index (ESI)}
@@ -168,6 +179,7 @@ and the ESI is the weighted sum
 \mathrm{ESI}_i=\sum_{j=1}^{m}w_j\,x'_{ij},\qquad \mathrm{ESI}\in[0,1].
 \label{eq:esi}
 \end{equation}
+Because the weights are time-invariant, the change between two years decomposes exactly into per-indicator contributions, $\Delta\mathrm{ESI}=\sum_j w_j\,\Delta x'_j$, with no weight-change term; this decomposition is used to interpret the 2005 minimum and the 2010 peak (Sec.~\ref{sec:tempdir}).
 
 \subsection{Prediction models and warning classification}
 The GM(1,1) model \citep{deng1982control} is built on the first-order accumulated series with least-squares estimates $(\hat a,\hat b)$:
@@ -175,17 +187,19 @@ The GM(1,1) model \citep{deng1982control} is built on the first-order accumulate
 \hat x^{(0)}(k+1)=\left(1-e^{\hat a}\right)\left(x^{(0)}(1)-\frac{\hat b}{\hat a}\right)e^{-\hat a k}.
 \label{eq:gm}
 \end{equation}
-GM(1,1) assumes a monotonic exponential trend, which the observed ESI series violates (it rises to a peak in 2010 before declining); we therefore additionally apply the nonlinear grey Bernoulli model (NGBM), which generalizes GM(1,1) with a power exponent $\gamma$: $x^{(0)}(k)+a z^{(1)}(k)=b[z^{(1)}(k)]^{\gamma}$, and compare both with ARIMA. Model quality is evaluated by the posterior-variance ratio $C=S_2/S_1$ and the small-error probability $P$; grades: excellent ($C<0.35$, $P>0.95$), qualified ($C<0.50$, $P>0.80$), barely qualified ($C<0.65$, $P>0.70$). Forecast accuracy is additionally verified by holdout validation, in which each model is fitted on 2005--2018 and evaluated on the held-out 2019--2023 observations. The power exponent $\gamma$ of NGBM is determined by a grid search (0.05--1.95 in steps of 0.05, minimizing the residual sum of squares) and equals 0.20 in this case; the 95\% prediction intervals are constructed as the parametric $t$ interval $\sigma\cdot t(0.975,\,n-2)\cdot\sqrt{1+1/n}$, whose half-width does not increase with the forecast horizon, so the uncertainty of the 5-year forecast may be underestimated.
+GM(1,1) assumes a monotonic exponential trend, which the observed ESI series violates (it rises to a peak in 2010 before declining); we therefore additionally apply the nonlinear grey Bernoulli model (NGBM), which generalizes GM(1,1) with a power exponent $\gamma$: $x^{(0)}(k)+a z^{(1)}(k)=b[z^{(1)}(k)]^{\gamma}$, and compare both with ARIMA. Model quality is evaluated by the posterior-variance ratio $C=S_2/S_1$ and the small-error probability $P$; grades: excellent ($C<0.35$, $P>0.95$), qualified ($C<0.50$, $P>0.80$), barely qualified ($C<0.65$, $P>0.70$).
 
-Forecasts and observed ESI values are interpreted against five warning levels: safe $[0.8,1]$, relatively safe $[0.6,0.8)$, mild warning $[0.4,0.6)$, medium warning $[0.2,0.4)$, and severe warning $[0,0.2)$. Thresholds are set at equal 0.2 intervals across the normalized range $[0,1]$, consistent with the five-grade warning convention used in DPSIR-based ecological-security early-warning frameworks for Chinese nature reserves \citep{liu2023integrated}; equal spacing keeps grades comparable across studies and avoids sample-dependent breakpoints, and the 2023 warning grade is shown below to be invariant to the weighting ratio.
+Accuracy is assessed under five validation schemes, all scored on the ESI scale: a single holdout (fit 2005--2018, test 2019--2023); rolling-origin one-step forecasts with origins from 2013 and from 2015; rolling-origin five-step forecasts with origins from 2013; and leave-one-year-out cross-validation over the 19 years, in which each year is predicted from the remaining 18. The NGBM power exponent $\gamma$ is selected by grid search over 0.05--1.95 in steps of 0.05. Selecting $\gamma$ on the evaluation period makes a holdout result optimistic, so the leakage-safe variants are reported separately: when $\gamma$ is chosen on the training part alone (2005--2018) it takes the value 0.25 under a residual-sum-of-squares objective and 0.20 under a mean-absolute-error objective, and no training-only objective selects a value below 0.20. The projection itself starts from the 2023 observation, that is, at a forecast origin where the complete 2005--2023 record is available; the exponent used for the projection (0.20) is therefore selected on data that precede the projection, which is a different situation from a validation split inside the record. A second and weaker channel is that the ESI's min--max normalisation ranges and its entropy weights are estimated over the full period; a strictly leakage-free variant that re-estimates both inside each training window is reported as a sensitivity. Prediction intervals are obtained by residual bootstrap (2,000 replicates, fixed seed) under two uncertainty scopes---parameter uncertainty alone, and parameter uncertainty plus accumulated innovation uncertainty resampled independently or in moving blocks of three---and the bootstrap replicates are also used to compute, for each projection year, the probability of falling in each warning grade.
 
-\subsection{Spatial driving-factor identification (GeoDetector)}
-Spatial attribution takes the 2020 point-scale ESI at 1{,}914 grid samples in the Qilian Mountain region as its target; the candidate factors are four---precipitation, temperature, grassland proportion, and barren/degraded proportion---each discretised into four equal-sample strata by sample quantiles (quartile stratification), and the $q$ statistic measures the share of the spatial variance of the ESI explained by that stratification. A parallel detection with four non-land-cover factors---precipitation, temperature, elevation, and slope---serves as a control. Of these four, only elevation and slope lie outside the composition of the ESI, so a strictly exogenous control rests on the terrain factors alone. Because precipitation, temperature, the grassland proportion, and the barren/degraded proportion are themselves ESI inputs, their baseline $q$ values contain a mechanical-correlation component shared with the target; a leave-one-target detection was therefore run in which the factor under test is removed from the six ESI components, the remaining five are re-normalised, re-weighted by entropy, re-weighted by AHP over the surviving criteria layers, and recombined at $\alpha=0.4$ to form the target ESI, against which that factor's $q$ is recomputed with the same stratification and 999 permutations. The ``barren/degraded'' factor is not the same column as the ESI input \texttt{barren\_neg}: the two disagree at 81 of the 1{,}914 points (75 cropland and 6 snow/ice points).
+Forecasts and observed ESI values are interpreted against five warning levels: safe $[0.8,1]$, relatively safe $[0.6,0.8)$, mild warning $[0.4,0.6)$, medium warning $[0.2,0.4)$, and severe warning $[0,0.2)$. Thresholds are set at equal 0.2 intervals across the normalized range $[0,1]$, consistent with the five-grade warning convention used in DPSIR-based ecological-security early-warning frameworks for Chinese nature reserves \citep{liu2023integrated}; equal spacing keeps grades comparable across studies and avoids sample-dependent breakpoints. Because the boundaries are conventions on a relative index, grades are reported together with the continuous ESI, the grade-transition counts under $\alpha$ and threshold perturbations, and the bootstrap grade probabilities, and are not treated as a stand-alone trigger for automatic management action. The \emph{no-intervention scenario} used below means that the 2024--2028 projection continues the fitted 2005--2023 process without any additional land-cover or climate intervention: no new restoration or grazing-withdrawal measure is introduced after 2023, the five-epoch land-cover trajectory is extrapolated only through the model rather than through additional observed epochs, and no management feedback from the warning output to the driving forces is assumed.
+
+\subsection{Spatially stratified association analysis (GeoDetector)}
+Spatially stratified association analysis takes the 2020 point-scale ESI at 1{,}914 grid samples in the Qilian Mountain region as its target. The candidate factors are four---precipitation, temperature, grassland proportion, and barren/degraded proportion---each discretised into four equal-sample strata by sample quantiles, and the $q$ statistic measures the share of the spatial variance of the ESI accounted for by that stratification. Because all four factors are themselves components of the ESI, their baseline $q$ values contain a mechanical-correlation component shared with the target, and they are reported as associations with the point-scale ESI rather than as drivers of it. Three lines of evidence separate that component. First, a leave-one-target sensitivity removes the factor under test from the ESI components, re-normalises the survivors, re-weights them by entropy and by AHP over the surviving criteria layers, and recombines them at $\alpha=0.4$ to form a new target against which that factor is re-evaluated with the same stratification and 999 permutations; this is reported as a sensitivity analysis, not as attribution evidence. Second, the same test is repeated on a de-redundant point-scale target that also drops the complement-based barren indicator. Third, each $q$ is compared with a permutation null in which the target is held fixed and the factor is permuted, which bounds the share of the statistic that a chance association with the target's components would produce. The ``barren/degraded'' factor is not the same column as the ESI input \texttt{barren\_neg}: the two disagree at 81 of the 1{,}914 points (75 cropland and 6 snow/ice points). Stratification, sampling, and spatial-weight sensitivity are quantified in Sec.~\ref{sec:spatial}: the number of strata (quartile, quintile, Jenks natural breaks, and equal interval), the sampling scheme (full sample, 200 bootstrap resamples, and 200 random subsamples of 1{,}500 and 1{,}000 points), the 1{,}914-point sample drawn on a regular 0.15$^\circ$ grid, and the spatial weight matrix. The forest class is excluded from the main detection because only 15 of the 1{,}914 samples are forest-dominated, which makes quartile stratification degenerate to a single stratum and returns $q\equiv 0$; its association is instead estimated with a binary dominant-class stratification and with a zero-inflated stratification of the fractional cover, and is reported with bootstrap intervals. Interaction detection is likewise reported against a permutation null, because the joint statistic is inflated when factors and target share components.
 \begin{equation}
 q=1-\frac{\sum_{h=1}^{L}N_h\sigma_h^2}{N\sigma^2},
 \label{eq:q}
 \end{equation}
-where $q\in[0,1]$, with larger values indicating stronger explanatory power for the spatial differentiation of the ESI; $L$ is the number of strata, $N_h$ and $\sigma_h^2$ are the sample size and variance of stratum $h$, and $N$ and $\sigma^2$ are the total sample size and total variance of the ESI. Factor significance is tested by a permutation test (999 iterations) \citep{wang2016measure,wang2012environmental}; the interaction detector quantifies joint effects of factor pairs. At the grid scale, land-cover factors are represented by the dominant CLCD class within a $\pm$0.02° neighbourhood (binary categorical factors), whereas the county- and region-level indicators are computed as area fractions. Factors were sampled at 1{,}914 regular 0.15° grid points from the 2020 reference epoch of the CLCD series (consistent with the static county ESI) together with the 2005--2023 mean climate; temporal dynamics are quantified separately by the 19-year ESI series.
+where $q\in[0,1]$, with larger values indicating stronger explanatory power for the spatial differentiation of the ESI; $L$ is the number of strata, $N_h$ and $\sigma_h^2$ are the sample size and variance of stratum $h$, and $N$ and $\sigma^2$ are the total sample size and total variance of the ESI. Factor significance is tested by a permutation test (999 iterations) \citep{wang2016measure,wang2012environmental}, so $p=0.001$ is the resolution limit of that test; the interaction detector quantifies joint effects of factor pairs and is compared with a permutation null of 2{,}000 replicates, because two factors that are both components of the target produce an enhancing interaction mechanically. At the grid scale, land-cover factors are represented by the dominant CLCD class within a $\pm$0.02° neighbourhood (binary categorical factors), whereas the county- and region-level indicators are computed as area fractions; being mutually exclusive categories of a single classification, these factors are not statistically independent by construction, and when expressed as window fractions the grassland and barren/degraded proportions correlate at $r=-0.88$. Factors were sampled at 1{,}914 regular 0.15° grid points from the 2020 reference epoch of the CLCD series (consistent with the static county ESI) together with the 2005--2023 mean climate; temporal dynamics are quantified separately by the 19-year ESI series.
 
 % ============================================================
 \section{Results}
@@ -201,7 +215,8 @@ Fig.~\ref{fig:trends} shows the raw indicator dynamics behind the ESI. Precipita
 \end{figure}
 
 \subsection{Indicator weights}
-Entropy weighting (Table~\ref{tab:weights}) identifies grassland change rate ($w^{E}=0.245$) and cropland proportion ($w^{E}=0.171$) as the most informative signals. The AHP layer weights emphasize the State indicators (grassland, forest, water; 0.146 each) and ecological land proportion (0.250), while the combined weights ($\alpha=0.4$) rank grassland change rate (0.206), ecological land proportion (0.136), water proportion (0.128), and forest proportion (0.120) highest, indicating that grassland dynamics, ecological land extent, and water availability jointly dominate the temporal variation of ES (Fig.~\ref{fig:weights}).
+\label{sec:weights}
+Entropy weighting (Table~\ref{tab:weights}) identifies grassland change rate ($w^{E}=0.245$) and cropland proportion ($w^{E}=0.171$) as the most informative signals. The AHP layer weights emphasize the State indicators (grassland, forest, water; 0.146 each) and ecological land proportion (0.250), while the combined weights ($\alpha=0.4$) rank grassland change rate (0.206), ecological land proportion (0.136), water proportion (0.128), and forest proportion (0.120) highest, indicating that grassland dynamics, ecological land extent, and water availability jointly dominate the temporal variation of ES (Fig.~\ref{fig:weights}). The high entropy weight of the grassland change rate is largely an artefact of how the land-cover series is interpolated: it falls from 0.245 under linear interpolation to 0.232 under a cubic spline, 0.173 under PCHIP and 0.117 when only the five observation epochs are used, whereas no other indicator's entropy weight varies by more than 0.06 across the same four schemes (\ref{app:interp}). Entropy weighting responds to interannual variability, and a differenced interpolated series is the most variable column in the system; the weight therefore does not measure the ecological importance of grassland dynamics, and it is reported alongside the scheme it came from.
 
 \begin{table}[htbp]
 \centering
@@ -226,7 +241,35 @@ Ecological land proportion & $+$ & 0.059 & 0.250 & 0.136 \\
 \end{table}
 
 \subsection{ESI time series and warning grades (2005--2023)}
-The regional ESI rose from 0.258 (medium warning) in 2005 to a peak of 0.709 (relatively safe) in 2010, then declined and fluctuated within 0.45--0.59 (mild warning), reaching 0.486 in 2023 (Fig.~\ref{fig:esi}). The warning-grade distribution over 19 years is 1 medium-warning year (2005), 2 relatively-safe years (2009, 2010), and 16 mild-warning years. A Mann--Kendall test finds no significant downward trend over the full 2005--2023 record ($Z=-1.120$, $p=0.263$; Sen's slope $-0.0032$\,yr$^{-1}$), so the region remains in a stable yet vulnerable mild-warning state. Threshold sensitivity was tested by perturbing the five-grade boundaries by $\pm$0.05: the 2023 grade remains mild warning under all three schemes, and in the historical series 6 years (thresholds shifted down) and 1 year (shifted up) change grade, whereas the 2028 forecast grade switches as a whole with the thresholds (all mild warning when shifted down, all medium warning when shifted up), so the absolute forecast grade alone should not be used as a decision basis.
+\label{sec:esi-series}
+Under the primary eight-indicator specification (the duplicated ecological-land column removed; Sec.~\ref{sec:deredundancy}) the regional ESI rose from 0.289 (medium warning) in 2005 to a peak of 0.676 (relatively safe) in 2010, then declined and fluctuated within 0.45--0.58 (mild warning), reaching 0.478 in 2023. The nine-indicator series that retains the duplicated column runs 0.258 (2005) $\rightarrow$ 0.709 (2010) $\rightarrow$ 0.486 (2023) and is retained as the comparison specification. The two are correlated at $r=0.94$ (Spearman $\rho=0.80$), differ by at most 0.058 (mean absolute difference 0.034), and assign the same warning grade in all 19 years, so the grade distribution is 1 medium-warning year (2005), 2 relatively-safe years (2009, 2010), and 16 mild-warning years under either specification (Fig.~\ref{fig:esi}).
+
+Trend testing is reported under three variance conventions. The conventional Mann--Kendall test finds no significant trend over 2005--2023 ($Z=-1.12$, $p=0.263$; Sen's slope $-0.0032$\,yr$^{-1}$, 95\% CI $-0.0088$ to $+0.0034$), and the Hamed--Rao autocorrelation correction is likewise not significant ($p=0.076$), whereas trend-free pre-whitening makes the full-period decline significant ($p=0.010$); the effective sample size under Hamed--Rao is only 0.40 of $n$, that correction being numerically unstable on records of this length. The 2010--2023 segment is significant under all three conventions ($Z=-2.74$, $p=0.0062$; Hamed--Rao $p=0.0058$; TFPW $p=0.0019$; Sen's slope $-0.0086$\,yr$^{-1}$, 95\% CI $[-0.0153,-0.0037]$ excluding zero). That segment trend is not robust to the indicator set: under the eight-indicator primary specification it is not significant ($p=0.189$), and under a six-indicator specification that additionally drops the grassland change rate and the barren complement its sign reverses to a rise (+0.0035\,yr$^{-1}$, Hamed--Rao $p=0.046$). The post-2010 decline is therefore reported as suggestive rather than established, and the full-period test alone would mask it (Table~\ref{tab:trend}). Excluding 2005 raises the full-period $p$ from 0.263 to 0.058, confirming that the isolated 2005 minimum weakens the full-period signal.
+
+Perturbing each of the four grade boundaries by $\pm$0.05 (eight scenarios) leaves the 2023 grade unchanged in every scenario. Under the primary specification only two boundaries matter: lowering the 0.6 boundary by 0.05 moves 2007 to relatively safe, raising it by 0.05 returns 2009 to mild warning, and raising the 0.4 boundary by 0.05 moves 2020 to medium warning; the 0.2 and 0.8 boundaries change no year. Under the nine-indicator specification the same perturbation changes 7 year-grades in total, with the largest single scenario changing 6 years (2007, 2011--2015). Both counts are small relative to a 19-year record but are not zero, which is why grades are reported together with the continuous ESI rather than as a stand-alone signal.
+
+\begin{table}[htbp]
+\centering
+\caption{Trend tests of the ESI series under three variance conventions and three indicator specifications. MK, conventional Mann--Kendall; H--R, Hamed--Rao autocorrelation-corrected variance; TFPW, trend-free pre-whitening; Sen's slope in ESI units per year with the 95\% confidence interval. H--R is unstable when the effective sample size falls to zero or below and is then not reported.}
+\label{tab:trend}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llcccc}
+\toprule
+Specification & Period & $Z$ (MK) & $p$ (MK) & $p$ (H--R) & $p$ (TFPW) \\
+\midrule
+Nine indicators & 2005--2023 & $-1.12$ & 0.263 & 0.076 & 0.010 \\
+Nine indicators & 2010--2023 & $-2.74$ & 0.006 & 0.006 & 0.002 \\
+Eight indicators (primary) & 2005--2023 & $-1.33$ & 0.184 & 0.193 & 0.012 \\
+Eight indicators (primary) & 2010--2023 & $-1.31$ & 0.189 & 0.185 & 0.200 \\
+Six indicators & 2005--2023 & $+3.85$ & $<0.001$ & n/a & 0.004 \\
+Six indicators & 2010--2023 & $+1.86$ & 0.063 & 0.046 & 0.161 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Sen's slope for the two nine-indicator rows is $-0.0032$\,yr$^{-1}$ (2005--2023) and $-0.0086$\,yr$^{-1}$ (2010--2023, 95\% CI $[-0.0153,-0.0037]$); for the eight-indicator rows, $-0.0031$\,yr$^{-1}$ and $-0.0035$\,yr$^{-1}$; for the six-indicator rows, $+0.0102$\,yr$^{-1}$ and $+0.0035$\,yr$^{-1}$. The six-indicator specification drops the barren/degraded, grassland change rate and ecological land indicators.}
+\end{table}
 
 \begin{figure}[htbp]
 \centering
@@ -235,12 +278,47 @@ The regional ESI rose from 0.258 (medium warning) in 2005 to a peak of 0.709 (re
 \label{fig:esi}
 \end{figure}
 
-\subsection{Forecast comparison: GM(1,1), NGBM, and ARIMA}
-The 2024--2028 ESI forecast declines gradually from 0.446 to 0.394 under a no-intervention scenario, with parametric 95\% intervals of 0.358--0.533 (2024) and 0.306--0.482 (2028) that span the medium- and mild-warning grades, indicating non-negligible forecast uncertainty (Table~\ref{tab:forecast}; Fig.~\ref{fig:esi}). The forecast was produced with the nonlinear grey Bernoulli model (NGBM): among the three candidate models (Table~\ref{tab:forecast}), NGBM met the qualified accuracy grade (C $=$ 0.44, P $=$ 0.89), outperforming GM(1,1) (C $=$ 0.60, P $=$ 0.79, barely qualified) and ARIMA (C $=$ 1.09, unqualified), and holdout validation (fitted on 2005--2018, evaluated on the held-out 2019--2023 observations) confirmed its superiority (RMSE 0.034 vs.\ 0.065 for GM(1,1), a 47\% improvement), supporting the nonlinear grey-model choice for small-sample, non-stationary reserve-scale ES series \citep{althobaiti_ngbm2022}.
+\subsection{Indicator independence and de-redundancy}
+\label{sec:deredundancy}
+The three identities of Sec.~\ref{sec:method} were verified against the source tables at full precision. The Response-layer ecological land proportion equals grassland $+$ forest $+$ water with a maximum absolute residual of exactly 0 over the 19 years, and the Impact-layer grassland change rate equals $100\times$ the year-on-year change of the grassland proportion with the same zero residual, its 2005 value being set to zero by the differencing convention; the archived three-decimal indicator table reproduces both identities to within $5\times10^{-4}$, which is the rounding scale of that table. The Pressure-layer barren/degraded proportion also has a zero residual ($100-$ grassland $-$ forest $-$ water $-$ cropland), and correlates with the grassland proportion at $r=-0.93$ over the five observation epochs and $r=-0.92$ over the 19 interpolated years, because the interannual ranges of forest (0.14 percentage points), water (0.42) and cropland (0.15) are an order of magnitude smaller than that of grassland (1.67): the column is effectively a rescaled copy of grassland. Two further specification issues are quantitative rather than exact. First, the regional land-cover table has no snow/ice, impervious-surface or wetland column, so the complement-based barren/degraded term absorbs shrub and built-up cover, which together occupy 0.14--0.21\% of the region; the six available classes themselves close to 100\% (maximum absolute residual $5.8\times10^{-13}$). Second, at the point scale the barren/degraded indicator is the complement $1-$grassland$-$forest$-$water of a table without a cropland column: 1{,}122 of the 1{,}914 samples have zero grassland, forest and water and are therefore forced to barren/degraded $=1$, and 81 of those samples are dominated by cropland (75) or snow/ice (6). The complement is an identity only for the 792 samples with a positive grassland, forest or water fraction (maximum absolute residual 0). A county-level residual specification of the same kind (barren $=100-$ forest $-$ grassland $-$ water $-$ cropland) departs from the CLCD class-7 proportion by up to 2.01 percentage points, whereas the stored county barren values match the raster window to $10^{-4}$.
+
+Table~\ref{tab:deredundancy} reports five specifications. Deleting the exactly duplicated ecological land proportion leaves all 19 warning grades unchanged, keeps the peak year at 2010, and shifts the ESI by at most 0.058 (mean absolute difference 0.034); it is adopted as the primary specification, and it also widens the range of $\alpha$ over which no grade changes (Sec.~\ref{sec:alpha}). Deleting the grassland change rate instead moves the peak to 2017 and changes 11 of 19 grades, deleting it together with the ecological land proportion moves the peak to 2019 and changes 8 grades, and a six-indicator set that drops the barren complement as well changes 6 grades; the substituted five-indicator set keeps the peak year at 2010 but changes 11 grades and moves the 2023 ESI to 0.305 (medium warning). Because the six-indicator series is essentially uncorrelated with the nine-indicator series in rank (Spearman $\rho=-0.02$), the temporal narrative of a 2010 peak followed by a mild-warning plateau is not independent of the choice of indicator set; in particular it requires either the grassland change rate or the derived ecological land and barren terms to be retained, so it is a property of the DPSIR specification adopted here rather than a specification-free finding. Retaining the grassland change rate is a defensible choice for a conservative specification comparable with other DPSIR studies, but its entropy weight is largely an artefact of interpolating the land-cover series (Sec.~\ref{sec:weights}), so it cannot be read as evidence that grassland dynamics matter most ecologically. The proportion of combined weight carried by the State, Impact and Response layers falls from 69.3\% to 65.6\% when the duplicated column is removed.
 
 \begin{table}[htbp]
 \centering
-\caption{Forecast comparison on the 2005--2023 ESI series.}
+\caption{Indicator specifications and their effect on the ESI series. All rows use $\alpha=0.4$ and the same normalisation; $\rho$ is the Spearman rank correlation with the nine-indicator baseline series over 2005--2023; $\Delta_{\max}$ is the largest absolute year-wise ESI difference from that baseline.}
+\label{tab:deredundancy}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+Specification & Indicators & $\rho$ & $\Delta_{\max}$ & Peak year & Changed & ESI 2023 \\
+ & & & & (value) & grades & (grade) \\
+\midrule
+Nine, baseline & 9 & 1.00 & --- & 2010 (0.709) & --- & 0.486 (mild) \\
+Eight, primary & 8 & 0.80 & 0.058 & 2010 (0.676) & 0 & 0.478 (mild) \\
+No grass change rate & 8 & 0.35 & 0.138 & 2017 (0.684) & 11 & 0.543 (mild) \\
+No rate, no eco-land & 7 & 0.15 & 0.142 & 2019 (0.667) & 8 & 0.544 (mild) \\
+Six indicators & 6 & $-0.02$ & 0.156 & 2019 (0.645) & 6 & 0.518 (mild) \\
+Substituted five & 5 & 0.64 & 0.235 & 2010 (0.792) & 11 & 0.305 (medium) \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize The six-indicator specification drops the barren/degraded, grassland change rate and ecological land indicators; the substituted five-indicator set retains precipitation, temperature, cropland proportion, grassland change rate and ecological land proportion and drops the three composition fractions that those terms are built from. The eight-indicator primary specification is used for the historical assessment and for the robustness tests in Secs.~\ref{sec:alpha}--\ref{sec:tempdir}; the nine-indicator series is used for the forecasting chain of Sec.~\ref{sec:forecast}, where the projection is defined on the ESI as originally specified.}
+\end{table}
+
+\subsection{Forecast comparison: GM(1,1), NGBM, and ARIMA}
+\label{sec:forecast}
+The 2024--2028 ESI projection declines gradually from 0.446 to 0.394 under the no-intervention scenario defined in Sec.~\ref{sec:method} (Table~\ref{tab:forecast}; Fig.~\ref{fig:esi}). The 2028 value lies just below the 0.400 medium/mild boundary, so the projected grade is medium warning rather than mild warning as reported earlier; the margin is 0.006, smaller than the rounding unit of the reported value, since at one decimal place the projection becomes 0.4 and the grade flips back to mild warning, and shifting the 0.4 boundary by $\pm$0.005 to $\pm$0.02 flips the 2028 grade accordingly (with the boundary at 0.395 the bootstrap probability of a medium-warning outcome is 0.57, and at 0.405 it is 0.61). The 2028 grade therefore carries no decision weight on its own.
+
+Accuracy is comparable across the three models and their ordering depends on the validation scheme (Table~\ref{tab:validation}). Under a single holdout over 2019--2023 ARIMA is most accurate (RMSE 0.0400), ahead of GM(1,1) (0.0652) and NGBM (0.0687); under rolling-origin one-step forecasts from 2013 GM(1,1) leads (0.0516), while from 2015 NGBM leads (0.0514); under rolling-origin five-step forecasts ARIMA leads (0.0501) and the two grey models are indistinguishable (0.0874 and 0.0877); and under leave-one-year-out cross-validation over the 19 years GM(1,1) leads (0.0892) and is the best model in 15 of the 19 folds. Because each scheme favours a different model, no single model is claimed to be most accurate, and the projection is reported for all three models. Two sources of optimism in the earlier single-split comparison are quantified rather than removed. First, the power exponent of 0.20 used there can only be selected if the evaluation period enters the grid search: selecting it on 2005--2018 alone gives 0.25 under a residual-sum-of-squares objective, and the holdout RMSE of NGBM then rises from 0.034 to 0.0687, the value quoted above; a mean-absolute-error objective on the training period also gives 0.20, and no training-only objective selects the archived value of 0.10, which reproduces the archived RMSE of 0.034 only when the exponent is tuned on the evaluation period. Second, the ESI normalisation ranges and entropy weights are estimated over the full period; a strictly leakage-free variant that re-estimates both inside each training window reverses the ordering entirely (NGBM 0.0473, ARIMA 0.0854, GM(1,1) 0.0991), so the three models differ less in genuine out-of-sample skill than the single-split numbers suggest. The exponent of 0.20 used for the 2024--2028 projection is selected on the complete 2005--2023 record, which is legitimate at a forecast origin of end-2023 because the whole record precedes the projection; that is a different question from the leakage status of a validation split placed inside the record.
+
+Bootstrap resampling (2,000 replicates) quantifies the projection uncertainty (Table~\ref{tab:forecastunc}). With parameter uncertainty alone the 95\% interval widens from 0.407--0.497 (2024) to 0.342--0.462 (2028); adding accumulated innovation uncertainty widens it to 0.368--0.550 and 0.257--0.587 under independent resampling, or 0.374--0.560 and 0.257--0.587 under moving-block resampling of length three. The 2028 grade probabilities are 0.56 medium warning and 0.44 mild warning under parameter uncertainty alone, and 0.59 medium, 0.39 mild and 0.02 relatively safe when accumulated innovation uncertainty is included; the modal grade is medium warning in both cases. The alternative models diverge in level rather than in interval width: GM(1,1) rises to 0.493 in 2028 with a probability of mild warning of 0.998, whereas ARIMA(0,1,1) is constant at 0.488 with probabilities of 0.76 mild warning and 0.19 relatively safe. A rising GM(1,1) extrapolation and a declining NGBM projection are two forms fitted to the same non-monotonic series: GM(1,1) imposes a monotone exponential on a series whose only monotone segment is 2005--2010, whereas the NGBM power exponent permits an inflection. The projection is therefore one model-conditional trajectory within the reported interval, not a consensus forecast.
+
+\begin{table}[htbp]
+\centering
+\caption{Forecast comparison on the 2005--2023 ESI series (nine indicators, $\alpha=0.4$).}
 \label{tab:forecast}
 \small
 \setlength{\tabcolsep}{5pt}
@@ -249,17 +327,88 @@ The 2024--2028 ESI forecast declines gradually from 0.446 to 0.394 under a no-in
 Model & RMSE (fitted) & MAE & $C$ & $P$ & 2024 forecast & 2028 forecast \\
 \midrule
 GM(1,1) & 0.052 & 0.035 & 0.597 & 0.789 & 0.510 & 0.493 \\
-\textbf{NGBM} ($\gamma$=0.20) & \textbf{0.038} & \textbf{0.029} & \textbf{0.442} & \textbf{0.895} & 0.446 & 0.394 \\
+NGBM ($\gamma$=0.20) & 0.038 & 0.029 & 0.442 & 0.895 & 0.446 & 0.394 \\
 ARIMA(0,1,1) & 0.098 & 0.067 & 1.086 & 0.632 & 0.488 & 0.488 \\
 \bottomrule
 \end{tabular}
 
 \vspace{2pt}
-{\footnotesize Accuracy grades follow the grey-model convention: qualified ($C<0.50$, $P>0.80$), barely qualified ($C<0.65$, $P>0.70$), and unqualified otherwise; NGBM is the adopted model. RMSE/MAE are full-series fitting accuracy; holdout validation (2005--2018 fit / 2019--2023 evaluation) gives RMSE 0.065 for GM(1,1) and 0.034 for NGBM.}
+{\footnotesize Accuracy grades follow the grey-model convention: qualified ($C<0.50$, $P>0.80$), barely qualified ($C<0.65$, $P>0.70$), and unqualified otherwise. RMSE and MAE are full-series fitting accuracy and are not comparable across the three model families as a measure of forecast skill; the out-of-sample comparison is in Table~\ref{tab:validation}. The projection is reported for all three models because none of them dominates across validation schemes.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Root-mean-square error of the three models under five validation schemes, all scored on the ESI scale. The single holdout predicts 2019--2023 from a model fitted on 2005--2018; rolling-origin schemes re-fit at each origin and predict one or five years ahead; leave-one-year-out cross-validation predicts each year from the remaining 18.}
+\label{tab:validation}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{lccccc}
+\toprule
+Model & Holdout & Rolling 1-step & Rolling 1-step & Rolling 5-step & Leave-one-out \\
+ & (2019--2023) & (from 2013) & (from 2015) & (from 2013) & (19 folds) \\
+\midrule
+GM(1,1) & 0.0652 & \textbf{0.0516} & 0.0548 & 0.0874 & \textbf{0.0892} \\
+NGBM & 0.0687 & 0.0587 & \textbf{0.0514} & 0.0877 & 0.1273 \\
+ARIMA(0,1,1) & \textbf{0.0400} & 0.0527 & 0.0587 & \textbf{0.0501} & 0.1007 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Bold marks the lowest error within each scheme; the leading model differs in every scheme. The NGBM exponent is 0.25 in the holdout column (selected on the training period only) and 0.20 in the rolling and leave-one-out columns. GM(1,1) is the best of the three models in 15 of the 19 leave-one-out folds, ARIMA in 1 and NGBM in 3. In a strictly leakage-free variant that also re-estimates the ESI normalisation ranges and entropy weights inside each training window, the holdout RMSE becomes 0.0473 (NGBM), 0.0854 (ARIMA) and 0.0991 (GM(1,1)).}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Residual-bootstrap forecast intervals and warning-grade probabilities for 2024--2028 (NGBM, $\gamma=0.20$, 2{,}000 replicates). Intervals are the 2.5th and 97.5th percentiles; grade probabilities refer to 2028 except where the full sequence is given.}
+\label{tab:forecastunc}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{lccccc}
+\toprule
+Uncertainty scope & 2024 & 2025 & 2026 & 2027 & 2028 \\
+\midrule
+Parameter only & 0.407--0.497 & 0.390--0.488 & 0.374--0.479 & 0.358--0.470 & 0.342--0.462 \\
+Parameter $+$ innovation (i.i.d.) & 0.368--0.550 & 0.331--0.568 & 0.291--0.577 & 0.258--0.584 & 0.228--0.584 \\
+Parameter $+$ innovation (block 3) & 0.374--0.560 & 0.347--0.596 & 0.320--0.558 & 0.282--0.573 & 0.257--0.587 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Modal warning grade of the projection: mild warning in 2024--2027 and medium warning in 2028 under every uncertainty scope. P(medium warning) in 2028 is 0.56 under parameter uncertainty alone and 0.59 with accumulated innovation uncertainty, against P(mild warning) of 0.44 and 0.39 and P(relatively safe) of 0.02; under GM(1,1) the 2028 probability of mild warning is 0.998 and under ARIMA(0,1,1) it is 0.76 with 0.19 relatively safe. Grade boundaries are the conventional equal-interval thresholds of Sec.~\ref{sec:method}.}
 \end{table}
 
 \subsection{Robustness to the weighting ratio $\alpha$}
-Sensitivity analysis over $\alpha=0$--$1$ shows that the 2023 ESI increases from 0.425 (pure entropy, $\alpha=0$) to 0.578 (pure AHP, $\alpha=1$), while its warning grade remains ``mild warning'' throughout (Fig.~\ref{fig:alpha}). Across the 19-year series the number of mild-warning years falls from 16 at $\alpha=0.3$--$0.4$ to 5 at $\alpha\ge0.9$, and a severe-warning year appears once $\alpha\ge0.7$; the baseline $\alpha=0.4$ thus sits in the most stable regime. The early-warning conclusion for the current state is therefore robust to the subjective--objective weighting balance, although AHP-dominated weights amplify the spread of historical grades.
+\label{sec:alpha}
+Sensitivity analysis over $\alpha=0$--$1$ shows that the 2023 ESI of the nine-indicator baseline increases from 0.425 (pure entropy, $\alpha=0$) to 0.578 (pure AHP, $\alpha=1$), while its warning grade remains mild warning throughout. The historical grade distribution is sensitive to $\alpha$: the number of mild-warning years falls from 16 at $\alpha=0.3$--$0.4$ to 5 at $\alpha\ge0.9$, and one severe-warning year appears from $\alpha\ge0.7$ (the complete composition table is Table~\ref{tab:alpha-full} in \ref{app:alpha}). Under the eight-indicator primary specification, by contrast, the grade changes in no year for $\alpha$ between 0.4 and 0.8, in one year at $\alpha=0.9$ and in four years at $\alpha=1.0$, and the 2023 grade is mild warning at every $\alpha$ from 0 to 1. The duplicated ecological-land column is thus the main amplifier of the $\alpha$ sensitivity, because AHP gives that column a weight of 0.250 on its own. The baseline $\alpha=0.4$ lies in the widest stable interval under both specifications, so the current-state conclusion is robust to the subjective--objective balance; the historical grade distribution, however, is not, and is reported as $\alpha$-conditional.
+
+\begin{table}[htbp]
+\centering
+\caption{Grade composition of the 19-year ESI series at selected values of the weighting ratio $\alpha$; the complete $11\times19$ matrix for both specifications is Table~\ref{tab:alpha-full} in \ref{app:alpha}.}
+\label{tab:alpha}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llcccc}
+\toprule
+Specification & $\alpha$ & Mild & Rel.\ safe & Severe & Years changing grade \\
+\midrule
+Nine indicators & 0.4 (baseline) & 16 & 2 & 0 & 0 \\
+Nine indicators & 0.7 & 12 & 6 & 1 & 5 \\
+Nine indicators & 0.9--1.0 & 5 & 12 & 1 & 12 \\
+Eight (primary) & 0.4--0.8 & 16 & 2 & 0 & 0 \\
+Eight (primary) & 0.9 & 16 & 2 & 1 & 1 \\
+Eight (primary) & 1.0 & 15 & 2 & 1 & 4 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize The remaining years are medium warning. The last column counts years whose grade differs from that of the $\alpha=0.4$ baseline of the same specification. Under both specifications the 2023 grade is mild warning at every $\alpha$.}
+\end{table}
+
+\subsection{Temperature direction and the composition of the 2010 peak}
+\label{sec:tempdir}
+The positive direction assigned to temperature is a substantive choice, so both alternatives are reported. Reversing it to negative leaves the sign of the trend and the 2023 grade unchanged but lowers the index: the largest year-wise difference is 0.078 (mean 0.039), the rank correlation with the baseline is $\rho=0.85$ ($r=0.90$), three grades change, and the 2023 ESI becomes 0.422; dropping temperature changes one grade and gives 0.450. The 2010 peak survives all three treatments, so it does not depend on the treatment of temperature.
+
+The exact decomposition of Sec.~\ref{sec:esi} identifies what generates the two ends of the record. Between 2005 and 2023 the nine-indicator ESI rises by 0.228, of which the State layer contributes $+0.270$ (118\% of the change), Response $+0.080$ (35\%), while Pressure contributes $-0.086$ ($-38\%$), Impact $-0.022$ ($-9\%$) and Driving $-0.014$ ($-6\%$); at the indicator level the largest single contributions are the forest proportion ($+0.120$, 53\%), the water proportion ($+0.112$, 49\%), the cropland proportion ($-0.119$, $-52\%$) and precipitation ($-0.043$, $-19\%$). The 2005 minimum is not an interpolation endpoint artefact: recomputing the 2005 ESI from the five CLCD observation epochs alone gives 0.242 against 0.258 on the interpolated series. The 2010 peak is likewise generated mainly by the grassland change rate, whose normalised value in 2010 is 0.98 of its range. The subsequent 2010--2023 decline ($-0.223$) is attributed by the same decomposition to the grassland change rate ($-0.150$, 67\%), the grassland proportion ($-0.060$, 27\%), precipitation ($-0.055$, 25\%), the cropland proportion ($-0.054$, 24\%) and the ecological land proportion ($-0.044$, 20\%), partly offset by the forest proportion ($+0.078$, $-35\%$ of a negative change) and the water proportion ($+0.066$); no single indicator accounts for more than about two thirds of the decline, and the largest term is the derived grassland change rate rather than an observed state variable. The variance decomposition of the point-scale ESI assigns 93\% of the variance share to the land-cover block and 7\% to the climate block, with the barren complement (0.42) and grassland (0.37) dominant at the indicator level and temperature carrying a negative share, which follows from its negative correlation with the index.
 
 \begin{figure}[htbp]
 \centering
@@ -275,12 +424,13 @@ Sensitivity analysis over $\alpha=0$--$1$ shows that the 2023 ESI increases from
 \label{fig:alpha}
 \end{figure}
 
-\subsection{County-level ESI, spatial driving factors, and obstacle factors}
-The static county ESI (2020) uses the same combined weighting scheme ($\alpha = 0.4$) as the regional analysis, but the weights were recomputed from the 11-county cross-section: entropy weights were computed on the county cross-section, and AHP weights were set equal across the 6 available county-level indicators; the indicators are the 2020 land-cover proportions and the 2005--2023 climate means within a $\pm$0.1° window around each county centroid, min--max normalised across the 11 counties. It ranks Sunan (0.558) and Tianzhu (0.525) highest and Aksai (0.067) lowest (Table~\ref{tab:county}; Fig.~\ref{fig:spatial}). Eastern counties with higher grassland cover (Sunan, Tianzhu, Qilian) score higher than the arid western counties (Aksai, Delingha), although the pattern is modulated by local land-cover composition (e.g., the crop-dominated county Minle scores lower than some western counties). The gradient implies that conservation resources and early-warning priority should be allocated heterogeneously across the region.
+\subsection{County-level relative index}
+\label{sec:county}
+The static county index for 2020 uses the same combined weighting ($\alpha = 0.4$) as the regional analysis, with entropy weights recomputed from the 11-county cross-section and AHP weights set equal across the six county-level indicators available; the inputs are the 2020 land-cover proportions and the 2005--2023 climate means for a $\pm$0.1° centroid window, min--max normalised across the 11 units. It ranks Sunan (0.558) and Tianzhu (0.525) highest and Aksai (0.067) lowest (Table~\ref{tab:county}; Fig.~\ref{fig:spatial}). Because it is a cross-sectional index normalised across 11 units rather than in time, these are \emph{relative county indices}: they are not comparable with the regional ESI and cannot be read against the five warning thresholds. Three sources of uncertainty were quantified over 64 combinations of window half-width ($\pm$0.05° to $\pm$0.30°), spatial weight (entropy, AHP, equal) and land-cover source (CLCD class 7, residual-barren formula, no-barren composition). The rank correlation with the baseline falls from 0.68 at $\pm$0.05° to 0.51 at $\pm$0.20° and 0.49 at $\pm$0.30°, and 8 of 11 counties change rank between the two extreme windows. Across all 64 combinations the rank span is 7 places for Sunan, 7 for Gangcha and 9 for Delingha, and only two statements survive every combination: Tianzhu is always in the top three (rank 1--3) and Aksai is always in the bottom two (rank 10--11, last in the reference configuration). Substituting area-weighted polygon means for centroid windows moves Sunan from 1st to 9th and Delingha from 4th to 1st (Table~\ref{tab:countyrank}). Water is the most sensitive indicator: its entropy weight rises from 0.399 to 0.403 as the window widens from $\pm$0.20° to $\pm$0.30°, and the water fraction of Gangcha changes from 0.05\% to 16.3\% to 24.2\% as the window narrows from $\pm$0.30° to $\pm$0.10° to $\pm$0.05°, because the Qinghai Lake shoreline enters and leaves the window. Multi-year county indices cannot be computed from the data used here, because only the 2020 CLCD tile can be reprocessed alongside this repository and no county-boundary-consistent land-cover series was available for the other four epochs. County values are therefore used only as a coarse east--west contrast, and the management zoning of Sec.~\ref{sec:management} rests on the functional zoning of the national park together with the grade--response relationship rather than on county ranks.
 
 \begin{table}[htbp]
 \centering
-\caption{Static county ESI (2020). Indicators are the 2020 land-cover proportions within a $\pm$0.1° window around each county centroid, together with the 2005--2023 mean climate of that county, min--max normalised across the 11 county units and combined with the AHP--entropy weighting scheme ($\alpha = 0.4$). Values are $\pm$0.1° centroid-window statistics and do not represent county-wide averages; the cross-county ordering is sensitive to the window scale (the ranking changes markedly already at $\pm$0.05°, with a Spearman correlation of only 0.682 against the baseline), so they provide an indicative reference for the relative condition of each county rather than a stable county ranking.}
+\caption{Relative county index for 2020. Inputs are the 2020 land-cover proportions within a $\pm$0.1° window around each county centroid together with the 2005--2023 mean climate of that county, min--max normalised across the 11 county units and combined with the AHP--entropy weighting scheme ($\alpha = 0.4$). Values are $\pm$0.1° centroid-window statistics and do not represent county-wide averages; the index is a cross-sectional relative measure that is not comparable with the regional ESI or with the warning thresholds. The ordering is window-dependent (Spearman 0.68 at $\pm$0.05° and 0.49 at $\pm$0.30° against the baseline; Table~\ref{tab:countyrank}), so only the extremes are used in the text.}
 \label{tab:county}
 \small
 \begin{tabular}{lcccc}
@@ -297,7 +447,13 @@ Subei & 0.405 & & \\
 \end{tabular}
 \end{table}
 
-GeoDetector on 1{,}914 grid samples shows that the barren/degraded class ($q=0.80$) and the grassland class ($q=0.71$) have the highest explanatory power, followed by precipitation ($q=0.51$), with temperature the weakest ($q=0.17$) (all $p \le 0.001$; permutation test, 999 iterations; Fig.~\ref{fig:qbar}). All four are also components of the ESI, so their $q$ values contain a mechanical-correlation component; the forest class was not included in the detection (only 15 of the 1{,}914 samples are forest-dominated, insufficient to support quartile stratification). Under the leave-one-target detection (Sec.~3.5), which recomputes the target without the factor under test, the $q$ values of the four factors are 0.711 (barren/degraded), 0.381 (precipitation), 0.366 (grassland), and 0.274 (temperature), all $p = 0.001$: the first and last positions are unchanged (barren/degraded remains highest, temperature remains lowest), while grassland and precipitation swap the second and third positions; the barren/degraded class ranks above precipitation under both settings. The reduction is largest for grassland ($-48.2\%$), so a substantial part of its baseline $q$ comes from the mechanical correlation, and the advantage of precipitation over temperature narrows from 3.0-fold to 1.4-fold. The temperature $q$ rises from 0.170 to 0.274 ($+61.3\%$): this is a collinearity readout---$r(\text{temperature},\text{elevation})=-0.714$ and $r(\text{temperature},\text{barren/degraded})=+0.423$---rather than evidence that temperature is the stronger driver. The strictly exogenous terrain factors in the non-land-cover-factor control give elevation $q=0.0904$ and slope $q=0.0647$ (both $p=0.001$) and explain only 6--9\% of the point-scale variance; they are uncorrelated with each other ($r=-0.038$), so terrain alone does not account for the overall spatial pattern of the ESI. The interaction detector further shows that all factor pairs show \emph{enhancing} interactions: the joint effects of temperature$\times$barren ($q=0.849$), precipitation$\times$barren ($q=0.833$), and grassland$\times$barren ($q=0.818$) all exceed their individual contributions ($p \le 0.001$), indicating that thermal--arid and moisture--vegetation couplings compound spatial ES heterogeneity (Table~\ref{tab:interaction}; Fig.~\ref{fig:interaction}).
+\subsection{Spatially stratified associations}
+\label{sec:spatial}
+Baseline detection over the 1{,}914 points gives barren/degraded $q=0.802$, grassland $q=0.708$, precipitation $q=0.506$ and temperature $q=0.170$ (all $p=0.001$, the resolution limit of the 999-permutation test; Fig.~\ref{fig:qbar}). Because all four factors are components of the index they are tested against, part of each $q$ is mechanical, and three checks quantify how much. First, the leave-one-target sensitivity recomputes the target without the factor under test and returns $q=0.711$ (barren/degraded), 0.381 (precipitation), 0.366 (grassland) and 0.274 (temperature), all $p=0.001$; the largest single change is grassland, which falls by 48.2\%, while temperature rises by 61.3\% from a low base. Second, on a de-redundant point-scale target that also drops the complement-based barren term, grassland $q=0.540$, precipitation $q=0.486$ and temperature $q=0.117$, but the grassland $q$ against the removed factor collapses to $6.3\times10^{-5}$ ($p=0.73$), that is, to zero within permutation noise, which identifies the grassland association as largely a restatement of the barren complement. Third, a block-wise cross-detection evaluates each factor against the sub-index of its own DPSIR block (a target that contains the factor, hence mechanical) and against that of the other block (no shared component). The resulting mechanical share $1-q_{\mathrm{cross}}/q_{\mathrm{own}}$ is 0.42 for barren/degraded, 0.47 for precipitation, 0.57 for grassland, 0.74 for temperature, 0.98 for forest and 0.99 for water, so for the composition factors most of the apparent explanatory power is a property of index construction rather than an independent ecological signal. The strictly exogenous terrain factors, which belong to no block, give elevation $q=0.090$ and slope $q=0.065$ (both $p=0.001$), jointly 0.166 over 16 strata, and a regression of the point index on elevation and slope gives $R^2=0.081$; their partial correlations with the index fall to 0.025 and $-0.104$ once precipitation and temperature are controlled. Terrain therefore explains only about 8\% of the point-scale variance and cannot account for the spatial pattern on its own. The factors are accordingly reported as spatially stratified associations with the index rather than as its drivers.
+
+The detection is stable to how the factors and samples are defined. Across six stratification schemes precipitation $q$ ranges from 0.506 to 0.541 and temperature from 0.159 to 0.196, whereas grassland and barren/degraded take only two distinct values in the sample and their $q$ is scheme-invariant; across 200 bootstrap resamples and 200 random subsamples of 1{,}500 and 1{,}000 points the factor ranking is unchanged in every replicate (Spearman $\rho=1.00$) and the 95\% intervals stay within $\pm$0.04 of the full-sample value for precipitation, temperature and the terrain factors, widening to $\pm$0.13 for grassland in the smallest subsample (Table~\ref{tab:strat}). The forest class is treated separately because only 15 of the 1{,}914 samples are forest-dominated: dominant-class stratification gives $q=0.065$ with a bootstrap 95\% interval of 0.034--0.099 (0.019--0.117 under a spatial block bootstrap), a presence/absence stratification gives 0.189 and a four-level zero-inflated stratification of the fractional cover gives 0.206, whereas the same dominant-class factor reaches 0.927 against a reference ecological-land target, which is an artefact of comparing a class with an index constructed from it. The interaction detector returns enhancing interactions for all six pairs, but the mechanical share of the joint statistic ranges from 0.20 (temperature$\times$barren) to 0.87 (grassland$\times$barren), the strongest apparent interactions being those between factors that already share composition with the target; the excess over the permutation null is 0.11--0.68 and the joint $q$ exceeds the larger single-factor $q$ in every one of 1{,}000 bootstrap replicates. The interaction results are therefore reported as a property of the composite index rather than as evidence of ecological coupling (Table~\ref{tab:interaction}; Fig.~\ref{fig:interaction}).
+
+An independent target was assembled to test how much of this structure survives outside the index. A growing-season mean NDVI (six fixed dates, clear-sky pixels only) was extracted from the NOAA CDR AVHRR/VIIRS record at the same 1{,}914 points for 2020 and as a regional annual mean for 2005--2023; the product is not an input to the index. Spatially the agreement is strong: the point-scale index correlates with the independent NDVI at $r=0.705$ ($\rho=0.737$, $n=1{,}785$ points with valid retrievals), and the two-way stratified test is almost symmetric, NDVI strata explaining $q=0.548$ of the index variance and index strata $q=0.527$ of the NDVI variance. The attribution ranking is not transferable, however. With the independent NDVI as the target the order becomes precipitation (0.626) $>$ barren/degraded (0.548) $>$ grassland (0.378) $>$ temperature (0.178) $>$ slope (0.090) $>$ elevation (0.079), against barren/degraded (0.818) $>$ grassland (0.814) $>$ precipitation (0.548) $>$ temperature (0.197) on the index target: the stratified association of the grassland factor falls by 54\% and of the barren factor by 33\% when the target is independent, precipitation rises by 14\% and becomes the leading factor, and the rank correlation between the two orderings is 0.771. Terrain explains $R^2=0.059$ of the independent NDVI, close to its value of 0.081 for the index. The annual series do not co-vary, however: the regional growing-season NDVI rises by 0.0013 NDVI units per year over 2005--2023 while the index rises by 0.0006 per year, and their year-to-year level correlation is $-0.17$ over the full period ($-0.27$ in the VIIRS segment 2014--2023, where sensor continuity is better, and $+0.44$ under a common clear-pixel mask), while the pointwise NDVI trend is uncorrelated with the static 2020 index ($r=-0.03$, $n=250$). The spatial pattern of the index is thus corroborated by an independent observation, whereas its interannual variation is not reproduced by regional greenness, which is consistent with the annual series being driven substantially by the differenced land-cover term rather than by vegetation greenness itself.
 
 \begin{table}[htbp]
 \centering
@@ -325,9 +481,15 @@ Temperature $\times$ Precipitation & 0.170 & 0.506 & 0.529 & enhance \\
 \label{fig:spatial}
 \end{figure}
 
-Moran's $I$ for the 2020 point ESI (1{,}914 samples, inverse-distance $k$-nearest-neighbour weights) is 0.643 ($p=0.005$, permutation test), indicating significant spatial positive correlation (clustering); this cluster pattern is spatially consistent with the land-cover and climate factors detected above, but clustering itself does not constitute attribution evidence.
+\subsection{Spatial clustering}
+\label{sec:moran}
+Moran's $I$ of the 2020 point index is 0.6431 with row-standardised $k=8$ nearest-neighbour weights on inverse distances, reproducing the archived value (0.643095) digit for digit. The statistic is insensitive to the weight definition: over $k=4$ to 50 and binary, inverse-distance and inverse-squared-distance weights it spans 0.575--0.666, every specification returns a permutation $p$ of 0.001 except the archived run, which records 0.005, and the normal approximation gives $z>40$ throughout (Table~\ref{tab:moran}). Most of the clustering is accounted for by the same composition that forms the index: regressing the point index on the six components ($R^2=0.85$) leaves a residual Moran's $I$ of 0.30 and on the four climate and terrain factors ($R^2=0.54$) one of 0.26, whereas regressing on terrain alone ($R^2=0.081$) still leaves 0.62. Spatial autocorrelation is therefore not treated as independent evidence of ecological connectivity.
 
-Obstacle-factor analysis---following the obstacle-degree diagnosis of composite ecological-security indices \citep{jing2024obstacle}---reveals a phase shift in the constraints on ecological security: during the recovery phase (2005--2010) the main obstacles were water proportion (0.233), forest proportion (0.221), and ecological land proportion (0.151), reflecting water-resource and forest-scale deficits; during the plateau phase (2011--2023) the dominant obstacles shifted to grassland change rate (0.364) and cropland proportion (0.206), indicating that grassland dynamics and cropland expansion now govern ecological security, consistent with the weighting results (Fig.~\ref{fig:obstacle}).
+\subsection{Obstacle factors}
+\label{sec:obstacle}
+Following the obstacle-degree diagnosis of composite ecological-security indices \citep{jing2024obstacle}, the deficiency of indicator $j$ in year $i$ is $D_{ij}=1-x'_{ij}$, its factor weight is $F_j=w_j$, the obstacle degree is $O_{ij}=D_{ij}F_j$, and the degrees are normalised across indicators within each year as $O^{*}_{ij}=O_{ij}/\sum_j O_{ij}$, so that the nine normalised values sum to 1 in every year. Phase values are arithmetic means of the annual normalised obstacle degrees. The phase division itself is descriptive: it is fixed by the 2010 peak of the index (Sec.~\ref{sec:esi-series}), because the Pettitt test places a change point at 2016 ($K=56$, $p=0.148$, not significant) and the largest difference in segment means occurs at 2008, so the record contains no statistically supported phase boundary, and the policy periods cited in the Introduction are background rather than a criterion.
+
+During the recovery phase (2005--2010) the largest mean obstacles are the water proportion (0.233), the forest proportion (0.221) and the ecological land proportion (0.151); during the plateau phase (2011--2023) they shift to the grassland change rate (0.364) and the cropland proportion (0.206), the third largest being the water proportion (Fig.~\ref{fig:obstacle}). The leading obstacle in individual years is the grassland change rate in 13 of 19 years (2011--2023), the water proportion in 5 years (2006--2010) and the ecological land proportion in 1 year (2005); under the eight-indicator primary specification the leading obstacle is the same in 18 of 19 years, the exception being 2005. The ordering is weight-dependent rather than weight-free: with entropy weights alone the plateau-phase leader is still the grassland change rate (0.368) followed by the cropland proportion, with equal weights the leader becomes the cropland proportion (0.218) and the grassland change rate drops to second, and with AHP weights alone the recovery-phase leader becomes the forest proportion (0.246) while the grassland change rate still leads the plateau phase (0.317). An independent recomputation of the obstacle degrees from a re-implemented index reproduces the archived phase means quoted above to within 0.014, the largest differences being for the derived grassland change rate and the ecological land proportion, whose normalised values differ most between implementations (\ref{app:obstacle}).
 
 \begin{figure}[htbp]
 \centering
@@ -355,21 +517,21 @@ Obstacle-factor analysis---following the obstacle-degree diagnosis of composite 
 \label{sec:discussion}
 
 \subsection{Ecological security changes and their drivers}
-The 2005--2010 ESI recovery is consistent with large-scale ecological restoration (grazing-withdrawal and revegetation programs) and wetter years; the subsequent mild-warning plateau reflects persistent barren-dominated land cover ($\sim$56\%) and climate fluctuation. The dominant weighting of grassland dynamics corroborates the importance of alpine meadow ecosystems for regional ES, in line with findings that grassland degradation is the leading ecological-security constraint in alpine regions \citep{qilian_ez_2024,westliaohe_esp_2026}. The east--west county gradient and the GeoDetector results further indicate that precipitation has higher explanatory power than temperature under both settings (baseline 0.51 vs.\ 0.17; leave-one-target 0.38 vs.\ 0.27), a pattern consistent with arid-zone studies in which moisture availability, not thermal regime, limits ecosystem productivity \citep{china_ecoenv_2024}.
+The 2005--2010 recovery of the index is consistent with large-scale ecological restoration (grazing withdrawal and revegetation programmes) and with wetter years, but the policy periods themselves cannot be verified from the data used here, and the 2010 peak is generated mainly by the derived grassland change rate rather than by an observed state variable (Sec.~\ref{sec:tempdir}). The subsequent mild-warning plateau reflects a barren-dominated land cover ($\sim$56\%) together with climate fluctuation. The high combined weight of the grassland change rate is consistent with the importance of alpine meadow ecosystems for regional ecological security, in line with findings that grassland degradation is a leading constraint in alpine regions \citep{qilian_ez_2024,westliaohe_esp_2026}; because that weight is partly an artefact of interpolating the land-cover series (Sec.~\ref{sec:weights}), the argument is made from the decomposition rather than from the weight alone. Both the coarse east--west contrast of the county index and the stratified associations indicate that precipitation is more strongly associated with the index than temperature (baseline $q=0.506$ vs.\ 0.170; leave-one-target 0.381 vs.\ 0.274), a pattern consistent with arid-zone studies in which moisture availability, rather than the thermal regime, limits ecosystem productivity \citep{china_ecoenv_2024}.
 
 For wildlife and biodiversity conservation, the mild-warning state and the projected decline carry a concrete message: habitat integrity in the Qilian Mountain region is not improving, and monitoring programs that rely on static habitat assessment may miss slow degradation. The early-warning signal formalized here links raw environmental data to actionable warning grades, the decision-support input envisioned by recent wildlife-monitoring frameworks \citep{kerry2022remote,bijl2022camera}. The signal builds on the early-warning decision module of international wildlife-monitoring initiatives: composite ecological-security indicators convert remote-sensing and ground-monitoring data into actionable warning grades, closing the habitat monitoring--early-warning--response loop; we validate this framework empirically for the Qilian Mountain National Park.
 
 \subsection{Comparison with previous studies}
-Relative to the reserve-scale early-warning framework that combines DPSIR, combined weights, GM(1,1), and GeoDetector \citep{liu2023integrated}, our results confirm that this toolchain transfers to national-park regions, while extending it in the three respects summarized in Table~\ref{tab:compare}. First, the 2023 warning grade was invariant to the weighting ratio $\alpha$ over its full 0--1 range, whereas comparable DPSIR-based assessments report a single weighting scheme \citep{changbai_dpsirm_2024,dpsir_dea_threegorges2023}; the warning conclusion for the current state therefore does not depend on the analyst's weighting choice. Second, the observed ESI series is non-monotonic and violates the monotonic-trend assumption of GM(1,1); the nonlinear grey Bernoulli model captured this behavior at the qualified accuracy grade while ARIMA was unqualified, consistent with evidence that nonlinear grey variants suit short, non-stationary series \citep{althobaiti_ngbm2022}.
+Relative to the reserve-scale early-warning framework that combines DPSIR, combined weights, GM(1,1) and GeoDetector \citep{liu2023integrated}, our results confirm that this toolchain transfers to national-park regions, while extending it in the three respects summarized in Table~\ref{tab:compare}. First, robustness to the analyst's weighting choice is quantified instead of asserted: the current-state grade is mild warning at every $\alpha$ in 0--1, and the eight-indicator primary specification changes no grade over $\alpha=0.4$--0.8, but the historical grade distribution does depend on $\alpha$ (5 mild-warning years at $\alpha\ge0.9$ against 16 at $\alpha=0.4$), so the claim of $\alpha$-invariance applies to the current state only. Comparable DPSIR-based assessments report a single weighting scheme \citep{changbai_dpsirm_2024,dpsir_dea_threegorges2023}. Second, the observed series is non-monotonic and violates the monotonic-trend assumption of GM(1,1), yet the three models cannot be separated by a single accuracy claim: the leading model differs across five validation schemes, the exponent that produced the earlier holdout error cannot be selected without the evaluation period, and a strictly leakage-free variant reverses the ranking. A nonlinear grey variant remains a defensible choice for a short, non-stationary series \citep{althobaiti_ngbm2022}, but on this record it has not been shown to forecast better than GM(1,1) or ARIMA.
 
-Third, linking the regional time series to grid- and county-level attribution reveals a scale dependence that single-scale studies cannot expose: the indicators dominating temporal variation (grassland change rate and cropland proportion; Table~\ref{tab:weights}) differ from those with the highest spatial explanatory power (the barren/degraded and grassland classes, both of which overlap the ESI inputs; Fig.~\ref{fig:qbar}). Early-warning design should therefore pair temporal monitoring of grassland and cropland dynamics with spatially targeted control of land degradation, rather than assuming one driver set serves both.
+Third, linking the regional series to grid- and county-level associations reveals a scale dependence that single-scale studies cannot expose: the indicators dominating temporal variation (the grassland change rate and the cropland proportion; Table~\ref{tab:weights}) are not the factors with the highest spatially stratified association (the barren/degraded and grassland classes, both of which overlap the index inputs; Fig.~\ref{fig:qbar}). A fourth extension is diagnostic rather than descriptive: three exact identities in the indicator system, one of which duplicates a column, determine how much of the temporal narrative survives a change of indicator set (Table~\ref{tab:deredundancy}), and the mechanical component of every spatial association can be bounded by leave-one-target detection and block-wise cross-detection. Early-warning design should therefore pair temporal monitoring of grassland and cropland dynamics with spatially targeted control of land degradation, while reporting which part of each association is construction and which is ecology.
 
 \begin{table}[htbp]
 \centering
 \caption{Methodological features of the proposed framework relative to representative reserve-scale ecological-security studies: Liu et al. \citep{liu2023integrated}, a Changbai Mountain DPSIRM assessment \citep{changbai_dpsirm_2024}, and a DPSIR--DEA assessment of the Three Gorges reservoir area \citep{dpsir_dea_threegorges2023}.}
 \label{tab:compare}
-\small
-\setlength{\tabcolsep}{4pt}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccc}
 \toprule
 Feature & Liu et al. & Changbai DPSIRM & DPSIR--DEA & This study \\
@@ -377,7 +539,8 @@ Feature & Liu et al. & Changbai DPSIRM & DPSIR--DEA & This study \\
 DPSIR/PSR framework & Yes & Yes & Yes & Yes \\
 Combined weighting & Yes & AHP only & Entropy--DEA & Yes, $+$ $\alpha$ sensitivity \\
 GM(1,1) forecasting & Yes & No & No & Yes, vs.\ NGBM/ARIMA \\
-GeoDetector attribution & Yes & No & No & Yes, $+$ interactions \\
+GeoDetector association & Yes & No & No & Yes, $+$ mechanical share \\
+Indicator de-redundancy & No & No & No & Yes \\
 County-level analysis & No & Yes & Yes & Yes \\
 Weighting robustness & No & No & No & Yes \\
 Open data and code & No & No & No & Yes \\
@@ -386,26 +549,222 @@ Open data and code & No & No & No & Yes \\
 \end{table}
 
 \subsection{Management implications}
+\label{sec:management}
 \begin{enumerate}
-\item \emph{Zonal priorities.} Mild-warning zones (dominant since 2011) should prioritize grassland restoration and grazing regulation, while the arid western counties (Aksai, Delingha) require desertification monitoring and water-resource management, not vegetation restoration \emph{per se}.
-\item \emph{Cropland regulation.} Cropland proportion was the second-ranked obstacle in the plateau phase (0.206); expansion at the agropastoral ecotone should be controlled to curb land-use pressure.
-\item \emph{Grade-based zonal response.} Management zoning is allocated by warning grade---whose bands span equal 0.2 intervals on the normalised range---and aligned with QMNP zoning rather than by micro-ranking of counties as a cross-county priority basis, operationalizing the early-warning concept for habitat and wildlife conservation; the thresholds serve only for the relative ordering of units within the study region and for cross-study comparison, and are neither ecological critical values nor a stand-alone trigger for automatic management response.
+\item \emph{Zoning by the park's functional plan.} Because the grade boundaries are conventions on a relative index and the county ordering is not stable, zoning is proposed on the national park's own functional zones (core conservation, general control, traditional utilisation) crossed with the observed warning grade, rather than on a ranking of counties or grid cells. Under this scheme the mild-warning zones that have dominated since 2011 receive grassland restoration and grazing regulation within their existing permitted-use rules, while arid western units (Aksai, Delingha) receive desertification and water-resource monitoring rather than vegetation restoration \emph{per se}.
+\item \emph{Grade--response table.} Each warning grade is paired with a pre-agreed action level: continuous monitoring and annual re-assessment at relatively safe; grazing and tourism load review at mild warning; restoration prioritisation and a documented cause analysis at medium warning; and mandatory intervention with a review of land-use approvals at severe warning. The continuous index value and its bootstrap interval accompany the grade, so that a unit whose 2028 interval spans two grades---as the 2028 regional projection does---is handled at the higher action level only when the interval lies predominantly in it.
+\item \emph{Cropland regulation.} The cropland proportion is the second-ranked obstacle in the plateau phase (0.206 under combined weights, and the leading obstacle under equal weights), so expansion at the agropastoral ecotone should be controlled to curb land-use pressure.
+\item \emph{What the thresholds are not.} The five bands are equal 0.2 intervals on a study-specific normalised range; they are neither ecological critical values nor a stand-alone trigger for automatic management response, and a 0.006 margin (the 2028 projection against the 0.400 boundary) is explicitly not treated as a decision basis.
 \end{enumerate}
 
 \subsection{Limitations and future work}
-Limitations include the regional aggregation (the county index is static and derived from $\pm$0.1° centroid windows, so it represents conditions near the county centroid rather than county-wide averages, pending finer administrative boundaries), the interpolation of land cover between five epochs, the moderate accuracy of grey models on non-monotonic series (mitigated by the NGBM/ARIMA comparison), and the absence of independent cross-validation of the ESI against external ecological indicators (e.g., NDVI, field grass-cover observations). Four further structural issues arise. (1) The indicator system is internally correlated: the response-layer ecological land proportion is the sum of the grassland, forest, and water proportions, and the impact-layer grassland change rate is the annual change rate of the grassland proportion; the impact, state, and response layers together account for 69.29\% of the combined weight under the criterion-level AHP calibration used here (59.67\% under entropy weights only and 83.72\% under AHP weights only), so the criteria layers are not mutually independent. The barren/degraded proportion is likewise a linear identity in the remaining indicators (barren/degraded $=100-$ grassland $-$ forest $-$ water $-$ cropland, zero residual), so the collinear structure extends beyond the two identities noted above. (2) Spatial attribution contains an endogenous component: precipitation, temperature, the grassland proportion, and the barren/degraded proportion are themselves inputs to the ESI, so their $q$ values include mechanical correlation; the leave-one-target detection (Sec.~4.5) leaves the first and last positions unchanged while grassland and precipitation swap the second and third positions, with the largest reduction for grassland ($-48.2\%$). The point-scale land-cover factors are binary dominant-class indicators, so the barren/degraded class is by construction the complement of grassland, forest, and water; the 81 points dominated by cropland or snow/ice are therefore counted as barren/degraded. A leave-one-target detection was also recomputed from per-point fractional cover (\texttt{results\_fractional\_cover\_loo.csv}, scheme \texttt{fractional\_sigma1}, in the reproducibility package): grassland 0.584$\rightarrow$0.283 ($-51.6\%$), barren/degraded 0.838$\rightarrow$0.691 ($-17.6\%$), precipitation 0.600$\rightarrow$0.462, and temperature 0.178$\rightarrow$0.303 (all $p=0.001$). Under the one-hot calibration the leave-one-target $q$ values of the cover factors therefore serve as an upper-bound reference and cannot be read as evidence that a cover type is unimportant. The point-scale land-cover indicators are mutually exclusive classes of the same CLCD classification (represented by the dominant class), so they are not statistically independent by construction; when expressed as window-area fractions, the grassland and barren proportions are correlated at $r=-0.884$. The ESI variance is moreover dominated by sparse classes: forest (15 samples) and water (34 samples) together carry 0.609 of the combined weight (sample counts from \texttt{spatial\_samples.csv}; weights recomputed for the six point-scale ESI inputs at $\alpha=0.4$), i.e.\ 2.6\% of the samples carry 60.9\% of the weight. (3) The ESI is a relative index: its min--max normalisation depends on the study period and sample range, and the five-grade thresholds at equal 0.2 intervals facilitate cross-study comparison but carry no absolute ecological meaning. (4) The climate data are on a 0.5° grid, which introduces representativeness bias in the Qilian Mountains, where the terrain is complex and vertical differentiation is strong. In addition, the obstacle-degree analysis is likewise affected by indicator collinearity: the obstacle degree is proportional to $(1-x')\cdot w$, so the double counting embedded in the weights inflates it, and the obstacle degrees of the grassland change rate, water, and forest are no longer mutually independent. Moran's $I=0.643$ measures the spatial clustering of the ESI and does not by itself establish attribution, because the clustering may also arise from the spatial autocorrelation of the ESI components. Variables not included here (soil type, grazing pressure, human activity intensity) may have stronger explanatory power in the Qilian Mountains, and their omission biases the spatial attribution. The county ESI is a centroid-window statistic rather than a county-wide average. Recomputing it with four centroid windows ($\pm$0.05°, $\pm$0.10° (the baseline), $\pm$0.20°, and $\pm$0.30°) leaves the cross-county ordering unstable: against the baseline only 1 of the 11 counties keeps its rank, and across the four windows 7 of the 11 span three or more rank positions (Delingha, from 1st at $\pm$0.05° to 10th at $\pm$0.20°, spans nine; Sunan and Gangcha six each), while the Spearman rank correlation with the baseline is 0.682 ($\pm$0.05°), 0.509 ($\pm$0.20°), and 0.491 ($\pm$0.30°); the entropy weights are likewise window-dependent, with the water weight reaching 0.399 and 0.403 at $\pm$0.20° and $\pm$0.30°, under which Gangcha's water fraction rises from 0.046\% at $\pm$0.10° to 16.29\% at $\pm$0.20°, where the window first includes Qinghai Lake, and to 24.17\% at $\pm$0.30°. Aksai is the one county that keeps its rank: it is last under all four windows, has the highest barren fraction of the 11 counties under all four, and its ESI spans only 0.0201, so its low value is not a window artefact. Future work should (i) incorporate higher-temporal-resolution land cover and near-real-time warning updates, (ii) couple the ESI with wildlife population and habitat-quality indicators, (iii) extend the framework to a multi-reserve comparison to test transferability, and (iv) cross-validate the ESI against independent external indicators.
+Several limitations bound these conclusions. (1) The indicator system contains exact internal identities: the ecological land proportion duplicates grassland $+$ forest $+$ water with a residual of exactly zero, the grassland change rate is the differenced grassland proportion with an arbitrary 2005 origin, and the barren/degraded proportion is the complement of the other land-cover columns (residual exactly zero, $r=-0.92$ with grassland). Deleting the exact duplicate leaves all 19 warning grades unchanged and is adopted as the primary specification, but the peak year and the number of grade changes move substantially under the other specifications (Table~\ref{tab:deredundancy}), so the historical narrative is specification-dependent. (2) The land-cover inputs have five epochs (2005, 2010, 2015, 2020, 2023) interpolated to 19 years, so 14 of the 19 years are interpolated; the entropy weight of the differenced grassland series ranges from 0.117 to 0.245 across interpolation schemes and therefore measures interannual variability rather than ecological importance. (3) The county index is static, cross-sectional and computed from $\pm$0.1° centroid windows: its ordering is window- and weight-dependent (rank correlation 0.49--0.68 against the baseline, 8 of 11 counties changing rank, area weighting moving Sunan from 1st to 9th), no multi-year county series can be built from the available epochs because only the 2020 CLCD tile can be reprocessed alongside this repository, and the values are not comparable with the regional thresholds, so county results are not used for prioritisation. (4) The spatially stratified associations are associations with a composite index and not attributions: four of the factors are index inputs whose mechanical share is 0.42--0.99, the point-scale barren/degraded term is a complement that counts 81 cropland- or snow-dominated samples as barren, and the strictly exogenous terrain factors explain only about 8\% of the point-scale variance. An independent target was assembled to break this circularity---a growing-season NDVI from the NOAA CDR AVHRR/VIIRS record extracted at the same 1{,}914 points, which is not an index input---and it corroborates the spatial pattern ($r=0.705$) while transferring the ranking (precipitation leads) and failing to reproduce the annual series (level correlation $-0.17$); being a different quantity on a different sensor record and spatial support, it serves as a consistency check and cannot validate the weighting, the thresholds or the DPSIR structure. (5) The forecast models cannot be ranked on this record: the leading model differs across five validation schemes, the exponent of the NGBM must be selected (training-only selection raises the holdout error from 0.034 to 0.069), the index normalisation and entropy weights are estimated over the full period so that a strictly leakage-free variant reverses the ranking, and the bootstrap intervals condition on one fitted model form and therefore exclude model-selection uncertainty, which the spread of the three 2028 projections (0.394, 0.488, 0.493) makes explicit. (6) Two archived intermediate tables cannot be regenerated from the published scripts: the obstacle table, whose phase means are reproduced here to within 0.014 by an independent recomputation, and the archived forecast accuracy table whose NGBM entry required an exponent selected on the evaluation period. Both are identified in the repository documentation, are reported with their provenance stated, and are not the basis of any conclusion. (7) The warning thresholds are conventions on a relative index, the positive direction assigned to temperature is a choice whose reversal changes the index by up to 0.078, and the county- and grid-scale analyses inherit the resolution of the underlying products; future work should test the framework with a multi-year county land-cover series, an independent ecological target of the same spatial support, and a formal model-averaged forecast interval.
 
 % ============================================================
 \section{Conclusion}
 \label{sec:conclusion}
 
-Using only open climate and land-cover data, we assessed and forecast ecological security in the Qilian Mountain region over 2005--2023 with an openly available pipeline (analysis scripts, processed result tables, figure files, and a documented Stage~0--7 run order). The regional ESI ranged 0.26--0.71 over 2005--2023; since 2011 the region has remained in a mild-warning state (2023 ESI $=$ 0.486), and the Mann--Kendall test found no significant downward trend over 2005--2023 ($p=0.263$), indicating a stable yet fragile state.
+Using only open climate and land-cover data, we assessed and forecast ecological security in the Qilian Mountain region for 2005--2023 with an openly available pipeline (analysis scripts, processed result tables, figure files and a documented Stage~0--7 run order). Under the eight-indicator primary specification the index peaks at 0.676 in 2010 and reaches 0.478 in 2023 (mild warning), and the nine-indicator series assigns the same grade in all 19 years while differing by at most 0.058; the grade distribution is 2 relatively-safe years, 16 mild-warning years and one medium-warning year. The conventional Mann--Kendall test finds no significant trend over the full record ($p=0.263$), whereas the 2010--2023 segment declines significantly under that specification ($p=0.006$, Sen's slope $-0.0086$\,yr$^{-1}$) but not under the eight-indicator one ($p=0.189$) and reverses sign under a six-indicator one; the post-2010 decline is therefore suggestive rather than established. Because the grades are relative to a study-specific normalisation range and to the indicator set, the warning output is delivered as a relative grade together with the continuous index and its uncertainty, not as a stand-alone trigger.
 
-Forecasts for 2024--2028 indicate a gradual decline (NGBM: 0.446$\rightarrow$0.394) under a no-intervention scenario, warranting proactive intervention, with parametric 95\% intervals of 0.358--0.533 (2024) and 0.306--0.482 (2028); NGBM reached the qualified accuracy grade ($C=0.44$) with a holdout-validation RMSE of 0.034; the 95\% intervals span the mild- and medium-warning grades, so the forecast grade carries uncertainty, and this trend assumes no intervention and stable model parameters. The 2023 warning grade is robust to the subjective--objective weighting ratio (mild warning for all $\alpha=0$--$1$), but the historical grade distribution is sensitive to $\alpha$: the number of mild-warning years falls from 16 at $\alpha=0.3$--$0.4$ to 5 at $\alpha\ge0.9$, and one severe-warning year appears at $\alpha\ge0.7$; grassland dynamics and cropland pressure are the dominant signals. Spatially, the barren/degraded class ranks first under both settings (baseline $q=0.80$; leave-one-target $q=0.711$), followed by grassland (0.71 and 0.366), precipitation (0.51 and 0.381), and temperature (0.17 and 0.274), while the strictly exogenous terrain factors explain only 6--9\% of the point-scale variance. We recommend integrating ESI-based early warning into QMNP adaptive management, prioritizing grassland restoration in mild-warning zones and regulating cropland expansion; the framework is transferable to other nature reserves and provides early-warning--response decision support for wildlife habitat conservation and monitoring.
+The 2024--2028 projection declines from 0.446 to 0.394 under the no-intervention scenario, and the 2028 value falls 0.006 below the 0.400 boundary---a margin smaller than the rounding of the reported value---so it is reported as medium warning only with that caveat; the 2028 bootstrap interval is 0.342--0.462 under parameter uncertainty and 0.257--0.587 when accumulated innovation uncertainty is included, with P(medium warning) of 0.56--0.59, while GM(1,1) and ARIMA project 0.493 and 0.488. The three models cannot be ranked on this record: the leading model differs across five validation schemes, and the earlier holdout error of 0.034 required an exponent selected on the evaluation period. The 2023 grade is mild warning at every $\alpha$, but the historical grade distribution is $\alpha$-dependent (16 mild-warning years at $\alpha=0.4$ against 5 at $\alpha\ge0.9$) and more so under the nine-indicator set. Spatially, the barren/degraded and grassland classes have the strongest stratified association with the point-scale index ($q=0.80$ and 0.71), but both are index components with mechanical shares of 0.42 and 0.57, and the strictly exogenous terrain factors explain only about 8\% of the variance. We recommend integrating index-based early warning into the adaptive management of the Qilian Mountain National Park through zoning aligned with the park's functional zones and the grade--response table of Sec.~\ref{sec:management}, with grassland restoration prioritised in mild-warning zones and cropland expansion regulated at the agropastoral ecotone; county-level micro-ranking should not be used to allocate resources. The framework is transferable to other nature reserves and provides early-warning--response decision support for wildlife habitat conservation and monitoring.
+
+% ============================================================
+\appendix
+
+\section{Year-by-year warning grades under the weighting ratio}
+\label{app:alpha}
+Table~\ref{tab:alpha-full} lists, for each value of $\alpha$, the composition of the 19-year grade sequence and the years whose grade differs from the $\alpha=0.4$ baseline of the same specification. It is the complete version of the summary in Table~\ref{tab:alpha}.
+
+\begin{table}[htbp]
+\centering
+\caption{Grade composition and grade changes as a function of $\alpha$ (complete).}
+\label{tab:alpha-full}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llcccccl}
+\toprule
+Specification & $\alpha$ & Index 2023 & Mild & Medium & Rel.\ safe & Severe & Years differing from $\alpha=0.4$ \\
+\midrule
+Nine indicators & 0.0 & 0.425 & 14 & 2 & 3 & 0 & 2007, 2020 \\
+Nine indicators & 0.1 & 0.441 & 14 & 2 & 3 & 0 & 2007, 2020 \\
+Nine indicators & 0.2 & 0.456 & 15 & 1 & 3 & 0 & 2007 \\
+Nine indicators & 0.3 & 0.471 & 16 & 1 & 2 & 0 & --- \\
+Nine indicators & 0.4 & 0.486 & 16 & 1 & 2 & 0 & baseline \\
+Nine indicators & 0.5 & 0.502 & 15 & 1 & 3 & 0 & 2015 \\
+Nine indicators & 0.6 & 0.517 & 13 & 1 & 5 & 0 & 2013--2015 \\
+Nine indicators & 0.7 & 0.532 & 12 & 0 & 6 & 1 & 2005, 2012--2015 \\
+Nine indicators & 0.8 & 0.547 & 8 & 1 & 9 & 1 & 2005, 2006, 2011--2017 \\
+Nine indicators & 0.9 & 0.563 & 5 & 1 & 12 & 1 & 12 years \\
+Nine indicators & 1.0 & 0.578 & 5 & 1 & 12 & 1 & 12 years \\
+\midrule
+Eight (primary) & 0.0 & 0.415 & 14 & 2 & 3 & 0 & 2007, 2020 \\
+Eight (primary) & 0.1 & 0.431 & 14 & 2 & 3 & 0 & 2007, 2020 \\
+Eight (primary) & 0.2 & 0.447 & 14 & 2 & 3 & 0 & 2007, 2020 \\
+Eight (primary) & 0.3 & 0.462 & 15 & 1 & 3 & 0 & 2007 \\
+Eight (primary) & 0.4 & 0.478 & 16 & 1 & 2 & 0 & baseline \\
+Eight (primary) & 0.5 & 0.494 & 16 & 1 & 2 & 0 & --- \\
+Eight (primary) & 0.6 & 0.510 & 16 & 1 & 2 & 0 & --- \\
+Eight (primary) & 0.7 & 0.526 & 16 & 1 & 2 & 0 & --- \\
+Eight (primary) & 0.8 & 0.542 & 16 & 1 & 2 & 0 & --- \\
+Eight (primary) & 0.9 & 0.557 & 16 & 0 & 2 & 1 & 2005 \\
+Eight (primary) & 1.0 & 0.573 & 15 & 1 & 2 & 1 & 2005, 2006, 2009, 2015 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize The 2023 grade is mild warning at every $\alpha$ under both specifications. Rank correlation with the $\alpha=0.4$ baseline series falls from 0.98 at $\alpha=0.3$ to 0.59 at $\alpha=0.8$ under the primary specification, and to 0.48 at $\alpha=1.0$.}
+\end{table}
+
+\section{Interpolation-scheme sensitivity of the entropy weights}
+\label{app:interp}
+Table~\ref{tab:interp} reports how the entropy and combined weights of the two derived indicators change when the five-epoch land-cover series is interpolated differently. Only the differenced grassland series moves materially, which is why its weight is not interpreted as ecological importance.
+
+\begin{table}[htbp]
+\centering
+\caption{Entropy and combined ($\alpha=0.4$) weights of the derived indicators under four interpolation schemes.}
+\label{tab:interp}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+Scheme & \multicolumn{2}{c}{Grassland change rate} & \multicolumn{2}{c}{Ecological land (nine-indicator set)} & Years \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+ & Entropy & Combined & Entropy & Combined & \\
+\midrule
+Linear & 0.245 & 0.206 & 0.059 & 0.135 & 19 \\
+Cubic spline & 0.232 & 0.199 & 0.056 & 0.134 & 19 \\
+PCHIP & 0.173 & 0.163 & 0.058 & 0.135 & 19 \\
+Observation epochs only & 0.117 & 0.130 & 0.079 & 0.148 & 5 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Under the eight-indicator primary specification the grassland-change-rate entropy weight under the same four schemes is 0.260, 0.246, 0.184 and 0.127. AHP weights are unchanged by the scheme (0.149 for the grassland change rate, 0.250 for the ecological land proportion). No other indicator's entropy weight varies by more than 0.06 across the four schemes; the water proportion, for example, is stable to within 0.03.}
+\end{table}
+
+\section{Stratification, sampling and spatial-weight sensitivity}
+\label{app:strat}
+Table~\ref{tab:strat} gives the single-factor $q$ of each candidate factor under six stratification schemes and under resampling of the 1{,}914 points.
+
+\begin{table}[htbp]
+\centering
+\caption{Stability of the single-factor $q$ values to stratification and resampling (2020 point-scale index).}
+\label{tab:strat}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{lccccc}
+\toprule
+Factor & $q$ (quantile 4) & $q$ range, 6 schemes & Bootstrap 95\% & Subsample 1{,}500 & Subsample 1{,}000 \\
+\midrule
+Barren/degraded & 0.802 & 0.802 (2 levels) & 0.770--0.834 & 0.788--0.815 & 0.779--0.830 \\
+Grassland & 0.708 & 0.708 (2 levels) & 0.656--0.765 & 0.681--0.745 & 0.656--0.762 \\
+Precipitation & 0.506 & 0.506--0.541 & 0.473--0.547 & 0.493--0.527 & 0.480--0.551 \\
+Temperature & 0.170 & 0.159--0.196 & 0.139--0.218 & 0.157--0.190 & 0.143--0.206 \\
+Elevation & 0.090 & 0.076--0.105 & 0.071--0.117 & 0.077--0.104 & 0.073--0.111 \\
+Slope & 0.065 & 0.024--0.065 & 0.047--0.092 & 0.054--0.075 & 0.048--0.082 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Strata are quartile, quintile, Jenks natural breaks (4 and 5) and equal interval (4 and 5). Grassland and barren/degraded have only two distinct values at the 1{,}914 sampled points, so every scheme returns the same $q$; the largest sensitivity is the slope factor, whose $q$ falls to 0.024 under Jenks and equal-interval stratification because those schemes concentrate the slope distribution differently. The factor ranking is identical in all 200 bootstrap and all 200 random-subsample replicates (Spearman $\rho=1.00$).}
+\end{table}
+
+\section{Moran's $I$ across spatial weight definitions}
+\label{app:moran}
+Table~\ref{tab:moran} reports the spatial autocorrelation of the 2020 point-scale index under $k$-nearest-neighbour weights from $k=4$ to $k=50$ and three distance-weighting schemes, together with grid-contiguity alternatives.
+
+\begin{table}[htbp]
+\centering
+\caption{Moran's $I$ of the 2020 point-scale index (1{,}914 points) under alternative spatial weight definitions.}
+\label{tab:moran}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+Weight definition & Mean neighbours & Moran's $I$ & $z$ & Permutation $p$ \\
+\midrule
+$k=4$, inverse distance & 4.0 & 0.6663 & 41.4 & 0.001 \\
+$k=8$, inverse distance (archived) & 8.0 & 0.6431 & 55.5 & 0.001 (archived 0.005) \\
+$k=8$, binary & 8.0 & 0.6379 & 56.1 & 0.001 \\
+$k=8$, inverse squared distance & 8.0 & 0.6479 & 53.5 & 0.001 \\
+$k=20$, inverse distance & 20.0 & 0.6192 & 81.4 & 0.001 \\
+$k=50$, inverse distance & 50.0 & 0.5916 & 117.2 & 0.001 \\
+$k=50$, binary & 50.0 & 0.5749 & 129.8 & 0.001 \\
+$k=50$, inverse squared distance & 50.0 & 0.6124 & 87.1 & 0.001 \\
+Rook grid contiguity & 3.9 & 0.6669 & --- & 0.001 \\
+Queen grid contiguity & 7.7 & 0.6401 & --- & 0.001 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize All definitions are row-standardised. The statistic spans 0.575--0.667 over the 36 $k$-neighbour specifications tested, so the conclusion of strong positive spatial autocorrelation does not depend on the weight matrix. Residuals after regressing the index on the six components have Moran's $I=0.30$ under rook contiguity ($R^2=0.85$), against 0.62 for terrain-only residuals ($R^2=0.081$).}
+\end{table}
+
+\section{County rank stability across 64 configurations}
+\label{app:countyrank}
+Table~\ref{tab:countyrank} reports the rank range of each county across the 64 combinations of window half-width, spatial weight and land-cover source, together with the area-weighted alternative to centroid windows.
+
+\begin{table}[htbp]
+\centering
+\caption{Rank of each county in the reference configuration, across 64 configurations, and under area weighting.}
+\label{tab:countyrank}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+County & Reference rank & Best rank & Worst rank & Span & Rank under area weighting \\
+\midrule
+Tianzhu & 2 & 1 & 3 & 2 & 2 \\
+Sunan & 1 & 1 & 8 & 7 & 9 \\
+Qilian & 3 & 2 & 7 & 5 & 8 \\
+Delingha & 4 & 1 & 10 & 9 & 1 \\
+Menyuan & 5 & 3 & 8 & 5 & 3 \\
+Subei & 6 & 5 & 10 & 5 & 10 \\
+Gangcha & 7 & 1 & 8 & 7 & 4 \\
+Shandan & 8 & 6 & 9 & 3 & 5 \\
+Tianjun & 9 & 4 & 10 & 6 & 6 \\
+Minle & 10 & 6 & 11 & 5 & 7 \\
+Aksai & 11 & 10 & 11 & 1 & 11 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Configurations combine window half-widths of $\pm$0.05°, $\pm$0.10°, $\pm$0.20° and $\pm$0.30°, entropy, AHP and equal weighting, and three land-cover sources (CLCD class 7, the residual-barren formula, and a no-barren composition), with the $\pm$0.10°, residual-barren, combined-weight configuration as the reference. Only the first and last statements of the county analysis survive all 64 configurations (Tianzhu in the top three, Aksai in the bottom two).}
+\end{table}
+
+\section{Obstacle degrees under alternative weighting schemes}
+\label{app:obstacle}
+Table~\ref{tab:obstacle-scheme} gives the phase-mean obstacle degrees of the three leading indicators under four weighting schemes, complementing the combined-weight values quoted in Sec.~\ref{sec:obstacle}.
+
+\begin{table}[htbp]
+\centering
+\caption{Phase-mean normalised obstacle degrees of the three leading indicators under four weighting schemes (nine-indicator specification).}
+\label{tab:obstacle-scheme}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llccc}
+\toprule
+Phase & Weighting scheme & First & Second & Third \\
+\midrule
+2005--2010 & Combined ($\alpha=0.4$) & 0.232 water & 0.222 forest & 0.144 eco-land \\
+2005--2010 & Entropy only & 0.228 water & 0.206 forest & 0.132 cropland \\
+2005--2010 & AHP only & 0.246 forest & 0.243 water & 0.230 eco-land \\
+2005--2010 & Equal & 0.196 forest & 0.194 water & 0.115 barren \\
+\midrule
+2011--2023 & Combined ($\alpha=0.4$) & 0.351 grass change & 0.209 cropland & 0.097 water \\
+2011--2023 & Entropy only & 0.368 grass change & 0.265 cropland & 0.110 precipitation \\
+2011--2023 & AHP only & 0.317 grass change & 0.143 water & 0.124 forest \\
+2011--2023 & Equal & 0.218 cropland & 0.212 grass change & 0.137 precipitation \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize Values are arithmetic means of the annual normalised obstacle degrees over the years of each phase, computed as $O^{*}_{ij}=O_{ij}/\sum_j O_{ij}$ with $O_{ij}=(1-x'_{ij})w_j$. The phase division is descriptive and is fixed by the 2010 index peak; the Pettitt test places no significant change point in the record ($p=0.148$). The combined-weight phase means in this table are recomputed from the current pipeline and reproduce the archived obstacle table to within 0.014.}
+\end{table}
 
 % ============================================================
 \section*{Data availability}
-Climate data are openly available from CRU TS 4.10 (University of East Anglia Climatic Research Unit, crudata.uea.ac.uk). Land-cover data are openly available from the CLCD v1.0 dataset (Yang \& Huang, Zenodo, https://zenodo.org/records/12779975). The complete analysis pipeline (Python: xarray, rasterio, pyproj, statsmodels) and processed intermediate datasets are publicly available at https://github.com/mllbmy/qilian-esi-early-warning and archived on Zenodo at https://doi.org/10.5281/zenodo.23011183.
+Climate data are openly available from CRU TS 4.10 (University of East Anglia Climatic Research Unit, \url{https://crudata.uea.ac.uk/cru/data/hrg/}; accessed 2026-04-09). Land-cover data are the China Land Cover Dataset (CLCD), 30\,m annual land cover for 1985--2023, openly available from Yang \& Huang (Zenodo record 12779975, \url{https://doi.org/10.5281/zenodo.12779975}, CC-BY-4.0; accessed 2026-10-07). Terrain data are the Copernicus DEM GLO-90 (2021 release), and the independent validation target is the NOAA CDR AVHRR/VIIRS NDVI product (0.05° daily; accessed 2026-10-18). The complete analysis pipeline (Python: xarray, rasterio, pyproj, statsmodels) and processed intermediate datasets, including all sensitivity tables reported here, are publicly available at \url{https://github.com/mllbmy/qilian-esi-early-warning} and archived on Zenodo at \url{https://doi.org/10.5281/zenodo.23011183}.
 
 \section*{CRediT authorship contribution statement}
 \textbf{[Author]}: Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Visualization, Writing -- original draft, Writing -- review \& editing.
