@@ -603,7 +603,7 @@ Every archived value table is **UNCHANGED**, including `results_county_esi.csv`
 |---|---|
 | `paper-code/manuscript.tex` | `AF55563B0C27ADE689F32FECAA891BA3` |
 | `paper-code/manuscript.bib` | `143E9487E76878FFA1AB78D0F555E429` |
-| `paper-code/manuscript.bbl` | `F89C9CDE0354B9D2ECD2F1A535C6DBD3` (**tracked** since 2026-10-17, 13,026 B) |
+| `paper-code/manuscript.bbl` | `F89C9CDE0354B9D2ECD2F1A535C6DBD3` (**tracked** since 2026-10-17, 13,026 B — **superseded by commit `7da3c4f`; see the R37 note below**) |
 | `paper-code/manuscript.pdf` | `19DD5A37917DCFBE087AF193110143C1` (22 pages, 10,340,644 B; Git-ignored, see the `/ModDate` caveat below) |
 | `投稿前优化/JMS CN 论文_R17修订版.docx` | `23122CF77EB6E71DA5A6CA6397A4F2DB` |
 | `交付/2.0版本/JMS CN 论文_2.0版本.docx` | `23122CF77EB6E71DA5A6CA6397A4F2DB` |
@@ -613,6 +613,30 @@ copies and `manuscript.pdf` were re-hashed on 2026-10-17 against the working tre
 above; both `.docx` copies are byte-identical, 26,886,783 B). Earlier in the same lineage `manuscript.tex`
 was `C0E49A5C8E8F549FF5E8E307227CD878` and both `.docx` copies were
 `69D7325E6D650CC6407A6C8BD631F0D6`.
+
+> **R37 note (2026-10-18) — the tracked `manuscript.bbl` is a JMS-style residual, not the `.bbl` behind the
+> delivered PDF.** Measured this round: the file actually tracked at `paper-code/manuscript.bbl` is
+> **6,139 B, md5 `F922A6E21EAD9300B1B9BDC500957F84`**, byte-identical to `_r29_build/manuscript.bbl` — i.e.
+> the **Journal of Mountain Science name-year** output of `make_bbl_jms.py` (its output path is hardcoded to
+> `paper-code/manuscript.bbl`, line 20), the R29 stage recorded in item 7 of the R29 change log below. The
+> 13,026 B / `F89C9CDE0354B9D2ECD2F1A535C6DBD3` figures in the table above and in Stage 5 predate commit
+> `7da3c4f`, which replaced that file, so both of those records are stale.
+>
+> The delivered PDF does **not** use it. `manuscript.tex` line 788 is `\bibliographystyle{elsarticle-harv}`
+> (line 16 keeps `\setcitestyle{aysep={ }}`, so in-text citations stay JMS-like), and the delivered
+> `交付/2.0版本/论文_EN_2.0版本.pdf` (md5 `23B6977FF01C407F0676583793D09C60`) typesets its reference list in
+> **Elsevier Harvard** style: `Deng, J., 1982.` and `Althobaiti, Z.F., Shabri, A., 2022.` each occur once,
+> while the JMS forms `Deng J (1982)` and `Althobaiti ZF, Shabri A (2022)` occur **0** times; the reverse
+> holds in the tracked `.bbl`. Consistently, every delivery build run in an empty directory produced an
+> elsarticle-harv `.bbl` — 13,595 B / `9CF4B06C30746E984CBB13A94F812973` (`_r31`–`_r33b`) and 13,597 B /
+> `E7F2353B9AB25B981011F38493F12607` (`_r36b`/`_r36c`, the build behind the delivered PDF).
+>
+> Consequence and disposition: a cold clone that skips `bibtex` — the purpose commit `c72919e` added the file
+> for — would typeset a **JMS-styled** reference list that does not match the delivered PDF; reproducing the
+> delivered output requires `bibtex` (or a refreshed `.bbl`). The file is **left in place, unmodified and not
+> deleted**, because it is Git-tracked and removing it would break the documented two-pass cold-start compile.
+> Deciding how to resolve the style mismatch — refresh the tracked `.bbl` from `bibtex`, or drop it and make
+> `bibtex` mandatory — is a deliberate follow-up, not part of R37.
 
 `manuscript.pdf` (Git-ignored, so Git holds no version of it) was **rebuilt on 2026-10-17** in an empty
 directory from the current `manuscript.tex` by the §7.5 sequence: **22 pages, 10,340,644 B**, md5
