@@ -1,0 +1,6 @@
+﻿year,"model_GM(1,1)",model_NGBM,"model_ARIMA(0,1,1)",mix_invRMSE,mix_invMSE,mix_stacking,mix_equal,mix_invRMSE_schemeMean,mix_invRMSE_fitTable7,mix_pair_GM_ARIMA,mix_invRMSE_grade,mix_equal_grade,note
+2024,0.468733,0.424304,0.48461,0.465067,0.469374,0.474283,0.459216,0.464736,0.45336,0.476672,mild,mild,三模型列取自 data/r29_forecast_8ind.csv（gm11_8ind / ngbm_8ind_gamma_train / arima_011_8ind）；混合列 = 加权混合点值
+2025,0.463425,0.413095,0.48461,0.460519,0.46553,0.47143,0.45371,0.460095,0.446588,0.474017,mild,mild,三模型列取自 data/r29_forecast_8ind.csv（gm11_8ind / ngbm_8ind_gamma_train / arima_011_8ind）；混合列 = 加权混合点值
+2026,0.458177,0.40203,0.48461,0.456026,0.461732,0.46861,0.448272,0.45551,0.439899,0.471394,mild,mild,三模型列取自 data/r29_forecast_8ind.csv（gm11_8ind / ngbm_8ind_gamma_train / arima_011_8ind）；混合列 = 加权混合点值
+2027,0.452988,0.391127,0.48461,0.451591,0.457983,0.465824,0.442908,0.450985,0.433302,0.468799,mild,mild,三模型列取自 data/r29_forecast_8ind.csv（gm11_8ind / ngbm_8ind_gamma_train / arima_011_8ind）；混合列 = 加权混合点值
+2028,0.447858,0.380401,0.48461,0.447219,0.454283,0.463074,0.437623,0.446523,0.426801,0.466234,mild,mild,三模型列取自 data/r29_forecast_8ind.csv（gm11_8ind / ngbm_8ind_gamma_train / arima_011_8ind）；混合列 = 加权混合点值

@@ -1,0 +1,66 @@
+﻿task,item,value,note
+1_mixture,esi_8ind_vs_r28_archive_max_abs_delta,0.000e+00,八指标 ESI 重建 vs data/r28_deredundancy_series.csv::esi_drop_X9
+1_mixture,ngbm_gamma_train_sse,0.15,主 NGBM 的 γ（仅训练期 2005–2018 SSE 目标，无泄漏）；bootstrap 内每重复重选
+1_mixture,detail_vs_r32_scheme_rmse_max_abs_delta,5.323e-07,逐评估点重算的逐方案 RMSE vs data/r32_validation_8ind.csv::rmse 逐格对齐（应为 0）
+1_mixture,weight_sum_invRMSE,1.0,逆 RMSE 权重和（应为 1）
+1_mixture,weight_sum_invMSE,1.0,逆 MSE 权重和（应为 1）
+1_mixture,weight_sum_stacking,1.0,stacking 权重和（应为 1）
+1_mixture,weight_sum_equal,1.0,等权权重和（应为 1）
+1_mixture,bootstrap_n_valid_raw_R29,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 raw_R29 的有效重复数（应为 2000）
+1_mixture,bootstrap_n_valid_logit_main,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 logit_main 的有效重复数（应为 2000）
+1_mixture,"repro_r29_2028_hi_GM(1,1)",0.697430,raw_R29 口径 2028 上界；R29 归档 0.697430（应一致，Δ=1.45e-07）
+1_mixture,repro_r29_2028_hi_NGBM,0.614818,raw_R29 口径 2028 上界；R29 归档 0.614818（应一致，Δ=-2.04e-07）
+1_mixture,"repro_r29_2028_hi_ARIMA(0,1,1)",1.112674,raw_R29 口径 2028 上界；R29 归档 1.112674（应一致，Δ=1.19e-07）
+1_mixture,grade_prob_sum_max_abs_dev,1.110e-16,全部（混合 × 权重方案 × 口径 × 年）五级概率和与 1 的最大偏差（应为 0）
+1_mixture,mix_2028_equal_vs_r29_archive,0.437623,等权混合 2028 点值；R29 归档 0.437623（应一致）
+1_mixture,mix_2028_invRMSE,0.447219,主口径（逆 RMSE 权重）混合 2028 点值
+1_mixture,mix_2028_invRMSE_grade,mild,主口径混合 2028 等级
+1_mixture,mix_2028_invRMSE_margin,0.047219,主口径混合 2028 距 0.400 阈值
+1_mixture,weight_sensitivity_2028_span,0.039433,权重方案变化时 2028 混合点值跨度 0.039433（0.4268–0.4662）；等级全部相同（mild，**不翻转**）
+1_mixture,weight_sensitivity_2028_grade_flip,False,"权重方案变化是否导致 2028 等级翻转（{'invRMSE': 'mild', 'invMSE': 'mild', 'stacking': 'mild', 'equal': 'mild', 'invRMSE_schemeMean': 'mild', 'invRMSE_fitTable7': 'mild', 'pair_GM_ARIMA': 'mild'}）"
+1_mixture,weight_sensitivity_LOSO_2028_range,0.441238–0.471202,leave-one-scheme-out 权重向量下 2028 点值范围；等级 ['mild']
+1_mixture,mix_logit_2028_hi_le_1_ALL,True,logit 口径下全部权重方案的 2028 上界是否 <= 1
+1_mixture,mix_logit_lo_ge_0_ALL,True,logit 口径下全部权重方案的 2028 下界是否 >= 0
+1_mixture,mix_raw_2028_hi_exceeds_1_invRMSE,False,raw_R29 口径下主口径混合 2028 上界是否越界（旧问题是否在混合上复现）
+1_mixture,mix_counts_invRMSE_logit,"GM(1,1)=2332;NGBM=1330;ARIMA(0,1,1)=2338",主口径混合抽样中各模型贡献的抽样数（N_MIX=6000）
+1_mixture,mix_rmse_pooled_invRMSE,0.055776,主口径混合池化样本外 RMSE（含权重自选乐观性）
+1_mixture,source_csv_md5_r32_validation,0F138527B225EEDDFAED6212CD104BDF,输入：五方案样本外精度（权重依据）
+1_mixture,source_csv_md5_r32_validation_detail,E63AE127DF0DF2F7C0AD0D652C063F62,输入：逐评估点预测（stacking 与混合精度）
+1_mixture,source_csv_md5_r29_forecast_8ind,FB63CAC29FEA2CCCBE1F3B62EFE119E4,输入：三模型点预测
+1_mixture,script,run_r44_mixture.py,生成脚本（新建，未改动任何既有脚本）
+2_bounded,invRMSE_weight_vs_mixture_csv_max_abs_delta,1.112e-06,本脚本内置的 invRMSE 权重 vs data/r44_mixture_weights.csv（应一致）
+2_bounded,esi_in_open_unit_interval,True,"ESI 是否严格落在 (0,1)（0/1 点数 = 0）⇒ logit 无需平移"
+2_bounded,arima_first_fitted_naive,0.000000,"statsmodels ARIMA(0,1,1) 首期 fittedvalue（不由递推式定义，实测 0）"
+2_bounded,arima_first_resid_raw_naive,0.2886,该 0 值产生的虚假首期原始残差（R29 归档区间因此偏宽）
+2_bounded,arima_first_resid_logit_naive,26.73,同一 0 值在 logit 尺度被 clip 成 +19.8，直接毁掉 logit 区间 ⇒ logit 口径必须同时用 first_fix=reg（仅影响第 1 个残差，不影响点预测）
+2_bounded,arima_max_true_resid_raw,0.2137,首期规范后 ARIMA 原始空间残差的最大绝对值（真实值，用于说明残差池重尾程度）
+2_bounded,arima_max_true_resid_logit,0.9116,首期规范后 ARIMA logit 尺度残差的最大绝对值（2006/2007 水平跃迁被 logit 放大）
+2_bounded,bootstrap_n_valid_raw_R29,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 raw_R29 的有效重复数（应为 2000）
+2_bounded,bootstrap_n_valid_raw_firstfix,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 raw_firstfix 的有效重复数（应为 2000）
+2_bounded,bootstrap_n_valid_logit_main,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 logit_main 的有效重复数（应为 2000）
+2_bounded,bootstrap_n_valid_logit_naive_diagnostic,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 logit_naive_diagnostic 的有效重复数（应为 2000）
+2_bounded,"repro_r29_2028_hi_GM(1,1)",0.697430,raw_R29 口径 2028 上界 vs R29 归档 0.697430（应一致）
+2_bounded,repro_r29_2028_hi_NGBM,0.614818,raw_R29 口径 2028 上界 vs R29 归档 0.614818（应一致）
+2_bounded,"repro_r29_2028_hi_ARIMA(0,1,1)",1.112674,raw_R29 口径 2028 上界 vs R29 归档 1.112674（应一致）
+2_bounded,logit_all_lo_ge_0,True,logit 主口径：全部目标/全部年份的下界是否 >= 0
+2_bounded,logit_all_hi_le_1,True,logit 主口径：全部目标/全部年份的上界是否 <= 1
+2_bounded,logit_all_draws_in_open_unit_interval,True,"logit 主口径：抽样值是否严格落在 (0,1)（用各年 min/max 抽样值判定）"
+2_bounded,clamp_trunc_all_bounds_in_0_1,True,"截断口径（clip）：全部区间是否落在 [0,1]"
+2_bounded,clamp_reject_all_bounds_in_0_1,True,"拒绝口径：全部区间是否落在 [0,1]"
+2_bounded,raw_hi_exceeds_1_targets,"ARIMA(0,1,1)",旧口径（raw_R29）2028 上界 >1 的目标（复现审稿意见⑤）
+2_bounded,grade_prob_sum_max_abs_dev,1.110e-16,全部（目标 × 口径 × 年）五级等级概率和与 1 的最大偏差
+2_bounded,logit_2028_grade_prob_reported_for,"ARIMA(0,1,1);GM(1,1);NGBM;mixture",logit 主口径等级概率覆盖的目标（三模型 + 混合）
+2_bounded,arima_2028_old_hi,1.112674,旧口径 ARIMA 2028 上界（= R29 归档 1.112674，越界）
+2_bounded,arima_2028_logit_interval,"[0.216604, 0.873774]",logit 主口径 ARIMA 2028 区间（有界，但**几乎覆盖整个支撑**⇒ 不宜引用为 ESI 区间）
+2_bounded,arima_2028_logit_p_below_0.4,0.314,logit 主口径 ARIMA 2028 P(ESI<0.400)；与点值 0.484610（轻警）矛盾 ⇒ ARIMA 的块 bootstrap 区间由少数早期残差驱动，应改报条件概率而非区间
+2_bounded,mixture_equal_2028_old_interval,"[0.165645, 0.945092]","旧等权混合 2028 区间；R29 归档 [0.165645, 0.945092]"
+2_bounded,mixture_logit_2028_interval,"[0.225169, 0.804515]",主口径（invRMSE）混合 logit 2028 区间（有界）
+2_bounded,mixture_logit_2028_interval_equal,"[0.221116, 0.796228]",等权混合 logit 2028 区间（与旧等权归档对照）
+2_bounded,source_csv_md5_r28_deredundancy,BE534E0E23AFDC7C7030E1CC418AFBF4,输入：八指标 ESI 序列
+2_bounded,"point_forecast_identical_naive_vs_reg_GM(1,1)",0.0e+00,首期拟合值 naive vs reg 的 2024–2028 点预测最大绝对差（应为 0.0e+00，逐位相同）
+2_bounded,"point_forecast_vs_r29_archive_GM(1,1)",3.8e-07,本脚本重算点预测 vs data/r29_forecast_8ind.csv 归档值最大绝对差
+2_bounded,point_forecast_identical_naive_vs_reg_NGBM,0.0e+00,首期拟合值 naive vs reg 的 2024–2028 点预测最大绝对差（应为 0.0e+00，逐位相同）
+2_bounded,point_forecast_vs_r29_archive_NGBM,3.9e-07,本脚本重算点预测 vs data/r29_forecast_8ind.csv 归档值最大绝对差
+2_bounded,"point_forecast_identical_naive_vs_reg_ARIMA(0,1,1)",0.0e+00,首期拟合值 naive vs reg 的 2024–2028 点预测最大绝对差（应为 0.0e+00，逐位相同）
+2_bounded,"point_forecast_vs_r29_archive_ARIMA(0,1,1)",4.6e-07,本脚本重算点预测 vs data/r29_forecast_8ind.csv 归档值最大绝对差
+2_bounded,script,run_r44_bounded.py,生成脚本（新建，未改动任何既有脚本）

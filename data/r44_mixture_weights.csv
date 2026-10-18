@@ -1,0 +1,52 @@
+﻿weight_scheme,model,basis_rmse,basis_mse,weight,is_main,basis_source,note
+invRMSE,"GM(1,1)",0.05548842014130316,0.0030789647697777784,0.38868553911042414,True,r32_validation_8ind.csv::rmse 五方案按 n_predictions 池化（主口径）,w_i ∝ 1/RMSE_i 归一（invRMSE 系）
+invRMSE,NGBM,0.09727043562501689,0.009461537646680555,0.2217276643044169,True,r32_validation_8ind.csv::rmse 五方案按 n_predictions 池化（主口径）,w_i ∝ 1/RMSE_i 归一（invRMSE 系）
+invRMSE,"ARIMA(0,1,1)",0.05536005502767015,0.003064735692666667,0.38958679658515893,True,r32_validation_8ind.csv::rmse 五方案按 n_predictions 池化（主口径）,w_i ∝ 1/RMSE_i 归一（invRMSE 系）
+invMSE,"GM(1,1)",0.05548842014130316,0.0030789647697777784,0.4291731461300562,False,同主口径，权重 ∝ 1/RMSE²,w_i ∝ 1/RMSE_i² 归一
+invMSE,NGBM,0.09727043562501689,0.009461537646680555,0.13966112553943394,False,同主口径，权重 ∝ 1/RMSE²,w_i ∝ 1/RMSE_i² 归一
+invMSE,"ARIMA(0,1,1)",0.05536005502767015,0.003064735692666667,0.4311657283305099,False,同主口径，权重 ∝ 1/RMSE²,w_i ∝ 1/RMSE_i² 归一
+stacking,"GM(1,1)",0.05548842014130316,0.0030789647697777784,0.39619247883729347,False,"r32_validation_8ind_detail.csv 的 72 个样本外评估点，SLSQP 求 Σw=1,w≥0 的最小二乘解",SLSQP 最小二乘单纯形解
+stacking,NGBM,0.09727043562501689,0.009461537646680555,0.06693637010947084,False,"r32_validation_8ind_detail.csv 的 72 个样本外评估点，SLSQP 求 Σw=1,w≥0 的最小二乘解",SLSQP 最小二乘单纯形解
+stacking,"ARIMA(0,1,1)",0.05536005502767015,0.003064735692666667,0.5368711510532357,False,"r32_validation_8ind_detail.csv 的 72 个样本外评估点，SLSQP 求 Σw=1,w≥0 的最小二乘解",SLSQP 最小二乘单纯形解
+equal,"GM(1,1)",0.05548842014130316,0.0030789647697777784,0.3333333333333333,False,等权（R29 现口径）,等权对照
+equal,NGBM,0.09727043562501689,0.009461537646680555,0.3333333333333333,False,等权（R29 现口径）,等权对照
+equal,"ARIMA(0,1,1)",0.05536005502767015,0.003064735692666667,0.3333333333333333,False,等权（R29 现口径）,等权对照
+invRMSE_schemeMean,"GM(1,1)",0.048408400000000004,0.0023433731905600002,0.4019396588818529,False,r32_validation_8ind.csv::rmse 五方案**简单平均**（敏感性）,w_i ∝ 1/RMSE_i 归一（invRMSE 系）
+invRMSE_schemeMean,NGBM,0.086966,0.007563085156,0.2237340544927476,False,r32_validation_8ind.csv::rmse 五方案**简单平均**（敏感性）,w_i ∝ 1/RMSE_i 归一（invRMSE 系）
+invRMSE_schemeMean,"ARIMA(0,1,1)",0.051979399999999995,0.0027018580243599994,0.3743262866253995,False,r32_validation_8ind.csv::rmse 五方案**简单平均**（敏感性）,w_i ∝ 1/RMSE_i 归一（invRMSE 系）
+invRMSE_fitTable7,"GM(1,1)",0.046,0.002116,0.4087890266633971,False,r42_table7_accuracy.csv::rmse 全序列拟合（敏感性，样本内口径）,w_i ∝ 1/RMSE_i 归一（invRMSE 系）
+invRMSE_fitTable7,NGBM,0.0458,0.00209764,0.41057413158332456,False,r42_table7_accuracy.csv::rmse 全序列拟合（敏感性，样本内口径）,w_i ∝ 1/RMSE_i 归一（invRMSE 系）
+invRMSE_fitTable7,"ARIMA(0,1,1)",0.1041,0.010836809999999999,0.18063684175327827,False,r42_table7_accuracy.csv::rmse 全序列拟合（敏感性，样本内口径）,w_i ∝ 1/RMSE_i 归一（invRMSE 系）
+pair_GM_ARIMA,"GM(1,1)",0.05548842014130316,0.0030789647697777784,0.5,False,等权两模型混合（剔除五方案中全部最差的 NGBM；敏感性）,等权对照
+pair_GM_ARIMA,NGBM,0.09727043562501689,0.009461537646680555,0.0,False,等权两模型混合（剔除五方案中全部最差的 NGBM；敏感性）,等权对照
+pair_GM_ARIMA,"ARIMA(0,1,1)",0.05536005502767015,0.003064735692666667,0.5,False,等权两模型混合（剔除五方案中全部最差的 NGBM；敏感性）,等权对照
+invRMSE_LOSO,"GM(1,1)",,,0.38811113855804313,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = holdout_2019_2023
+stacking_LOSO,"GM(1,1)",,,0.41988910608564173,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = holdout_2019_2023
+invRMSE_LOSO,NGBM,,,0.22391771637998392,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = holdout_2019_2023
+stacking_LOSO,NGBM,,,0.07219584017083418,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = holdout_2019_2023
+invRMSE_LOSO,"ARIMA(0,1,1)",,,0.3879711450619729,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = holdout_2019_2023
+stacking_LOSO,"ARIMA(0,1,1)",,,0.5079150537435242,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = holdout_2019_2023
+invRMSE_LOSO,"GM(1,1)",,,0.43942865408947457,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = loocv_leave_one_year_out
+stacking_LOSO,"GM(1,1)",,,0.9018665552713149,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = loocv_leave_one_year_out
+invRMSE_LOSO,NGBM,,,0.17900571249210628,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = loocv_leave_one_year_out
+stacking_LOSO,NGBM,,,0.09813344472868517,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = loocv_leave_one_year_out
+invRMSE_LOSO,"ARIMA(0,1,1)",,,0.3815656334184192,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = loocv_leave_one_year_out
+stacking_LOSO,"ARIMA(0,1,1)",,,5.1970448612213244e-18,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = loocv_leave_one_year_out
+invRMSE_LOSO,"GM(1,1)",,,0.3839981233920445,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2013
+stacking_LOSO,"GM(1,1)",,,0.1718761222324712,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2013
+invRMSE_LOSO,NGBM,,,0.22057103452882518,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2013
+stacking_LOSO,NGBM,,,0.07594296049077756,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2013
+invRMSE_LOSO,"ARIMA(0,1,1)",,,0.3954308420791304,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2013
+stacking_LOSO,"ARIMA(0,1,1)",,,0.7521809172767513,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2013
+invRMSE_LOSO,"GM(1,1)",,,0.38493769402017614,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2015
+stacking_LOSO,"GM(1,1)",,,0.18474174452614783,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2015
+invRMSE_LOSO,NGBM,,,0.21841754779654046,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2015
+stacking_LOSO,NGBM,,,0.07230600231598953,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2015
+invRMSE_LOSO,"ARIMA(0,1,1)",,,0.3966447581832833,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2015
+stacking_LOSO,"ARIMA(0,1,1)",,,0.7429522531578626,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_1step_from2015
+invRMSE_LOSO,"GM(1,1)",,,0.36236297125085315,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_5step_from2013
+stacking_LOSO,"GM(1,1)",,,0.3648290691546297,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_5step_from2013
+invRMSE_LOSO,NGBM,,,0.2685359699117525,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_5step_from2013
+stacking_LOSO,NGBM,,,3.1188485102272624e-18,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_5step_from2013
+invRMSE_LOSO,"ARIMA(0,1,1)",,,0.36910105883739436,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_5step_from2013
+stacking_LOSO,"ARIMA(0,1,1)",,,0.6351709308453704,False,leave-one-scheme-out：权重只由其余四方案估计,held-out scheme = rolling_5step_from2013

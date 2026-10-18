@@ -1,0 +1,37 @@
+﻿item,value,note
+invRMSE_weight_vs_mixture_csv_max_abs_delta,1.112e-06,本脚本内置的 invRMSE 权重 vs data/r44_mixture_weights.csv（应一致）
+esi_in_open_unit_interval,True,"ESI 是否严格落在 (0,1)（0/1 点数 = 0）⇒ logit 无需平移"
+arima_first_fitted_naive,0.000000,"statsmodels ARIMA(0,1,1) 首期 fittedvalue（不由递推式定义，实测 0）"
+arima_first_resid_raw_naive,0.2886,该 0 值产生的虚假首期原始残差（R29 归档区间因此偏宽）
+arima_first_resid_logit_naive,26.73,同一 0 值在 logit 尺度被 clip 成 +19.8，直接毁掉 logit 区间 ⇒ logit 口径必须同时用 first_fix=reg（仅影响第 1 个残差，不影响点预测）
+arima_max_true_resid_raw,0.2137,首期规范后 ARIMA 原始空间残差的最大绝对值（真实值，用于说明残差池重尾程度）
+arima_max_true_resid_logit,0.9116,首期规范后 ARIMA logit 尺度残差的最大绝对值（2006/2007 水平跃迁被 logit 放大）
+bootstrap_n_valid_raw_R29,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 raw_R29 的有效重复数（应为 2000）
+bootstrap_n_valid_raw_firstfix,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 raw_firstfix 的有效重复数（应为 2000）
+bootstrap_n_valid_logit_main,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 logit_main 的有效重复数（应为 2000）
+bootstrap_n_valid_logit_naive_diagnostic,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 logit_naive_diagnostic 的有效重复数（应为 2000）
+"repro_r29_2028_hi_GM(1,1)",0.697430,raw_R29 口径 2028 上界 vs R29 归档 0.697430（应一致）
+repro_r29_2028_hi_NGBM,0.614818,raw_R29 口径 2028 上界 vs R29 归档 0.614818（应一致）
+"repro_r29_2028_hi_ARIMA(0,1,1)",1.112674,raw_R29 口径 2028 上界 vs R29 归档 1.112674（应一致）
+logit_all_lo_ge_0,True,logit 主口径：全部目标/全部年份的下界是否 >= 0
+logit_all_hi_le_1,True,logit 主口径：全部目标/全部年份的上界是否 <= 1
+logit_all_draws_in_open_unit_interval,True,"logit 主口径：抽样值是否严格落在 (0,1)（用各年 min/max 抽样值判定）"
+clamp_trunc_all_bounds_in_0_1,True,"截断口径（clip）：全部区间是否落在 [0,1]"
+clamp_reject_all_bounds_in_0_1,True,"拒绝口径：全部区间是否落在 [0,1]"
+raw_hi_exceeds_1_targets,"ARIMA(0,1,1)",旧口径（raw_R29）2028 上界 >1 的目标（复现审稿意见⑤）
+grade_prob_sum_max_abs_dev,1.110e-16,全部（目标 × 口径 × 年）五级等级概率和与 1 的最大偏差
+logit_2028_grade_prob_reported_for,"ARIMA(0,1,1);GM(1,1);NGBM;mixture",logit 主口径等级概率覆盖的目标（三模型 + 混合）
+arima_2028_old_hi,1.112674,旧口径 ARIMA 2028 上界（= R29 归档 1.112674，越界）
+arima_2028_logit_interval,"[0.216604, 0.873774]",logit 主口径 ARIMA 2028 区间（有界，但**几乎覆盖整个支撑**⇒ 不宜引用为 ESI 区间）
+arima_2028_logit_p_below_0.4,0.314,logit 主口径 ARIMA 2028 P(ESI<0.400)；与点值 0.484610（轻警）矛盾 ⇒ ARIMA 的块 bootstrap 区间由少数早期残差驱动，应改报条件概率而非区间
+mixture_equal_2028_old_interval,"[0.165645, 0.945092]","旧等权混合 2028 区间；R29 归档 [0.165645, 0.945092]"
+mixture_logit_2028_interval,"[0.225169, 0.804515]",主口径（invRMSE）混合 logit 2028 区间（有界）
+mixture_logit_2028_interval_equal,"[0.221116, 0.796228]",等权混合 logit 2028 区间（与旧等权归档对照）
+source_csv_md5_r28_deredundancy,BE534E0E23AFDC7C7030E1CC418AFBF4,输入：八指标 ESI 序列
+"point_forecast_identical_naive_vs_reg_GM(1,1)",0.0e+00,首期拟合值 naive vs reg 的 2024–2028 点预测最大绝对差（应为 0.0e+00，逐位相同）
+"point_forecast_vs_r29_archive_GM(1,1)",3.8e-07,本脚本重算点预测 vs data/r29_forecast_8ind.csv 归档值最大绝对差
+point_forecast_identical_naive_vs_reg_NGBM,0.0e+00,首期拟合值 naive vs reg 的 2024–2028 点预测最大绝对差（应为 0.0e+00，逐位相同）
+point_forecast_vs_r29_archive_NGBM,3.9e-07,本脚本重算点预测 vs data/r29_forecast_8ind.csv 归档值最大绝对差
+"point_forecast_identical_naive_vs_reg_ARIMA(0,1,1)",0.0e+00,首期拟合值 naive vs reg 的 2024–2028 点预测最大绝对差（应为 0.0e+00，逐位相同）
+"point_forecast_vs_r29_archive_ARIMA(0,1,1)",4.6e-07,本脚本重算点预测 vs data/r29_forecast_8ind.csv 归档值最大绝对差
+script,run_r44_bounded.py,生成脚本（新建，未改动任何既有脚本）

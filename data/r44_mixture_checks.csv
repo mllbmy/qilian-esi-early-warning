@@ -1,0 +1,30 @@
+﻿item,value,note
+esi_8ind_vs_r28_archive_max_abs_delta,0.000e+00,八指标 ESI 重建 vs data/r28_deredundancy_series.csv::esi_drop_X9
+ngbm_gamma_train_sse,0.15,主 NGBM 的 γ（仅训练期 2005–2018 SSE 目标，无泄漏）；bootstrap 内每重复重选
+detail_vs_r32_scheme_rmse_max_abs_delta,5.323e-07,逐评估点重算的逐方案 RMSE vs data/r32_validation_8ind.csv::rmse 逐格对齐（应为 0）
+weight_sum_invRMSE,1.0,逆 RMSE 权重和（应为 1）
+weight_sum_invMSE,1.0,逆 MSE 权重和（应为 1）
+weight_sum_stacking,1.0,stacking 权重和（应为 1）
+weight_sum_equal,1.0,等权权重和（应为 1）
+bootstrap_n_valid_raw_R29,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 raw_R29 的有效重复数（应为 2000）
+bootstrap_n_valid_logit_main,"GM(1,1)=2000;NGBM=2000;ARIMA(0,1,1)=2000",口径 logit_main 的有效重复数（应为 2000）
+"repro_r29_2028_hi_GM(1,1)",0.697430,raw_R29 口径 2028 上界；R29 归档 0.697430（应一致，Δ=1.45e-07）
+repro_r29_2028_hi_NGBM,0.614818,raw_R29 口径 2028 上界；R29 归档 0.614818（应一致，Δ=-2.04e-07）
+"repro_r29_2028_hi_ARIMA(0,1,1)",1.112674,raw_R29 口径 2028 上界；R29 归档 1.112674（应一致，Δ=1.19e-07）
+grade_prob_sum_max_abs_dev,1.110e-16,全部（混合 × 权重方案 × 口径 × 年）五级概率和与 1 的最大偏差（应为 0）
+mix_2028_equal_vs_r29_archive,0.437623,等权混合 2028 点值；R29 归档 0.437623（应一致）
+mix_2028_invRMSE,0.447219,主口径（逆 RMSE 权重）混合 2028 点值
+mix_2028_invRMSE_grade,mild,主口径混合 2028 等级
+mix_2028_invRMSE_margin,0.047219,主口径混合 2028 距 0.400 阈值
+weight_sensitivity_2028_span,0.039433,权重方案变化时 2028 混合点值跨度 0.039433（0.4268–0.4662）；等级全部相同（mild，**不翻转**）
+weight_sensitivity_2028_grade_flip,False,"权重方案变化是否导致 2028 等级翻转（{'invRMSE': 'mild', 'invMSE': 'mild', 'stacking': 'mild', 'equal': 'mild', 'invRMSE_schemeMean': 'mild', 'invRMSE_fitTable7': 'mild', 'pair_GM_ARIMA': 'mild'}）"
+weight_sensitivity_LOSO_2028_range,0.441238–0.471202,leave-one-scheme-out 权重向量下 2028 点值范围；等级 ['mild']
+mix_logit_2028_hi_le_1_ALL,True,logit 口径下全部权重方案的 2028 上界是否 <= 1
+mix_logit_lo_ge_0_ALL,True,logit 口径下全部权重方案的 2028 下界是否 >= 0
+mix_raw_2028_hi_exceeds_1_invRMSE,False,raw_R29 口径下主口径混合 2028 上界是否越界（旧问题是否在混合上复现）
+mix_counts_invRMSE_logit,"GM(1,1)=2332;NGBM=1330;ARIMA(0,1,1)=2338",主口径混合抽样中各模型贡献的抽样数（N_MIX=6000）
+mix_rmse_pooled_invRMSE,0.055776,主口径混合池化样本外 RMSE（含权重自选乐观性）
+source_csv_md5_r32_validation,0F138527B225EEDDFAED6212CD104BDF,输入：五方案样本外精度（权重依据）
+source_csv_md5_r32_validation_detail,E63AE127DF0DF2F7C0AD0D652C063F62,输入：逐评估点预测（stacking 与混合精度）
+source_csv_md5_r29_forecast_8ind,FB63CAC29FEA2CCCBE1F3B62EFE119E4,输入：三模型点预测
+script,run_r44_mixture.py,生成脚本（新建，未改动任何既有脚本）
