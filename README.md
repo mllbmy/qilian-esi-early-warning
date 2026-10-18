@@ -915,8 +915,24 @@ is therefore not claimed.
    marker so it can no longer be misread as a collapsed column, apostrophes were corrected,
    `\usepackage{xurl}` was added for the long repository URL, and the 26 literal degree signs were
    unified to `$^{\circ}$`.
-9. **Not done in this round (stated, not hidden).** Figs. 3 and 6 are still nine-indicator figures
+9. **Chinese manuscript synced (R30).** The R29 changes were carried into the Chinese Word
+   manuscript by literal, run-splitting-tolerant replacement inside `word/document.xml` only:
+   abstract/conclusion values (0.676 / 0.478 primary; 0.709 / 0.486 as the labelled nine-indicator
+   contrast), the Response layer as an unweighted policy-background layer, the two weight
+   reallocation rules (entropy factor 1.062653, AHP rule A 1.333744, rule D as sensitivity), the
+   four 2028 口径 (NGBM 0.380, GM(1,1) 0.448, ARIMA 0.485, equal-weight mixture 0.438) with the
+   margin caveat, the 2028 intervals and grade probabilities, the `suggestive` trend wording, the
+   specification-dependent 2010 peak, the above-support ARIMA bound 1.113, the obstacle formula
+   with weight-conditional phase means, and the terminological change from driving factors to
+   spatial associations. The CLCD (Yang & Huang, 2024) entry missing from the Chinese reference
+   list was inserted, so the paragraph invariant moves from 439 to 440 **by design**; tables 11,
+   drawings 10, oMath 12, non-black `w:color` 0, `testzip()` None and "only `word/document.xml`
+   differs" all still hold. The scripts are `cn_r30_sync.py`, `cn_r30_ref_add.py` and
+   `cn_r30_sweep.py` (they operate on an extracted `word/document.xml` baseline, which is not
+   distributed here).
+10. **Still open after R30 (stated, not hidden).** Figs. 3 and 6 are still nine-indicator figures
    (captioned as such); the five out-of-sample validation schemes were **not** recomputed for the
    eight-indicator set, so Table 7 remains nine-indicator evidence with an explicit note; the
-   Figure 8/9 panels were not redrawn (captions were corrected instead); and the 300 dpi TIFF
-   figure set for the submission system was not regenerated.
+   Figure 8/9 panels were not redrawn (captions were corrected instead); 32 of the 37 pages were
+   machine-audited rather than read page by page by a human; and the 300 dpi TIFF figure set for
+   the submission system was not regenerated.
