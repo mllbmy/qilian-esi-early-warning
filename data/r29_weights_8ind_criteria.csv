@@ -1,0 +1,8 @@
+﻿criterion,n_indicators_9ind,n_indicators_8ind,in_8ind_spec,crit_w_9ind_original,crit_w_8ind_ruleA_renorm_over_live,crit_w_8ind_ruleD_eig4x4,ruleA_minus_ruleD,indicator_ahp_w_9ind,indicator_ahp_w_8ind,note
+Driving,2,2.0,True,0.081385,0.108546,0.10927,-0.000724,(per indicator) 0.040700 / 0.040700,(per indicator) 0.054273 / 0.054273,五层之一；八指标主规格下仍有指标存活
+Pressure,2,2.0,True,0.081385,0.108546,0.10927,-0.000724,(per indicator) 0.040700 / 0.040700,(per indicator) 0.054273 / 0.054273,五层之一；八指标主规格下仍有指标存活
+State,3,3.0,True,0.438373,0.584677,0.57245,0.012227,(per indicator) 0.146100 / 0.146100 / 0.146100,(per indicator) 0.194892 / 0.194892 / 0.194892,五层之一；八指标主规格下仍有指标存活
+Impact,1,1.0,True,0.148627,0.19823,0.209009,-0.010779,(per indicator) 0.148600,(per indicator) 0.198230,五层之一；八指标主规格下仍有指标存活
+Response,1,0.0,False,0.250231,0.0,0.0,,(per indicator) 0.250200,,八指标主规格下 Response 层无指标，其 0.250231 按下列重归一化规则重新分配给 D/P/S/I
+TOTAL,9,8.0,True,1.0,1.0,1.0,0.0,指标层 AHP 向量合计 = 1.000000,指标层 AHP 向量合计 = 1.000000,两条规则都归一到 1；区别只在 D/P/S/I 之间的相对分配
+"D+P+S+I (9ind, unnormalised)",8,,False,0.749769,,,,= 0.749770（若**保留原值不归一化**，指标层 AHP 合计仅 0.749770，组合权重合计 ≠ 1，与 ESI 的凸组合定义矛盾 ⇒ 该选项不可用）,,此项证明「保留原值」不可行，故必须重归一化

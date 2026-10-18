@@ -1,0 +1,19 @@
+﻿item,value,note
+baseline9_esi_vs_archive_max_abs_delta,4.634e-05,r28_core 重建九指标 ESI vs data/results_esi_regional.csv（归档 4 位小数舍入）
+baseline9_weight_vs_archive_max_abs_delta,4.941e-05,r28_core 重建九指标组合权 vs data/results_weights.csv（归档 4 位小数舍入）
+baseline9_levels_match_archive,True,九指标逐年等级与归档一致
+closedform_vs_r28core_max_abs_delta_entropy,2.776e-17,"闭合式 w^E,8=w^E,9/(1−w^E,9_X9) 与 r28_core 熵权重算的最大绝对差（≈浮点 0）"
+closedform_vs_r28core_max_abs_delta_ahp,7.855e-08,闭合式（全精度准则层特征向量）与 r28_core（读 6 位小数的 results_ahp_criteria.csv，五层合计 1.000001）的 AHP 权重最大绝对差 ⇒ 纯归档舍入，远低于任何报告精度
+closedform_vs_r28core_max_abs_delta_combined,3.142e-08,由两个闭合式推得的组合权重与 r28_core 组合权重的最大绝对差
+criteria_csv_rounding_max_abs_delta,4.25e-07,全精度特征向量 vs 归档 results_ahp_criteria.csv（6 位小数）的最大绝对差
+entropy_uniform_rescale_factor,1.062653,"删 X9 后熵权的统一放大因子 = 1/(1 − w^E,9_X9)"
+ahp_uniform_rescale_factor,1.333744,删 X9 后 AHP 指标层权重的统一放大因子 = 1 / Σ(存活准则层权重)
+ahp_criterion_sum_over_live_layers,0.749769,存活准则层 D/P/S/I 在 5×5 判断矩阵下的原始（未归一化）权重合计
+entropy_rescale_ratio_spread,2.22e-16,"8 个存活列 w^E,8/w^E,9 的极差（应为 0，证明只有分母变化）"
+criterion_ruleD_vs_ruleA_max_abs_delta,0.012227,删 Response 后重解 4×4 特征向量 vs 在 D/P/S/I 上重归一化 5×5 → 最大差（在 State 层）
+criterion_4x4_lambda_max,4.004158,4×4 子矩阵 λmax
+criterion_4x4_CR,0.00154,4×4 子矩阵 CR（RI=0.90）
+overlap_group_combined_share_9ind,0.692904,重叠指标组（State+Impact+Response）组合权重合计，九指标 = 69.29%
+overlap_group_combined_share_8ind,0.656013,同一重叠组在八指标主规格下（State+Impact，X9 已删）的组合权重合计 = 65.60%
+dpsi_four_layers_combined_share_9ind,0.864532,D/P/S/I 四层合计，九指标口径
+dpsi_four_layers_combined_share_8ind,1.0,D/P/S/I 四层合计，八指标主规格（四层即全部存活层）⇒ 恒为 1

@@ -20,7 +20,13 @@ from matplotlib.ticker import AutoMinorLocator
 import jms_style  # JMS 指南 §6：TNR 8-9 pt
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-df = pd.read_csv(os.path.join(BASE, "data", "results_weights.csv"))
+# Primary specification (R29): the eight-indicator DPSI weights (the duplicated
+# ecological-land column is removed). Set R29_PRIMARY=0 for the nine-indicator set.
+if os.environ.get("R29_PRIMARY", "1") == "1":
+    _w = pd.read_csv(os.path.join(BASE, "data", "r29_weights_8ind.csv"))
+    df = _w[_w["row_type"] == "indicator"][["indicator", "entropy_w", "ahp_w", "combined_w"]].copy()
+else:
+    df = pd.read_csv(os.path.join(BASE, "data", "results_weights.csv"))
 df = df.set_index("indicator")
 
 EN = {
@@ -40,7 +46,11 @@ LAYER = {  # DPSIR 分层（与 fig_indicator_trends 一致）
     "X6_裸地荒漠%": "P", "X7_农田占比%": "P",
     "X8_草地变化率": "I", "X9_生态用地%": "R",
 }
-assert set(df.index) == set(EN), "results_weights.csv 指标与表 4 不一致"
+assert set(df.index) <= set(EN), "weights table has indicators unknown to the figure mapping"
+df = df.loc[[k for k in df.index if k in EN]]
+# In the primary specification the ecological-land row is absent, so the label
+# map must follow the surviving rows only.
+EN = {k: v for k, v in EN.items() if k in set(df.index)}
 
 # 按组合权重降序：最重要的指标置顶
 order = sorted(EN, key=lambda k: -df.loc[k, "combined_w"])

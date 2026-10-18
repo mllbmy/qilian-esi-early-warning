@@ -816,3 +816,107 @@ revision and must not be used as evidence of forecast skill.
 1/(1−γ) exponent, so γ = 1 is degenerate; the original code let NumPy return an infinite
 expression that collapsed to a spuriously small residual sum of squares (SSE = 4.25) which the
 grid search could select. The function now skips γ = 1 and rejects any non-finite solution.
+
+## Repository
+
+- Code and processed tables: <https://github.com/mllbmy/qilian-esi-early-warning>
+  (default branch `main`; tags `v1.0` and `v1.1`; MIT licence for code, CC-BY-4.0 for the derived
+  tables).
+- Archived release with a concept DOI: <https://doi.org/10.5281/zenodo.23011183>.
+- Every table and figure in the manuscript names the file that produces it; the run order is
+  Stage 0–7 above.
+
+## Land-cover provenance (CLCD)
+
+| Item | Value |
+|---|---|
+| Dataset article | Yang J, Huang X (2021) *Earth Syst Sci Data* 13(8): 3907–3925, <https://doi.org/10.5194/essd-13-3907-2021> |
+| Deposit used here | Yang J, Huang X (2024) CLCD 30 m annual land cover 1985–2023, **version 1.0.3**, <https://doi.org/10.5281/zenodo.12779975> |
+| Tile record for the 2020 epoch | **version 1.0.2**, record <https://doi.org/10.5281/zenodo.8176941> |
+| Raw tile re-processed here | `_raw/lc_data/CLCD_v01_2020_albert.tif`, 810,739,687 bytes, md5 `1274285BB18F9B1D443A3CC906B1310C` |
+| Archived regional table | `data/qilian_landcover.csv`, 590 bytes, md5 `e58520f8cdc9ce6ace77366b947da20a`, sha256 `c0213af8…` |
+
+Version note: the 30 m product line is published as a versioned deposit; the regional table used in
+the manuscript was derived from the 2020 tile of the 1.0.2 record, while the current deposit
+version is 1.0.3. Both are named above so that the difference is visible rather than silently
+resolved. The 2005, 2010, 2015 and 2023 epochs are **not** re-derivable from the raw tile inside
+this package: they are supplied as the archived regional table, and only the 2020 epoch can be
+re-processed end to end. The exact download date of the tile is not recorded in this repository and
+is therefore not claimed.
+
+## Change log — R29 revision
+
+1. **Primary specification is now the eight-indicator DPSI set.** The exactly duplicated
+   ecological-land column is removed from the weighted indicator system and the Response layer is
+   retained as an **unweighted policy-background layer** (qualitative). All headline numbers —
+   abstract, Table 4, Tables 7–9, Figures 2/4/5, the Discussion, the Conclusion and the Data
+   availability statement — are quoted for this primary set, and every nine-indicator number that
+   survives is explicitly labelled as such. Nine-indicator ESI: 0.258 (2005) → 0.709 (2010) →
+   0.486 (2023). Eight-indicator ESI: 0.289 → 0.676 → 0.478, with an identical 19-year grade
+   sequence.
+2. **Weight renormalisation is stated, not hidden.** Entropy weights are not recomputed: deleting
+   the column rescales all eight surviving weights by the common factor 1/(1−w^E_X9) = 1.062653
+   (a closed form that reproduces a numerical recomputation to 3×10⁻⁸). The AHP weights cannot be
+   rescaled that way (the five live criteria sum to 0.749769 and would leave the indicator layer
+   summing to 0.750), so rule A renormalises the surviving criteria to one (factor 1.333744); rule
+   D re-solves the 4×4 surviving judgement matrix as a sensitivity check (λmax = 4.004,
+   CR = 0.0015, largest difference from rule A 0.0122). The overlap group State + Impact carries
+   0.656 under the primary set, against 0.693 for State + Impact + Response under nine indicators;
+   the earlier "69.29 %" figure belongs to the nine-indicator overlap group and is no longer
+   quoted for the primary set. Layer totals: Driving 0.154, Pressure 0.190, State 0.421, Impact
+   0.235, summing to 1.000000.
+3. **The 2010 peak is stated as specification-dependent.** It is kept, with 0.676 (eight) and
+   0.709 (nine) given together; the peak year (2010) and all 19 grades are identical under both
+   specifications and no year changes grade.
+4. **The trend claim was downgraded to "suggestive".** Under the primary set, Mann–Kendall gives
+   p = 0.184 (2005–2023) and p = 0.189 (2010–2023), Hamed–Rao 0.193 / 0.185, and both Sen slopes
+   have confidence intervals spanning zero (−0.0031, CI [−0.0078, +0.0017]; −0.0035, CI
+   [−0.0117, +0.0013]). Trend-free pre-whitening returns a significant full-period value
+   (p = 0.012) and a non-significant segment (p = 0.200), so the conventions disagree and the
+   decline is reported as suggestive. The significant post-2010 decline of the nine-indicator set
+   is retained only as a labelled contrast.
+5. **2028 is reported as three models plus their equal-weight mixture.** GM(1,1) 0.448, NGBM
+   0.380, ARIMA(0,1,1) 0.485, mixture 0.438; the 2028 grade is model-dependent (mild warning for
+   GM, ARIMA and the mixture; medium warning for the NGBM) and every margin to the 0.400 boundary
+   (+0.048, −0.020, +0.085, +0.038) is of the same order as the rounding unit of the reported
+   value, so no 2028 grade is treated as decision-relevant. The NGBM exponent window is reported
+   honestly: the training-only optimum is 0.15, the full-series optimum is 0.05 **at the lower
+   bound of the search grid**, and the holdout error is also minimised at 0.05, so the crossing is
+   exponent-conditional. The ARIMA interval reaches 1.113, above the [0, 1] support of the index,
+   and that is stated wherever the interval is quoted.
+6. **Obstacle diagnosis.** The formula O_ij = (1 − x′_ij) w_j, the within-year normalisation
+   O*_ij = O_ij / Σ_j O_ij and the phase-mean definition are now written out; the archived
+   nine-indicator table's missing generating script is disclosed as archived; and the phase means
+   are declared **weight-conditional** rather than weight-free (with entropy, equal and AHP weights
+   the plateau-phase leader changes, and the recovery-phase leader becomes the forest proportion
+   under AHP weights alone).
+7. **Journal-of-Mountain-Science reference style.** In-text citations lose the comma before the
+   year (`(Liu et al. 2023)`) through `\setcitestyle{aysep={ }}`, and the reference list is
+   rendered in Springer name-year style — `Author A, Author B (2022) Title. J Mt Sci 17(11):
+   2591–2610. https://doi.org/...`, no terminal period, more than three authors abbreviated to
+   `et al.`. No installed `.bst` provides this format (`spbasic.bst`/`spphys.bst`/`spmpsci.bst` are
+   absent from this TeX distribution), so `manuscript.bbl` is generated from the single source of
+   truth `manuscript.bib` by **`make_bbl_jms.py`**. Build order:
+   `pdflatex → bibtex manuscript → python make_bbl_jms.py → pdflatex → pdflatex`
+   (bibtex overwrites the `.bbl`, so the generator must run after it). Four never-cited entries
+   (`dl_conservation_bio_2023`, `du2024dpsir`, `earlywarning_grassland2024`,
+   `qilian_desertification_gee`) were deleted from the `.bib`; `CO2` in the NGBM title became
+   `CO$_2$`; the Lyu et al. (2026) entry gained its issue number; and the CLCD entry records
+   version 1.0.3 while naming the 1.0.2 tile record used for 2020.
+8. **Figure regeneration and cross-reference fixes.** Fig. 2 now carries the eight-indicator
+   weights and an unweighted policy-background row; Fig. 4 is drawn from the primary series with
+   the legend reading "NGBM bootstrap interval (95 %)"; Fig. 5 shows the eight-indicator weights;
+   the framework label "NGBM · 95 % intervals" and the stale "95 % interval" legend are gone. The
+   Figure 8 and Figure 9 captions were rewritten to match the panels actually drawn (single panel;
+   three bars with the lighter bar marking the weaker single-factor q), Fig. 6 is now cited in the
+   α subsection, Table 10 is cited where it is first discussed, the "Sec. 3" pointers use
+   `\ref{}` labels (`sec:dpsir`, `sec:warning`), the six interaction rows read
+   "bivariate-enhancing", the archived 0.005 permutation p of Table D.17 was moved into a footnote
+   marker so it can no longer be misread as a collapsed column, apostrophes were corrected,
+   `\usepackage{xurl}` was added for the long repository URL, and the 26 literal degree signs were
+   unified to `$^{\circ}$`.
+9. **Not done in this round (stated, not hidden).** Figs. 3 and 6 are still nine-indicator figures
+   (captioned as such); the five out-of-sample validation schemes were **not** recomputed for the
+   eight-indicator set, so Table 7 remains nine-indicator evidence with an explicit note; the
+   Figure 8/9 panels were not redrawn (captions were corrected instead); and the 300 dpi TIFF
+   figure set for the submission system was not regenerated.

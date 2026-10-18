@@ -41,9 +41,25 @@ plt.rcParams.update({"axes.labelsize": 9, "xtick.labelsize": 8, "ytick.labelsize
                      "axes.edgecolor": "#444444", "axes.linewidth": 0.8,
                      "savefig.dpi": 600, "figure.dpi": 100})
 
-esi_df = pd.read_csv(os.path.join(BASE, "data", "results_esi_regional.csv"))
-fc_df = pd.read_csv(os.path.join(BASE, "data", "results_forecast_comparison.csv"))
-ci_df = pd.read_csv(os.path.join(BASE, "data", "results_forecast_ci.csv"))
+# Primary specification (R29): the eight-indicator DPSI set is the manuscript's
+# primary series, so the figure is drawn from the primary-specification archives
+# rather than from the nine-indicator results_* files. Set R29_PRIMARY=0 to
+# reproduce the earlier nine-indicator version.
+import os as _os
+if _os.environ.get("R29_PRIMARY", "1") == "1":
+    _ser = pd.read_csv(_os.path.join(BASE, "data", "r28_deredundancy_series.csv"))
+    esi_df = pd.DataFrame({"year": _ser["year"], "esi": _ser["esi_drop_X9"]})
+    _fc = pd.read_csv(_os.path.join(BASE, "data", "r29_forecast_8ind.csv"))
+    fc_df = pd.DataFrame({"gm11": _fc["gm11_8ind"], "ngbm": _fc["ngbm_8ind_gamma_train"],
+                          "arima": _fc["arima_011_8ind"]})
+    _iv = pd.read_csv(_os.path.join(BASE, "data", "r29_forecast_8ind_intervals.csv"))
+    _iv = _iv[(_iv["model"] == "NGBM") & (_iv["method"] == "total_block")
+              & (_iv["gamma_mode"] == "reselect_each_replicate") & (_iv["year"] >= 2024)]
+    ci_df = pd.DataFrame({"year": _iv["year"], "ci_lo": _iv["boot_p2.5"], "ci_hi": _iv["boot_p97.5"]})
+else:
+    esi_df = pd.read_csv(os.path.join(BASE, "data", "results_esi_regional.csv"))
+    fc_df = pd.read_csv(os.path.join(BASE, "data", "results_forecast_comparison.csv"))
+    ci_df = pd.read_csv(os.path.join(BASE, "data", "results_forecast_ci.csv"))
 
 years = esi_df["year"].values
 e2023 = float(esi_df["esi"].iloc[-1])          # 2023 观测值：预测曲线锚点
@@ -60,7 +76,7 @@ for t in (0.2, 0.4, 0.6, 0.8):
 
 # ---------- NGBM 95% 预测区间 ----------
 ax.fill_between(fcy24, ci_df["ci_lo"], ci_df["ci_hi"], color=ORANGE, alpha=0.15,
-                lw=0.0, zorder=2, label="NGBM 95% interval")
+                lw=0.0, zorder=2, label="NGBM bootstrap interval (95%)")
 
 # ---------- 观测与三模型预测（锚定 2023）----------
 ax.plot(years, esi_df["esi"], "-o", color=BLUE, lw=1.8, ms=4.0, zorder=5,

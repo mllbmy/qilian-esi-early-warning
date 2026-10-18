@@ -1,0 +1,10 @@
+﻿item,value,note
+esi_8ind_vs_archived_max_abs_delta,0.0,主规格 ESI 重建 vs data/r28_deredundancy_series.csv
+alpha04_row_matches_archive,True,本脚本重算的 α=0.4 年 ESI 与 r28_alpha_grade_summary.csv 一致
+archived_obstacle_row_sum_max_abs_delta_from_1,0.0002,归档 results_obstacle.csv 每行 9 项障碍度之和与 1 的最大偏差（4 位小数舍入）
+point_6ind_rebuild_vs_archive_max_abs_delta,1.11e-16,点尺度六指标 ESI 重建 vs data/spatial_esi_points.csv（r28 口径：min–max + 熵权 + 等权 AHP，α=0.4）
+point_5ind_vs_archive_max_abs_delta,0.091147,点尺度去冗余五指标 ESI 与六指标（归档）ESI 的最大绝对差
+spatial_q_recompute_vs_r28_max_abs_delta,4.874e-07,本脚本重算的 15 个 q（含 LOO）与 data/r28_deredundancy_comparison.csv 的最大绝对差
+moran_rebuild_vs_archive_k8_invdist,0.643095,用 k=8 行标准化 inv_dist kNN 权重复算归档点尺度 ESI 的 Moran's I = 0.643095（归档 0.643095）
+trend_recompute_vs_r28_max_abs_delta,4.829e-05,本脚本用 run_r28_t6_trend_moran 的同名函数重算的 MK Z/p、Sen 斜率与 CI、Pettitt K，与 data/r28_trend_tests.csv 的最大绝对差（2 个时段 × 2 个指标集 × 5 个量）
+ndvi_pearson_recompute_vs_r28_archive,4.7e-07,以归档六指标点尺度 ESI 重算的 ESI–NDVI Pearson r = 0.705413（归档 0.705413）

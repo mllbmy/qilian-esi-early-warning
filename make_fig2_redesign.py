@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """Fig.2 框架图 R36 —— 恢复缎带横幅版（按用户提供的 R30 截图 1:1 重建）。
 
 R36 说明：
@@ -150,16 +150,16 @@ RX, RW_ = 41.6, 54.0
 # ---- 左栏：DPSIR 五框（真实组合权重） ----
 DPSIR = [
     ("D", "Driving force (D)",
-     [("Precipitation", "(+)  w = 0.083"), ("Temperature", "(+)  w = 0.054")]),
+     [("Precipitation", "(+)  w = 0.092"), ("Temperature", "(+)  w = 0.062")]),
     ("P", "Pressure (P)",
-     [("Barren/degraded land", "(\u2212)  w = 0.051"), ("Cropland", "(\u2212)  w = 0.119")]),
+     [("Barren/degraded land", "(\u2212)  w = 0.059"), ("Cropland", "(\u2212)  w = 0.131")]),
     ("S", "State (S)",
-     [("Grassland", "(+)  w = 0.103"), ("Forest", "(+)  w = 0.120"),
-      ("Water", "(+)  w = 0.128")]),
+     [("Grassland", "(+)  w = 0.125"), ("Forest", "(+)  w = 0.144"),
+      ("Water", "(+)  w = 0.151")]),
     ("I", "Impact (I)",
-     [("Grassland change rate", "(+)  w = 0.206")]),
-    ("R", "Response (R)",
-     [("Ecological land", "(+)  w = 0.136")]),
+     [("Grassland change rate", "(+)  w = 0.235")]),
+    ("R", "Policy background (R)",
+     [("Policy background", "unweighted (qualitative)")]),
 ]
 heights = [module_h(len(ls)) for _, _, ls in DPSIR]
 GAP = (65.6 - 16.4 - sum(heights)) / 4
@@ -179,7 +179,7 @@ r_gap = (65.6 - 15.2 - sum(r_heights)) / 4
 
 y_cur = 65.6
 y0_1 = pmodule(RX, RW_, y_cur, "1  Indicator integration",
-               ["nine indicators \u00b7 min\u2013max normalization to [0, 1]"])
+               ["eight weighted indicators \u00b7 min\u2013max normalization to [0, 1]"])
 barrow_v(RX + RW_ / 2, y0_1 - 0.05, y0_1 - r_gap + 0.05, sw=1.3, hw=2.6)
 y0_2 = pmodule(RX, RW_, y0_1 - r_gap, "2  Combined weighting",
                ["AHP (\u03b1 = 0.4) + entropy weight (1 \u2212 \u03b1)"])
@@ -229,7 +229,7 @@ barrow_h(36.2, 39.2, 42.5, sw=2.2, hw=4.4)
 zone(2.2, 0.4, 95.6, 10.7, RED)
 ribbon(50.0, 7.0, 41.0, 3.0, "Early-warning outputs", RED["banner"])
 outs = [("Warning dynamics", "2005\u20132023 \u00b7 grade series", 2.8),
-        ("Forecast 2024\u20132028", "NGBM \u00b7 95% intervals", 36.2),
+        ("Forecast 2024\u20132028", "NGBM \u00b7 bootstrap intervals", 36.2),
         ("Zonal management", "recommendations", 69.0)]
 for t, s, ox in outs:
     rect(ox, 1.3, 28.6, 4.5, "white", EDGE, lw=1.0, z=2)

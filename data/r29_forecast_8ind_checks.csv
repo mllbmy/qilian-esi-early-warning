@@ -1,0 +1,39 @@
+﻿item,value,note
+esi_8ind_vs_archived_max_abs_delta,0.0,drop_X9 主规格 ESI 重建 vs data/r28_deredundancy_series.csv（长表列 esi_drop_X9）
+esi_9ind_vs_archived_max_abs_delta,5.551e-17,baseline9 对照 ESI 重建 vs 同一归档 CSV
+esi_8ind_2023,0.478295,八指标主规格 2023 年 ESI
+esi_8ind_2010_peak,0.676264,八指标主规格峰值（年 = 2010）
+esi_8ind_2005,0.288559,八指标主规格 2005 年 ESI（序列低值端）
+gamma_8ind_train_sse,0.15,八指标主规格：仅训练期 2005–2018 按 SSE 选出的 γ（无泄漏口径，主 NGBM 所用）
+gamma_8ind_train_mae,0.05,同一训练期按 MAE 选出的 γ（对照）
+gamma_8ind_full_sse,0.05,八指标全序列 2005–2023 按 SSE 选出的 γ（对照；含评估期信息）
+gamma_8ind_full_sse_at_grid_lower_bound,True,全序列最优 γ 是否落在搜索网格下边界 0.05（边界解）
+gamma_9ind_train_sse,0.25,九指标对照：训练期 SSE 最优 γ
+gamma_9ind_full_sse,0.2,九指标对照：全序列 SSE 最优 γ（= 论文所报 0.20）
+gamma_8ind_holdout_rmse_argmin,0.05,八指标：使 holdout 2019–2023 RMSE 最小的 γ（**只用于诊断**；训练期 SSE 最优 γ 与它不同，说明 γ 的目标函数选择会改变外推斜率）
+dpsi_2028_gm11_8ind,0.447858,"八指标 GM(1,1) 2028 点预测"
+dpsi_2028_ngbm_8ind_gamma_train,0.380401,八指标 NGBM 2028 点预测（γ 仅训练期选择，无泄漏，主口径）
+dpsi_2028_ngbm_8ind_gamma_full,0.42069,八指标 NGBM 2028 点预测（γ 用全序列 SSE 选，对照）
+dpsi_2028_arima_8ind,0.48461,"八指标 ARIMA(0,1,1) 2028 点预测"
+dpsi_2028_three_model_point_range,0.10421,八指标 2028 三模型（GM / NGBM 无泄漏 γ / ARIMA）点值跨度
+gm11_8ind_accuracy_C,0.603093,"八指标 GM(1,1) 后验差比值 C（<0.35 优、<0.5 合格）"
+gm11_8ind_accuracy_P,0.789474,"八指标 GM(1,1) 小误差概率 P（>0.95 优、>0.8 合格）"
+ngbm_reselected_gamma_mode,0.15,bootstrap 每次重复重选 γ 的中位数（主口径 total_block 的 γ 选择不确定性）
+ngbm_reselected_gamma_share_equal_to_train_opt,0.277,bootstrap 中重选 γ 恰等于训练期最优 γ 的比例
+ngbm_total_block_width2028_reselect,0.443021,八指标 NGBM 2028 年 95% 区间宽度（参数 + γ 重选 + 累积新息块重采样）
+ngbm_total_block_width2028_gamma_fixed,0.431117,同上但 γ 固定为训练期最优值（不含 γ 选择不确定性）
+arima_2028_ci_hi_exceeds_support,1.112674,"ARIMA(0,1,1) 2028 年 95% 区间上界 > 1，超出 min–max 型 ESI 的取值支撑；该口径把累积新息直接叠加在指数上，故上界不可解释为 ESI 可达值"
+dpsi_2028_model_averaged_point,0.437623,八指标 model-averaged 2028 点值（三模型等权平均）
+dpsi_2028_model_averaged_grade,轻警,model-averaged 2028 点值等级
+dpsi_2028_margin_model_averaged,0.037623,model-averaged 2028 点值距 0.400 阈值
+dpsi_2028_margin_ngbm_gamma_train,-0.019599,NGBM（无泄漏 γ）2028 点值距 0.400 阈值；负值 = 落在阈值以下
+dpsi_2028_p_medium_model_averaged,0.4265,model-averaged 2028 P(中警)
+dpsi_2028_p_mild_model_averaged,0.3915,model-averaged 2028 P(轻警)
+dpsi_2028_p_below_0400_model_averaged,0.47,model-averaged 2028 P(ESI < 0.400)
+dpsi_2028_margin_gm11,0.047858,"GM(1,1) 2028 点值距 0.400 阈值"
+dpsi_2028_margin_arima,0.08461,"ARIMA(0,1,1) 2028 点值距 0.400 阈值"
+dpsi_2028_flip_grade_at_1dp_ngbm_gamma_train,True,NGBM（无泄漏 γ=0.15）2028 点值 0.380401 在 **1 位小数**下舍入为 0.4 → 等级由「中警」（3 位小数 0.380）翻为「轻警」；2 位小数 0.38 与 3 位小数 0.380 均不翻级
+dpsi_2028_flip_grade_at_1dp_model_averaged,False,model-averaged 2028 点值在 1 位小数下是否翻级
+dpsi_2028_margin_in_reporting_grid_ngbm_gamma_train,39.1986,NGBM 2028 的 |margin| 与 3 位小数半单位(0.0005) 之比（>1 ⇒ margin 远大于报告精度，等级判定不因报告精度而改变）
+dpsi_2028_margin_in_reporting_grid_model_averaged,75.246,model-averaged 2028 的 |margin| 与 3 位小数半单位之比
+compare_2028_ngbm_full_gamma_8ind_minus_9ind,0.026833,同用全序列 γ 时，八指标 NGBM 2028 点值 − 九指标 NGBM 2028 点值
