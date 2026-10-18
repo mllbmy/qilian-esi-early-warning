@@ -84,7 +84,7 @@ ax.plot(years, esi_df["esi"], "-o", color=BLUE, lw=1.8, ms=4.0, zorder=5,
 ax.plot(fcy, [e2023] + fc_df["gm11"].tolist(), "--s", color=BLUE, lw=1.3, ms=3.6,
         mfc="white", zorder=4, label="GM(1,1)")
 ax.plot(fcy, [e2023] + fc_df["ngbm"].tolist(), "--^", color=ORANGE, lw=1.5, ms=4.2,
-        zorder=5, label="NGBM (adopted)")
+        zorder=5, label="NGBM")
 ax.plot(fcy, [e2023] + fc_df["arima"].tolist(), "--v", color=PURPLE, lw=1.3, ms=3.6,
         mfc="white", zorder=4, label="ARIMA")
 

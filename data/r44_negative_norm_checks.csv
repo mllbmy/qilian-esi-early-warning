@@ -1,0 +1,18 @@
+﻿item,value,note
+lib_vs_formula_max_abs_delta_X6_裸地荒漠%,0.0,库 minmax_normalize 输出 vs (max_j-x_ij)/(max_j-min_j) 独立重算
+wrong_direction_max_abs_delta_X6_裸地荒漠%,1.0,对照：错误口径 (x_ij-min_j)/(max_j-min_j) 与真实 x' 的最大差（应显著非零）
+range_X6_裸地荒漠%,56.286386..58.237630,该指标 19 年原始取值范围（min..max）
+lib_vs_formula_max_abs_delta_X7_农田占比%,0.0,库 minmax_normalize 输出 vs (max_j-x_ij)/(max_j-min_j) 独立重算
+wrong_direction_max_abs_delta_X7_农田占比%,1.0,对照：错误口径 (x_ij-min_j)/(max_j-min_j) 与真实 x' 的最大差（应显著非零）
+range_X7_农田占比%,3.833773..3.984926,该指标 19 年原始取值范围（min..max）
+esi_rebuilt_from_xnorm_vs_archive_max_abs_delta,0.000e+00,ESI=Σ w_j x'_ij 重建 vs data/r28_deredundancy_series.csv 的 esi_drop_X9（19 年）
+esi_2023_rebuilt,0.478295,重建的 2023 年八指标 ESI
+esi_2023_in_manuscript,0.478,manuscript.tex 报告值（0.478）
+xnorm_all_in_0_1,True,"全部指标 x' 是否均落在 [0,1]（负向指标归一化方向正确性的必要条件）"
+xnorm_neg_at_endpoints,True,负向指标：最大值年 x'=0、最小值年 x'=1（方向正确的判定）
+tex_line_of_negative_branch,180,"manuscript.tex 中负向分支行号；原文：\dfrac{\max_j-x_{ij}}{\max_j-\min_j}, & \text{negative},\end{cases}"
+max_abs_delta_wrong_direction_over_negatives,1.0,两个负向指标上，错误口径与真实 x' 的最大差（用于反驳文本提取伪影）
+source_data_md5_qilian_landcover,E58520F8CDC9CE6ACE77366B947DA20A,输入：data/qilian_landcover.csv
+source_data_md5_qilian_climate,1BA81D5502EF4A769E5D10B1A3C1CCC2,输入：data/qilian_climate.csv
+source_csv_md5_r28_deredundancy_series,BE534E0E23AFDC7C7030E1CC418AFBF4,对照真源：data/r28_deredundancy_series.csv
+script,r44_negative_norm_check.py,生成脚本（已提交）
