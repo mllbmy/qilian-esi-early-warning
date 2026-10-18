@@ -362,6 +362,7 @@ python polish_gate.py        # fact-layer drift gate vs 优化\baseline snapshot
 | Table 4 indicator weights | entropy / AHP / combined, α = 0.4 | `rerun_pipeline_ahp.py` (reads `ahp_weights.csv`) | `data/results_weights.csv` |
 | Fig. 7 weight bar chart | same as Table 4 | `make_fig_weights.py` | `data/results_weights.csv` |
 | Table 5 forecast comparison | GM(1,1) / NGBM / ARIMA, RMSE/MAE/C/P | `rerun_pipeline_ahp.py` (+ `run_forecast_comparison.py` for `results_forecast_accuracy.csv`) | `data/results_forecast_comparison.csv`, `data/results_forecast_accuracy.csv` |
+| Table 5 fitting accuracy (eight-indicator primary series) | GM(1,1) 0.046 / 0.032, NGBM(γ=0.15) 0.046 / 0.037, ARIMA(0,1,1) 0.104 / 0.068 (RMSE / MAE, denominator `n`) plus `C` and `P`; the file also records the `n-1` denominator and the values printed in the manuscript, cell by cell | `run_r41_accuracy_8ind.py` | `data/r29_forecast_accuracy_8ind.csv` |
 | Fig. 4 ESI series + forecast | ESI 2005–2023, forecast 2024–2028, warning bands | `make_fig3_clean.py` | `data/results_esi_regional.csv`, `data/results_forecast_comparison.csv`, `data/results_forecast_ci.csv` |
 | Fig. 5 α sensitivity | 2023 ESI vs α | `make_figures.py` | `data/results_alpha_sensitivity.csv` |
 | **Table 6 static county ESI (2020)** | Sunan 0.5578 … Aksai 0.0673 | **`run_county_esi.py`** | `data/results_county_esi.csv` (`_details.csv` = intermediate) |
