@@ -362,7 +362,7 @@ python polish_gate.py        # fact-layer drift gate vs 优化\baseline snapshot
 | Table 4 indicator weights | entropy / AHP / combined, α = 0.4 | `rerun_pipeline_ahp.py` (reads `ahp_weights.csv`) | `data/results_weights.csv` |
 | Fig. 7 weight bar chart | same as Table 4 | `make_fig_weights.py` | `data/results_weights.csv` |
 | Table 5 forecast comparison | GM(1,1) / NGBM / ARIMA, RMSE/MAE/C/P | `rerun_pipeline_ahp.py` (+ `run_forecast_comparison.py` for `results_forecast_accuracy.csv`) | `data/results_forecast_comparison.csv`, `data/results_forecast_accuracy.csv` |
-| Table 5 fitting accuracy (eight-indicator primary series) | GM(1,1) 0.046 / 0.032, NGBM(γ=0.15) 0.046 / 0.037, ARIMA(0,1,1) 0.104 / 0.068 (RMSE / MAE, denominator `n`) plus `C` and `P`; the file also records the `n-1` denominator and the values printed in the manuscript, cell by cell | `run_r41_accuracy_8ind.py` | `data/r29_forecast_accuracy_8ind.csv` |
+| Table 7 / Table 5 fitting accuracy (eight-indicator primary series) | GM(1,1) 0.046 / 0.032 / 0.603 / 0.789, NGBM(γ=0.15) 0.046 / 0.037 / 0.604 / 0.684, ARIMA(0,1,1) 0.104 / 0.068 / 1.320 / 0.526 (RMSE / MAE / `C` / `P`, denominator `n`) | `run_r42_table7_accuracy.py` (caliber functions reused verbatim from `run_r41_accuracy_8ind.py`; asserts the printed cells) | `data/r42_table7_accuracy.csv`; `data/r29_forecast_accuracy_8ind.csv` (the `n-1` denominator and the pre-R42 printed values, cell by cell) |
 | Fig. 4 ESI series + forecast | ESI 2005–2023, forecast 2024–2028, warning bands | `make_fig3_clean.py` | `data/results_esi_regional.csv`, `data/results_forecast_comparison.csv`, `data/results_forecast_ci.csv` |
 | Fig. 5 α sensitivity | 2023 ESI vs α | `make_figures.py` | `data/results_alpha_sensitivity.csv` |
 | **Table 6 static county ESI (2020)** | Sunan 0.5578 … Aksai 0.0673 | **`run_county_esi.py`** | `data/results_county_esi.csv` (`_details.csv` = intermediate) |
@@ -888,6 +888,17 @@ revision and must not be used as evidence of forecast skill.
 1/(1−γ) exponent, so γ = 1 is degenerate; the original code let NumPy return an infinite
 expression that collapsed to a spuriously small residual sum of squares (SSE = 4.25) which the
 grid search could select. The function now skips γ = 1 and rejects any non-finite solution.
+9. **Table 7 / Table 5 eight-indicator fitting accuracy — corrected in R42.** Revisions R29–R41
+printed NGBM 0.031 / 0.024 / `C` 0.428 / `P` 0.947 and ARIMA 0.097 / 0.066 / `C` 1.090 / `P` 0.632
+for the eight-indicator primary series. Neither row had a generating script or result table here:
+the NGBM quadruple is unreachable in this model family (an exhaustive sweep of 7 series ×
+γ ∈ [0.01, 2.99] × 8 `C`/`P` conventions yields no point better on all four cells simultaneously),
+and the ARIMA row is the nine-indicator archived row of `results_forecast_accuracy.csv`
+(0.0977 / 0.0666 / 1.0861 / 0.6316) truncated to three decimals with `C` hand-set to 1.090. Both rows
+were replaced by the recomputed values, which `run_r42_table7_accuracy.py` asserts cell by cell; the
+pre-R42 printed values are retained in `data/r42_table7_accuracy.csv` and
+`data/r29_forecast_accuracy_8ind.csv`. The table note's grade judgement now reads GM(1,1) barely
+qualified, NGBM and ARIMA unqualified; the NGBM is no longer described as qualified.
 
 ## Repository
 

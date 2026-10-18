@@ -332,14 +332,14 @@ Bootstrap resampling (2{,}000 replicates, with the NGBM exponent reselected insi
 \toprule
 Model & RMSE (fitted) & MAE & $C$ & $P$ & 2024 forecast & 2028 forecast \\
 \midrule
-GM(1,1) & 0.047 & 0.034 & 0.603 & 0.789 & 0.469 & 0.448 \\
-NGBM ($\gamma$=0.15) & 0.031 & 0.024 & 0.428 & 0.947 & 0.424 & 0.380 \\
-ARIMA(0,1,1) & 0.097 & 0.066 & 1.090 & 0.632 & 0.485 & 0.485 \\
+GM(1,1) & 0.046 & 0.032 & 0.603 & 0.789 & 0.469 & 0.448 \\
+NGBM ($\gamma$=0.15) & 0.046 & 0.037 & 0.604 & 0.684 & 0.424 & 0.380 \\
+ARIMA(0,1,1) & 0.104 & 0.068 & 1.320 & 0.526 & 0.485 & 0.485 \\
 \bottomrule
 \end{tabular}
 
 \vspace{2pt}
-{\footnotesize Accuracy grades follow the grey-model convention: qualified ($C<0.50$, $P>0.80$), barely qualified ($C<0.65$, $P>0.70$), and unqualified otherwise. RMSE and MAE are full-series fitting accuracy and are not comparable across the three model families as a measure of forecast skill; the out-of-sample comparison is in Table~\ref{tab:validation}. The projection is reported for all three models because none of them dominates across validation schemes, and their equal-weight mixture (0.438 in 2028) is the value carried forward. The accuracy grades follow $C$ and $P$: the NGBM is qualified ($C=0.428$, $P=0.947$), GM(1,1) is barely qualified ($C=0.603$, $P=0.789$) and ARIMA is unqualified on this criterion.}
+{\footnotesize Accuracy grades follow the grey-model convention: qualified ($C<0.50$, $P>0.80$), barely qualified ($C<0.65$, $P>0.70$), and unqualified otherwise. RMSE and MAE are full-series fitting accuracy (divisor $n$) and are not comparable across the three model families as a measure of forecast skill; the out-of-sample comparison is in Table~\ref{tab:validation}. The projection is reported for all three models because none of them dominates across validation schemes, and their equal-weight mixture (0.438 in 2028) is the value carried forward. The accuracy grades follow $C$ and $P$: GM(1,1) is barely qualified ($C=0.603$, $P=0.789$), while the NGBM ($C=0.604$, $P=0.684$) and ARIMA(0,1,1) ($C=1.320$, $P=0.526$) are unqualified on this criterion, the NGBM missing the $P>0.70$ threshold by 0.016.}
 \end{table}
 
 \begin{table}[htbp]
