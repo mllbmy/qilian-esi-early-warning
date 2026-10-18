@@ -899,6 +899,14 @@ were replaced by the recomputed values, which `run_r42_table7_accuracy.py` asser
 pre-R42 printed values are retained in `data/r42_table7_accuracy.csv` and
 `data/r29_forecast_accuracy_8ind.csv`. The table note's grade judgement now reads GM(1,1) barely
 qualified, NGBM and ARIMA unqualified; the NGBM is no longer described as qualified.
+10. **Carried-forward projection value — wording aligned in R43.** The English Table 7 note
+states that the equal-weight mixture (0.438 in 2028) is the value carried forward, and the
+English text never names the NGBM as the scenario model. The Chinese Table 5 note still read
+"NGBM is the scenario model", which contradicted the grade it had just been given in R42.
+That single sentence now reads "the three models are reported side by side, and their
+equal-weight mixture (0.438 in 2028) is the value carried forward", matching the English note.
+No number, table cell or English source file changed; `cn_r43_align.py` rewrites only
+`word/document.xml` and asserts one literal hit per replacement.
 
 ## Repository
 
