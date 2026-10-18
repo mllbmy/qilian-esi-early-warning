@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """Fig.2 框架图 R36 —— 恢复缎带横幅版（按用户提供的 R30 截图 1:1 重建）。
 
 R36 说明：
@@ -159,7 +159,9 @@ DPSIR = [
     ("I", "Impact (I)",
      [("Grassland change rate", "(+)  w = 0.235")]),
     ("R", "Policy background (R)",
-     [("Policy background", "unweighted (qualitative)")]),
+     # R31: the two-part label collided in the narrow box (name and meta overlapped,
+     # clipping "un"); one short left-aligned label is used instead.
+     [("Unweighted (qualitative)", "")]),
 ]
 heights = [module_h(len(ls)) for _, _, ls in DPSIR]
 GAP = (65.6 - 16.4 - sum(heights)) / 4

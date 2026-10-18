@@ -54,6 +54,12 @@ ind = [
      lc["grass_pct"] + lc["forest_pct"] + lc["water_pct"], "#5a4a8a", True),
 ]
 
+# R31: the primary specification is the eight-indicator set. Its Response layer is carried as an
+# unweighted policy-background layer, so the duplicated ecological-land panel is not plotted;
+# setting R31_EIGHT=1 draws the eight weighted indicators in the same 3x3 grid.
+if os.environ.get("R31_EIGHT"):
+    ind = [x for x in ind if x[0] != "Response (R)"]
+
 # 同构原始值落盘（表 2 命名）——正文 §4 指标动态段的数字来源
 pd.DataFrame({
     "year": YEARS,
@@ -102,6 +108,10 @@ for i, (ax, (layer, name, series, color, pos)) in enumerate(zip(axes.ravel(), in
         ax.spines[s].set_color("#9aa7b2")
         ax.spines[s].set_linewidth(0.6)
     ax.margins(x=0.04)
+
+for _ax in axes.ravel():                      # R31: hide panels unused by the eight-item set
+    if not _ax.has_data():
+        _ax.set_visible(False)
 
 handles = [Line2D([], [], color=MUTED, lw=1.3, label="Annual value"),
            Line2D([], [], color=MUTED, marker="o", ms=3.2, lw=0,
