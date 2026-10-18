@@ -1,0 +1,17 @@
+﻿item,value,note
+esi_8ind_vs_archive_max_abs_delta,0.0,序列真源一致性校验（八/九指标 ESI）
+esi_9ind_vs_archive_max_abs_delta,5.551e-17,序列真源一致性校验（八/九指标 ESI）
+esi_8ind_vs_alpha_matrix_max_abs_delta,4.556e-07,序列真源一致性校验（八/九指标 ESI）
+n_schemes_with_flipped_best_model,3,八指标与九指标下「该方案 RMSE 最低的模型」不同的方案数
+schemes_with_flipped_best_model,"rolling_1step_from2015: GM(1,1) -> NGBM; rolling_5step_from2013: GM(1,1) -> ARIMA; loocv_leave_one_year_out: ARIMA -> GM(1,1)",发生翻转的方案（八指标 -> 九指标）
+gamma_most_common_8ind_loocv,0.1,LOOCV 折内最常被选中的 γ（八指标）
+gamma_most_common_9ind_loocv,0.2,LOOCV 折内最常被选中的 γ（九指标）
+n_folds_gamma_at_grid_bound_8ind,6,八指标下 γ 命中网格边界（0.05 或 1.95）的折数（跨全部方案计）
+n_folds_gamma_at_grid_bound_9ind,0,九指标下同一计数（对照）
+nine_ind_rerun_vs_archive_max_abs_rmse_delta,2e-06,九指标路径重算（ARIMA 折内 AIC 选阶）与归档 data/r28_rolling_origin.csv / r28_loocv.csv 的最大 RMSE 偏差（归档 CSV 仅存 6 位小数）——用于证明八/九指标之差只来自输入序列
+arima_protocol_best_model_holdout_2019_2023,ARIMA | ARIMA,"该方案最优模型（八指标）：ARIMA 固定 (0,1,1) | ARIMA 折内 AIC 选阶"
+arima_protocol_best_model_rolling_1step_from2013,"GM(1,1) | GM(1,1)","该方案最优模型（八指标）：ARIMA 固定 (0,1,1) | ARIMA 折内 AIC 选阶"
+arima_protocol_best_model_rolling_1step_from2015,"GM(1,1) | GM(1,1)","该方案最优模型（八指标）：ARIMA 固定 (0,1,1) | ARIMA 折内 AIC 选阶"
+arima_protocol_best_model_rolling_5step_from2013,"GM(1,1) | GM(1,1)","该方案最优模型（八指标）：ARIMA 固定 (0,1,1) | ARIMA 折内 AIC 选阶"
+arima_protocol_best_model_loocv_leave_one_year_out,ARIMA | ARIMA,"该方案最优模型（八指标）：ARIMA 固定 (0,1,1) | ARIMA 折内 AIC 选阶"
+arima_protocol_max_abs_rmse_delta_8ind,2.4e-05,"八指标下 ARIMA 固定 (0,1,1) 与折内 AIC 选阶两条协议之间，逐 方案×模型 RMSE 的最大绝对偏差"
