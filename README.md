@@ -272,41 +272,51 @@ pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   # pass 3 -> ty
 pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   # pass 4 -> resolves \ref/\label and \bibcite
 ```
 
-Expected: every pass exits `0`; the final pass reports **0 `LaTeX Warning`** and **22 pages**,
-`manuscript.pdf` 10,340,644 B (the 2.0 manuscript adds the Table 1 terrain row and the leave-one-target /
-fractional-cover sentences, which pushed the build from 21 to 22 pages).
+Expected (measured R38, 2026-10-18, empty directory): every pass exits `0`; the final pass reports
+**0 `LaTeX Warning`**, **0 `Citation … undefined`**, **0 `Package natbib Warning`**, **0 `Overfull \hbox`**
+and **37 pages**, `manuscript.pdf` 10,460,023 B — main text on pp. 1–30 with Appendix A starting on p. 31,
+followed by Appendices A–E, Data availability and References.
 
 Measured chain, empty directory, current source (`manuscript.tex` md5
-`AF55563B0C27ADE689F32FECAA891BA3`, `manuscript.bib` md5 `143E9487E76878FFA1AB78D0F555E429`); every pass
-exits `0`:
+`18D9EB82985473DCBE7130DD48ECF395`, `manuscript.bib` md5 `D32A3E3FFB995F382684103364AACF02`,
+`elsarticle.cls` and `elsarticle-harv.bst` taken from this repository, the twelve `figures/*.pdf` copied
+alongside); every pass exits `0`:
 
-| step | pages | bytes | `Citation … undefined` | undefined `\ref` | `LaTeX Warning` | `Label(s) may have changed` |
-|---|---|---|---|---|---|---|
-| pass 1 `pdflatex` | 19 | 10,329,520 | 49 (24 distinct keys) | 26 | 28 | yes |
-| `bibtex manuscript` | — | `.bbl` 13,026 B, md5 `F89C9CDE0354B9D2ECD2F1A535C6DBD3` | — | — | — | — |
-| pass 2 `pdflatex` | 21 | 10,340,763 | 49 (24 distinct keys) | 0 | 0 | no |
-| pass 3 `pdflatex` | 22 | 10,340,644 | 0 | 0 | 1 | yes |
-| pass 4 `pdflatex` | 22 | 10,340,644 | 0 | 0 | 0 | no |
+| step | pages | bytes | `Citation … undefined` | undefined `\ref` | natbib warning | `Overfull` | `Underfull` | `Label(s) may have changed` |
+|---|---|---|---|---|---|---|---|---|
+| pass 1 `pdflatex` | 35 | 10,451,381 | 44 | 89 | 50 | 0 | 6 | yes |
+| `bibtex manuscript` | — | `.bbl` **13,597 B**, md5 `E7F2353B9AB25B981011F38493F12607` | — | — | — | — | — | — |
+| pass 2 `pdflatex` | 37 | 10,460,892 | 44 | 0 | 51 | 0 | 6 | yes |
+| pass 3 `pdflatex` | 37 | 10,460,023 | 0 | 0 | 0 | 0 | 8 | yes |
+| pass 4 `pdflatex` | 37 | 10,460,023 | 0 | 0 | 0 | 0 | 8 | no |
 
-- **Two `pdflatex` passes alone are not enough.** With no `manuscript.bbl`, pass 1 gives **19 pages** with 49
-  `Citation … undefined` warnings over 24 distinct keys (plus 26 undefined `\ref`); pass 2 clears the `\ref`
-  warnings and resolves nothing else, so all 49 citation warnings remain and the bibliography is silently
-  missing — 19 pages, not 22. (The value previously recorded here, "45 undefined references", did not
-  reproduce; the measured count is 49 natbib warning occurrences over 24 distinct keys.)
-- Pass 2 of the sequence above grows the document to 21 pages — the bibliography now typesets — and still
-  warns about all 24 keys, because `\bibcite` is written into `manuscript.aux` only **during** that pass.
-- Pass 3 reaches the final **22 pages / 0 undefined** but still prints
+- **Two `pdflatex` passes alone are not enough.** With no `manuscript.bbl`, pass 1 gives **35 pages** with 44
+  `Citation … undefined` occurrences (plus 89 undefined `\ref`); pass 2 clears the `\ref` warnings and
+  resolves nothing else, so every citation warning remains and the bibliography is silently missing.
+- Pass 3 is the first pass with **0 undefined citations** — `\bibcite` entries enter `manuscript.aux` only
+  **during** pass 2 — but it still prints
   `LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.`; pass 4 is the first
-  fully clean log. `Overfull \hbox` 1 and `Underfull \hbox` 2 appear in **every** pass from pass 1 on — they
-  are pre-existing and are not symptoms of an unresolved build.
+  fully clean log. `Underfull \hbox` 6–8 appears in every pass and is pre-existing. `Overfull \hbox` is 0
+  throughout; the earlier 22-page lineage recorded `Overfull` 1 / `Underfull` 2, which are page-layout
+  artefacts of that length rather than build errors.
 
-**`manuscript.bbl` is now tracked** — added 2026-10-17 with `git add -f` (`.gitignore` line 31, `*.bbl`,
-still lists it, hence the forced add), 13,026 B, md5 `F89C9CDE0354B9D2ECD2F1A535C6DBD3`. A cold clone
-therefore carries the bibliography and compiles **without** `bibtex`; measured on a cold clone: pass 1 →
-21 pages, pass 2 → **22 pages, 0 undefined** (`Citation` and `\ref` both 0), with the same
-`Label(s) may have changed` note in pass 2 that a third pass clears. Keep `bibtex` in the recipe anyway: it is
-what makes the build independent of the committed `.bbl` and it is mandatory as soon as the bibliography
-changes.
+**`manuscript.bbl` is tracked and holds the elsarticle-harv bibliography** (refreshed in R38 on 2026-10-18
+from `bibtex manuscript` on the current source): **13,597 B, md5 `E7F2353B9AB25B981011F38493F12607`** — the
+same bytes the delivered PDF was built with. A cold clone therefore carries the bibliography in the delivered
+style and compiles **without** `bibtex`; measured on a cold clone of `manuscript.tex` + `manuscript.bib` +
+this `.bbl` + `figures/*.pdf`: pass 1 → 37 pages, pass 2 → 37 pages with `Citation` and `\ref` both 0 and the
+`Label(s) may have changed` note, pass 3 → **37 pages, 0 undefined, 0 natbib warning, 0 `LaTeX Warning`**, and
+the typeset reference block is **character-identical to the delivered `交付/2.0版本/论文_EN_2.0版本.pdf`**
+(5,523 characters, 25 entries; probes `Deng, J., 1982.` = 1 and `Deng J (1982)` = 0, against 0 and 1 in the
+JMS-style `.bbl` this replaced). Keep `bibtex` in the recipe anyway: it is what makes the build independent of
+the committed `.bbl` and it is mandatory as soon as the bibliography changes.
+
+> **Do not run `make_bbl_jms.py` for this manuscript.** Its output path is hard-coded to
+> `paper-code/manuscript.bbl` and its product is the **Journal of Mountain Science name-year** list
+> (`Deng J (1982)`), which is *not* the style of the delivered PDF (`\bibliographystyle{elsarticle-harv}`,
+> `manuscript.tex` line 788). Running it overwrites the tracked `.bbl` and makes a cold clone that skips
+> `bibtex` typeset a different reference list from the delivered PDF. It is kept only as the historical
+> generator of the JMS-format snapshot.
 
 > **Trap — verify in an empty directory, never inside the repository.** `pdflatex -output-directory=<dir>`
 > redirects only where files are **written**; TeX still **reads** `manuscript.aux` (and `manuscript.bbl`) from
@@ -601,55 +611,64 @@ Every archived value table is **UNCHANGED**, including `results_county_esi.csv`
 
 | file | md5 |
 |---|---|
-| `paper-code/manuscript.tex` | `AF55563B0C27ADE689F32FECAA891BA3` |
-| `paper-code/manuscript.bib` | `143E9487E76878FFA1AB78D0F555E429` |
-| `paper-code/manuscript.bbl` | `F89C9CDE0354B9D2ECD2F1A535C6DBD3` (**tracked** since 2026-10-17, 13,026 B — **superseded by commit `7da3c4f`; see the R37 note below**) |
-| `paper-code/manuscript.pdf` | `19DD5A37917DCFBE087AF193110143C1` (22 pages, 10,340,644 B; Git-ignored, see the `/ModDate` caveat below) |
+| `paper-code/manuscript.tex` | `18D9EB82985473DCBE7130DD48ECF395` (111,601 B, re-hashed 2026-10-18 R38) |
+| `paper-code/manuscript.bib` | `D32A3E3FFB995F382684103364AACF02` (9,536 B, 25 entries, re-hashed 2026-10-18 R38) |
+| `paper-code/manuscript.bbl` | `E7F2353B9AB25B981011F38493F12607` (**tracked**, 13,597 B, elsarticle-harv; refreshed in R38 from `bibtex` on the current source — see the R38 note below) |
+| `paper-code/manuscript.pdf` | Git-ignored; R38 empty-directory build = **37 pages, 10,460,023 B** (see §7.5; the md5 is not stable because pdfTeX stamps `/ModDate`/`/ID`) |
 | `投稿前优化/JMS CN 论文_R17修订版.docx` | `23122CF77EB6E71DA5A6CA6397A4F2DB` |
-| `交付/2.0版本/JMS CN 论文_2.0版本.docx` | `23122CF77EB6E71DA5A6CA6397A4F2DB` |
+| `交付/2.0版本/JMS CN 论文_2.0版本.docx` | `0578D7A8A77BF7726387750EF988ED8E` (24,651,432 B, R37) |
+| `交付/2.0版本/论文_EN_2.0版本.pdf` | `33E55AC34C81678D4D6B53194543FD4F` (37 pages, 10,466,320 B, R38 rebuild) |
 
-`manuscript.bib` carries the md5 recorded earlier; `manuscript.tex`, `manuscript.bbl`, the two `.docx`
-copies and `manuscript.pdf` were re-hashed on 2026-10-17 against the working tree (values in the table
-above; both `.docx` copies are byte-identical, 26,886,783 B). Earlier in the same lineage `manuscript.tex`
-was `C0E49A5C8E8F549FF5E8E307227CD878` and both `.docx` copies were
-`69D7325E6D650CC6407A6C8BD631F0D6`.
+The `manuscript.tex`/`manuscript.bib`/`manuscript.pdf` values were re-hashed on 2026-10-18 (R38) against the
+working tree. Earlier in the same lineage `manuscript.tex` was `AF55563B0C27ADE689F32FECAA891BA3` with
+`manuscript.bib` `143E9487E76878FFA1AB78D0F555E429` and a 22-page / 10,340,644 B `manuscript.pdf`; the
+`.docx` rows above were `23122CF77EB6E71DA5A6CA6397A4F2DB` / 26,886,783 B before the R29–R37 Chinese-manuscript
+rounds, and `69D7325E6D650CC6407A6C8BD631F0D6` before R29.
 
-> **R37 note (2026-10-18) — the tracked `manuscript.bbl` is a JMS-style residual, not the `.bbl` behind the
-> delivered PDF.** Measured this round: the file actually tracked at `paper-code/manuscript.bbl` is
-> **6,139 B, md5 `F922A6E21EAD9300B1B9BDC500957F84`**, byte-identical to `_r29_build/manuscript.bbl` — i.e.
-> the **Journal of Mountain Science name-year** output of `make_bbl_jms.py` (its output path is hardcoded to
-> `paper-code/manuscript.bbl`, line 20), the R29 stage recorded in item 7 of the R29 change log below. The
-> 13,026 B / `F89C9CDE0354B9D2ECD2F1A535C6DBD3` figures in the table above and in Stage 5 predate commit
-> `7da3c4f`, which replaced that file, so both of those records are stale.
+> **R38 note (2026-10-18) — the `manuscript.bbl` style mismatch is resolved.** The file that was tracked
+> before this round was **6,139 B, md5 `F922A6E21EAD9300B1B9BDC500957F84`** — the **Journal of Mountain
+> Science name-year** output of `make_bbl_jms.py` (hard-coded output path `paper-code/manuscript.bbl`), the
+> R29 residual documented in the R37 note. It did **not** match the delivered PDF, which typesets
+> `\bibliographystyle{elsarticle-harv}` (`manuscript.tex` line 788; line 16 keeps
+> `\setcitestyle{aysep={ }}` so in-text citations stay JMS-like): in the delivered
+> `交付/2.0版本/论文_EN_2.0版本.pdf` — md5 `23B6977FF01C407F0676583793D09C60` when this note was written,
+> now archived as `交付/2.0版本/_旧版_2.0_R36.pdf`; the R38 rebuild `33E55AC34C81678D4D6B53194543FD4F`
+> re-typesets the same reference list — `Deng, J., 1982.` and
+> `Althobaiti, Z.F., Shabri, A., 2022.` each occur once while the JMS forms `Deng J (1982)` and
+> `Althobaiti ZF, Shabri A (2022)` occur **0** times, and the reverse held in the tracked `.bbl`. A cold
+> clone that skipped `bibtex` — the property commit `c72919e` added the file for — therefore typeset a
+> different reference list from the delivered PDF.
 >
-> The delivered PDF does **not** use it. `manuscript.tex` line 788 is `\bibliographystyle{elsarticle-harv}`
-> (line 16 keeps `\setcitestyle{aysep={ }}`, so in-text citations stay JMS-like), and the delivered
-> `交付/2.0版本/论文_EN_2.0版本.pdf` (md5 `23B6977FF01C407F0676583793D09C60`) typesets its reference list in
-> **Elsevier Harvard** style: `Deng, J., 1982.` and `Althobaiti, Z.F., Shabri, A., 2022.` each occur once,
-> while the JMS forms `Deng J (1982)` and `Althobaiti ZF, Shabri A (2022)` occur **0** times; the reverse
-> holds in the tracked `.bbl`. Consistently, every delivery build run in an empty directory produced an
-> elsarticle-harv `.bbl` — 13,595 B / `9CF4B06C30746E984CBB13A94F812973` (`_r31`–`_r33b`) and 13,597 B /
-> `E7F2353B9AB25B981011F38493F12607` (`_r36b`/`_r36c`, the build behind the delivered PDF).
->
-> Consequence and disposition: a cold clone that skips `bibtex` — the purpose commit `c72919e` added the file
-> for — would typeset a **JMS-styled** reference list that does not match the delivered PDF; reproducing the
-> delivered output requires `bibtex` (or a refreshed `.bbl`). The file is **left in place, unmodified and not
-> deleted**, because it is Git-tracked and removing it would break the documented two-pass cold-start compile.
-> Deciding how to resolve the style mismatch — refresh the tracked `.bbl` from `bibtex`, or drop it and make
-> `bibtex` mandatory — is a deliberate follow-up, not part of R37.
+> **Resolution (option ① of the two considered): the tracked `.bbl` was regenerated in elsarticle-harv
+> style, not deleted.** `bibtex manuscript` was run on the current `manuscript.tex`/`manuscript.bib` in an
+> empty directory and its output — **13,597 B, md5 `E7F2353B9AB25B981011F38493F12607`**, identical to the
+> `_r36b`/`_r36c` build behind the delivered PDF — now *is* the tracked `paper-code/manuscript.bbl`. The
+> alternative (delete the file and make `bibtex` mandatory) was rejected: it would break the documented
+> cold-start compile and fail *silently* (35 pages, no bibliography, 44 undefined citations) for anyone who
+> runs only `pdflatex`, whereas a wrong-style bibliography compiles cleanly and is easy to miss. The `.bbl`
+> is generated output, not authored text, so refreshing it invents nothing. Verification: a second empty
+> clone holding `manuscript.tex` + `manuscript.bib` + the refreshed `.bbl` + `figures/*.pdf` compiles with
+> **no `bibtex` at all** to 37 pages with 0 undefined citations, 0 undefined `\ref`, 0 natbib warnings and 0
+> `LaTeX Warning` in three passes, and its reference block is character-identical (5,523 characters, 25
+> entries) to the delivered PDF's. `make_bbl_jms.py` is retained but must **not** be run for this manuscript
+> (see the note under §3 Stage 5).
 
-`manuscript.pdf` (Git-ignored, so Git holds no version of it) was **rebuilt on 2026-10-17** in an empty
-directory from the current `manuscript.tex` by the §7.5 sequence: **22 pages, 10,340,644 B**, md5
-`19DD5A37917DCFBE087AF193110143C1` (page count confirmed independently with `pypdf`: 22). The file it
-replaced was `50804CAC60AA5D31752015DCCDAF3803` (22 pages, 10,339,019 B) and predated the last
-`manuscript.tex` edits, so it did not correspond to the committed source; it was overwritten without being
-archived. **A PDF md5 is not a stable fingerprint of the source:** pdfTeX stamps a fresh `/ModDate` (and
-with it a fresh `/ID`) into every build, so two consecutive `pdflatex` runs on an already-settled tree give
-the same page count and the same byte count but different md5 — measured on the current source:
+> **R37 note (2026-10-18) — historical.** R37 measured the mismatch (tracked `.bbl` 6,139 B /
+> `F922A6E21EAD9300B1B9BDC500957F84`, JMS name-year, versus the delivered PDF's elsarticle-harv list) and
+> deliberately left it unresolved; see `审稿意见/R37-2026-10-18-中文稿D4D5修复报告.md`. **R38 resolved it** —
+> the note directly above records the refreshed tracked `.bbl` and its verification, so the disposition
+> paragraph that stood here ("left in place … a deliberate follow-up, not part of R37") no longer applies.
+
+`manuscript.pdf` (Git-ignored, so Git holds no version of it) currently holds the **R38 empty-directory
+build (2026-10-18)**: **37 pages, 10,460,023 B**, the output of pass 4 of the §7.5 sequence on the current
+source. The 22-page / 10,340,644 B build of 2026-10-17 is superseded by the R29–R36 text and figure rounds.
+**A PDF md5 is not a stable fingerprint of the source:** pdfTeX stamps a fresh `/ModDate` (and with it a
+fresh `/ID`) into every build, so two consecutive `pdflatex` runs on an already-settled tree give the same
+page count and the same byte count but different md5 — measured earlier on a 22-page source:
 `6296614359CD811E14E924EEEFD1BC5F` and `CFBC625498A7E6B121DD7347AA3772F2`, whose only byte difference is the
-`/ModDate`/`/ID` region. Use **22 pages / 10,340,644 B / 0 undefined citations and 0 undefined `\ref`** as
+`/ModDate`/`/ID` region. Use **37 pages / 10,460,023 B / 0 undefined citations and 0 undefined `\ref`** as
 the reproducible checks. A byte-reproducible md5 needs a pinned clock: with
-`$env:SOURCE_DATE_EPOCH='1780000000'` the same source twice produced
+`$env:SOURCE_DATE_EPOCH='1780000000'` the same (2026-10-17) source twice produced
 `00427DB708D163E2A154AB0CB3B835E6` at 10,340,632 B.
 
 ### 7.5 LaTeX build
@@ -678,21 +697,46 @@ warnings in pass 2: 0        Output written on manuscript.pdf (22 pages, 1033901
 manuscript.pdf md5: 50804CAC60AA5D31752015DCCDAF3803
 ```
 
-Current rebuild (2026-10-17; `manuscript.tex` md5 `AF55563B0C27ADE689F32FECAA891BA3`), empty directory,
-`bibtex` included — the same per-pass table is in §3 Stage 5:
+Current rebuild (2026-10-18 R38; `manuscript.tex` md5 `18D9EB82985473DCBE7130DD48ECF395`,
+`manuscript.bib` md5 `D32A3E3FFB995F382684103364AACF02`), empty directory, `bibtex` included — the same
+per-pass table is in §3 Stage 5:
 
 ```
-pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 1, exit 0)   19 pages, 10329520 bytes
-bibtex manuscript                                                 (exit 0)            manuscript.bbl 13026 bytes, md5 F89C9CDE0354B9D2ECD2F1A535C6DBD3
-pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 2, exit 0)   21 pages, 10340763 bytes, 49 citation warnings
-pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 3, exit 0)   22 pages, 10340644 bytes, 0 undefined, 1 LaTeX Warning (Label(s) may have changed)
-pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 4, exit 0)   22 pages, 10340644 bytes, 0 LaTeX Warning
-manuscript.pdf md5: 19DD5A37917DCFBE087AF193110143C1      (22 pages re-checked with pypdf)
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 1, exit 0)   35 pages, 10451381 bytes
+bibtex manuscript                                                 (exit 0)            manuscript.bbl 13597 bytes, md5 E7F2353B9AB25B981011F38493F12607
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 2, exit 0)   37 pages, 10460892 bytes, 44 citation warnings
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 3, exit 0)   37 pages, 10460023 bytes, 0 undefined, 1 LaTeX Warning (Label(s) may have changed)
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 4, exit 0)   37 pages, 10460023 bytes, 0 LaTeX Warning
 ```
 
-The first three records above are historical two-pass builds kept verbatim; the current rebuild needed four
-`pdflatex` passes plus `bibtex`, and the repository `manuscript.pdf` now holds pass 4's output. Every build
-listed in this section carries the same `Overfull \hbox` 1 / `Underfull \hbox` 2 count.
+Second R38 build — a cold clone that never runs `bibtex`, holding the tracked `.bbl` — settles in **three**
+passes:
+
+```
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 1, exit 0)   37 pages, 10457744 bytes
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 2, exit 0)   37 pages, 10460023 bytes, 0 undefined, 1 LaTeX Warning (Label(s) may have changed)
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 3, exit 0)   37 pages, 10460023 bytes, 0 LaTeX Warning
+```
+
+The earlier records above are historical two-pass builds kept verbatim. The repository `manuscript.pdf`
+holds the pass-4 output of the first (2026-10-18) build. `Overfull \hbox` is 0 in the R38 builds;
+`Underfull \hbox` is 6–8, against 1/2 in the 22-page lineage.
+
+Delivery build of the same round (Fig. 10 caption fix, real author block written by
+`sync_author_block.py --write`; inputs: `manuscript.tex` md5 `E0D5B8108A8D3DDD8954F6C90D4B31AE`,
+`manuscript.bib`, `elsarticle.cls`, `elsarticle-harv.bst`, the twelve `figures/*.pdf`), empty directory:
+
+```
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 1, exit 0)   10,456,053 B
+bibtex manuscript                                                 (exit 0)            manuscript.bbl 13,597 B, md5 E7F2353B9AB25B981011F38493F12607
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 2, exit 0)   10,467,194 B
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 3, exit 0)   37 pages, 10,466,320 B, 1 LaTeX Warning (Label(s) may have changed)
+pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex   (pass 4, exit 0)   37 pages, 10,466,320 B, 0 LaTeX Warning
+```
+
+Delivered as `交付/2.0版本/论文_EN_2.0版本.pdf`, **37 pages, 10,466,320 B, md5
+`33E55AC34C81678D4D6B53194543FD4F`** (`[Author]`, `[email]`, `[Affiliation]` each occur 0 times),
+superseding `_旧版_2.0_R36.pdf` (`23B6977FF01C407F0676583793D09C60`).
 
 ---
 
@@ -766,8 +810,11 @@ untracked at that time and are tracked now.
 ## 10. Directory layout
 
 - `manuscript.tex/.bib/.bbl` — manuscript source (elsarticle, author-year); all three are tracked, so a
-  clone compiles without `bibtex` (build order and traps: §3 Stage 5, evidence: §7.5); `manuscript.pdf` is
-  Git-ignored
+  clone compiles without `bibtex` (build order and traps: §3 Stage 5, evidence: §7.5); the tracked `.bbl`
+  is the **elsarticle-harv** output of `bibtex` on the current `.bib` (13,597 B, md5
+  `E7F2353B9AB25B981011F38493F12607`, R38) and matches the delivered PDF's reference list;
+  `manuscript.pdf` is Git-ignored. `make_bbl_jms.py` (JMS name-year snapshot) must not be run — see the
+  note in §3 Stage 5.
 - `data/` — processed climate, land cover, county and result CSVs (the numeric source of every figure/table)
 - `data/cru/` — CRU TS 4.10 raw grids (Git-ignored, ~2.4 GB)
 - `_raw/lc_data/` — CLCD 30 m GeoTIFF (Git-ignored, ~810 MB)
@@ -919,10 +966,16 @@ is therefore not claimed.
    rendered in Springer name-year style — `Author A, Author B (2022) Title. J Mt Sci 17(11):
    2591–2610. https://doi.org/...`, no terminal period, more than three authors abbreviated to
    `et al.`. No installed `.bst` provides this format (`spbasic.bst`/`spphys.bst`/`spmpsci.bst` are
-   absent from this TeX distribution), so `manuscript.bbl` is generated from the single source of
-   truth `manuscript.bib` by **`make_bbl_jms.py`**. Build order:
+   absent from this TeX distribution), so an interim R29 stage generated the reference list from the
+   single source of truth `manuscript.bib` with **`make_bbl_jms.py`**, build order
    `pdflatex → bibtex manuscript → python make_bbl_jms.py → pdflatex → pdflatex`
-   (bibtex overwrites the `.bbl`, so the generator must run after it). Four never-cited entries
+   (bibtex overwrites the `.bbl`, so the generator must run after it).
+   **Superseded in R38:** the delivered manuscript does **not** use JMS name-year — `manuscript.tex`
+   line 788 sets `\bibliographystyle{elsarticle-harv}` and the delivered
+   `交付/2.0版本/论文_EN_2.0版本.pdf` typesets `Deng, J., 1982.`, not `Deng J (1982)`. The canonical
+   build order is therefore the plain four-step sequence in §3 Stage 5 and **`make_bbl_jms.py` must not
+   be run**: it writes JMS style straight to `paper-code/manuscript.bbl` and would clobber the tracked
+   elsarticle-harv `.bbl` that a `bibtex`-free cold clone relies on. Four never-cited entries
    (`dl_conservation_bio_2023`, `du2024dpsir`, `earlywarning_grassland2024`,
    `qilian_desertification_gee`) were deleted from the `.bib`; `CO2` in the NGBM title became
    `CO$_2$`; the Lyu et al. (2026) entry gained its issue number; and the CLCD entry records
@@ -960,3 +1013,47 @@ is therefore not claimed.
    Figure 8/9 panels were not redrawn (captions were corrected instead); 32 of the 37 pages were
    machine-audited rather than read page by page by a human; and the 300 dpi TIFF figure set for
    the submission system was not regenerated.
+
+## Change log — R38 revision (2026-10-18)
+
+1. **The tracked `manuscript.bbl` now matches the delivered PDF.** Refreshed from `bibtex manuscript`
+   in an empty directory: **13,597 B, md5 `E7F2353B9AB25B981011F38493F12607`**, replacing the 6,139 B /
+   `F922A6E21EAD9300B1B9BDC500957F84` JMS name-year residual. A cold clone that skips `bibtex` now
+   typesets the same reference list as `交付/2.0版本/论文_EN_2.0版本.pdf`. Full evidence: §3 Stage 5 and
+   §7.4/§7.5. `make_bbl_jms.py` is retained but must not be run (it writes JMS style to the same path).
+2. **Reference-list verification (measured, not asserted).** `bibtex` output; a bibtex-free three-pass
+   clone build (37 pages, 0 undefined citations, 0 `\ref`, 0 natbib warnings, 0 `LaTeX Warning`); the
+   typeset reference block is character-identical to the delivered PDF's (5,523 characters, 25 entries);
+   `Deng, J., 1982.` occurs once and `Deng J (1982)` zero times.
+3. **The ten `figures/*.pdf` included by `manuscript.tex` are the ones the delivered PDF shows**
+   (the R29–R32 re-draws of Figs. 2, 3, 4, 5(α), 6(spatial), 7(weights) and 9 landed on 2026-10-18).
+   The manuscript's figure numbering is `1` study area, `2` DPSIR, `3` trends, `4` ESI series,
+   `5` weights, `6` α sensitivity, `7` spatial maps, `8` q statistics, `9` interaction, `10` obstacle —
+   note that the *file names* `fig4_alpha_sensitivity.*` and `fig3_esi_timeseries.*` do not follow that
+   numbering.
+4. **R30 item 10 partly superseded:** Figs. 3 and 6 are no longer nine-indicator — the versions in
+   `figures/` (regenerated 2026-10-18) are the eight-indicator / re-laid-out ones the delivered PDF
+   contains. The submission TIFF set is not produced from this repository; it lives in
+   `交付/2.0版本/图件/` and was brought into line with `figures/` in R38.
+5. **Page-by-page review of the delivered English PDF, and one caption fix.** The R38 round read 23 of
+   the 37 pages of `交付/2.0版本/论文_EN_2.0版本.pdf` at 200 dpi by eye (see
+   `审稿意见/R38-2026-10-18-收尾报告.md` for the per-page conclusions). Exactly one rendering-level
+   defect was found: the Fig. 10 caption carried an unmatched closing parenthesis
+   (`…\ref{sec:obstacle}); … phases).`). The caption was corrected to
+   `… (2005--2023); … \ref{sec:obstacle}; … phases.` and the deliverable was rebuilt through the §3
+   Stage 5 sequence with the real author block (`sync_author_block.py --write`, then
+   `--placeholder` to restore the public-tree placeholders). New deliverable:
+   **37 pages, 10,466,320 B, md5 `33E55AC34C81678D4D6B53194543FD4F`**; the previous file is archived
+   as `交付/2.0版本/_旧版_2.0_R36.pdf` (`23B6977FF01C407F0676583793D09C60`). Verification: all four
+   passes exit 0, the final log has 0 undefined citations, 0 undefined `\ref`, 0 natbib warnings,
+   0 `LaTeX Warning`, 0 `Overfull`, 8 `Underfull`; `[Author]`/`[email]`/`[Affiliation]` occur 0 times;
+   and a page-by-page text comparison against the archived PDF differs on page 27 only, in exactly the
+   three tokens of the parenthesis fix.
+6. **Two content-level findings handed over instead of applied** (both are shared with the Chinese
+   twin, which this round did not touch): the §4.4 clause "about one third of the NGBM slope" no longer
+   matches its own numbers (0.469→0.448 versus 0.424→0.380 is 0.48, i.e. about half; the "third" was
+   correct for the nine-indicator values that the R29 rewrite replaced), and §5.3 quotes the
+   plateau-phase cropland obstacle as 0.206 where §4.10 gives 0.218 for the eight-indicator primary
+   (0.206 is the archived nine-indicator value). Both sentences exist verbatim in
+   `交付/2.0版本/JMS CN 论文_2.0版本.docx`, so the correction belongs in one pass over both files —
+   see the R38 report for the ready-to-apply wording.
