@@ -1,7 +1,7 @@
 """Recompute the corrected 2.2 analysis from committed inputs.
 
 Writes scientific results to data/r47_*.csv. Logs, bootstrap paths and diagnostic
-figures are directed to QILIAN_WORK (default ../ChatGPT/revision_2.2_2026-10-20).
+figures are directed to QILIAN_WORK (default: ./work).
 Main forecast validation is conditional on the retrospectively reconstructed
 eight-indicator index, with rolling five-step errors defining mixture weights.
 No leave-one-year-out score is used. Spatial shifts are exhaustive alignment
@@ -22,7 +22,7 @@ from scipy import stats
 warnings.filterwarnings('ignore',category=UserWarning)
 P=Path(__file__).resolve().parent
 D=P/'data'
-W=Path(os.environ.get('QILIAN_WORK',P.parent/'ChatGPT/revision_2.2_2026-10-20'))
+W=Path(os.environ.get('QILIAN_WORK',P.parent/'work'))
 W.mkdir(parents=True,exist_ok=True)
 sys.path.insert(0,str(P))
 import r28_core as C

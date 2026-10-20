@@ -40,7 +40,7 @@ def main():
         low=f.read_text(encoding='utf-8',errors='replace').lower()
         return not any(b in low for b in BANNED)
     files=[f for f in files if scrubbed(f)]
-    files += [P/n for n in ['manuscript.tex','manuscript.bib','manuscript.bbl','README.md','README_2.2.md']]
+    files += [P/n for n in ['manuscript.tex','manuscript.bib','manuscript.bbl','README.md','README_county_esi.md']]
     files+=list((P/'data').glob('*.csv'))+list((P/'data').glob('*.json'))+list((P/'data').glob('*.geojson'))
     files+=list((P/'data').glob('*.npy'))+list((P/'data').glob('*.npz'))
     files+=list((P/'eco_security').glob('*.py'))

@@ -15,7 +15,7 @@ NGBM 起点低 0.054，读者会质疑"投影起点跳变"。
 import numpy as np
 import pandas as pd
 
-BASE = r"D:\比赛\论文\paper-code"
+BASE = str(Path(__file__).resolve().parent)
 GAMMA = 0.15  # 八指标主规格、仅训练期 SSE 所选（rate-limiting，见 r29 checks）
 
 

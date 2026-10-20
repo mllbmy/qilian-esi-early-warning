@@ -1,85 +1,76 @@
-# Current analysis: manuscript version 2.2
+# Ecological security early warning in the Qilian Mountain region, China
 
-The paper studies ecological security in the Qilian Mountain region using a
-retrospectively reconstructed regional index and a separate spatial index.
-The current results are `data/r47_*.csv`. Earlier round tables are retained as
-archived analyses and sensitivity inputs; their forecast scores and intervals
-must not be substituted for the current tables.
+Reproduction materials for the manuscript *Ecological security early warning in the
+Qilian Mountain region, China: temporal dynamics, forecasts, and spatial
+associations*.
 
-## Recompute the corrected analyses
+The study builds an eight-indicator Driving-Pressure-State-Impact (DPSI) system for the
+Qilian Mountain region (2005-2023), weights it with a combined AHP-entropy scheme
+(alpha = 0.4), builds the ecological security index (ESI), forecasts it with GM(1,1),
+NGBM and ARIMA(0,1,1) responses and an inverse-RMSE mixture, and attributes the spatial
+pattern with a GeoDetector on a separate six-indicator index.
 
-Python 3.13 with numpy, pandas, scipy, statsmodels and matplotlib is required.
-The exact producing environment is recorded in `data/r47_environment.json`.
-From this directory:
+## Contents
+
+| path | content |
+|---|---|
+| `manuscript.tex`, `manuscript.bib`, `manuscript.bbl` | manuscript source (LaTeX, JMS house style) and bibliography |
+| `data/` | processed inputs, weights, model outputs, validation and sensitivity tables; the tables used in the manuscript are `data/r47_*` |
+| `figures/` | vector figure masters (PDF) plus the journal figure audit |
+| `run_r47_revision.py` | end-to-end analysis: normalization, combined weighting, ESI series, grey and ARIMA responses with rolling-origin validation, mixture weights, conditional bootstrap, obstacle diagnosis, spatial attribution |
+| `forecast_models.py` | grey (GM(1,1), NGBM) and ARIMA response implementations |
+| `make_r47_figures.py`, `make_equations.py`, `make_bbl_jms.py` | figure masters, equation table and bibliography builder |
+| `run_county_esi.py`, `README_county_esi.md` | static county-level relative index (Table 6) |
+| `eco_security/` | shared utilities |
+
+## Reproducing the reported results
+
+Python 3.13 with numpy, pandas, scipy, statsmodels and matplotlib; the exact producing
+environment is recorded in `data/r47_environment.json`.
 
 ```powershell
 python run_r47_revision.py --stage all --bootstrap 2000
 python make_r47_figures.py
-python make_figure_audit.py
+python make_equations.py
 python make_bbl_jms.py
-python verify_refs_jms.py
 ```
 
-`forecast_models.py` is the canonical response implementation. Accumulated grey
-response time starts at zero and the first forecast follows the last fitted
-increment without a gap. NGBM excludes the singular exponent 1. Validation uses
-one 2018 five-year holdout, ten one-year origins and six five-year origins.
-Only rolling-five-year errors determine mixture weights. No deleted-year
-score is used. All evaluation targets retain the full-period reconstruction;
-the exercise does not establish real-time forecasting performance.
+`run_r47_revision.py` writes the `data/r47_*.csv` tables; `make_r47_figures.py` writes
+the figure masters in `figures/`. Logs and cached intermediates go to the directory
+named by the optional `QILIAN_WORK` environment variable.
 
-The bootstrap refits the same estimator, including exponent selection, on
-logit-scale block-resampled histories, then accumulates future logit disturbances.
-Its central envelopes and grade shares are conditional simulation summaries.
-Spatial reference fractions enumerate all 1,913 nonidentity periodic translations
-of the 29 by 66 lattice. They describe alignment under periodic boundaries.
-The correlation effective-sample-size approximation is used for Pearson r only.
-Obstacles use the primary eight-indicator normalized matrix and weights directly.
+## Implementation notes
 
-`QILIAN_WORK` controls logs, cache and diagnostic output; the default is
-`../ChatGPT/revision_2.2_2026-10-20`. Font rendering uses Times New Roman.
-The source figure PDFs are the files in `figures/`; current figure generators
-update Figures 2, 4, 7, 8 and 10. Other figures retain their existing generators.
+Choices that matter for reproducing the reported numbers:
 
-## Manuscript and submission build
+- Weighting: AHP weights (Table 3) are combined with entropy weights from the
+  maximum-entropy formula; the combination parameter is alpha = 0.4.
+- Grey responses: accumulated response time starts at zero, so the first forecast
+  follows the last fitted increment without a gap; the NGBM exponent 1 is singular and
+  excluded from the search.
+- Validation: one 2018 five-year holdout, ten one-year origins and six five-year
+  origins; only the rolling five-year errors enter the mixture weights.
+- Evaluation targets: every validation target is the full-period reconstruction, so the
+  exercise is a retrospective evaluation of the fitted process rather than a real-time
+  forecasting experiment.
+- Bootstrap: the full estimator, including exponent selection, is refitted on
+  logit-scale block-resampled histories and future logit disturbances are accumulated;
+  the reported envelopes and grade shares are conditional simulation summaries.
+- Spatial analysis: statistics use a separate six-indicator index evaluated at 1,914
+  lattice points (29 x 66, 0.15 degrees); the shift fractions enumerate all 1,913
+  non-identity periodic translations of that lattice and describe alignment under
+  periodic boundaries.
+- Effective sample size: the correlation-variance approximation is applied to the
+  Pearson correlation only, not to the spatially weighted statistics.
+- Obstacle diagnosis uses the primary eight-indicator normalized matrix and weights.
 
-`manuscript.tex` and `manuscript.bib` are the sources. **Never run bibtex**:
-`make_bbl_jms.py` generates the JMS-style `manuscript.bbl` directly.
-Compile with pdflatex until references settle. When compiling in a separate work
-directory, put that directory first in `TEXINPUTS` to avoid stale source-directory
-auxiliary files. `build_release.py` copies figure masters programmatically,
-packages processed-data reproduction sources, and creates checksum manifests.
+## Data sources
 
-The Word builder is `tools/docx_build/build_docx.py`. Its main document has no
-author identity. `build_front_matter.py` reads the private, excluded
-`author_local.py` for the Title Page and Cover Letter. `QILIAN_VERSION` defaults
-to 2.2. The system with PyMuPDF can be selected with `QILIAN_PDF_PYTHON` when the
-Word interpreter lacks that package. Word on Windows can export the review PDF
-with `tools/docx_build/export_review_pdf.ps1`.
+Climate: CRU TS 4.10. Land cover: China Land Cover Dataset (CLCD) v1.0, annual
+collection (DOI 10.5281/zenodo.12779975; the 2020 tile used here is record 8176941).
+Terrain: Copernicus DEM GLO-90. Independent vegetation product: NOAA CDR AVHRR/VIIRS
+NDVI. All are openly available from their providers.
 
-The anonymous mirror currently requires the author's real URL. Set it with
-`python set_anon_repo.py <https://anonymous.4open.science/r/actual-id>` and rebuild.
-Local packaging does not upload data, change Zenodo access or publish a mirror.
+## License
 
-## Data and reproduction boundary
-
-`data/*.csv` contains the processed inputs and outputs. The regional series uses
-CRU TS 4.10 climate and CLCD regional proportions from 2005, 2010, 2015, 2020 and
-2023, with intervening years reconstructed. The processed spatial inputs cover
-1,914 points; independent NDVI has 1,785 valid points. County values are centroid
-window estimates. `r28_core.py` reconstructs the regional specifications from
-the processed inputs without modifying historical ESI values.
-
-Raw rasters are not included in the submission reproduction ZIP. CRU grids are
-available from https://crudata.uea.ac.uk/cru/data/hrg/ . CLCD's annual collection
-is https://doi.org/10.5281/zenodo.12779975 ; the 2020 tile used locally is record
-8176941, file `CLCD_v01_2020_albert.tif`, 810739687 bytes, MD5
-`1274285BB18F9B1D443A3CC906B1310C`. Other four epochs are supplied as processed
-regional values; rebuilding them from raw data requires the corresponding tiles.
-Copernicus DEM GLO-90, NOAA CDR NDVI and Natural Earth support terrain, vegetation
-and background-map analyses. Historical raw-data readers additionally require
-their geospatial dependencies and the source datasets in their documented paths.
-
-The reproduction package omits author metadata, Git history, credentials,
-delivery documents and internal review logs. It includes archived round scripts
-for provenance; `run_r47_revision.py` is the current numerical entry point.
+MIT; see `LICENSE`.

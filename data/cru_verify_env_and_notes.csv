@@ -1,8 +1,8 @@
 ﻿item,value
 QILIAN_CRU_DATA,(未设置；回退 data/cru)
 QILIAN_LC_DATA,(未设置；回退 _raw/lc_data)
-CRU_DIR(实际使用),D:\比赛\论文\paper-code\data\cru
-LC_DIR(实际使用),D:\比赛\论文\paper-code\_raw\lc_data
+CRU_DIR(实际使用),data\cru
+LC_DIR(实际使用),_raw\lc_data
 研究期,2005-2023（19 年，以 run_esi_regional.py L20 为准）
 open_engine_used,cru_ts4.10.2001.2010.pre.dat.nc -> scipy
 open_engine_used,cru_ts4.10.2001.2010.tmp.dat.nc -> scipy

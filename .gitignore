@@ -76,3 +76,7 @@ tools/docx_build/poll_status.json
 _private_zenodo.json
 build_word_cn.py
 build_word_cn_final.py
+
+# Internal working notes, superseded builders and QC tools: local only, never published
+_internal/
+work/
