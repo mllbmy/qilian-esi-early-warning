@@ -2,6 +2,7 @@
 """Build the JMS submission Title Page and Cover Letter (both carry identity).
 Output: current_release.DELIVERY (Title Page and Cover Letter)
 Identity values come from paper-code/author_local.py (git-ignored)."""
+import datetime
 import os
 import re
 import sys
@@ -34,7 +35,7 @@ def anon_repo():
 ANON_REPO = anon_repo()
 TITLE = ("Ecological security early warning in the Qilian Mountain region, China: "
          "temporal dynamics, forecasts, and spatial associations")
-DATE = "October 20, 2026"
+DATE = "%s %d, %d" % (datetime.date.today().strftime("%B"), datetime.date.today().day, datetime.date.today().year)
 
 
 def new_doc():
@@ -90,9 +91,7 @@ def title_page():
     p(d, "The author thanks the providers of the open datasets used in this study - "
          "CRU TS 4.10 (Climatic Research Unit, University of East Anglia), the China "
          "Land Cover Dataset (CLCD), Copernicus DEM GLO-90, the NOAA CDR AVHRR/VIIRS "
-         "NDVI product and Natural Earth - for making their data freely available. "
-         "No individual or organisation provided assistance that requires separate "
-         "acknowledgement.", after=10)
+         "NDVI product and Natural Earth - for making their data freely available.", after=10)
 
     p(d, "Ethics declarations", size=11, bold=True, before=6, after=4)
     items = [
@@ -116,7 +115,7 @@ def title_page():
                               "identifier is reported in the published version."),
         ("Author contributions", CREDIT_EN),
         ("Use of AI", "DeepSeek and ChatGPT were used to assist with "
-                      "manuscript drafting, language editing and analysis-code revision. The author "
+                      "manuscript drafting, language editing and code assistance. The author "
                       "reviewed and edited the content as needed and takes full "
                       "responsibility for the content of the publication."),
     ]
@@ -162,7 +161,7 @@ def cover_letter():
         "It combines an eight-indicator regional DPSI index, AHP-entropy weighting, "
         "three forecasting models and a separate six-indicator spatial analysis, "
         "using CRU TS climate and five CLCD land-cover epochs over 2005-2023.",
-        "The study contributes three results. Removing a redundant ecological-land "
+        "The study reports three results. Removing a redundant ecological-land "
         "indicator preserves all historical warning grades, whereas changing the "
         "derived grassland-change indicator alters both grades and the peak year. "
         "Retrospective rolling forecasts compare GM(1,1), NGBM and ARIMA with naive "
@@ -172,11 +171,9 @@ def cover_letter():
         "Finally, spatial target-overlap diagnostics distinguish associations that "
         "depend on index inputs, while an exhaustive periodic-shift reference and "
         "an independent NDVI comparison describe their spatial context.",
-        "The paper relates to the journal's interest in mountain environmental change "
-        "and conservation monitoring. It identifies monitoring priorities conditional "
-        "on index definition and spatial scale. The forecast evaluation concerns a "
-        "retrospectively reconstructed index; the conditional bootstrap envelope "
-        "describes the stated residual process and model mixture.",
+        "The paper concerns mountain environmental change and conservation monitoring, "
+        "and it identifies monitoring priorities conditional on index definition and "
+        "spatial scale.",
         "The analysis scripts, processed tables, model outputs and figure generators "
         "accompany the submission reproduction package and the anonymous review mirror "
         + ANON_REPO + ". The same code and processed tables are archived in a public "
@@ -186,7 +183,7 @@ def cover_letter():
         "There are no competing interests and no specific funding. Author identity "
         "and declarations appear on the separate Title Page. Figures are supplied "
         "as vector PDFs and tables are editable in Word. DeepSeek and ChatGPT assisted "
-        "with drafting, language editing and analysis-code revision; I reviewed the "
+        "with drafting, language editing and code assistance; I reviewed the "
         "work and take full responsibility for its content.",
         "Thank you for considering this manuscript.",
     ]
