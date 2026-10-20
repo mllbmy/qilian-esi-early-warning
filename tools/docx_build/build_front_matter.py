@@ -111,8 +111,9 @@ def title_page():
                               "the submission reproduction package and the anonymous "
                               "review mirror " + ANON_REPO + ". The regional land-cover "
                               "table contains five processed epochs; the 2020 tile "
-                              "supports direct raw-data reprocessing. The Zenodo review "
-                              "access link is supplied separately to the editorial office."),
+                              "supports direct raw-data reprocessing. The same code and "
+                              "processed tables are archived in a public repository; the persistent "
+                              "identifier is reported in the published version."),
         ("Author contributions", CREDIT_EN),
         ("Use of AI", "DeepSeek and ChatGPT were used to assist with "
                       "manuscript drafting, language editing and analysis-code revision. The author "
@@ -178,8 +179,8 @@ def cover_letter():
         "describes the stated residual process and model mixture.",
         "The analysis scripts, processed tables, model outputs and figure generators "
         "accompany the submission reproduction package and the anonymous review mirror "
-        + ANON_REPO + ". The restricted Zenodo review access link is supplied separately "
-        "to the editorial office.",
+        + ANON_REPO + ". The same code and processed tables are archived in a public "
+        "repository, whose persistent identifier will be given in the published version.",
         "The manuscript is original, has not been published, and is not under "
         "consideration elsewhere. I am the sole author and approve this submission. "
         "There are no competing interests and no specific funding. Author identity "
