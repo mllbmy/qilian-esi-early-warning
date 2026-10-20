@@ -176,6 +176,16 @@ DPSIR = [
     ("R", "Policy background (R)",
      [("Unweighted (qualitative)", "")]),
 ]
+import csv
+from current_release import PACKAGE, WORK
+with open(PACKAGE/'data/r47_primary_weights.csv',encoding='utf-8-sig',newline='') as fh:
+    _weights={r['indicator']:float(r['combined']) for r in csv.DictReader(fh)}
+_ids={'Precipitation':'X1_降水mm','Temperature':'X2_气温C','Grassland':'X3_草地占比%',
+      'Forest':'X4_森林占比%','Water':'X5_水域占比%','Barren/degraded land':'X6_裸地荒漠%',
+      'Cropland':'X7_农田占比%','Grassland change rate':'X8_草地变化率'}
+DPSIR=[(key,title,[(label,(meta.split('w =')[0]+'w = '+f'{_weights[_ids[label]]:.3f}')
+                      if label in _ids else meta) for label,meta in items])
+       for key,title,items in DPSIR]
 heights = [HDR + LH * len(ls) for _, _, ls in DPSIR]
 TOP_L, BOT_L = 113.0, 32.0
 GAP = (TOP_L - BOT_L - sum(heights)) / 4.0
@@ -203,7 +213,7 @@ y0_2 = pmodule(RX, RW_, y0_1 - r_gap, "2  Combined weighting",
 barrow_v(RX + RW_ / 2, y0_2 - 0.1, y0_2 - r_gap + 0.1, sw=1.3, hw=2.6)
 y0_3 = pmodule(RX, RW_, y0_2 - r_gap, "3  Ecological security index (ESI)",
                ["ESI = \u03a3 w\u1d62x\u1d62   (weighted normalized indicators)",
-                "annual, 2005\u20132023 \u00b7 regional + 11 counties"])
+                "regional annual index, 2005\u20132023"])
 barrow_v(RX + RW_ / 2, y0_3 - 0.1, y0_3 - r_gap + 0.1, sw=1.3, hw=2.6)
 
 # ④ 五级预警（标题条 + 彩色色带，与 fig3 完全一致）
@@ -238,9 +248,9 @@ barrow_v(RX + hw_ + hg + hw_ / 2, w4b - 0.1, bt + 0.1, sw=1.3, hw=2.6)
 y0_5 = pmodule(RX, hw_, bt, "5  Forecasting",
                ["NGBM vs GM(1,1) vs ARIMA", "rolling-origin backtest",
                 "2024\u20132028 projection"], lh=(18.0 - HDR) / 3)
-y0_6 = pmodule(RX + hw_ + hg, hw_, bt, "6  Spatial attribution",
-               ["County ESI (2020)", "Moran's I clustering",
-                "GeoDetector q-statistic"], lh=(18.0 - HDR) / 3)
+y0_6 = pmodule(RX + hw_ + hg, hw_, bt, "6  Spatial association",
+               ["Separate six-input indices", "Moran's I / GeoDetector",
+                "2020 land / mean climate"], lh=(18.0 - HDR) / 3)
 
 # ---- 左栏 → 右栏：横向块状大箭头 ----
 barrow_h(LX + LW_ + 0.2, RX - 0.2, 70.0, sw=2.2, hw=4.4)
@@ -251,9 +261,9 @@ ribbon(CX, 15.6, 66.0, 7.0, "Early-warning outputs", RED["banner"])
 OUT_GAP = 3.0
 OUT_W = (CW - 3.0 - 2 * OUT_GAP) / 3.0
 outs = [("Warning dynamics", "2005\u20132023 \u00b7 grade series", ML + 1.5),
-        ("Forecast 2024\u20132028", "NGBM \u00b7 bootstrap intervals",
+        ("Forecast 2024\u20132028", "Mixture / bootstrap envelope",
          ML + 1.5 + OUT_W + OUT_GAP),
-        ("Zonal management", "recommendations",
+        ("Monitoring priorities", "proposed applications",
          ML + 1.5 + 2 * (OUT_W + OUT_GAP))]
 for t, s, ox in outs:
     rect(ox, 4.2, OUT_W, 9.2, "white", EDGE, lw=0.8, z=2)
@@ -269,7 +279,7 @@ ax.plot([ML, fb_x], [8.8, 8.8], color=FB, lw=0.8, ls=(0, (4, 2.6)), zorder=2)
 ax.plot([fb_x, fb_x], [8.8, d_hdr], color=FB, lw=0.8, ls=(0, (4, 2.6)), zorder=2)
 ax.add_patch(Polygon([(fb_x, d_hdr - 0.9), (fb_x, d_hdr + 0.9),
                       (LX - 0.2, d_hdr)], closed=True, fc=FB, ec="none", zorder=3))
-txt(1.5, (8.8 + d_hdr) / 2, "management feedback", fs=FS_B, color=FB,
+txt(1.5, (8.8 + d_hdr) / 2, "proposed monitoring feedback", fs=FS_B, color=FB,
     style="italic", rot=90, fit=80.0)
 
 # ---------------- 落盘前实测：文本宽度不得超出所属模块 ----------------
@@ -286,6 +296,8 @@ if _over:
         print("[OVERFLOW] %.1f > %.1f mm : %s" % (w_mm, lim, s), file=sys.stderr)
     raise SystemExit("Fig.2 版式自检失败：%d 处文本超出模块内宽" % len(_over))
 
-jms_style.save(fig, "fig_dpsir_framework", outdir=FIG)
+fig.savefig(os.path.join(FIG,'fig_dpsir_framework.pdf'))
+_preview=WORK/'figure_previews';_preview.mkdir(parents=True,exist_ok=True)
+fig.savefig(_preview/'fig_dpsir_framework.png',dpi=170)
 plt.close(fig)
 print("[OK] figures/fig_dpsir_framework.pdf/.png  (16.00 cm, 8\u20139 pt TNR, 自检通过)")

@@ -97,32 +97,9 @@ def expit(z):
 # 模型（与 r29_forecast_8ind.py 逐字同口径）
 # ---------------------------------------------------------------------------
 def ngbm_core(x0, gamma, n_pred=N_FUT):
-    x0 = np.asarray(x0, float)
-    x1 = np.cumsum(x0)
-    z1 = 0.5 * (x1[1:] + x1[:-1])
-    if abs(gamma - 1.0) < 1e-9:
-        a, b = np.linalg.lstsq(np.column_stack([-z1, z1]), x0[1:], rcond=None)[0]
-        if abs(a) < 1e-12:
-            return None
-        c = x0[0] - b / a
-        xh = np.array([x0[0]] + [(1 - np.exp(-a)) * c * np.exp(-a * k)
-                                 for k in range(1, len(x0))])
-        fut = np.array([(1 - np.exp(-a)) * c * np.exp(-a * (len(x0) + k))
-                        for k in range(1, n_pred + 1)])
-        return fut, xh, (a, b, 1.0)
-    a, b = np.linalg.lstsq(np.column_stack([-z1, z1 ** gamma]), x0[1:], rcond=None)[0]
-    if abs(a) < 1e-12:
-        return None
-
-    def X1(t):
-        base = (x0[0] ** (1 - gamma) - b / a) * np.exp(-a * (1 - gamma) * t) + b / a
-        if base <= 0:
-            raise ValueError("negative base")
-        return base ** (1.0 / (1.0 - gamma))
-
-    xh = np.array([x0[0]] + [X1(k) - X1(k - 1) for k in range(1, len(x0))])
-    fut = np.array([X1(len(x0) + k) - X1(len(x0) + k - 1) for k in range(1, n_pred + 1)])
-    return fut, xh, (a, b, float(gamma))
+    """Compatibility helper using the corrected consecutive-index estimator."""
+    from forecast_models import ngbm as canonical_ngbm
+    return canonical_ngbm(x0, gamma, n_pred)
 
 
 def ngbm_try(x0, gamma, n_pred=N_FUT):
@@ -588,4 +565,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit("Historical round script. Current estimator, validation and bootstrap: "
+                     "python run_r47_revision.py --stage all --bootstrap 2000")

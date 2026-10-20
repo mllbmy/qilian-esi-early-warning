@@ -1,0 +1,4 @@
+﻿model,weight,basis_rmse,scheme,n_origins,n_predictions
+"GM(1,1)",0.419671706545,0.0391646969444,rolling5,6,30
+NGBM,0.183032690023,0.0897998887573,rolling5,6,30
+"ARIMA(0,1,1)",0.397295603432,0.0413704935594,rolling5,6,30

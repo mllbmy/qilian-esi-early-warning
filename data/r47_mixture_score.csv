@@ -1,0 +1,2 @@
+﻿scheme,model,rmse,mae,n_predictions,note
+rolling5,Mixture,0.0367749567416,0.0295544231799,30,same records used to estimate weights; descriptive score

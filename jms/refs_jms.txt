@@ -1,10 +1,12 @@
 Althobaiti ZF, Shabri A (2022) Prediction of CO2 emissions in Saudi Arabia using nonlinear grey Bernoulli model NGBM(1,1) compared with GM(1,1) model. J Phys Conf Ser 2259(1): 012011. https://doi.org/10.1088/1742-6596/2259/1/012011
 Bijl H, Heltai M (2022) A narrative review on the use of camera traps and machine learning in wildlife research. Columella 9(2): 47–69. https://doi.org/10.18380/szie.colum.2022.9.2.47
+Clifford P, Richardson S, Hemon D (1989) Assessing the significance of the correlation between two spatial processes. Biometrics 45(1): 123–134. https://doi.org/10.2307/2532039
 Deng J (1982) Control problems of grey systems. Syst Control Lett 1(5): 288–294. https://doi.org/10.1016/S0167-6911(82)80025-X
 Gao J, Pan N, Zhou D (2025) Integrating landscape ecological risk and ecosystem services for ecological zoning in the Qilian Mountain National Park. Ecosyst Health Sustain 11: 0441. https://doi.org/10.34133/ehs.0441
 Gao X, Huang X, Chang S, et al. (2023) Long-term improvements in water conservation functions at Qilian Mountain National Park, northwest China. J Mt Sci 20(10): 2885–2897. https://doi.org/10.1007/s11629-023-8034-5
 Harris I, Osborn TJ, Jones P, et al. (2020) Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Sci Data 7(1): 109. https://doi.org/10.1038/s41597-020-0453-3
 Hou M, Li L, Yu H, et al. (2024) Ecological security evaluation of wetlands in Changbai Mountain area based on DPSIRM model. Ecol Indic 160: 111773. https://doi.org/10.1016/j.ecolind.2024.111773
+Hyndman RJ, Athanasopoulos G (2021) Forecasting: principles and practice, 3 edn. Melbourne: OTexts. https://otexts.com/fpp3/ (Accessed on 20 October 2026)
 IPCC (2014) Climate Change 2014: Impacts, Adaptation, and Vulnerability. Part A: Global and Sectoral Aspects. Cambridge: Cambridge University Press.
 Jing X, Tao S, Hu H, et al. (2024) Spatio-temporal evaluation of ecological security of cultivated land in China based on DPSIR-entropy weight TOPSIS model and analysis of obstacle factors. Ecol Indic 166: 112579. https://doi.org/10.1016/j.ecolind.2024.112579
 Kerry RG, Montalbo FJP, Das R, et al. (2022) An overview of remote monitoring methods in biodiversity conservation. Environ Sci Pollut Res 29(53): 80179–80221. https://doi.org/10.1007/s11356-022-23242-y
@@ -12,6 +14,7 @@ Liu J, Cao X, Zhao L, et al. (2022) Spatiotemporal differentiation of land ecolo
 Liu Y, Wang C, Wang H, et al. (2023) An integrated ecological security early-warning framework in the national nature reserve based on the gray model. J Nat Conserv 73: 126394. https://doi.org/10.1016/j.jnc.2023.126394
 Lu X, Zhang J, Li X (2014) Geographical information system-based assessment of ecological security in Changbai Mountain region. J Mt Sci 11(1): 86–97. https://doi.org/10.1007/s11629-013-2293-5
 Lyu X, Li X, Wang K, et al. (2026) Anthropogenic activities amplify spatiotemporal variations in regional ecological security patterns dominated by natural factors: Evidence from the West Liaohe River Basin, China. J Arid Land 18(5): 752–773. https://doi.org/10.1016/j.jaridl.2026.05.002
+Mrkvicka T, Dvorak J, Gonzalez JA, et al. (2021) Revisiting the random shift approach for testing in spatial statistics. Spat Stat 42: 100430. https://doi.org/10.1016/j.spasta.2020.100430
 Ou Z, Zhu Q, Sun Y (2017) Regional ecological security and diagnosis of obstacle factors in underdeveloped regions: A case study in Yunnan Province, China. J Mt Sci 14(5): 870–884. https://doi.org/10.1007/s11629-016-4199-5
 Saaty TL (1980) The Analytic Hierarchy Process. New York: McGraw-Hill.
 Tong H, Shi P (2020) Using ecosystem service supply and ecosystem sensitivity to identify landscape ecology security patterns in the Lanzhou-Xining urban agglomeration, China. J Mt Sci 17(11): 2758–2773. https://doi.org/10.1007/s11629-020-6283-0

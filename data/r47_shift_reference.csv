@@ -1,0 +1,5 @@
+﻿factor,q,n_strata,n_nonidentity_shifts,reference_tail_fraction,reference_q025,reference_q50,reference_q975,assumption
+barren,0.802430648762,2,1913,0.000522466039707,8.64838575303e-05,0.0206755242755,0.202331660128,periodic boundary alignment reference; not an independently calibrated null
+grass,0.707709827751,2,1913,0.000522466039707,8.72862399879e-05,0.017551622509,0.169720675553,periodic boundary alignment reference; not an independently calibrated null
+precip,0.506016114121,4,1913,0.000522466039707,0.0103806132028,0.068193258837,0.3414993516,periodic boundary alignment reference; not an independently calibrated null
+temp,0.169738739558,4,1913,0.112852664577,0.00695186215918,0.0659353041383,0.273821415377,periodic boundary alignment reference; not an independently calibrated null

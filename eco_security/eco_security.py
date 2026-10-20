@@ -103,14 +103,16 @@ def gm11_forecast(x0: np.ndarray, n_pred: int = 5) -> tuple[np.ndarray, np.ndarr
     theta, *_ = np.linalg.lstsq(B, Y, rcond=None)  # theta = [a, b]
     a, b = theta
     # 拟合值（后验检验用）
-    x1_hat = (x0[0] - b / a) * np.exp(-a * np.arange(1, n + 1)) + b / a
+    # Accumulated response at t=0 is the initial observation. The last fitted
+    # difference is t=n-1; the first forecast below is t=n.
+    x1_hat = (x0[0] - b / a) * np.exp(-a * np.arange(n)) + b / a
     x0_hat = np.empty(n)
     x0_hat[0] = x0[0]
     x0_hat[1:] = np.diff(x1_hat)
     # 残差检验
     e = x0 - x0_hat
-    S1 = x0.std(ddof=1)
-    S2 = e.std(ddof=1) if n > 2 else 0.0
+    S1 = x0.std(ddof=0)
+    S2 = e.std(ddof=0) if n > 2 else 0.0
     C = S2 / S1 if S1 > 1e-12 else 0.0
     em = e.mean()
     P = np.mean(np.abs(e - em) < 0.6745 * S1) if S1 > 1e-12 else 1.0

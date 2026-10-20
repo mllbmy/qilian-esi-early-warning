@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """Build the JMS submission Title Page and Cover Letter (both carry identity).
-Output: 交付/2.1版本/Title_Page_JMS_2.1版本.docx and Cover_Letter_JMS_2.1版本.docx
+Output: current_release.DELIVERY (Title Page and Cover Letter)
 Identity values come from paper-code/author_local.py (git-ignored)."""
 import os
 import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, r"D:\比赛\论文\paper-code")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -16,8 +16,9 @@ from docx.shared import Cm, Pt
 from author_local import (AFFIL_EN, AFFIL_EN_LINES, AUTHOR_EN_DISPLAY, CREDIT_EN, EMAIL, ORCID)
 from docxbuild_lib import scrub_metadata
 
-OUTDIR = r"D:\比赛\论文\交付\2.1版本"
-MANUSCRIPT_TEX = r"D:\比赛\论文\paper-code\manuscript.tex"
+from current_release import DELIVERY, PACKAGE, VERSION
+OUTDIR = str(DELIVERY)
+MANUSCRIPT_TEX = str(PACKAGE / "manuscript.tex")
 
 
 def anon_repo():
@@ -104,23 +105,17 @@ def title_page():
                             "approval was therefore required."),
         ("Consent to participate", "Not applicable."),
         ("Consent for publication", "Not applicable."),
-        ("Data availability", "The climate data are CRU TS 4.10 (openly available from "
-                              "the Climatic Research Unit, University of East Anglia) and "
-                              "the land-cover data are the China Land Cover Dataset "
-                              "(CLCD, Yang and Huang 2021, 2024; Zenodo record 12779975). "
-                              "The analysis scripts, the processed intermediate datasets, "
-                              "the result tables and the figure-generation code are "
-                              "available at the anonymised repository mirror "
-                              + ANON_REPO + " (read-only, for peer review). The same "
-                              "material is deposited in Zenodo; the record is restricted "
-                              "while the manuscript is under review and will be released "
-                              "publicly with a permanent DOI upon acceptance. The "
-                              "re-processing boundary (which land-cover epochs can be "
-                              "rebuilt from the raw tiles inside the package) is stated in "
-                              "the Data availability statement of the manuscript."),
+        ("Data availability", "Source datasets are CRU TS 4.10, CLCD, Copernicus "
+                              "DEM GLO-90 and NOAA CDR NDVI. Analysis code, processed "
+                              "tables, model outputs and figure generators accompany "
+                              "the submission reproduction package and the anonymous "
+                              "review mirror " + ANON_REPO + ". The regional land-cover "
+                              "table contains five processed epochs; the 2020 tile "
+                              "supports direct raw-data reprocessing. The Zenodo review "
+                              "access link is supplied separately to the editorial office."),
         ("Author contributions", CREDIT_EN),
-        ("Use of AI", "DeepSeek (an AI language model) was used to assist with "
-                      "manuscript drafting, structuring and language editing. The author "
+        ("Use of AI", "DeepSeek and ChatGPT were used to assist with "
+                      "manuscript drafting, language editing and analysis-code revision. The author "
                       "reviewed and edited the content as needed and takes full "
                       "responsibility for the content of the publication."),
     ]
@@ -134,7 +129,7 @@ def title_page():
          "and none has been involved in the preparation of this manuscript.", after=4)
 
     scrub_metadata(d, TITLE)
-    out = os.path.join(OUTDIR, "Title_Page_JMS_2.1版本.docx")
+    out = os.path.join(OUTDIR, "Title_Page_JMS_%s版本.docx" % VERSION)
     d.save(out)
     return out
 
@@ -149,75 +144,50 @@ def cover_letter():
     p(d, "Subject: submission of an original research article", size=10, bold=True, after=2)
     p(d, TITLE, size=10, italic=True, after=10)
     p(d, "Dear Editor,", after=8)
+    import csv
+    def rows(name):
+        with open(PACKAGE / "data" / name, encoding="utf-8-sig", newline="") as f:
+            return list(csv.DictReader(f))
+    fc = rows("r47_forecast.csv")
+    bt = rows("r47_bootstrap.csv")
+    mix = next(float(r["value"]) for r in fc if r["model"] == "Mixture" and r["year"] == "2028")
+    env = next(r for r in bt if r["model"] == "Mixture" and r["year"] == "2028")
     body = [
-        "I am pleased to submit the above-titled original research article for "
-        "consideration as a research paper in the Journal of Mountain Science.",
-
-        "Mountain protected areas concentrate conservation value and management pressure "
-        "at the same time, yet their management often lacks quantitative early-warning "
-        "instruments that convert routine monitoring data into actionable signals. The "
-        "manuscript addresses this gap in the Qilian Mountain region of northwestern "
-        "China, the setting of the Qilian Mountain National Park. It combines a DPSI "
-        "weighted indicator framework (the Response layer is retained as an unweighted "
-        "policy background rather than an indicator), combined AHP-entropy weighting, "
-        "three forecasting models (GM(1,1), the nonlinear grey Bernoulli model NGBM and "
-        "ARIMA(0,1,1)) and GeoDetector association analysis, and uses openly available "
-        "data only (CRU TS 4.10 climate and CLCD 30 m land cover, 2005-2023).",
-
-        "Four results are likely to interest the journal's readership. First, the "
-        "ecological security index (ESI) peaks at 0.676 in 2010 and stands at 0.478 in "
-        "2023, a mild-warning state in 16 of the 19 years. Second, forecasting is "
-        "presented as an ensemble problem rather than a single-model extrapolation: no "
-        "model dominates across five validation schemes, the inverse-RMSE mixture gives "
-        "0.447 for 2028, and a logit-scale residual bootstrap keeps every interval inside "
-        "the [0,1] support of the index, so the 2028 grade alone is shown not to support "
-        "a management decision. Third, the indicator system is tested for internal "
-        "redundancy: three exact identities are identified and the duplicated "
-        "ecological-land column is removed without changing a single warning grade. "
-        "Fourth, the spatially stratified associations are separated from the mechanical "
-        "component contributed by factors that are themselves index inputs (mechanical "
-        "share 0.20-0.87), and the significance of the association statistics is "
-        "re-examined with block permutation that respects the strong spatial "
-        "autocorrelation of the sample.",
-
-        "The work extends the reserve-scale grey-model early-warning framework of Liu et "
-        "al. (2023, J Nat Conserv 73: 126394) in three respects that are rarely combined "
-        "in comparable DPSIR-based assessments of mountain protected areas: the "
-        "sensitivity of the ESI and of its warning grade to the subjective-objective "
-        "weighting ratio is tested across the full interval (alpha = 0-1); three forecast "
-        "models are compared under five validation schemes with an explicit "
-        "monotonicity diagnosis, which is required because the observed series is "
-        "non-monotonic and therefore violates the linear grey-model assumption; and the "
-        "regional time series is linked to county-level heterogeneity through "
-        "factor-detector and interaction-detector statistics. Because the readership "
-        "includes mountain-region managers as well as scientists, the output is expressed "
-        "as warning grades, bounded intervals and response rules rather than as index "
-        "values alone, and the framework is transferable to other mountain national parks "
-        "where long-term monitoring is sparse but open geospatial data are available.",
-
-        "The complete analysis pipeline, the processed intermediate datasets and all "
-        "result tables are available at the anonymised repository mirror " + ANON_REPO +
-        " (read-only, provided for peer review). The same material has been deposited in "
-        "Zenodo; the record is restricted while the manuscript is under review, so that it "
-        "can be inspected without disclosing authorship, and it will be released publicly "
-        "with a permanent DOI upon acceptance. Because the Zenodo record is restricted "
-        "during review, a share link is provided to the editorial office separately; "
-        "please request it if it has not been attached to this submission.",
-
-        "Declarations. The manuscript is original, has not been published previously, in "
-        "whole or in part, and is not under consideration for publication elsewhere. It "
-        "is a single-author study: I conceived the work, carried out all analyses, and "
-        "approve the submitted version and its submission to the Journal of Mountain "
-        "Science. The author declares no competing financial or non-financial interests. "
-        "The research received no specific funding. The manuscript file used for review "
-        "contains no author-identifying information; the author's name, affiliation, "
-        "e-mail, ORCID and the ethics declarations are provided on the separate Title "
-        "Page. Figures are supplied as vector PDF files that meet the journal's "
-        "requirements for figure width and in-figure lettering, and all tables are "
-        "Word-editable tables. DeepSeek (an AI language model) was used to assist with "
-        "language editing; I reviewed and take full responsibility for the content.",
-
-        "Thank you for your time and consideration. I look forward to hearing from you.",
+        "I submit the above-titled original research article for consideration in the "
+        "Journal of Mountain Science.",
+        "Mountain protected areas often have sparse environmental observations. This "
+        "study examines how indicator construction and forecasting choices affect "
+        "ecological-security warning grades in the Qilian Mountain region, China. "
+        "It combines an eight-indicator regional DPSI index, AHP-entropy weighting, "
+        "three forecasting models and a separate six-indicator spatial analysis, "
+        "using CRU TS climate and five CLCD land-cover epochs over 2005-2023.",
+        "The study contributes three results. Removing a redundant ecological-land "
+        "indicator preserves all historical warning grades, whereas changing the "
+        "derived grassland-change indicator alters both grades and the peak year. "
+        "Retrospective rolling forecasts compare GM(1,1), NGBM and ARIMA with naive "
+        "and drift benchmarks on common time origins. The rolling-five-year-weighted "
+        f"mixture projects a 2028 index of {mix:.3f}, with a central 95% conditional "
+        f"bootstrap envelope of {float(env['lo']):.3f}-{float(env['hi']):.3f}. "
+        "Finally, spatial target-overlap diagnostics distinguish associations that "
+        "depend on index inputs, while an exhaustive periodic-shift reference and "
+        "an independent NDVI comparison describe their spatial context.",
+        "The paper relates to the journal's interest in mountain environmental change "
+        "and conservation monitoring. It identifies monitoring priorities conditional "
+        "on index definition and spatial scale. The forecast evaluation concerns a "
+        "retrospectively reconstructed index; the conditional bootstrap envelope "
+        "describes the stated residual process and model mixture.",
+        "The analysis scripts, processed tables, model outputs and figure generators "
+        "accompany the submission reproduction package and the anonymous review mirror "
+        + ANON_REPO + ". The restricted Zenodo review access link is supplied separately "
+        "to the editorial office.",
+        "The manuscript is original, has not been published, and is not under "
+        "consideration elsewhere. I am the sole author and approve this submission. "
+        "There are no competing interests and no specific funding. Author identity "
+        "and declarations appear on the separate Title Page. Figures are supplied "
+        "as vector PDFs and tables are editable in Word. DeepSeek and ChatGPT assisted "
+        "with drafting, language editing and analysis-code revision; I reviewed the "
+        "work and take full responsibility for its content.",
+        "Thank you for considering this manuscript.",
     ]
     for t in body:
         p(d, t, after=7)
@@ -273,7 +243,7 @@ def cover_letter():
             row.cells[j].width = w
 
     scrub_metadata(d, "Cover Letter - " + TITLE)
-    out = os.path.join(OUTDIR, "Cover_Letter_JMS_2.1版本.docx")
+    out = os.path.join(OUTDIR, "Cover_Letter_JMS_%s版本.docx" % VERSION)
     d.save(out)
     return out
 

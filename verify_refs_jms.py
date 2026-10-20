@@ -39,7 +39,7 @@ TEX = os.path.join(BASE, "manuscript.tex")
 MAP = os.path.join(BASE, "jms", "refs_map.tsv")
 
 EN = "\u2013"
-N = 25
+N = 28
 
 JMS_ABBREV = {
     "Ecological Indicators": "Ecol Indic",
@@ -56,6 +56,8 @@ JMS_ABBREV = {
     "Earth System Science Data": "Earth Syst Sci Data",
     "Journal of Physics: Conference Series": "J Phys Conf Ser",
     "Journal of Mountain Science": "J Mt Sci",
+    "Biometrics": "Biometrics",
+    "Spatial Statistics": "Spat Stat",
 }
 ALLOWED = set(JMS_ABBREV.values())
 FULL_NAMES = sorted({k for k in JMS_ABBREV}, key=len, reverse=True)
@@ -225,7 +227,7 @@ for key, label, body in items:
         elif " %s " % exp_j not in " %s " % rest:
             fail("journal", "%s: abbreviation %r missing from body" % (key, exp_j))
         for full in FULL_NAMES:
-            if full in body:
+            if full != JMS_ABBREV[full] and full in body:
                 fail("journal", "%s: full journal name %r left in the entry" % (key, full))
         jpos = rest.find(" " + exp_j + " ") if exp_j else -1
         seg = rest[jpos:] if jpos >= 0 else ""
@@ -244,8 +246,10 @@ for key, label, body in items:
             fail("doi", "%s: DOI %r, .bib says %r" % (key, dois[0], bib_doi))
     if re.search(r"(?i)\bdoi:\s*10\.|\\doi\{|\\DOIprefix", body):
         fail("doi", r"%s: doi: prefix or \doi{} command present" % key)
-    if re.search(r"(?i)\bhttps?://(?!doi\.org/)", body):
-        fail("doi", "%s: non-DOI URL in the entry" % key)
+    web_urls = re.findall(r"\\url\{(https?://(?!doi\.org/)[^}]+)\}", body, re.I)
+    for web_url in web_urls:
+        if kind not in ("book", "misc", "techreport") or web_url != f.get("url", "").strip():
+            fail("doi", "%s: non-DOI URL is not a matching bibliographic web resource" % key)
 
     # 6 forbidden bibliography machinery
     for cmd in ("\\bibinfo", "\\newblock", "\\DOIprefix", "\\URLprefix", "\\href",

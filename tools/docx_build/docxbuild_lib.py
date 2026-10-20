@@ -27,13 +27,15 @@ from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 
-BASE = r"D:\比赛\论文"
-PKG = os.path.join(BASE, "paper-code")
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from current_release import ROOT, PACKAGE, DELIVERY, WORK as RELEASE_WORK, VERSION
+BASE = str(ROOT)
+PKG = str(PACKAGE)
 TEX = os.path.join(PKG, "manuscript.tex")
 BBL = os.path.join(PKG, "manuscript.bbl")
 FIGD = os.path.join(PKG, "figures")
-OUT = os.path.join(BASE, "交付", "2.1版本", "论文_EN_2.1版本_投稿用.docx")
-WORK = os.path.join(BASE, "paper-code", "tools", "docx_build", "_work")
+OUT = os.path.join(str(DELIVERY), "论文_EN_%s版本_投稿用.docx" % VERSION)
+WORK = os.path.join(str(RELEASE_WORK), "docx_build")
 IMGDIR = os.path.join(WORK, "img")
 TEXTW = 16.0                      # cm of usable text width (A4, 2.5 cm margins)
 BODY_PT = 10.0
@@ -44,8 +46,14 @@ NOTE_PT = 7.0
 # author identity (real values; the tex author block is a public-repo placeholder)
 # --------------------------------------------------------------------------- #
 sys.path.insert(0, PKG)
-from author_local import (AFFIL_EN, AUTHOR_EN, AUTHOR_EN_DISPLAY, CREDIT_EN,
-                          EMAIL, ORCID)
+try:
+    from author_local import (AFFIL_EN, AUTHOR_EN, AUTHOR_EN_DISPLAY, CREDIT_EN,
+                              EMAIL, ORCID)
+except ModuleNotFoundError as exc:
+    if exc.name != 'author_local':
+        raise
+    # The anonymous main document builds without private author metadata.
+    AFFIL_EN = AUTHOR_EN = AUTHOR_EN_DISPLAY = CREDIT_EN = EMAIL = ORCID = ''
 
 
 # --------------------------------------------------------------------------- #

@@ -1,0 +1,4 @@
+﻿model,requested,valid,gamma_at_lower_bound,seed,block_length,first_residual_excluded,interpretation
+"GM(1,1)",2000,2000,0,20261020,3,True,conditional simulation; no empirical coverage calibration
+NGBM,2000,2000,1274,20261021,3,True,conditional simulation; no empirical coverage calibration
+"ARIMA(0,1,1)",2000,2000,0,20261022,3,True,conditional simulation; no empirical coverage calibration

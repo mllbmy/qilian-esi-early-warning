@@ -70,6 +70,8 @@ JOURNAL_ABBREV = {
     "Earth System Science Data": "Earth Syst Sci Data",
     "Journal of Physics: Conference Series": "J Phys Conf Ser",
     "Journal of Mountain Science": "J Mt Sci",
+    "Biometrics": "Biometrics",
+    "Spatial Statistics": "Spat Stat",
 }
 
 # ------------------------------------------- sentence case (JMS article titles)
@@ -253,7 +255,15 @@ def render_booklike(key, f, auths, year, kind):
     pub, place = " ".join(pub.split()), " ".join(place.split())
     # JMS book example: "Shrestha TB, Joshi RM (1996) Title. Kathmandu: WWF, Nepal Program."
     where = "%s: %s" % (place, pub) if place else pub
-    return "%s (%s) %s. %s." % (author_block(auths), year, title, where)
+    edition = (", %s edn" % f["edition"]) if f.get("edition") else ""
+    body = "%s (%s) %s%s. %s." % (author_block(auths), year, title, edition, where)
+    if f.get("url"):
+        body += r" \url{%s}" % f["url"]
+        acc = re.search(r"accessed\s+(\d{4})-(\d{2})-(\d{2})", f.get("note", ""))
+        if acc:
+            y, mo, d = map(int, acc.groups())
+            body += " (Accessed on %d %s %d)" % (d, MONTHS[mo - 1], y)
+    return body
 
 
 def render_dataset(key, f, auths, year):

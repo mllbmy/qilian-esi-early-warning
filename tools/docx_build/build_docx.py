@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Driver: build 论文_EN_2.0版本_投稿用.docx from manuscript.tex + manuscript.bbl."""
+"""Build the current anonymous submission document from manuscript.tex and .bbl."""
 import io
 import json
 import os
@@ -9,7 +9,10 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-import pymupdf
+try:
+    import pymupdf
+except ImportError:
+    pymupdf = None
 from docx import Document
 from docx.enum.section import WD_SECTION
 from docx.enum.table import WD_TABLE_ALIGNMENT
@@ -108,6 +111,12 @@ def rasterise(pdf_path, dpi=300):
     out = os.path.join(L.IMGDIR, "%s_%ddpi.png" % (stem, dpi))
     if os.path.exists(out) and os.path.getmtime(out) > os.path.getmtime(pdf_path):
         return out
+    if pymupdf is None:
+        import subprocess
+        subprocess.run([os.environ.get("QILIAN_PDF_PYTHON", r"D:\Program Files\Python313\python.exe"),
+                        os.path.join(os.path.dirname(__file__), "pdf_support.py"),
+                        pdf_path, out, str(dpi)], check=True, capture_output=True)
+        return out
     d = pymupdf.open(pdf_path)
     pm = d[0].get_pixmap(matrix=pymupdf.Matrix(dpi / 72.0, dpi / 72.0))
     pm.save(out)
@@ -136,10 +145,9 @@ def emit_figure(doc, block, biblio, numbering):
         para(doc, "[missing figure file: %s]" % rel, bold=True)
     else:
         png = rasterise(src)
-        d = pymupdf.open(src)
-        r = d[0].rect
-        aspect = r.width / r.height
-        d.close()
+        from PIL import Image
+        with Image.open(png) as im:
+            aspect = im.width / im.height
         w = L.TEXTW
         h = w / aspect
         if h > 21.0:
@@ -163,6 +171,7 @@ def emit_figure(doc, block, biblio, numbering):
         p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
         p.paragraph_format.space_before = Pt(4)
         p.paragraph_format.space_after = Pt(10)
+        p.paragraph_format.keep_together = True
         r = p.add_run("Figure %s: " % num)
         r.bold = True; r.font.size = Pt(L.BODY_PT); set_run_fonts(r)
         L.emit_pieces(p, pieces, size=L.BODY_PT)
@@ -226,6 +235,7 @@ def emit_table(doc, block, biblio, numbering):
         p = doc.add_paragraph()
         p.paragraph_format.space_before = Pt(10)
         p.paragraph_format.keep_with_next = True
+        p.paragraph_format.keep_together = True
         r = p.add_run("Table %s: " % num)
         r.bold = True; r.font.size = Pt(L.BODY_PT); set_run_fonts(r)
         L.emit_pieces(p, pieces, size=L.BODY_PT)
@@ -281,6 +291,9 @@ def emit_table(doc, block, biblio, numbering):
 
     for ri, (cells, rules) in enumerate(parsed_rows):
         row = table.rows[ri]
+        row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
+        if ri < header_rows:
+            row._tr.get_or_add_trPr().append(OxmlElement("w:tblHeader"))
         col = 0
         for txt, span, align in cells:
             if col >= ncol:
@@ -293,6 +306,9 @@ def emit_table(doc, block, biblio, numbering):
             target = merged
             target.paragraphs[0].paragraph_format.space_after = Pt(0)
             target.paragraphs[0].paragraph_format.line_spacing = 1.0
+            # Keep short tables intact and long-table headers with their first row.
+            target.paragraphs[0].paragraph_format.keep_with_next = (
+                ri < header_rows or (len(parsed_rows) <= 14 and ri < len(parsed_rows)-1))
             if align:
                 target.paragraphs[0].alignment = align
             pieces = L.resolve_refs(
@@ -323,10 +339,14 @@ def emit_table(doc, block, biblio, numbering):
     tail_pieces = L.adopt_bases(L.parse_inline(tail, stats=STATS["unmapped_cmd"]))
     tail_text = "".join(p[1] for p in tail_pieces if p[0] == "text").strip()
     if tail_text:
+        for cell in table.rows[-1].cells:
+            for paragraph in cell.paragraphs:
+                paragraph.paragraph_format.keep_with_next = True
         pieces = L.resolve_refs(tail_pieces, biblio, numbering, STATS["warnings"])
         p = doc.add_paragraph()
         p.paragraph_format.space_before = Pt(2)
         p.paragraph_format.space_after = Pt(10)
+        p.paragraph_format.keep_together = True
         L.emit_pieces(p, pieces, size=L.NOTE_PT)
     else:
         doc.add_paragraph().paragraph_format.space_after = Pt(10)
@@ -455,7 +475,7 @@ def build():
     for t in main_tabs:
         emit_table(doc, t, biblio, numbering)
 
-    if "REPLACE-WITH-MIRROR-ID" in open(r"D:\比赛\论文\paper-code\manuscript.tex", encoding="utf-8").read():
+    if "REPLACE-WITH-MIRROR-ID" in open(L.TEX, encoding="utf-8").read():
         print("!! WARNING: the anonymous-mirror URL is still the placeholder;")
         print("!!          run  python paper-code/set_anon_repo.py <mirror-url>  before submitting")
     L.scrub_metadata(doc, getattr(L, 'TITLE', ''))
@@ -481,7 +501,9 @@ def emit_text_chunk(doc, chunk, biblio, numbering):
         pieces = L.resolve_refs(pieces, biblio, numbering, STATS["warnings"])
         if not any(p[0] in ("text", "math", "scr") for p in pieces):
             continue
-        para(doc, pieces, align=WD_ALIGN_PARAGRAPH.JUSTIFY, after=4)
+        p=para(doc, pieces, align=WD_ALIGN_PARAGRAPH.JUSTIFY, after=4)
+        if t.startswith(r'Table~\ref') and len(t)<700:
+            p.paragraph_format.keep_with_next = True
 
 
 def emit_heading(doc, t, numbering, numtxt):

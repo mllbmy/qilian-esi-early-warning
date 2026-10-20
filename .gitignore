@@ -45,6 +45,7 @@ data/china_dataV_full.json
 
 # 本地私有作者身份信息（构建脚本按需导入，不进入公开库）
 author_local.py
+给导师_*.md
 
 # 原始输入数据（作者自备，可用环境变量 QILIAN_LC_DATA / QILIAN_CRU_DATA 指向别处）
 _raw/
@@ -52,3 +53,19 @@ _raw/
 # R28: local backups / scratch build dirs (never committed)
 *.bak*
 _r28_build*/
+
+# docx builder raster cache (2026-10-20)
+_work/
+tools/**/_work/
+
+# private identity screen tokens (2026-10-20) — never published
+_identity_needles.txt
+
+# docx builder run artifacts; verify_result.json embeds the front-matter text,
+# which carries the author identity, so it must never be committed
+tools/docx_build/verify_result.json
+tools/docx_build/build_stats.json
+tools/docx_build/poll_status.json
+
+# internal note to the advisor, not part of the public reproduction repo
+给导师_*.md
