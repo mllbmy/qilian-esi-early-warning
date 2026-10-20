@@ -1077,3 +1077,25 @@ is therefore not claimed.
    (0.206 is the archived nine-indicator value). Both sentences exist verbatim in
    `交付/2.0版本/JMS CN 论文_2.0版本.docx`, so the correction belongs in one pass over both files —
    see the R38 report for the ready-to-apply wording.
+
+
+---
+
+## 0.1 Version 2.1 robustness additions (2026-10-20)
+
+The 2.1 revision responds to two reviewer-facing concerns: that 999 random permutations
+over 1914 spatially autocorrelated points make the GeoDetector p values optimistic, and
+that the sample size treated as independent is far above the effective sample size.
+
+| script | output | what it establishes |
+|---|---|---|
+| `run_blockperm.py` | `data/results_blockperm_q.csv` | The i.i.d. permutation null of q is near-degenerate (median 0.0005-0.0016, 95th percentile 0.002-0.004), so p = 0.001 is a resolution limit. Under a restricted-toroidal-shift null that preserves autocorrelation and the marginal distribution (block scales 0.15, 0.30, 0.45 and 0.60 degrees), 0.001 holds for barren/degraded, grassland and precipitation, whereas temperature q = 0.170 falls inside the null (0.126-0.152). Placebo rejection rates at the nominal 5% level: 90.5% (i.i.d.), 82.0% (block reorder), 3.5% (restricted shift). |
+| `run_cr_effective_n.py` | `data/results_effective_n.csv` | Clifford-Richardson effective sample size: r(ESI, NDVI) = 0.705 with n = 1785 corresponds to n_eff = 23 (16-48 across lag truncations), t = 4.59 on 21.3 df, p = 1.5e-4, 95% CI [0.416, 0.865]; CR p values are also reported for the four q statistics. |
+| `run_r46_start_offset.py` | `data/r46_start_offset.csv` | Decomposition of the NGBM 2024 starting offset (fitted 2023 value 0.4471, 2024 increment +0.0228, in-sample residual +0.0312). |
+| `make_figure_audit.py` | `figures/JMS_figure_audit.tsv` | Journal compliance of all ten figures (16.00 cm canvas, 8-9 pt, Times New Roman), measured per text span. |
+
+Supporting notes: `analysis_notes/REPORT.md` and `analysis_notes/results_pvalue_calibration.csv`.
+All RNG seeds are fixed in the scripts; re-running them reproduces the archived CSVs byte for byte.
+
+Figure rebuild: `jms_style.py` holds the shared style (16 cm canvas, Times New Roman 8-9 pt,
+Unicode sub/superscripts); each figure has its own `make_fig*.py`.

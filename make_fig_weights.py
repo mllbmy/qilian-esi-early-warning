@@ -65,8 +65,8 @@ LNK_A = "#bcd2b2"   # 分歧连线：AHP 占优 → 灰绿浅调
 LAYER_C = {"D": "#1f6f9f", "S": "#2e8b57", "P": "#d1495b",
            "I": "#b06c1f", "R": "#5a4a8a"}
 
-# figsize 宽 = 正文插图宽 13.5 cm（5.31 in）→ 字体 1:1 等效印刷字号
-fig, ax = plt.subplots(figsize=(5.31, 3.05), layout="constrained")
+# JMS §5.7：画布宽 = 印刷插入宽 16.00 cm（字号即成品字号，禁止事后缩放）
+fig, ax = jms_style.subplots(height_cm=9.2, layout="constrained")
 y = np.arange(len(order))[::-1]          # 组合权重最大者显示在图顶部
 
 for i, (yi, k) in enumerate(zip(y, order)):
@@ -107,7 +107,7 @@ handles = [
     Line2D([], [], marker="D", ms=4.6, mfc="white", mec=C_AHP, mew=1.2, ls="",
            label="AHP weight"),
     Line2D([], [], marker="o", ms=6.5, mfc=C_COM, mec="white", mew=0.9, ls="",
-           label="Combined weight ($\\alpha$ = 0.4)"),
+           label="Combined weight (\u03b1 = 0.4)"),   # Unicode α：不用 mathtext（下标会掉到 6 pt）
 ]
 # 图例外置底部居中、无边框（与 fig_indicator_trends 一致）
 ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.155),
@@ -115,6 +115,5 @@ ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.155),
           columnspacing=1.2)
 
 FIG = os.path.join(BASE, "figures")
-fig.savefig(os.path.join(FIG, "fig_weights.pdf"))
-fig.savefig(os.path.join(FIG, "fig_weights.png"), dpi=600)
+jms_style.save(fig, "fig_weights", outdir=FIG)
 print("saved fig_weights.pdf/.png（9 指标哑铃图：熵权-AHP 分歧连线 + 组合权重）")

@@ -1,0 +1,9 @@
+﻿model,value_2024,offset_vs_observed_2023
+"GM(1,1)",0.468733,-0.009562
+NGBM,0.424304,-0.053991
+"ARIMA(0,1,1)",0.48461,0.006315
+NGBM internal decomposition,0.424304,-0.053991
+observed_2023,0.478295,0.0
+NGBM_fitted_2023,0.447063,-0.031232
+NGBM_step_2023fit_to_2024,-0.022759,
+NGBM_insample_residual_2023,0.031232,

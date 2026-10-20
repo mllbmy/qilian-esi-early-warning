@@ -45,7 +45,8 @@ PANEL_B = [("Precipitation", float(exo.loc["precip", "q"]), "C"),
            ("Slope",         float(exo.loc["slope",  "q"]), "T")]
 LAYER_C = {"D": "#1f6f9f", "S": "#2e8b57", "P": "#d1495b", "C": C_B, "T": "#7a7f87"}
 
-fig, axes = plt.subplots(2, 1, figsize=(4.72, 3.65), layout="constrained")
+# JMS §5.7：画布宽 = 印刷插入宽 16.00 cm
+fig, axes = jms_style.subplots(height_cm=10.8, nrows=2, ncols=1, layout="constrained")
 
 for ax, data, tag, ttl in [
         (axes[0], PANEL_A, "(a)", "(a)  Compositional factors (overlap ESI inputs)"),
@@ -81,8 +82,7 @@ for ax, data, tag, ttl in [
         ax.spines[s].set_linewidth(0.6)
 
 FIG = os.path.join(BASE, "figures")
-fig.savefig(os.path.join(FIG, "fig_geodetector_q.pdf"))
-fig.savefig(os.path.join(FIG, "fig_geodetector_q.png"), dpi=610)
+jms_style.save(fig, "fig_geodetector_q", outdir=FIG)
 
 DEST = os.path.normpath(os.path.join(BASE, "..", "投稿前优化", "图件", "定稿"))
 os.makedirs(DEST, exist_ok=True)

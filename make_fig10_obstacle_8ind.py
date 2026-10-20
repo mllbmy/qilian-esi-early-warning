@@ -130,8 +130,9 @@ print("contrast (b): ecological land phase mean 2005-2010 = %.6f, 2011-2023 = %.
 # 15.27 cm = 6.012 in, i.e. inside the 14-16 cm option, and the canvas is drawn at
 # exactly that width so every label below prints at its nominal point size
 # (all text 8-9 pt: ticks/labels 8, axis titles 9).
-fig, (ax, axc) = plt.subplots(
-    2, 1, figsize=(6.012, 4.29), sharex=True,
+# JMS §5.7：画布宽 = 印刷插入宽 16.00 cm（14–16 cm 档），字号即成品字号
+fig, (ax, axc) = jms_style.subplots(
+    height_cm=11.4, nrows=2, ncols=1, sharex=True,
     gridspec_kw={"height_ratios": [3.0, 1.22], "hspace": 0.12},
     layout="constrained")
 
@@ -204,8 +205,7 @@ fig.legend(handles=[
 # 3) outputs
 # --------------------------------------------------------------------------
 FIG = os.path.join(BASE, "figures")
-fig.savefig(os.path.join(FIG, "fig_obstacle.pdf"))
-fig.savefig(os.path.join(FIG, "fig_obstacle.png"), dpi=600)
+jms_style.save(fig, "fig_obstacle", outdir=FIG)
 
 out = EIGHT.copy()
 out.index.name = "year"

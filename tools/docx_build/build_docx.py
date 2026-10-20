@@ -6,7 +6,7 @@ import os
 import re
 import sys
 
-sys.path.insert(0, r"D:\比赛\论文\_r45_work\wb")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 import pymupdf
@@ -33,6 +33,7 @@ def new_doc():
     s.page_width, s.page_height = Cm(21.0), Cm(29.7)
     s.left_margin = s.right_margin = Cm(2.5)
     s.top_margin = s.bottom_margin = Cm(2.5)
+    add_page_numbers(s)
     n = doc.styles["Normal"]
     n.font.name = "Times New Roman"
     n.font.size = Pt(L.BODY_PT)
@@ -45,6 +46,23 @@ def new_doc():
     pf.space_before = Pt(0)
     pf.space_after = Pt(0)
     return doc
+
+
+def add_page_numbers(section):
+    """Automatic page number in the footer (JMS guide p8). The PAGE field is the
+    only field function in the document."""
+    p = section.footer.paragraphs[0]
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.space_before = Pt(0)
+    p.paragraph_format.space_after = Pt(0)
+    run = p.add_run()
+    run.font.size = Pt(L.BODY_PT)
+    set_run_fonts(run)
+    fld = OxmlElement("w:fldChar"); fld.set(qn("w:fldCharType"), "begin")
+    instr = OxmlElement("w:instrText")
+    instr.set(qn("xml:space"), "preserve"); instr.text = " PAGE "
+    fld2 = OxmlElement("w:fldChar"); fld2.set(qn("w:fldCharType"), "end")
+    run._r.append(fld); run._r.append(instr); run._r.append(fld2)
 
 
 def set_run_fonts(run, name="Times New Roman"):
@@ -372,20 +390,14 @@ def build():
 
     body = tex[tex.find("\\end{frontmatter}") + len("\\end{frontmatter}"):]
     body = body.split("\\end{document}")[0]
-    # The manuscript keeps a public-repo placeholder in its CRediT statement.
-    # Substitute the real name only (the CRediT role list is left untouched),
-    # which is exactly what sync_author_block.py --write would rewrite.
-    body = body.replace("[Author]", L.AUTHOR_EN)
     numbering = L.assign_numbers(body)
 
     doc = new_doc()
 
-    # ---- title block (real author identity) ----
-    para(doc, title, size=14, align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, after=8)
-    para(doc, L.AUTHOR_EN_DISPLAY, size=11, align=WD_ALIGN_PARAGRAPH.CENTER, after=2)
-    para(doc, L.AFFIL_EN, size=10, align=WD_ALIGN_PARAGRAPH.CENTER, italic=True, after=2)
-    para(doc, "*Corresponding author. E-mail: %s   ORCID: %s" % (L.EMAIL, L.ORCID),
-         size=9, align=WD_ALIGN_PARAGRAPH.CENTER, after=12)
+    # ---- title block (anonymous: JMS double-blind review) ----
+    # Author names, affiliation, e-mail and ORCID belong to the separate Title
+    # Page file; the main document must not identify the author (guide p12).
+    para(doc, title, size=14, align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, after=12)
 
     # ---- abstract ----
     para(doc, "Abstract", size=11, bold=True, before=6, after=4)
@@ -405,14 +417,22 @@ def build():
     # ---- body ----
     eq_no = 0
     pos = 0
+    main_figs, main_tabs = [], []
+    in_appendix = False
     for m in L.SPECIAL.finditer(body):
         text = body[pos:m.start()]
         emit_text_chunk(doc, text, biblio, numbering)
         t = m.group(0)
         if t.startswith("\\begin{figure}"):
-            emit_figure(doc, t, biblio, numbering)
+            if in_appendix:
+                emit_figure(doc, t, biblio, numbering)
+            else:
+                main_figs.append(t)
         elif t.startswith("\\begin{table}"):
-            emit_table(doc, t, biblio, numbering)
+            if in_appendix:
+                emit_table(doc, t, biblio, numbering)
+            else:
+                main_tabs.append(t)
         elif t.startswith("\\begin{equation}"):
             inner = t[len("\\begin{equation}"):t.rfind("\\end{equation}")]
             eq_no += 1
@@ -422,12 +442,23 @@ def build():
         elif t.startswith("\\section") or t.startswith("\\subsection"):
             emit_heading(doc, t, numbering, numbering.by_pos.get(m.start(), ""))
         elif t.startswith("\\appendix"):
-            pass
+            in_appendix = True
         elif t.startswith("\\bibliography"):
             emit_references(doc, biblio)
         pos = m.end()
     emit_text_chunk(doc, body[pos:], biblio, numbering)
 
+    # JMS guide p5: figures (with legends) and tables are placed in sequence at
+    # the end of the paper, after the reference list.
+    for t in main_figs:
+        emit_figure(doc, t, biblio, numbering)
+    for t in main_tabs:
+        emit_table(doc, t, biblio, numbering)
+
+    if "REPLACE-WITH-MIRROR-ID" in open(r"D:\比赛\论文\paper-code\manuscript.tex", encoding="utf-8").read():
+        print("!! WARNING: the anonymous-mirror URL is still the placeholder;")
+        print("!!          run  python paper-code/set_anon_repo.py <mirror-url>  before submitting")
+    L.scrub_metadata(doc, getattr(L, 'TITLE', ''))
     os.makedirs(os.path.dirname(L.OUT), exist_ok=True)
     doc.save(L.OUT)
     return doc, biblio, numbering

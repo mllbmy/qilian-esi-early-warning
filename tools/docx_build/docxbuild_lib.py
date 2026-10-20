@@ -16,7 +16,7 @@ import os
 import re
 import sys
 
-sys.path.insert(0, r"D:\比赛\论文\_r45_work\wb")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 import omml
@@ -32,8 +32,8 @@ PKG = os.path.join(BASE, "paper-code")
 TEX = os.path.join(PKG, "manuscript.tex")
 BBL = os.path.join(PKG, "manuscript.bbl")
 FIGD = os.path.join(PKG, "figures")
-OUT = os.path.join(BASE, "交付", "2.0版本", "论文_EN_2.0版本_投稿用.docx")
-WORK = os.path.join(BASE, "_r45_work", "wb")
+OUT = os.path.join(BASE, "交付", "2.1版本", "论文_EN_2.1版本_投稿用.docx")
+WORK = os.path.join(BASE, "paper-code", "tools", "docx_build", "_work")
 IMGDIR = os.path.join(WORK, "img")
 TEXTW = 16.0                      # cm of usable text width (A4, 2.5 cm margins)
 BODY_PT = 10.0
@@ -645,3 +645,22 @@ SPECIAL = re.compile(
     r"|\\appendix\b"
     r"|\\bibliography\{[^}]*\}",
     re.S)
+
+def scrub_metadata(doc, title=""):
+    """Remove author-identifying and tool-identifying document properties.
+
+    Word stores the creator/last editor in docProps/core.xml and some of this
+    leaks into the exported PDF; for a double-blind submission the file must not
+    carry a name (or 'python-docx') that identifies the author or the toolchain.
+    """
+    cp = doc.core_properties
+    cp.author = ""
+    cp.last_modified_by = ""
+    cp.comments = ""
+    cp.keywords = ""
+    cp.category = ""
+    cp.subject = ""
+    cp.revision = 1
+    if title:
+        cp.title = title
+    return doc

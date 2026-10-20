@@ -36,10 +36,8 @@ WARN5 = [
     (0.8, 1.0, "#1b7837", "Safe"),
 ]
 
-import jms_style  # JMS 指南§6：图内文字 Times New Roman 8–9 pt
-plt.rcParams.update({"axes.labelsize": 9, "xtick.labelsize": 8, "ytick.labelsize": 8,
-                     "axes.edgecolor": "#444444", "axes.linewidth": 0.8,
-                     "savefig.dpi": 600, "figure.dpi": 100})
+import jms_style  # JMS 指南§6：画布 16.00 cm + 图内文字 Times New Roman 8–9 pt
+plt.rcParams.update({"axes.edgecolor": "#444444", "axes.linewidth": 0.8})
 
 # Primary specification (R29): the eight-indicator DPSI set is the manuscript's
 # primary series, so the figure is drawn from the primary-specification archives
@@ -66,7 +64,8 @@ e2023 = float(esi_df["esi"].iloc[-1])          # 2023 观测值：预测曲线�
 fcy = np.arange(2023, 2029)                    # 2023(锚) + 2024-2028
 fcy24 = np.arange(2024, 2029)
 
-fig, ax = plt.subplots(figsize=(5.67, 3.6), layout="constrained")
+# JMS §5.7：画布宽 = 印刷插入宽 16.00 cm（不再事后缩放，字号即成品字号）
+fig, ax = jms_style.subplots(height_cm=10.2, layout="constrained")
 
 # ---------- 五级预警背景带（极浅）+ 阈值虚线（兼横向网格）----------
 for lo, hi, c, _lab in WARN5:
@@ -123,7 +122,6 @@ labels_ = [l for pair in zip(labels_, chip_labels) for l in pair]
 fig.legend(handles, labels_, loc="outside lower center", ncol=5, fontsize=8,
            frameon=False, handlelength=1.8, columnspacing=1.0, handletextpad=0.5)
 
-fig.savefig(os.path.join(FIG, "fig3_esi_timeseries.pdf"))
-fig.savefig(os.path.join(FIG, "fig3_esi_timeseries.png"))
+jms_style.save(fig, "fig3_esi_timeseries", outdir=FIG)
 plt.close()
 print("saved fig3_esi_timeseries.pdf + .png (R21 重构：浅色预警带+阈值虚线+双行图例)")

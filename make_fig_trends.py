@@ -78,8 +78,9 @@ pd.DataFrame({
 EPOCHS = [2005, 2010, 2015, 2020, 2023]
 LAYER_LETTER = {"Driving (D)": "D", "Pressure (P)": "P", "State (S)": "S",
                 "Impact (I)": "I", "Response (R)": "R"}
-fig, axes = plt.subplots(3, 3, figsize=(5.9, 4.7), sharex="col",
-                         layout="constrained")
+# JMS §5.7：画布宽 = 印刷插入宽 16.00 cm；3×3 面板，刻度 8 pt、轴标题 9 pt
+fig, axes = jms_style.subplots(height_cm=12.8, nrows=3, ncols=3, sharex="col",
+                               layout="constrained")
 for i, (ax, (layer, name, series, color, pos)) in enumerate(zip(axes.ravel(), ind)):
     ax.grid(axis="both", color=GRID, lw=0.5, ls=(0, (4, 2)), zorder=0)  # 横+竖虚线网格
     ax.plot(YEARS, series, color=color, lw=1.4, zorder=3)
@@ -96,10 +97,11 @@ for i, (ax, (layer, name, series, color, pos)) in enumerate(zip(axes.ravel(), in
             fontsize=8.0, fontweight="bold", color="#6a6a6a",
             ha="right", va="center")
     ax.set_xticks([2005, 2010, 2015, 2020, 2023])     # 末尾补 2023（正文最常引用）
+
     ax.yaxis.set_major_locator(MaxNLocator(nbins=6))  # 加密 y 刻度，轴末端有数字
     ax.xaxis.set_minor_locator(AutoMinorLocator(2))   # 主刻度间 1 个次级刻度
     ax.yaxis.set_minor_locator(AutoMinorLocator(2))
-    ax.tick_params(labelsize=7.0, colors=INK, length=2.0, pad=1.5,
+    ax.tick_params(labelsize=8.0, colors=INK, length=2.0, pad=1.5,
                    labelbottom=True)                  # 每个面板都显示年份标签
     ax.tick_params(which="minor", length=1.2, colors="#9aa7b2")
     for s in ("top", "right"):
@@ -121,6 +123,13 @@ fig.legend(handles=handles, loc="outside lower center", ncol=2, fontsize=8.0,
            handletextpad=0.5, borderaxespad=0.0)
 
 FIGD = os.path.join(BASE, "figures")
-fig.savefig(os.path.join(FIGD, "fig_indicator_trends.pdf"))
-fig.savefig(os.path.join(FIGD, "fig_indicator_trends.png"), dpi=600)
+# 2020 与 2023 相隔 3 年，8 pt 标签在 3.2 cm 宽面板内会连成 "20202023"：
+# 末位标签改为左对齐贴刻度（向右伸出轴框），五个年份标签全部保留、字号不缩到 8 pt 以下。
+fig.canvas.draw()
+for _ax in axes.ravel():
+    _labs = _ax.get_xticklabels()
+    if len(_labs) >= 2:
+        _labs[-1].set_horizontalalignment("left")
+
+jms_style.save(fig, "fig_indicator_trends", outdir=FIGD)
 print("saved: fig_indicator_trends.pdf/.png ; results_indicators.csv rows=%d" % len(YEARS))

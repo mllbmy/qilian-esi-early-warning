@@ -21,18 +21,10 @@ import json as _json
 # JMS 指南§6：图内文字 Times New Roman 8–9 pt
 import jms_style
 
-# R11（作者决定）：图内文字一律 Arial，覆盖 jms_style 的 TNR 设置
-from matplotlib import font_manager as _fm
-for _af in ("arial.ttf", "arialbd.ttf", "ariali.ttf", "arialbi.ttf"):
-    _ap = os.path.join(r"C:\Windows\Fonts", _af)
-    if os.path.exists(_ap):
-        try:
-            _fm.fontManager.addfont(_ap)
-        except Exception:
-            pass
-plt.rcParams.update({"font.family": "sans-serif",
-                     "font.sans-serif": ["Arial"],
-                     "mathtext.fontset": "dejavusans"})
+# R37（JMS 合规）：图内文字（含县名、经纬网、图例、比例尺）一律 Times New Roman，
+# 原先的 Arial 覆盖已删除——Arial 违反 JMS 指南 §5.7「Words in figures must be in
+# Times New Roman」，是本轮图件审计唯一字体不达标的图。
+jms_style.check_fonts()
 
 # 路径自解析：仓库克隆/解压到任意目录均可运行
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -99,27 +91,76 @@ import json as _json
 osm_rivers = _json.load(open(os.path.join(BASE, "data", "_osm_key_rivers.json"), encoding="utf-8"))
 
 # ---------- 5. 绘图 ----------
-fig, ax = plt.subplots(figsize=(6.6, 4.15))   # R13：按印刷尺寸设计（双栏宽约 17.5 cm），图内 8 pt 印出即 8 pt
-ax.imshow(shade, cmap="Greys", extent=[lon_min, lon_max, lat_min, lat_max],
-          vmin=0, vmax=1, aspect="auto", interpolation="bilinear", zorder=1)
-im = ax.imshow(elev, cmap=hyps, extent=[lon_min, lon_max, lat_min, lat_max],
-               alpha=0.62, vmin=800, vmax=5800, aspect="auto", interpolation="bilinear", zorder=2)
-cb = fig.colorbar(im, ax=ax, shrink=0.78, pad=0.02)
+# JMS §5.7：画布宽 = 印刷插入宽 16.00 cm（原 6.6 in = 16.76 cm 与投稿宽度不符）
+fig, ax = jms_style.subplots(height_cm=10.06)
+
+# R37 体积：底图改为**一张不透明 RGB 总图**（晕渲 + 分层设色按原 alpha=0.62 预合成）。
+# 原来两层 RGBA imshow 会在 PDF 里各存一份带 SMask 的图像（600 dpi 下 8.6 MB）；
+# 预合成后矢量文字/线划不变，底图可整体压成 300 dpi JPEG（见 jms_style.shrink_pdf）。
+from matplotlib.cm import ScalarMappable
+from matplotlib.colors import Normalize
+
+_ENORM = Normalize(800, 5800)
+
+
+def _box(a, k=4):
+    """k×k 均值降采样（底图 0.002° 精度对 300 dpi 印刷过剩 3–4 倍）。"""
+    ny, nx = a.shape[0] // k * k, a.shape[1] // k * k
+    return a[:ny, :nx].reshape(ny // k, k, nx // k, k).mean(axis=(1, 3))
+
+
+_elev_s = _box(elev)
+_shade_s = _box(shade)
+_rgbe = hyps(_ENORM(np.nan_to_num(_elev_s, nan=800.0)))[..., :3]
+_grey = plt.get_cmap("Greys")(np.clip(_shade_s, 0, 1))[..., :3]
+_BASE = 0.62 * _rgbe + 0.38 * _grey
+_BASE[~np.isfinite(_elev_s)] = _grey[~np.isfinite(_elev_s)]      # 越界瓦片只留晕渲
+ax.imshow(_BASE, extent=[lon_min, lon_max, lat_min, lat_max],
+          aspect="auto", interpolation="bilinear", zorder=2)
+_SM = ScalarMappable(norm=_ENORM, cmap=hyps)
+_SM.set_array([])
+cb = fig.colorbar(_SM, ax=ax, shrink=0.78, pad=0.02)
 cb.set_label("Elevation (m a.s.l.)", fontsize=9)
 cb.ax.tick_params(labelsize=8)
 
-ax.contour(X, Y, elev, levels=[2000, 3000, 4000, 5000], colors="#3b2f2f",
+# 等高线在降采样网格上画（300 dpi 印刷下与全分辨率无可见差别，矢量节点数降 16 倍）
+_xs = np.linspace(lon_min, lon_max, _elev_s.shape[1])
+_ys = np.linspace(lat_max, lat_min, _elev_s.shape[0])
+ax.contour(*np.meshgrid(_xs, _ys), np.nan_to_num(_elev_s, nan=800.0),
+           levels=[2000, 3000, 4000, 5000], colors="#3b2f2f",
            linewidths=0.4, alpha=0.45, zorder=3)
 
 # 省界(重点省加深, 其余淡灰)
+# R37 体积：只把**落在图幅内**的折线节点写进 PDF（否则全国 31 省界面的全部节点都进文件）
+_PAD = 0.4
+
+
+def _clip_runs(xs, ys):
+    """按图幅窗口裁折线：返回窗口内的连续段（含 _PAD 度余量）。"""
+    runs, cur = [], []
+    for x, y in zip(xs, ys):
+        inside = (lon_min - _PAD <= x <= lon_max + _PAD
+                  and lat_min - _PAD <= y <= lat_max + _PAD)
+        if inside:
+            cur.append((x, y))
+        else:
+            if len(cur) > 1:
+                runs.append(cur)
+            cur = []
+    if len(cur) > 1:
+        runs.append(cur)
+    return runs
+
+
 BOLD = {"Gansu", "Qinghai"}
 for nm, geoms in prov_geom.items():
     c = "#4a4a4a" if nm in BOLD else "#9a9a9a"
     lw = 1.0 if nm in BOLD else 0.6
     for gp in geoms:
         for pt in gp:
-            xs = [a[0] for a in pt]; ys = [a[1] for a in pt]
-            ax.plot(xs, ys, "-", color=c, lw=lw, alpha=0.8, zorder=4)
+            for run in _clip_runs([a[0] for a in pt], [a[1] for a in pt]):
+                ax.plot([p[0] for p in run], [p[1] for p in run], "-",
+                        color=c, lw=lw, alpha=0.8, zorder=4)
 
 # 水系(OSM): 主要河流加粗, 支流细淡
 MAIN = ["黑河", "疏勒河", "大通河", "湟水", "石羊河", "党河"]
@@ -128,8 +169,10 @@ for r in osm_rivers:
     if len(xs) < 2:
         continue
     main = any(k in r["name"] for k in MAIN)
-    ax.plot(xs, ys, "-", color="#33679e", lw=1.0 if main else 0.55,
-            alpha=0.85 if main else 0.5, zorder=4, solid_joinstyle="round")
+    for run in _clip_runs(xs, ys):     # 同上：只写图幅内的河段
+        ax.plot([p[0] for p in run], [p[1] for p in run], "-",
+                color="#33679e", lw=1.0 if main else 0.55,
+                alpha=0.85 if main else 0.5, zorder=4, solid_joinstyle="round")
 
 # 湖泊(R24): NE 10m 面多边形(青海湖/小柴旦湖) + OSM way(哈拉湖/苏干湖/尕海/更尕海)
 # 湖面 DEM 高程恒定→hillshade 与分层设色全平, 不覆盖会呈单色平斑
@@ -192,7 +235,8 @@ if SHOW_PARK:
     ax.legend(loc="lower left", fontsize=8, framealpha=0.88, borderpad=0.5)
 
 # 研究区标注（图幅即范围，用一行文字点明；R18：下移，避免贴/出上边框；R25：去白底框；R26：改白色）
-ax.text(99.30, 40.25, "Study area 36.0-40.5$^\\circ$N, 93.5-103.5$^\\circ$E", fontsize=8,
+# Unicode 度数符号（不用 mathtext 上标：$^\circ$ 会被压到 0.7×8 = 5.6 pt）
+ax.text(99.30, 40.25, "Study area 36.0-40.5\u00b0N, 93.5-103.5\u00b0E", fontsize=8,
         color="white", ha="center", zorder=8)
 
 # 比例尺（R16：黑白相间分段式，学术风标准画法；标注 0 / 100 km 在条下方，参考 JMS 已发表图）
@@ -207,7 +251,7 @@ for _i in range(2):                               # 两段：黑 | 白
                             closed=True, fc=("black" if _i == 0 else "white"),
                             ec="black", lw=0.9, zorder=8))
 for _x, _t, _ha in ((bx, "0", "left"), (bx + bl, "100 km", "right")):
-    ax.text(_x, by - 0.045, _t, ha=_ha, va="top", fontsize=7.5, zorder=8,
+    ax.text(_x, by - 0.045, _t, ha=_ha, va="top", fontsize=8, zorder=8,
             path_effects=[_pe.withStroke(linewidth=1.8, foreground="white", alpha=0.85)])
 
 # R16b：先锁图幅再设经纬比例——罗盘用轴分数坐标，draw 取轴框时数据范围必须是最终窗口
@@ -267,9 +311,11 @@ ax.set_xlabel("Longitude", fontsize=9); ax.set_ylabel("Latitude", fontsize=9)
 for s in ("top", "right", "left", "bottom"):   # R12：四边全显，边框即研究区边界
     ax.spines[s].set_visible(True); ax.spines[s].set_linewidth(1.5); ax.spines[s].set_color("#1a1a1a")
 
-# R11：不用 tight，输出严格保持 10.6:6.4 原比例
-plt.savefig(os.path.join(FIG, "fig1_study_area.png"), dpi=700, bbox_inches="tight")
-plt.savefig(os.path.join(FIG, "fig1_study_area.pdf"), dpi=300)  # R12：矢量版（文字线条矢量 + 底图 300 dpi，符合 Elsevier 半调图 ≥300 dpi；600 dpi PNG 另存为高分辨率源文件）
+# R37：PDF 严格保持 16.00 cm 画布（不传 bbox_inches），PNG 600 dpi 预览
+# PDF：底图 300 dpi（16 cm 宽印刷足够），再用 shrink_pdf 转 JPEG 近无损压缩；
+# 文字/线划仍是矢量（校验见 figures/JMS_figure_audit.tsv）
+jms_style.save(fig, "fig1_study_area", outdir=FIG, png_dpi=300,
+               pdf_dpi=300, raster_dpi=300, raster_quality=90)
 _PREVIEW_OUT = os.path.join(BASE, "out", "fig1_preview.png")   # 仓库内相对落点（out/ 已 Git-ignore）
 os.makedirs(os.path.dirname(_PREVIEW_OUT), exist_ok=True)
 plt.savefig(_PREVIEW_OUT, dpi=140, bbox_inches="tight")

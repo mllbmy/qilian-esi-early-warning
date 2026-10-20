@@ -1,0 +1,6 @@
+﻿item,x,y,n,statistic,value,n_eff,spatial_redundancy,n_eff_min,n_eff_max,df_naive,df_corrected,p_naive,p_corrected,ci_naive_lo,ci_naive_hi,ci_corrected_lo,ci_corrected_hi,p_shift_null,n_eff_from_shift,boot_ci_lo,boot_ci_hi,verdict,note
+"r(ESI, NDVI)",NDVI,ESI,1785,pearson_r,0.705413,23.264657,75.725826,16.421989,47.503269,1783,21.264657,8.074e-269,0.0001544,0.681316,0.727984,0.415801,0.865129,0.0005225,20.973926,0.652578,0.749341,仍显著,CR n_eff；Fisher z 95%CI；交叉验证=环面平移零分布+块bootstrap
+q(barren),barren,ESI,1914,geodetector_q,0.802431,33.218226,56.618971,22.117661,66.325844,1912,31.218226,0.0,1.595e-12,,,,,,,,,仍显著,"F(1, 31.2)；截断敏感性 n_eff 66.3/39.8/33.2/27.1/22.1"
+q(grass),grass,ESI,1914,geodetector_q,0.70771,38.69901,48.458629,25.548405,75.601306,1912,36.69901,0.0,2.427e-11,,,,,,,,,仍显著,"F(1, 36.7)；截断敏感性 n_eff 75.6/46.1/38.7/31.5/25.5"
+q(precip),precip,ESI,1914,geodetector_q,0.506016,19.614213,96.582299,13.308842,39.37442,1910,15.614213,7.774e-292,0.01005,,,,,,,,,仍显著,"F(3, 15.6)；截断敏感性 n_eff 39.4/23.4/19.6/16.2/13.3"
+q(temp),temp,ESI,1914,geodetector_q,0.169739,25.378267,74.418862,15.895367,45.315137,1910,21.378267,1.02e-76,0.2544,,,,,,,,,**不再显著**,"F(3, 21.4)；截断敏感性 n_eff 45.3/29.3/25.4/20.7/15.9"
