@@ -69,3 +69,10 @@ tools/docx_build/poll_status.json
 
 # internal note to the advisor, not part of the public reproduction repo
 给导师_*.md
+
+# Zenodo deposit metadata (carries creator name and ORCID) and the legacy Chinese
+# Word builders (they embed the repository URL and the Zenodo DOI): local only
+.zenodo.json
+_private_zenodo.json
+build_word_cn.py
+build_word_cn_final.py

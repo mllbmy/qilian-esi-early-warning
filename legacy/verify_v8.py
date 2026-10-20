@@ -116,7 +116,7 @@ chk(fc_hdr is not None and len(fc_hdr) == 7 and "等级" not in fc_hdr,
 chk("灰色模型惯例" in paras, "m5 中文精度等级改为表注")
 cmp_hdr = next((h for h in tabs if "方法特征" in h), None)
 chk(cmp_hdr is not None and len(cmp_hdr) == 5, "M1 中文表5 为 5 列（实际: %s）" % cmp_hdr)
-chk("github.com/mllbmy/qilian-esi-early-warning" in paras, "数据可用性 GitHub 链接仍在")
+chk("REPLACE-WITH-MIRROR-ID" in paras or "anonymous.4open.science" in paras, "数据可用性镜像链接仍在")
 import os as _os2, sys as _sys2
 _sys2.path.insert(0, _os2.path.dirname(_os2.path.abspath(__file__)))
 try:
