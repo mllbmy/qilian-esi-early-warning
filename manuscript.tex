@@ -343,7 +343,7 @@ The retrospective errors favor different models at different horizons (Table~\re
 
 The three-model mixture assigns weights 0.420, 0.183 and 0.397 to GM(1,1), NGBM and ARIMA using the rolling five-year RMSE. The 2028 projections are 0.448, 0.428 and 0.485, and their mixture is 0.459 (Fig.~\ref{fig:esi}). All four point values fall in mild warning. The full-series NGBM exponent is 0.05, at the lower grid boundary. Retaining the exponent selected on 2005--2018 instead gives 0.391 in 2028, classified as medium warning. The crossing of that threshold therefore depends on the exponent-selection window.
 
-The simulated mixture spans 0.249--0.779 in 2028 (Table~\ref{tab:forecastunc}). Its mild-warning share is 0.452 and medium-warning share 0.380. Parameter-only resampling gives a narrower central range, 0.387--0.612, showing how the accumulated-disturbance assumption expands the envelope. These are conditional simulation summaries for a reconstructed target. The grade labels and their simulated shares describe that target and error process, while ecological intervention decisions require observations at the relevant management scale.
+The simulated mixture spans 0.249--0.779 in 2028 (Table~\ref{tab:forecastunc}). Its mild-warning share is 0.452 and medium-warning share 0.380. Parameter-only resampling gives a narrower central range, 0.387--0.612 (Table~\ref{tab:forecastunc}), showing how the accumulated-disturbance assumption expands the envelope. These are conditional simulation summaries for a reconstructed target. The grade labels and their simulated shares describe that target and error process, while ecological intervention decisions require observations at the relevant management scale.
 
 \begin{table}[htbp]
 \centering
@@ -399,10 +399,12 @@ GM(1,1) & 0.385--0.601 & 0.376--0.662 & 0.363--0.642 & 0.319--0.659 & 0.310--0.6
 NGBM & 0.376--0.579 & 0.352--0.635 & 0.326--0.604 & 0.297--0.621 & 0.281--0.630 \\
 ARIMA(0,1,1) & 0.305--0.697 & 0.271--0.784 & 0.258--0.784 & 0.229--0.812 & 0.199--0.842 \\
 Mixture & 0.349--0.666 & 0.318--0.724 & 0.299--0.759 & 0.270--0.759 & 0.249--0.779 \\
+\midrule
+Mixture, parameter only & 0.422--0.612 & 0.415--0.612 & 0.406--0.612 & 0.396--0.612 & 0.387--0.612 \\
 \bottomrule
 \end{tabular}
 \vspace{2pt}
-{\scriptsize Each model uses 2000 valid replicates. Centered logit residuals are resampled in circular blocks of three to form pseudo-histories and accumulated future disturbances. Every pseudo-history is refitted with the same estimator used for the point projection. The mixture is a linear pool weighted by rolling five-year RMSE, with 6000 simulated paths. The ranges condition on this residual construction. The 2028 mixture bootstrap shares are 0.452 mild, 0.380 medium, 0.140 relatively safe, 0.018 safe and 0.011 severe warning.}
+{\scriptsize Each model uses 2000 valid replicates. Centered logit residuals are resampled in circular blocks of three to form pseudo-histories and accumulated future disturbances. Every pseudo-history is refitted with the same estimator used for the point projection. The mixture is a linear pool weighted by rolling five-year RMSE, with 6000 simulated paths. The ranges condition on this residual construction. The parameter-only row repeats the pool without the accumulated-disturbance step and is the narrower sensitivity quoted in Sec.~\ref{sec:forecast}. The 2028 mixture bootstrap shares are 0.452 mild, 0.380 medium, 0.140 relatively safe, 0.018 safe and 0.011 severe warning.}
 \end{table}
 
 \subsection{Robustness to the weighting ratio $\alpha$}
@@ -437,7 +439,7 @@ Eight (primary) & 1.0 & 15 & 1 & 2 & 1 & 2005--2006, 2009, 2015 \\
 \label{sec:tempdir}
 Reversing the temperature direction gives a 2023 primary ESI of 0.407 and changes 1 historical grade. Dropping temperature gives 0.435 and leaves the grades unchanged. The largest year-wise difference after reversal is 0.088, and all three treatments retain the 2010 peak.
 
-The exact weighted decomposition assigns the primary index's 2005--2023 increase of +0.190 to offsetting indicator changes. Forest and water contribute +0.144 and +0.133, while cropland and precipitation contribute -0.131 and -0.048; the remaining four terms complete the total (temperature +0.033, bare and degraded ground +0.037, grassland +0.046 and the grassland change rate -0.025). Over 2010--2023 the total change is -0.198, of which the grassland-change-rate term contributes -0.171 (86\% of the net decline). This is a contribution to the defined index. Because the rate is derived from interpolated land cover, its contribution depends on that reconstruction.
+The exact weighted decomposition assigns the primary index's 2005--2023 increase of +0.190 to offsetting indicator changes. Forest and water contribute +0.144 and +0.133, while cropland and precipitation contribute -0.131 and -0.048; the remaining four terms complete the total (temperature +0.033, barren/degraded ground +0.037, grassland +0.046 and the grassland change rate -0.025). Over 2010--2023 the total change is -0.198, of which the grassland-change-rate term contributes -0.171 (86\% of the net decline). This is a contribution to the defined index. Because the rate is derived from interpolated land cover, its contribution depends on that reconstruction.
 
 \begin{figure}[htbp]
 \centering
@@ -595,7 +597,7 @@ The evidence concerns reconstructed regional conditions and a separate spatial c
 \label{sec:conclusion}
 Open climate data and five land-cover epochs yield a reconstructed eight-indicator ESI that peaks at 0.676 in 2010 and reaches 0.478 in 2023. Mild warning occurs in 16 of the 19 years. Grade agreement after removing the redundant ecological-land indicator coexists with substantial sensitivity to the derived grassland-change-rate term and other indicator choices. The conventional and Hamed--Rao full-period trend tests have $p=0.184$ and 0.193, while trend-free pre-whitening gives 0.012, so the full-period decline remains dependent on the variance convention.
 
-With the consecutive-time GM(1,1) and NGBM responses, the 2028 GM, NGBM and ARIMA point projections are 0.448, 0.428 and 0.485. Their rolling-five-year-error-weighted mixture is 0.459, with a central 95\% conditional bootstrap envelope of 0.249--0.779. These results summarize model and residual-process choices for the reconstructed index. Spatially, a distinct six-indicator index agrees with independent NDVI ($r=0.705$), but the annual regional series has a different relationship with greenness. The contribution is a relative assessment with explicit indicator, forecast and spatial-support conditions. Monitoring applications can evaluate those conditions against independent ecological outcomes before assigning intervention triggers.
+With the consecutive-time GM(1,1) and NGBM response functions, the 2028 GM, NGBM and ARIMA point projections are 0.448, 0.428 and 0.485. Their rolling-five-year-error-weighted mixture is 0.459, with a central 95\% conditional bootstrap envelope of 0.249--0.779. These results summarize model and residual-process choices for the reconstructed index. Spatially, a distinct six-indicator index agrees with independent NDVI ($r=0.705$), but the annual regional series has a different relationship with greenness. The contribution is a relative assessment with explicit indicator, forecast and spatial-support conditions. Monitoring applications can evaluate those conditions against independent ecological outcomes before assigning intervention triggers.
 
 \appendix
 
