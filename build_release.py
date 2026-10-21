@@ -8,16 +8,14 @@ from current_release import PACKAGE as P,ROOT,DELIVERY as OUT,WORK as W,VERSION
 
 FIGS=['fig1_study_area','fig_dpsir_framework','fig_indicator_trends',
       'fig3_esi_timeseries','fig_weights','fig4_alpha_sensitivity',
-      'fig_spatial_maps','fig_geodetector_q','fig_interaction','fig_obstacle']
+      'fig_spatial_maps','fig_geodetector_q','fig_interaction','fig_obstacle','fig_annual_validation']
 
 def main():
     OUT.mkdir(parents=True,exist_ok=True);(OUT/'图件').mkdir(exist_ok=True)
     for n,name in enumerate(FIGS,1):
         shutil.copyfile(P/'figures'/(name+'.pdf'),OUT/'图件'/f'Figure_{n}.pdf')
     shutil.copyfile(P/'figures/JMS_figure_audit.tsv',OUT/'图件/JMS_figure_audit.tsv')
-    if (W/'latex/manuscript.pdf').exists():
-        shutil.copyfile(W/'latex/manuscript.pdf',P/'manuscript.pdf')
-        shutil.copyfile(P/'manuscript.pdf',OUT/f'论文_EN_{VERSION}版本_LaTeX校对稿.pdf')
+    # Manuscript deliverables are Word-only; figure PDFs remain vector sources.
     files=[]
     files+=list(P.glob('*.py'))
     # Case-insensitive identity screen. An earlier release shipped verify_v8.py,
@@ -40,7 +38,7 @@ def main():
         low=f.read_text(encoding='utf-8',errors='replace').lower()
         return not any(b in low for b in BANNED)
     files=[f for f in files if scrubbed(f)]
-    files += [P/n for n in ['manuscript.tex','manuscript.bib','manuscript.bbl','README.md','README_county_esi.md']]
+    files += [P/n for n in ['manuscript.tex','manuscript.bib','manuscript.bbl','README.md','README_county_esi.md','LICENSE']]
     files+=list((P/'data').glob('*.csv'))+list((P/'data').glob('*.json'))+list((P/'data').glob('*.geojson'))
     files+=list((P/'data').glob('*.npy'))+list((P/'data').glob('*.npz'))
     files+=list((P/'eco_security').glob('*.py'))

@@ -28,23 +28,25 @@ base = piv["baseline9"].values
 
 # JMS §5.7：画布宽 = 印刷插入宽 16.00 cm
 fig, ax = jms_style.subplots(height_cm=9.6, layout="constrained")
-ax.fill_between(a, 0.4, 0.6, color="#f4d03f", alpha=0.4, label="Mild-warning zone")
-ax.plot(a, prim, "-o", color=BLUE, lw=2, ms=5.5, zorder=4,
+ax.fill_between(a, 0.4, 0.6, color="#f4d03f", alpha=0.10)
+ax.plot(a, prim, "-o", color=BLUE, lw=1.7, ms=4.2, zorder=4,clip_on=False,
         label="Eight indicators (primary)")
-ax.plot(a, base, "--s", color=GRAY, lw=1.4, ms=4.0, zorder=3,
+ax.plot(a, base, "--s", color=GRAY, lw=1.4, ms=4.0, zorder=3,clip_on=False,
         label="Nine indicators (contrast)")
-ax.axhline(0.4, color=RED, ls="--", lw=1.1, label="Medium-warning threshold (0.4)")
-ax.axhline(0.6, color=GREEN, ls="--", lw=1.1, label="Relatively-safe threshold (0.6)")
-ax.text(0.5, 0.55, "ESI 2023, eight indicators: %.3f-%.3f\nnine indicators: %.3f-%.3f"
-        "\nGrade: mild warning (all \u03b1)" % (prim.min(), prim.max(), base.min(), base.max()),
-        ha="center", fontsize=8.0,
-        bbox=dict(boxstyle="round,pad=0.35", fc="white", ec=BLUE, alpha=0.9))
+ax.axhline(0.4, color=RED, ls=(0,(4,3)), lw=.8)
+ax.axhline(0.6, color=GREEN, ls=(0,(4,3)), lw=.8)
+ax.text(0.035,0.582,"Mild warning for all \u03b1",ha="left",va="top",fontsize=8,color="#6d622f")
+ax.text(0.035,0.558,"Eight indicators: %.3f\u2013%.3f\nNine indicators: %.3f\u2013%.3f"
+        % (prim.min(), prim.max(), base.min(), base.max()),ha="left",va="top",fontsize=8,color="#434a50")
+ax.text(.98,.604,"Relatively-safe threshold (0.6)",ha="right",va="bottom",fontsize=8,color=GREEN)
+ax.text(.98,.396,"Medium-warning threshold (0.4)",ha="right",va="top",fontsize=8,color=RED)
 ax.set_xlabel("Weighting ratio \u03b1 (0 = entropy only, 1 = AHP only)")
 ax.set_ylabel("ESI 2023")
 ax.set_xlim(0, 1)
 ax.set_ylim(0.35, 0.62)
-ax.legend(fontsize=8, loc="lower right")
-ax.grid(alpha=0.25, lw=0.4)
+ax.legend(fontsize=8, loc="lower right",bbox_to_anchor=(1,.205),frameon=False,handlelength=2.5)
+ax.grid(axis="y",color="#dce2e8",alpha=.6,lw=.4)
+ax.spines[["top","right"]].set_visible(False)
 jms_style.save(fig, "fig4_alpha_sensitivity", outdir=FIG)
 plt.close()
 print("eight-indicator alpha endpoints: %.6f (a=0) -> %.6f (a=1)" % (prim[0], prim[-1]))

@@ -40,19 +40,19 @@
 
 \begin{frontmatter}
 
-\title{Ecological security early warning in the Qilian Mountain region, China: temporal dynamics, forecasts, and spatial associations}
+\title{Observation frequency and forecast reliability of ecological security indices in the Qilian Mountain region, China}
 
 % Double-blind submission: the author block is intentionally omitted from the
 % main document. Full author information, ORCID and contact details are in the
 % separate Title Page file.
 
 \begin{abstract}
-Sparse environmental records are often converted into ecological-security warning grades, although their sensitivity to index construction and forecasting choices remains uncertain. This study assesses the Qilian Mountain region, China, using climate data and five land-cover epochs over 2005--2023, followed by an observed-input check for 2024--2025. An eight-indicator index combines analytic hierarchy process and entropy weights. The reconstructed index peaks at 0.676 in 2010 and reaches 0.478 in 2023, with mild warning in 16 of 19 years. Removing a redundant ecological-land indicator preserves these grades, whereas removing the derived grassland change rate changes 11 grades and the peak year. Retrospective rolling forecasts compare a first-order grey model (GM(1,1)), a nonlinear grey Bernoulli model (NGBM) and an autoregressive integrated moving average model (ARIMA) with simple benchmarks. Their error-weighted mixture projects 0.459 for 2028, with a central 95\% conditional bootstrap envelope of 0.249--0.779. The 2024--2025 observations exceed several historical input ranges. Mixture RMSE is 0.448 under historical-scale continuation, 0.331 after bridging the land-cover product revision and 0.085 after clipping each normalized input. Spatial analysis uses a separate six-indicator index at 1,914 grid points. Independent normalized difference vegetation index (NDVI) data agree with its spatial pattern ($r=0.705$, effective sample size approximately 23), but regional annual greenness differs from the reconstructed index. The new observations show that historical forecast performance does not transfer directly across changes in input range and data version. Continuous values and sensitivity checks are needed alongside relative warning grades.
+Ecological-security indices are often forecast from annually interpolated environmental records. This study tests how observation frequency affects index trajectories, warning grades and forecast reliability in the Qilian Mountain region, China. An eight-indicator index reconstructed from five land-cover epochs over 2005--2023 is compared with complete annual observations from the same China Land Cover Dataset release. With bounds and entropy weights re-estimated for each index, annual inputs change 11 of 19 warning grades and move the peak from 2010 to 2017. Holding historical bounds and weights fixed yields seven grade changes and moves the peak from 2010 to 2009; the product-version bridge changes one grade. The grassland change rate uses consecutive annual observations, with 2004 initializing the first year. Forecast evaluation estimates normalization bounds and entropy weights separately at each origin and tests targets through 2025. Across 12 one-year origins, the training-weighted mixture has root mean squared error of 0.129, compared with 0.105 for the last-value benchmark. Across eight five-year origins, the corresponding errors are 0.259 and 0.220. Input-wise clipping reduces some errors but changes the target definition. MODIS net primary productivity has a level correlation of 0.479 with the annual-input index but weak first-difference agreement (r=0.049). NOAA NDVI associations vary with product and spatial support. A separate six-indicator spatial index agrees with NDVI at 1,785 valid points (r=0.705). The results show that sampling frequency and index construction affect warning grades, while the tested forecast combination does not consistently beat a simple benchmark. Monitoring decisions require continuous index values, explicit input scaling and ecological interpretation alongside relative warning grades.
 
 \end{abstract}
 
 \begin{keyword}
-ecological security \sep early warning \sep DPSIR \sep grey forecasting \sep GeoDetector \sep Qilian Mountain region
+ecological security \sep observation frequency \sep annual land cover \sep forecast evaluation \sep ecological monitoring \sep Qilian Mountain region
 \end{keyword}
 
 \end{frontmatter}
@@ -75,7 +75,7 @@ The pressure--state--response (PSR) and driving force--pressure--state--impact--
 Several choices can alter the interpretation of reserve-scale assessments. A single weighting scheme obscures sensitivity to the subjective--objective balance. Derived or compositionally redundant indicators can count the same environmental information more than once. Forecast comparison requires common time origins and simple benchmarks, and a factor that also enters the target index has a construction-related association with it. Examining these choices together can distinguish persistent patterns from those that depend on one index specification.
 
 \subsection{Objectives of this study}
-This study (1) reconstructs the regional ecological-security index (ESI) and relative warning grades over 2005--2023, (2) evaluates their sensitivity to indicator selection, interpolation, weighting and thresholds, (3) compares retrospective forecasts of the reconstructed index, produces conditional projections for 2024--2028 and checks the first two projected years against observed inputs, and (4) examines spatial associations and consistency with an independent normalized difference vegetation index (NDVI) product using a separately defined point-scale index. County-window comparisons provide context for monitoring priorities across the wider park region.
+This study tests how observation frequency and index construction affect ecological-security trajectories and forecast reliability. A five-epoch reconstruction provides a reference for comparison with complete annual land-cover observations. The analysis evaluates forecasts using training-window normalization and weighting, compares regional indices with external vegetation and productivity products, and examines spatial associations using a separately defined point-scale index. County-window comparisons provide context for monitoring across the wider park region.
 
 % ============================================================
 \section{Study area and data}
@@ -108,15 +108,16 @@ Data type & \raggedright Indicators & \raggedright Source (dataset, version, res
 \midrule
 Climate & \raggedright precipitation (mm), mean temperature ($^{\circ}$C) & \raggedright CRU TS 4.10, monthly, 0.5$^\circ$, 1901--2025; accessed 2026-04-09 \citep{cru_ts410} & 2005--2025 \\
 Terrain & \raggedright elevation, slope & \raggedright Copernicus DEM GLO-90 (2021 release; digital surface model), 3\,arcsec ($\sim$90\,m); accessed 2026-09-07 & static (no temporal dimension) \\
-Land cover & \raggedright proportions of grassland, forest, water, cropland, barren & \raggedright China Land Cover Dataset (CLCD), 30\,m; historical versions 1.0.2/1.0.3 and annual version 1.0.5 (1985--2025); accessed 2026-10-07, 2026-10-18 and 2026-10-21 \citep{yang2021clcd,yang2024clcd} & 5 epochs + 2024--2025 \\
+Land cover & \raggedright proportions of grassland, forest, water, cropland, barren & \raggedright China Land Cover Dataset (CLCD), 30\,m; historical versions 1.0.2/1.0.3 and annual version 1.0.5 (1985--2025); accessed 2026-10-07, 2026-10-18 and 2026-10-21 \citep{yang2021clcd,yang2024clcd} & 5-epoch reference; annual 2004--2025 extension \\
 Vegetation & \raggedright independent NDVI & \raggedright NOAA Climate Data Record, daily, 0.05$^\circ$; AVHRR-Land v005 (2005--2013), VIIRS-Land v001 (2014--2023); accessed 2026-10-18 & 2005--2023 \\
+Productivity & \raggedright independent annual NPP & \raggedright MODIS Terra MOD17A3HGF Collection 6.1, annual, 500\,m \citep{running2021npp} & 2005--2023 \\
 \bottomrule
 \end{tabular}
 
 \vspace{2pt}
 {\scriptsize Notes: Historical land-cover proportions use 2005, 2010, 2015, 2020 and 2023, with 14 intervening years linearly interpolated. The 2020 tile is Zenodo record 8176941 (version 1.0.2), and the original 2023 tile is record 12779975 (version 1.0.3). New 2023--2025 tiles are from record 18180184 (version 1.0.5). Reprocessing the original 2023 tile reproduces the historical table; the new 2023 tile supplies the product-version bridge. Raw-data reprocessing covers 2020 and both versions of 2023, plus 2024--2025; the 2005, 2010 and 2015 inputs are supplied as processed regional values. Regional climate is the unweighted mean of the 0.5$^\circ$ grid cells within 36.5--40.0$^\circ$N, 94.0--103.0$^\circ$E, which is slightly smaller than the declared study window (36.0--40.5$^\circ$N, 93.5--103.5$^\circ$E); county climate is the nearest 0.5$^\circ$ cell to each county centroid and county land cover is a $\pm$0.1$^\circ$ centroid window, so county values are not area-weighted statistics.}
 \end{table}
-The data sources used in this study are summarized in Table~\ref{tab:data}. Land-cover proportions were computed per epoch (2005, 2010, 2015, 2020, 2023) from the China Land Cover Dataset (CLCD) \citep{yang2021clcd,yang2024clcd} and linearly interpolated to annual values; 2005 and 2023 are observation epochs of the CLCD record rather than extrapolations, and the 19-year series therefore contains 14 interpolated years. Regional climate was aggregated as the unweighted arithmetic mean of the 0.5$^\circ$ Climatic Research Unit Time Series (CRU TS) 4.10 grid cells within 36.5--40.0$^\circ$N, 94.0--103.0$^\circ$E, and county climate as the nearest 0.5$^\circ$ cell to each county centroid; climate and county land-cover values are therefore centroid or unweighted-grid estimates rather than area-weighted statistics. Re-aggregating regional climate over the declared window (36.0--40.5$^\circ$N, 93.5--103.5$^\circ$E) changes annual precipitation by at most 28\,mm (mean $-19$\,mm, 12\% of the mean) and annual temperature by at most 1.3\,$^{\circ}$C, but changes the ESI by at most 0.003 and leaves all 19 warning grades unchanged; cosine-latitude area weighting changes precipitation and temperature by at most 1.6\,mm and 0.03\,$^{\circ}$C. Raster reprojection and cropping used open Python tooling (xarray, rasterio, pyproj); the analysis scripts and the processed tables are available for inspection, with the re-processing boundary stated in the Data availability section.
+The data sources used in this study are summarized in Table~\ref{tab:data}. The reference land-cover proportions were computed at five epochs (2005, 2010, 2015, 2020, 2023) from the China Land Cover Dataset (CLCD) \citep{yang2021clcd,yang2024clcd} and linearly interpolated to annual values; 2005 and 2023 are observation epochs of the CLCD record rather than extrapolations, and the 19-year series therefore contains 14 interpolated years. Regional climate was aggregated as the unweighted arithmetic mean of the 0.5$^\circ$ Climatic Research Unit Time Series (CRU TS) 4.10 grid cells within 36.5--40.0$^\circ$N, 94.0--103.0$^\circ$E, and county climate as the nearest 0.5$^\circ$ cell to each county centroid; climate and county land-cover values are therefore centroid or unweighted-grid estimates rather than area-weighted statistics. Re-aggregating regional climate over the declared window (36.0--40.5$^\circ$N, 93.5--103.5$^\circ$E) changes annual precipitation by at most 28\,mm (mean $-19$\,mm, 12\% of the mean) and annual temperature by at most 1.3\,$^{\circ}$C, but changes the ESI by at most 0.003 and leaves all 19 warning grades unchanged; cosine-latitude area weighting changes precipitation and temperature by at most 1.6\,mm and 0.03\,$^{\circ}$C. Raster reprojection and cropping used open Python tooling (xarray, rasterio, pyproj); the analysis scripts and the processed tables are available for inspection, with the re-processing boundary stated in the Data availability section.
 
 % ============================================================
 \section{Methods}
@@ -244,6 +245,14 @@ Regional annual NDVI uses six target dates: 10 and 25 June, 10 and 25 July, and 
 Sensitivity analyses vary interpolation, indicator sets, factor stratifications, point sampling, spatial weights and 64 county-window configurations.
 
 % ============================================================
+
+\subsection{Complete annual observations and training-window evaluation}
+\label{sec:annual-methods}
+The annual comparison uses every CLCD version 1.0.5 raster from 2004 to 2025 \citep{yang2026clcd}. The extraction window, class definitions, eight-indicator set, indicator directions, AHP priorities and $\alpha=0.4$ match the reference reconstruction. Consecutive annual grassland proportions determine the change rate, with 2004 initializing 2005. The descriptive annual-input index is normalized and weighted over 2005--2023. A sensitivity sets the first change rate to zero, matching the reference convention. A matched-release control uses the v1.0.5 maps from 2005, 2010, 2015, 2020 and 2023, linearly interpolated between epochs; the 2004 map initializes the 2005 grassland change rate in both the control and annual series. This comparison separates observation frequency from product-version updates. The original historical baseline used earlier CLCD releases; its source-reprocessing boundary is given in Table~\ref{tab:data}. Remote full-resolution raster windows and local full-file controls use the same nearest-neighbour extraction; source checksums and selected-pixel summaries accompany the processed inputs.
+
+For forecast evaluation, each origin uses only raw observations from 2005 through that origin to estimate normalization bounds and entropy weights. Later inputs are transformed using these training quantities. Primary errors use affine continuation, with input-wise clipping as a sensitivity. The model definitions and NGBM exponent selection follow Sec.~\ref{sec:warning}. ARIMA fits allow up to 1000 optimization iterations, with Powell optimization retried after unsuccessful convergence. The training-weighted mixture uses inverse one-step root mean squared errors within the available training index, with inner training lengths of at least six years. There are 12 one-year origins (2013--2024) and eight five-year origins (2013--2020). The latter produce 40 origin--horizon records spanning 12 distinct target years. This evaluates training-window processing on a common retrospective land-cover product; its release date differs from historical real-time data availability.
+
+External ecosystem-function agreement is assessed with annual MODIS Terra net primary productivity (NPP), MOD17A3HGF Collection 6.1, over 2005--2023 \citep{running2021npp}. Equal-area pixel centres are selected within the CLCD extraction rectangle. Raw NPP values outside $[-30000,32700]$ and quality-layer values outside $[0,100]$ are excluded, and NPP is scaled by $0.0001$ to kg C m$^{-2}$ yr$^{-1}$. Annual-valid and common-valid summaries coincide: 716,907 pixel centres are retained in every year. The MODIS Npp_QC_500m band reports the percentage of growing-season days for which gap-filled LAI/FPAR inputs were used; its common-mask mean is 62.1\% in 2014 and 12.7--20.5\% in other years. Pearson and Spearman associations are calculated for levels and first differences; linear detrending and omission of 2014 are descriptive sensitivities. The NOAA NDVI comparisons use the same temporal definitions and retain a sensitivity excluding the 2014 sensor transition. NPP is a model-derived productivity estimate, while the vegetation and productivity comparisons concern ecological consistency rather than event-calibrated warning thresholds.
 
 \section{Results}
 \label{sec:results}
@@ -551,7 +560,7 @@ Elevation and slope, which are outside the index inputs, have $q=0.090$ and 0.06
 
 The six joint-factor statistics exceed their larger single-factor statistic (Table~\ref{tab:interaction}; Fig.~\ref{fig:interaction}). None exceeds the sum of its two single-factor statistics. Joint stratification refines the constituent partitions, so this pattern describes joint variance association with the constructed target. Forest is treated separately: 15 samples are forest-dominated, binary stratification gives $q=0.065$, and zero-inflated fractional-cover stratification gives 0.206. Its concentration and the target's entropy weighting make its contribution sensitive to spatial representation.
 
-Independent NDVI corroborates the spatial pattern of the six-indicator index: Pearson $r=0.705$ and Spearman $\rho=0.737$ over 1,785 valid points. With NDVI as the target, precipitation leads the stratified associations ($q=0.626$), ahead of barren/degraded (0.548), grassland (0.378) and temperature (0.178). Terrain regression gives $R^2=0.059$ for NDVI. In time, the regional NDVI level correlation with the reconstructed regional index is $-0.17$. Its trend changes sign between the all-clear-pixel and common-mask summaries, and the VIIRS-only level correlations also depend on the mask. Thus the independent product supplies spatial consistency for the point index, while the temporal warning remains conditional on the regional index's construction.
+Independent NDVI corroborates the spatial pattern of the six-indicator index: Pearson $r=0.705$ and Spearman $\rho=0.737$ over 1,785 valid points. With NDVI as the target, precipitation leads the stratified associations ($q=0.626$), ahead of barren/degraded (0.548), grassland (0.378) and temperature (0.178). Terrain regression gives $R^2=0.059$ for NDVI. For the eight-indicator reference, the regional NDVI level correlation is $-0.290$ using all clear pixels and $-0.082$ on the common mask. Its trend changes sign between the all-clear-pixel and common-mask summaries, and the VIIRS-only level correlations also depend on the mask. Thus the independent product supplies spatial consistency for the point index, while the temporal warning remains conditional on the regional index's construction.
 
 \begin{table}[htbp]
 \centering
@@ -617,9 +626,68 @@ Under the primary weights, the leading 2005--2010 deficiencies are water (0.275)
 \end{figure}
 
 % ============================================================
+\subsection{Effects of complete annual observations}
+\label{sec:annual-results}
+Against the historical five-epoch reference, the annual-input index changes 10 of 19 warning grades and shifts the peak from 2010 to 2017; this contrast combines temporal sampling with a product-version update. Within CLCD v1.0.5, replacing five-epoch interpolation with annual observations changes 11 grades and moves the peak from 2010 to 2017 when each index is normalized and entropy-weighted over the full period. With historical bounds and weights held fixed, seven grades change and the annual peak is 2009 rather than 2010. The product-version bridge between the five-epoch series changes 1 grade while retaining the 2010 peak (Table~\ref{tab:frequency-control}). The matched-release series have a maximum absolute difference of 0.247 (Fig.~\ref{fig:annual}). The first-year-zero annual sensitivity retains the 2017 peak; the annual-input index reaches 0.462 in 2023.
+
+Training-window forecasts do not reproduce the low errors of the fixed reconstructed target. The mixture has one-year and five-year affine-target root mean squared errors of 0.1286 and 0.2588, compared with 0.1053 and 0.2196 for the last-value benchmark (Table~\ref{tab:annual-forecast}). The corresponding clipped-target comparison also favours the last-value benchmark. The two evaluations differ in observation frequency, preprocessing and target definition, so their error difference is not attributed to any single processing step.
+
+On the common 716,907-pixel support, annual NPP levels correlate with the annual-input index (r=0.479), but the association falls after linear detrending (r=0.225) and is weak for first differences (r=0.049; Table~\ref{tab:annual-proxies}). The mean gap-filled-input share is highest in 2014 (62.1\%). Omitting the two first-difference pairs that include 2014 gives r=0.503 across 16 changes; this short sensitivity is descriptive. NOAA NDVI level correlations are 0.147 using all clear pixels and -0.272 on the common mask. These annual products do not provide event-level warning validation; the positive spatial NDVI agreement remains specific to the separate point-scale index.
+
+\begin{table}[htbp]
+\centering
+\caption{Training-window forecast root mean squared errors for the annual-input index.}
+\label{tab:annual-forecast}
+\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+Model & One-year affine & One-year clipped & Five-year affine & Five-year clipped \\
+\midrule
+GM(1,1) & 0.2026 & 0.1831 & 0.3535 & 0.3578 \\
+NGBM & 0.1465 & 0.1242 & 0.3332 & 0.2695 \\
+ARIMA(0,1,1) & 0.1089 & 0.0906 & 0.2194 & 0.1832 \\
+Naive & 0.1053 & 0.0858 & 0.2196 & 0.1819 \\
+Drift & 0.1141 & 0.0980 & 0.2763 & 0.2733 \\
+Training-weighted mixture & 0.1286 & 0.1062 & 0.2588 & 0.2206 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\scriptsize One-year evaluation has 12 origins and 12 annual targets. Five-year evaluation has eight origins and 40 overlapping origin--horizon records spanning 12 target years. All preprocessing uses the outer training window. Mixture weights use one-step errors within that training index; they differ from the five-year-error weights for the reconstructed reference.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Warning-grade and peak-year contrasts separating temporal sampling from product-version updates.}
+\label{tab:frequency-control}
+\small
+\begin{tabular}{p{8.2cm}ccc}
+\toprule
+Comparison & Changed grades & Peak, series A & Peak, series B \\
+\midrule
+Historical five-epoch vs annual CLCD v1.0.5 & 10 & 2010 & 2017 \\
+Five-epoch vs annual, both CLCD v1.0.5 & 11 & 2010 & 2017 \\
+Five-epoch vs annual, v1.0.5; historical bounds and weights fixed & 7 & 2010 & 2009 \\
+Historical vs five-epoch CLCD v1.0.5 & 1 & 2010 & 2010 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\scriptsize Comparisons 1, 2 and 4 normalize each series and estimate entropy weights separately over 2005--2023. Comparison 3 fixes the historical reference bounds and combined weights for both CLCD v1.0.5 series. Matched-release comparisons use the 2004 map to initialize the 2005 grassland change. The product-version bridge sets the first grassland change rate to zero in both five-epoch series.}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/fig_annual_validation.pdf}
+\caption{Annual observations and external-product comparison. Panel a contrasts the legacy five-epoch series, five-epoch interpolation from CLCD v1.0.5, complete annual v1.0.5 inputs and the first-year-zero annual sensitivity over 2005--2023. Each series is normalized and weighted over the full descriptive period. Panel b compares annual-input ESI with MODIS Terra NPP on 716,907 pixels valid in every year; the 2014 point is marked because its mean gap-filled-input share is 62.1\%. Level and first-difference correlations distinguish shared levels from year-to-year agreement.}
+\label{fig:annual}
+\end{figure}
+
 \section{Discussion}
 \label{sec:discussion}
 \subsection{What the regional index measures}
+Within CLCD v1.0.5, replacing five-epoch interpolation with annual observations changes 11 warning grades and shifts the peak to 2017 when each index is separately normalized and entropy-weighted. Holding the historical bounds and weights fixed changes seven grades and places the annual peak in 2009 rather than 2010. Thus grade sensitivity appears under both specifications, while peak timing depends on index scaling and weighting. The historical-release bridge changes one grade while retaining the 2010 peak. The annual grassland change rate follows consecutive maps, and its effect enters both the index trajectory and forecast target. The training-window evaluation favours the last-value benchmark over the tested mixture at both horizons.
+
 The primary index describes relative ecological-security conditions within a fixed climate and land-cover reference. Its 2010 peak and the following mild-warning grades persist after removing the redundant ecological-land indicator, but the trend changes with the indicator set. The grassland-change-rate contribution helps explain the peak, and its dependence on interpolation links the temporal narrative to the way sparse land-cover observations are reconstructed.
 
 The spatial index agrees with NDVI across the region, and precipitation has the strongest association when NDVI replaces the constructed target. Annual regional NDVI does not show the same agreement with the reconstructed regional index. Spatial correspondence therefore supports the mapped pattern but does not validate the annual warning trajectory.
@@ -636,13 +704,13 @@ The grassland change rate and cropland have the largest mean obstacle degrees in
 Regional grades, county-window contrasts and point-scale maps have distinct supports. The county ordering changes with the sampled window and with area weighting, so the stable extremes provide regional context rather than a basis for county intervention ranks. A management trigger would additionally require independently observed ecological outcomes at the management-unit scale, assessment of false alarms and missed events, and an appropriate cost of intervention. The grade--response relationship is therefore proposed as a monitoring design to evaluate, with the continuous index and conditional projection spread supplied alongside the grade.
 
 \subsection{Scope and future evaluation}
-The evidence concerns reconstructed regional conditions and a separate spatial composite. Five land-cover epochs support annual interpolation, and derived rates depend on the interpolation scheme. Retrospective forecast errors condition on that completed index, while the bootstrap envelope conditions on its residual resampling assumptions. Spatial translation diagnostics assume periodic boundaries, and the correlation-variance approximation depends on lag support. The observed-input check adds two annual targets without refitting the historical estimator. Its large affine errors and sensitivity to clipping show that transfer beyond the historical input range needs an explicit scaling rule. The land-cover product revision also affects the first annual change. A longer sequence at matching spatial support, with data available at each prediction origin and independently observed ecological outcomes, is needed to evaluate operational warning grades.
+The annual comparison uses a retrospectively released CLCD product, so rolling-origin preprocessing tests model behavior under training-window information but does not recreate historical data availability. The matched-release comparison changes warning grades under both separately estimated and fixed historical scaling, while peak timing depends on the scaling and weighting rule; the product-version bridge changes one grade. MODIS annual levels and year-to-year changes show different associations, and the 2014 quality value is elevated; spatial NDVI agreement applies to a separate point-scale index. The results support conclusions about observation frequency, index construction and forecast transfer. Operational warning grades still require independent ecological outcomes at matching management-unit support.
 
 \section{Conclusion}
 \label{sec:conclusion}
-Open climate data and five land-cover epochs yield a reconstructed eight-indicator ESI that peaks at 0.676 in 2010 and reaches 0.478 in 2023. Mild warning occurs in 16 of the 19 years. Grade agreement after removing the redundant ecological-land indicator persists alongside substantial sensitivity to the derived grassland-change-rate term and other indicator choices. The conventional and Hamed--Rao full-period trend tests have $p=0.184$ and 0.193, while trend-free pre-whitening gives 0.012, so the full-period decline remains dependent on the variance convention.
+Using one CLCD v1.0.5 release, complete annual observations change 11 of 19 warning grades and move the peak from 2010 to 2017 when each index is rescaled and reweighted. With historical bounds and weights fixed, seven grades change and the annual peak is 2009 rather than 2010, showing that grade sensitivity is consistent while peak timing depends on index construction. The product-version bridge changes one grade and retains the 2010 peak. The annual index reaches 0.462 in 2023.
 
-For 2028, GM(1,1), NGBM and ARIMA project 0.448, 0.428 and 0.485. Their mixture, weighted by rolling five-year RMSE, gives 0.459 with a central 95\% conditional bootstrap envelope of 0.249--0.779. The 2024--2025 observed-input check gives mixture RMSE of 0.448, 0.331 and 0.085 under historical continuation, a same-release bridge and input-wise clipping. These results show that the historical process does not transfer directly across changes in input range and product version. A separate six-indicator spatial index agrees with independent NDVI ($r=0.705$), whereas annual regional greenness differs from the reconstructed ESI. Ecological observations at the management-unit scale remain necessary to define intervention triggers.
+With normalization and entropy weights estimated at each training origin, one-year and five-year mixture RMSEs are 0.129 and 0.259, above the corresponding last-value errors of 0.105 and 0.220. MODIS NPP has a level correlation of 0.479, but its detrended correlation is 0.225 and first-difference correlation is 0.049. These retrospective results establish sensitivity to observation frequency and target construction; they do not calibrate relative grades against ecological events. Mountain monitoring should report continuous index values and scaling assumptions alongside any warning grade.
 
 \appendix
 
@@ -910,8 +978,32 @@ X8 & -0.4664 & 0.8364 & -2.4237 & -0.6913 & -1.5024 & -0.1726 \\
 {\scriptsize Negative-direction inputs use $(\max-x)/(\max-\min)$. X6 is the residual after grassland, forest, water and cropland, as in the historical index. X8 in 2024 uses the original 2023 grassland anchor; the same-release bridge gives -1.3115\% per year instead. For the clipped target each normalized value below zero is replaced by zero and each above one by one before weighting.}
 \end{table}
 
+\section{External temporal ecosystem-function comparisons}
+\label{app:annual-proxies}
+\begin{table}[htbp]
+\centering
+\caption{Temporal Pearson associations of regional indices with external vegetation and productivity products.}
+\label{tab:annual-proxies}
+\footnotesize
+\begin{tabular}{lllcc}
+\toprule
+Product & Index & Pixel support & Level $r$ & First-difference $r$ \\
+\midrule
+NDVI & Historical index & All clear pixels & -0.290 & -0.255 \\
+NDVI & Historical index & Common mask & -0.082 & -0.202 \\
+NPP & Historical index & 716,907 common pixels & 0.018 & 0.223 \\
+NDVI & Annual inputs & All clear pixels & 0.147 & -0.380 \\
+NDVI & Annual inputs & Common mask & -0.272 & -0.038 \\
+NPP & Annual inputs & 716,907 common pixels & 0.479 & 0.049 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\scriptsize Levels use 19 annual observations over 2005--2023; first differences use 18 changes. NPP rows use the 716,907 pixels valid in every year. NPP is MODIS Terra Collection 6.1, scaled to kg C m$^{-2}$ yr$^{-1}$; 2014 has the highest mean percentage of growing-season days using gap-filled inputs. Linear-detrended and 2014-omission sensitivities are supplied in the reproduction package. NDVI combines AVHRR and VIIRS; the 2014 transition sensitivity is also supplied. These product comparisons are not ecological-event labels.}
+\end{table}
+
 \section*{Data availability}
-Climate data are available from CRU TS 4.10 \citep{cru_ts410} at \url{https://crudata.uea.ac.uk/cru/data/hrg/}. Land cover is supplied by CLCD \citep{yang2021clcd,yang2024clcd}, with the annual collection at \url{https://doi.org/10.5281/zenodo.12779975} and the 2020 tile at Zenodo record 8176941. Version 1.0.5, including the 2023 product bridge and 2024--2025 observations, is available at \url{https://zenodo.org/records/18180184}. Terrain is Copernicus DEM GLO-90, and the independent vegetation product is NOAA CDR AVHRR/VIIRS NDVI, available at \url{https://www.ncei.noaa.gov/products/climate-data-records/normalized-difference-vegetation-index}. Analysis code, processed tables, model outputs and figure generators are provided through the anonymized review mirror \url{https://anonymous.4open.science/r/qilian-esi-early-warning-CF60} and the submission reproduction package. The regional land-cover inputs comprise a five-epoch processed table; raw-data reprocessing covers 2020, the original 2023 tile and the new 2023--2025 tiles, while 2005, 2010 and 2015 are supplied as processed regional values. The reproduction package includes extraction class counts, climate summaries, source checksums and the three observed-input comparison specifications. The same code and processed tables are archived in a public repository, whose persistent identifier will be cited in the published version.
+Climate data are available from CRU TS 4.10 \citep{cru_ts410} at \url{https://crudata.uea.ac.uk/cru/data/hrg/}. Land cover is supplied by CLCD \citep{yang2021clcd,yang2024clcd}; version 1.0.5, including the 2004--2025 annual rasters and 2023 product bridge, is available at \url{https://zenodo.org/records/18180184}. The historical reference uses earlier CLCD products, including the 2020 tile in record 8176941 and the original 2023 tile in record 12779975. Terrain is Copernicus DEM GLO-90. NOAA CDR AVHRR/VIIRS NDVI is available at \url{https://www.ncei.noaa.gov/products/climate-data-records/normalized-difference-vegetation-index}; MODIS Terra NPP Collection 6.1 is available at \url{https://doi.org/10.5067/MODIS/MOD17A3HGF.061}. The historical reconstruction code, tables and model outputs are available through the anonymized review mirror \url{https://anonymous.4open.science/r/qilian-esi-early-warning-CF60}. The submission reproduction package contains the 2004--2025 annual CLCD extraction summaries and manifests, annual and training-window analysis scripts, the matched-release frequency control, MODIS NPP summaries and quality sensitivities, processed tables and figure generator. The historical reconstruction remains archived in the public repository.
 
 \section*{CRediT authorship contribution statement}
 The sole author was responsible for conceptualization, methodology, formal analysis, data curation, visualization, writing -- original draft, and writing -- review \& editing.
