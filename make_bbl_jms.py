@@ -2,7 +2,7 @@
 r"""Generate paper-code/manuscript.bbl in Journal of Mountain Science style.
 
 Contract (set by the Lead, 2026-10-20):
-  * One \bibitem per reference, 25 items, alphabetical by first-author surname.
+  * One \bibitem per cited reference, alphabetical by first-author surname.
   * The optional in-text label keeps its short author-year form, e.g.
         \bibitem[{Harris et al.(2020)}]{cru_ts410}
     because build_word_*.py derives every "(Author Year)" in-text citation from it
@@ -72,6 +72,10 @@ JOURNAL_ABBREV = {
     "Journal of Mountain Science": "J Mt Sci",
     "Biometrics": "Biometrics",
     "Spatial Statistics": "Spat Stat",
+    "Journal of Hydrology": "J Hydrol",
+    "Hydrological Processes": "Hydrol Process",
+    "Journal of the American Statistical Association": "J Am Stat Assoc",
+    "Journal of the Royal Statistical Society: Series C (Applied Statistics)": "J R Stat Soc Ser C Appl Stat",
 }
 
 # ------------------------------------------- sentence case (JMS article titles)

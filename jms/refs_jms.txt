@@ -4,6 +4,7 @@ Clifford P, Richardson S, Hemon D (1989) Assessing the significance of the corre
 Deng J (1982) Control problems of grey systems. Syst Control Lett 1(5): 288–294. https://doi.org/10.1016/S0167-6911(82)80025-X
 Gao J, Pan N, Zhou D (2025) Integrating landscape ecological risk and ecosystem services for ecological zoning in the Qilian Mountain National Park. Ecosyst Health Sustain 11: 0441. https://doi.org/10.34133/ehs.0441
 Gao X, Huang X, Chang S, et al. (2023) Long-term improvements in water conservation functions at Qilian Mountain National Park, northwest China. J Mt Sci 20(10): 2885–2897. https://doi.org/10.1007/s11629-023-8034-5
+Hamed KH, Rao AR (1998) A modified Mann-Kendall trend test for autocorrelated data. J Hydrol 204(1--4): 182–196. https://doi.org/10.1016/S0022-1694(97)00125-X
 Harris I, Osborn TJ, Jones P, et al. (2020) Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Sci Data 7(1): 109. https://doi.org/10.1038/s41597-020-0453-3
 Hou M, Li L, Yu H, et al. (2024) Ecological security evaluation of wetlands in Changbai Mountain area based on DPSIRM model. Ecol Indic 160: 111773. https://doi.org/10.1016/j.ecolind.2024.111773
 Hyndman RJ, Athanasopoulos G (2021) Forecasting: principles and practice, 3 edn. Melbourne: OTexts. https://otexts.com/fpp3/ (Accessed on 20 October 2026)
@@ -16,7 +17,9 @@ Lu X, Zhang J, Li X (2014) Geographical information system-based assessment of e
 Lyu X, Li X, Wang K, et al. (2026) Anthropogenic activities amplify spatiotemporal variations in regional ecological security patterns dominated by natural factors: Evidence from the West Liaohe River Basin, China. J Arid Land 18(5): 752–773. https://doi.org/10.1016/j.jaridl.2026.05.002
 Mrkvicka T, Dvorak J, Gonzalez JA, et al. (2021) Revisiting the random shift approach for testing in spatial statistics. Spat Stat 42: 100430. https://doi.org/10.1016/j.spasta.2020.100430
 Ou Z, Zhu Q, Sun Y (2017) Regional ecological security and diagnosis of obstacle factors in underdeveloped regions: A case study in Yunnan Province, China. J Mt Sci 14(5): 870–884. https://doi.org/10.1007/s11629-016-4199-5
+Pettitt AN (1979) A non-parametric approach to the change-point problem. J R Stat Soc Ser C Appl Stat 28(2): 126–135. https://doi.org/10.2307/2346729
 Saaty TL (1980) The Analytic Hierarchy Process. New York: McGraw-Hill.
+Sen PK (1968) Estimates of the regression coefficient based on Kendall's tau. J Am Stat Assoc 63(324): 1379–1389. https://doi.org/10.1080/01621459.1968.10480934
 Tong H, Shi P (2020) Using ecosystem service supply and ecosystem sensitivity to identify landscape ecology security patterns in the Lanzhou-Xining urban agglomeration, China. J Mt Sci 17(11): 2758–2773. https://doi.org/10.1007/s11629-020-6283-0
 Wang JF, Hu Y (2012) Environmental health risk detection with GeogDetector. Environ Model Softw 33: 114–115. https://doi.org/10.1016/j.envsoft.2012.01.015
 Wang JF, Zhang TL, Fu BJ (2016) A measure of spatial stratified heterogeneity. Ecol Indic 67: 250–256. https://doi.org/10.1016/j.ecolind.2016.02.052
@@ -24,5 +27,6 @@ WWF (2020) Living Planet Report 2020: Bending the curve of biodiversity loss. Gl
 Yang G, Gui Q, Liu J, et al. (2023) Spatial-temporal evolution and driving factors of ecological security in China based on DPSIR-DEA model: A case study of the Three Gorges reservoir area. Ecol Indic 154: 110777. https://doi.org/10.1016/j.ecolind.2023.110777
 Yang J, Huang X (2021) The 30 m annual land cover dataset and its dynamics in China from 1990 to 2019. Earth Syst Sci Data 13(8): 3907–3925. https://doi.org/10.5194/essd-13-3907-2021
 Yang J, Huang X (2024) The 30 m annual land cover datasets and its dynamics in China from 1985 to 2023. Zenodo data set, version 1.0.3. https://doi.org/10.5281/zenodo.12779975 (Accessed on 7 October 2026)
+Yue S, Pilon P, Phinney B, et al. (2002) The influence of autocorrelation on the ability to detect trend in hydrological series. Hydrol Process 16(9): 1807–1829. https://doi.org/10.1002/hyp.1095
 Zhang W, Liu Z, Qin K, et al. (2024) Long-term dynamic monitoring and driving force analysis of eco-environmental quality in China. Remote Sens 16(6): 1028. https://doi.org/10.3390/rs16061028
 Zhang Y, Zhang K, An Z, et al. (2019) Quantification of driving factors on NDVI in oasis-desert ecotone using geographical detector method. J Mt Sci 16(11): 2615–2624. https://doi.org/10.1007/s11629-018-5361-7

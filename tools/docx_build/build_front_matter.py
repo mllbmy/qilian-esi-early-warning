@@ -114,10 +114,10 @@ def title_page():
                               "processed tables are archived in a public repository; the persistent "
                               "identifier is reported in the published version."),
         ("Author contributions", CREDIT_EN),
-        ("Use of AI", "DeepSeek and ChatGPT were used to assist with "
-                      "manuscript drafting, language editing and code assistance. The author "
-                      "reviewed and edited the content as needed and takes full "
-                      "responsibility for the content of the publication."),
+        ("Use of AI", "DeepSeek and ChatGPT were used for manuscript revision, "
+                      "language editing and assistance with analysis code. The author "
+                      "reviewed and edited the outputs and takes full responsibility "
+                      "for the final content."),
     ]
     for head, body in items:
         p(d, head, size=10, bold=True, before=4, after=1)
@@ -137,7 +137,7 @@ def title_page():
 def cover_letter():
     d = new_doc()
     p(d, DATE, after=10)
-    p(d, "Prof. Dr. Editor-in-Chief", after=0)
+    p(d, "Editor-in-Chief", after=0)
     p(d, "Journal of Mountain Science", after=0)
     p(d, "Institute of Mountain Hazards and Environment, Chinese Academy of Sciences / Springer",
       after=12)
@@ -165,8 +165,8 @@ def cover_letter():
         "indicator preserves all historical warning grades, whereas changing the "
         "derived grassland-change indicator alters both grades and the peak year. "
         "Retrospective rolling forecasts compare GM(1,1), NGBM and ARIMA with naive "
-        "and drift benchmarks on common time origins. The rolling-five-year-weighted "
-        f"mixture projects a 2028 index of {mix:.3f}, with a central 95% conditional "
+        "and drift benchmarks on common time origins. The mixture weighted by rolling five-year errors "
+        f"projects a 2028 index of {mix:.3f}, with a central 95% conditional "
         f"bootstrap envelope of {float(env['lo']):.3f}-{float(env['hi']):.3f}. "
         "Finally, spatial target-overlap diagnostics distinguish associations that "
         "depend on index inputs, while an exhaustive periodic-shift reference and "
@@ -182,9 +182,9 @@ def cover_letter():
         "consideration elsewhere. I am the sole author and approve this submission. "
         "There are no competing interests and no specific funding. Author identity "
         "and declarations appear on the separate Title Page. Figures are supplied "
-        "as vector PDFs and tables are editable in Word. DeepSeek and ChatGPT assisted "
-        "with drafting, language editing and code assistance; I reviewed the "
-        "work and take full responsibility for its content.",
+        "as vector PDFs and tables are editable in Word. I used DeepSeek and ChatGPT "
+        "for manuscript revision, language editing and assistance with analysis code. "
+        "I reviewed and edited the outputs and take full responsibility for the final content.",
         "Thank you for considering this manuscript.",
     ]
     for t in body:
@@ -203,12 +203,12 @@ def cover_letter():
          "with me in recent years, and none has been involved in the preparation or "
          "review of this manuscript.", after=8)
     rows = [
-        ("1", "Prof. Karsten Grunewald",
-         "Leibniz Institute of Ecological Urban and Regional Development (IOR), Dresden, Germany",
+        ("1", "Dr. Karsten Grunewald",
+         "Leibniz Institute of Ecological Urban and Regional Development (IOER), Dresden, Germany",
          "k.grunewald@ioer.de",
          "Landscape ecology; ecological risk and ecosystem-service assessment in mountain regions"),
         ("2", "Prof. Jinfeng Wang",
-         "State Key Laboratory of Resources and Environmental Information System, IGSNRR, "
+         "Institute of Geographic Sciences and Natural Resources Research, "
          "Chinese Academy of Sciences, Beijing, China",
          "wangjf@lreis.ac.cn",
          "Spatial statistics; spatial stratified heterogeneity; originator of the GeoDetector "
