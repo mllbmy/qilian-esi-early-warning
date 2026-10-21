@@ -12,8 +12,8 @@ Design notes
 ------------
 * Scripts bind to the immediately preceding atom, exactly as in TeX, so
   ``40.5^{\\circ}`` renders identically (the degree hangs off the "5").
-* ``\\sum`` becomes m:nary; the summand stays *after* the nary element, which is
-  visually identical to LaTeX and avoids swallowing the rest of the expression.
+* ``\\sum`` becomes m:nary with a populated operand. The following complete
+  product/group belongs inside m:e, so Word never shows an empty argument box.
 * An empty base with a script (``km$^2$``, ``mm$^{-1}$``) becomes m:sSup/m:sSub
   with an empty m:e.
 * ASCII ``-`` and ``*`` are preserved (not mapped to U+2212/U+2217) so the text
@@ -398,11 +398,51 @@ def to_omml_body(latex, display=False):
 M_NS = 'xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"'
 
 
+def fill_nary_operands(root):
+    """Move a complete following term into each empty n-ary operand.
+
+    Keep sums over products intact. Top-level punctuation, comparisons and
+    additive operators terminate the operand; signs within parentheses do not.
+    Moving existing nodes preserves symbols, scripts and text order exactly.
+    """
+    ns = 'http://schemas.openxmlformats.org/officeDocument/2006/math'
+    tag = lambda name: '{%s}%s' % (ns, name)
+    count = 0
+    for nary in reversed(list(root.iter(tag('nary')))):
+        operand = nary.find(tag('e'))
+        if operand is None or len(operand):
+            continue
+        depth = 0
+        meaningful = False
+        following = nary.getnext()
+        while following is not None:
+            text = ''.join(following.itertext())
+            literal = text.strip() if following.tag == tag('r') else ''
+            if depth == 0 and literal in {',', ';', '=', '<', '>', '≤', '≥', '≠', '+', '-'} and meaningful:
+                break
+            if depth == 0 and literal in {')', ']', '}'}:
+                break
+            if literal in {'(', '[', '{'}:
+                depth += 1
+            elif literal in {')', ']', '}'}:
+                depth -= 1
+            next_node = following.getnext()
+            operand.append(following)
+            meaningful = meaningful or bool(text.strip())
+            following = next_node
+        if not meaningful:
+            raise Unsupported('n-ary operator has no operand')
+        count += 1
+    return count
+
+
 def omml_element(latex, display=False):
     """Return a lxml element for <m:oMath> ready to append to a w:p."""
     from docx.oxml import parse_xml
     body = to_omml_body(latex, display)
-    return parse_xml('<m:oMath %s>%s</m:oMath>' % (M_NS, body))
+    element = parse_xml('<m:oMath %s>%s</m:oMath>' % (M_NS, body))
+    fill_nary_operands(element)
+    return element
 
 
 def omml_text(latex, display=False):

@@ -1,0 +1,12 @@
+file	canvas_cm	min_pt	max_pt	fonts	size_mb	verdict
+fig1_study_area.pdf	16.00	8.00	9.00	TimesNewRomanPSMT	0.89	PASS
+fig_dpsir_framework.pdf	16.00	8.00	9.00	TimesNewRomanPS-BoldMT;TimesNewRomanPS-ItalicMT;TimesNewRomanPSMT	0.09	PASS
+fig_indicator_trends.pdf	16.00	8.00	9.00	TimesNewRomanPS-BoldMT;TimesNewRomanPSMT	0.06	PASS
+fig3_esi_timeseries.pdf	16.00	8.00	9.00	TimesNewRomanPSMT	0.04	PASS
+fig_weights.pdf	16.00	8.00	9.00	TimesNewRomanPS-BoldMT;TimesNewRomanPSMT	0.05	PASS
+fig4_alpha_sensitivity.pdf	16.00	8.00	9.00	TimesNewRomanPSMT	0.04	PASS
+fig_spatial_maps.pdf	16.00	8.00	8.50	TimesNewRomanPSMT	0.37	PASS
+fig_geodetector_q.pdf	16.00	8.00	9.00	TimesNewRomanPSMT	0.03	PASS
+fig_interaction.pdf	16.00	8.00	9.00	TimesNewRomanPSMT	0.03	PASS
+fig_obstacle.pdf	16.00	8.00	9.00	TimesNewRomanPSMT	0.04	PASS
+fig_annual_validation.pdf	16.00	8.05	8.90	TimesNewRomanPS-BoldMT;TimesNewRomanPSMT	0.09	PASS

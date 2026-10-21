@@ -1,0 +1,2 @@
+﻿contrast,n_years,changed_grades,peak_year_a,peak_year_b,max_abs_difference,pearson_r,rmse
+Five-epoch vs annual CLCD v1.0.5 (fixed historical bounds and weights),19,7,2010,2009,0.26674921410672781,0.6079131225928569,0.12603101556933191

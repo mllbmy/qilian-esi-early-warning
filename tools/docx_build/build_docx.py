@@ -15,7 +15,7 @@ except ImportError:
     pymupdf = None
 from docx import Document
 from docx.enum.section import WD_SECTION
-from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.enum.table import WD_TABLE_ALIGNMENT, WD_CELL_VERTICAL_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT
 from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import qn
@@ -108,6 +108,9 @@ def para(doc, pieces_or_text, size=L.BODY_PT, align=None, bold=False,
 def rasterise(pdf_path, dpi=300):
     os.makedirs(L.IMGDIR, exist_ok=True)
     stem = os.path.splitext(os.path.basename(pdf_path))[0]
+    source_png = os.path.splitext(pdf_path)[0] + ".png"
+    if os.path.exists(source_png):
+        return source_png
     out = os.path.join(L.IMGDIR, "%s_%ddpi.png" % (stem, dpi))
     if os.path.exists(out) and os.path.getmtime(out) > os.path.getmtime(pdf_path):
         return out
@@ -308,9 +311,10 @@ def emit_table(doc, block, biblio, numbering):
             target.paragraphs[0].paragraph_format.line_spacing = 1.0
             # Keep short tables intact and long-table headers with their first row.
             target.paragraphs[0].paragraph_format.keep_with_next = (
-                ri < header_rows or (len(parsed_rows) <= 14 and ri < len(parsed_rows)-1))
-            if align:
-                target.paragraphs[0].alignment = align
+                ri < header_rows or (len(parsed_rows) <= 14 and ri < len(parsed_rows)-1)
+                or (len(parsed_rows) > 14 and len(parsed_rows)-3 <= ri < len(parsed_rows)-1))
+            target.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+            target.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
             pieces = L.resolve_refs(
                 L.adopt_bases(L.parse_inline(txt, stats=STATS["unmapped_cmd"])),
                 biblio, numbering, STATS["warnings"])

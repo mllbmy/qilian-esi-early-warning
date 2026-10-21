@@ -1,0 +1,7 @@
+﻿index,NPP_support,comparison,n_years_or_differences,pearson_r,spearman_rho
+reconstructed_esi,common_mask,levels,19,0.018068400097394993,-0.22280701754385965
+reconstructed_esi,common_mask,first_differences,18,0.22307884682998716,0.31475748194014447
+annual_esi,common_mask,levels,19,0.47885293810444096,0.51578947368421046
+annual_esi,common_mask,first_differences,18,0.049338730078343301,0.21155830753353971
+first_year_zero_esi,common_mask,levels,19,0.47933079560811676,0.51578947368421046
+first_year_zero_esi,common_mask,first_differences,18,0.050770798309828551,0.2198142414860681

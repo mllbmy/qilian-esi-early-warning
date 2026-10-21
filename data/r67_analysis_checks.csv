@@ -1,0 +1,12 @@
+﻿check,passed
+annual_inputs_21_years_no_missing,True
+descriptive_19_years,True
+origin_weights_sum_one,True
+mixture_training_weights_sum_one,True
+rolling1_has_12_origins,True
+rolling5_has_8_origins_and_40_records,True
+future_perturbation_all_forecasts_exact,True
+future_perturbation_all_training_weights_exact,True
+future_perturbation_training_ranges_exact,True
+annual_2024_2025_same_release_bridge_reproduced,True
+annual_2024_2025_clipping_reproduced,True

@@ -11,6 +11,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from docx import Document
+from docx.enum.table import WD_TABLE_ALIGNMENT, WD_CELL_VERTICAL_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Cm, Pt
 
@@ -33,8 +34,7 @@ def anon_repo():
 
 
 ANON_REPO = anon_repo()
-TITLE = ("Ecological security early warning in the Qilian Mountain region, China: "
-         "temporal dynamics, forecasts, and spatial associations")
+TITLE = 'Observation frequency and forecast reliability of ecological security indices in the Qilian Mountain region, China'
 DATE = "%s %d, %d" % (datetime.date.today().strftime("%B"), datetime.date.today().day, datetime.date.today().year)
 
 
@@ -104,15 +104,9 @@ def title_page():
                             "approval was therefore required."),
         ("Consent to participate", "Not applicable."),
         ("Consent for publication", "Not applicable."),
-        ("Data availability", "Source datasets are CRU TS 4.10, CLCD, Copernicus "
-                              "DEM GLO-90 and NOAA CDR NDVI. Analysis code, processed "
-                              "tables, model outputs and figure generators accompany "
-                              "the submission reproduction package and the anonymous "
-                              "review mirror " + ANON_REPO + ". The regional land-cover "
-                              "table contains five historical epochs and 2024-2025 observations; "
-                              "raw-data reprocessing covers 2020, both 2023 versions and 2024-2025. The same code and "
-                              "processed tables are archived in a public repository; the persistent "
-                              "identifier is reported in the published version."),
+        ("Data availability", "Source datasets are CRU TS 4.10, CLCD, Copernicus DEM GLO-90, NOAA CDR NDVI and MODIS Terra NPP. "
+         "The submission reproduction package includes the annual 2004-2025 land-cover extraction summaries, NPP comparisons and training-window evaluation. "
+         "The historical reconstruction is additionally available through the anonymous mirror " + ANON_REPO + "."),
         ("Author contributions", CREDIT_EN),
         ("Use of AI", "DeepSeek and ChatGPT were used for manuscript revision, "
                       "language editing and assistance with analysis code. The author "
@@ -124,9 +118,7 @@ def title_page():
         p(d, body, after=4)
 
     p(d, "Suggested reviewers", size=11, bold=True, before=10, after=2)
-    p(d, "Three potential reviewers are listed in the Cover Letter; none is at the "
-         "author's institution, none has collaborated with the author in recent years, "
-         "and none has been involved in the preparation of this manuscript.", after=4)
+    p(d, "Three potential reviewers and their institutional contact details are listed in the Cover Letter.", after=4)
 
     scrub_metadata(d, TITLE)
     out = os.path.join(OUTDIR, "Title_Page_JMS_%s版本.docx" % VERSION)
@@ -154,44 +146,13 @@ def cover_letter():
     env = next(r for r in bt if r["model"] == "Mixture" and r["year"] == "2028")
     obs = next(r for r in rows("r56_forecast_summary.csv") if r["model"] == "Mixture")
     body = [
-        "I submit the above-titled original research article for consideration in the "
-        "Journal of Mountain Science.",
-        "Mountain protected areas often have sparse environmental observations. This "
-        "study examines how indicator construction and forecasting choices affect "
-        "ecological-security warning grades in the Qilian Mountain region, China. "
-        "It combines an eight-indicator regional DPSI index, AHP-entropy weighting, "
-        "three forecasting models and a separate six-indicator spatial analysis, "
-        "using CRU TS climate and five CLCD land-cover epochs over 2005-2023, "
-        "with an observed-input forecast check for 2024-2025.",
-        "The study reports three results. Removing a redundant ecological-land "
-        "indicator preserves all historical warning grades, whereas changing the "
-        "derived grassland-change indicator alters both grades and the peak year. "
-        "Retrospective rolling forecasts compare GM(1,1), NGBM and ARIMA with naive "
-        "and drift benchmarks on common time origins. The mixture weighted by rolling five-year errors "
-        f"projects a 2028 index of {mix:.3f}, with a central 95% conditional "
-        f"bootstrap envelope of {float(env['lo']):.3f}-{float(env['hi']):.3f}. "
-        f"The two observed-input years give mixture RMSE of {float(obs['rmse']):.3f}, "
-        f"{float(obs['same_release_rmse']):.3f} and {float(obs['clipped_rmse']):.3f} under historical "
-        "continuation, a land-cover product bridge and input-wise clipping, respectively. "
-        "These results show the difficulty of transferring historical forecast performance "
-        "beyond its input range. Spatial target-overlap diagnostics distinguish associations that "
-        "depend on index inputs, while an exhaustive periodic-shift reference and "
-        "an independent NDVI comparison describe their spatial context.",
-        "The paper concerns mountain environmental change and conservation monitoring, "
-        "and it identifies monitoring priorities conditional on index definition and "
-        "spatial scale.",
-        "The analysis scripts, processed tables, model outputs and figure generators "
-        "accompany the submission reproduction package and the anonymous review mirror "
-        + ANON_REPO + ". The same code and processed tables are archived in a public "
-        "repository, whose persistent identifier will be given in the published version.",
-        "The manuscript is original, has not been published, and is not under "
-        "consideration elsewhere. I am the sole author and approve this submission. "
-        "There are no competing interests and no specific funding. Author identity "
-        "and declarations appear on the separate Title Page. Figures are supplied "
-        "as vector PDFs and tables are editable in Word. I used DeepSeek and ChatGPT "
-        "for manuscript revision, language editing and assistance with analysis code. "
-        "I reviewed and edited the outputs and take full responsibility for the final content.",
-        "Thank you for considering this manuscript.",
+        'I submit the above-titled original research article for consideration in the Journal of Mountain Science.',
+        'Mountain ecological-security assessments often forecast annual indices reconstructed from sparse observations. This study tests how observation frequency and forecasting design affect such assessments in the Qilian Mountain region, China. A five-epoch reconstruction is compared with complete annual observations from one CLCD release, retaining the same eight-indicator definition and weighting rule.',
+        'Against the historical reference, annual observations change 10 of 19 warning grades. In the matched-release comparison with bounds and weights re-estimated for each index, complete annual CLCD v1.0.5 observations change 11 grades and shift the peak from 2010 to 2017. Holding historical bounds and weights fixed changes 7 grades and places the annual peak in 2009 rather than 2010; the product-version bridge changes 1 grade. The study evaluates forecasts with normalization and entropy weights estimated separately at each origin. Across 12 one-year origins and eight five-year origins, the training-weighted mixture has root mean squared errors of 0.129 and 0.259, compared with 0.105 and 0.220 for the last-value benchmark. MODIS and NOAA comparisons are reported as product-level ecological context, not event validation.',
+        'The contribution is empirical evidence of how observation frequency, index construction and training-window processing affect warning grades and forecast reliability. These results inform the interpretation of ecological-security monitoring in mountain regions with sparse records.',
+        'The submission reproduction package contains the complete annual extension, processed inputs, source summaries, analysis code, model outputs and figure generators. The historical reconstruction is additionally available through the anonymous review mirror ' + ANON_REPO + ".",
+        'The manuscript is original, has not been published, and is not under consideration elsewhere. I am the sole author and approve this submission. There are no competing interests and no specific funding. Author identity and declarations appear on the separate Title Page. Figures are supplied as high-resolution PNGs and tables are editable in Word. I used DeepSeek and ChatGPT for manuscript revision, language editing and assistance with analysis code. I reviewed and edited the outputs and take full responsibility for the final content.',
+        'Thank you for considering this manuscript.',
     ]
     for t in body:
         p(d, t, after=7)
@@ -205,9 +166,7 @@ def cover_letter():
 
     d.add_page_break()
     p(d, "Suggested reviewers", size=11, bold=True, after=6)
-    p(d, "None of the suggested reviewers is at my institution, none has collaborated "
-         "with me in recent years, and none has been involved in the preparation or "
-         "review of this manuscript.", after=8)
+    p(d, "Potential reviewers are listed below with institutional affiliations, published contact details and relevant expertise.", after=8)
     rows = [
         ("1", "Dr. Karsten Grunewald",
          "Leibniz Institute of Ecological Urban and Regional Development (IOER), Dresden, Germany",
@@ -227,6 +186,7 @@ def cover_letter():
          "spatial planning"),
     ]
     tab = d.add_table(rows=1 + len(rows), cols=5)
+    tab.alignment = WD_TABLE_ALIGNMENT.CENTER
     tab.style = "Table Grid"
     hdr = ["#", "Name", "Affiliation (country)", "E-mail", "Research area"]
     for j, h in enumerate(hdr):
@@ -241,10 +201,17 @@ def cover_letter():
             c.text = ""
             r = c.paragraphs[0].add_run(v)
             r.font.size = Pt(9)
-    widths = [Cm(0.8), Cm(3.2), Cm(5.0), Cm(3.6), Cm(4.2)]
+    tab.autofit = False
+    raw_widths = [0.8, 3.2, 5.0, 3.6, 4.2]
+    widths = [Cm(w * 16.0 / sum(raw_widths)) for w in raw_widths]
+    for column, width in zip(tab.columns, widths):
+        column.width = width
     for row in tab.rows:
         for j, w in enumerate(widths):
             row.cells[j].width = w
+            row.cells[j].vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
+            for paragraph in row.cells[j].paragraphs:
+                paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
     scrub_metadata(d, "Cover Letter - " + TITLE)
     out = os.path.join(OUTDIR, "Cover_Letter_JMS_%s版本.docx" % VERSION)

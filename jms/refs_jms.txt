@@ -18,6 +18,7 @@ Lyu X, Li X, Wang K, et al. (2026) Anthropogenic activities amplify spatiotempor
 Mrkvicka T, Dvorak J, Gonzalez JA, et al. (2021) Revisiting the random shift approach for testing in spatial statistics. Spat Stat 42: 100430. https://doi.org/10.1016/j.spasta.2020.100430
 Ou Z, Zhu Q, Sun Y (2017) Regional ecological security and diagnosis of obstacle factors in underdeveloped regions: A case study in Yunnan Province, China. J Mt Sci 14(5): 870–884. https://doi.org/10.1007/s11629-016-4199-5
 Pettitt AN (1979) A non-parametric approach to the change-point problem. J R Stat Soc Ser C Appl Stat 28(2): 126–135. https://doi.org/10.2307/2346729
+Running S, Zhao M (2021) MODIS/Terra Net Primary Production Gap-Filled Yearly L4 Global 500m SIN Grid V061. NASA Land Processes Distributed Active Archive Center data set. https://doi.org/10.5067/MODIS/MOD17A3HGF.061
 Saaty TL (1980) The Analytic Hierarchy Process. New York: McGraw-Hill.
 Sen PK (1968) Estimates of the regression coefficient based on Kendall's tau. J Am Stat Assoc 63(324): 1379–1389. https://doi.org/10.1080/01621459.1968.10480934
 Tong H, Shi P (2020) Using ecosystem service supply and ecosystem sensitivity to identify landscape ecology security patterns in the Lanzhou-Xining urban agglomeration, China. J Mt Sci 17(11): 2758–2773. https://doi.org/10.1007/s11629-020-6283-0
@@ -27,6 +28,7 @@ WWF (2020) Living Planet Report 2020: Bending the curve of biodiversity loss. Gl
 Yang G, Gui Q, Liu J, et al. (2023) Spatial-temporal evolution and driving factors of ecological security in China based on DPSIR-DEA model: A case study of the Three Gorges reservoir area. Ecol Indic 154: 110777. https://doi.org/10.1016/j.ecolind.2023.110777
 Yang J, Huang X (2021) The 30 m annual land cover dataset and its dynamics in China from 1990 to 2019. Earth Syst Sci Data 13(8): 3907–3925. https://doi.org/10.5194/essd-13-3907-2021
 Yang J, Huang X (2024) The 30 m annual land cover datasets and its dynamics in China from 1985 to 2023. Zenodo data set, version 1.0.3. https://doi.org/10.5281/zenodo.12779975 (Accessed on 7 October 2026)
+Yang J, Huang X (2026) The 30 m annual land cover datasets and its dynamics in China from 1985 to 2025. Zenodo data set. https://doi.org/10.5281/zenodo.18180184
 Yue S, Pilon P, Phinney B, et al. (2002) The influence of autocorrelation on the ability to detect trend in hydrological series. Hydrol Process 16(9): 1807–1829. https://doi.org/10.1002/hyp.1095
 Zhang W, Liu Z, Qin K, et al. (2024) Long-term dynamic monitoring and driving force analysis of eco-environmental quality in China. Remote Sens 16(6): 1028. https://doi.org/10.3390/rs16061028
 Zhang Y, Zhang K, An Z, et al. (2019) Quantification of driving factors on NDVI in oasis-desert ecotone using geographical detector method. J Mt Sci 16(11): 2615–2624. https://doi.org/10.1007/s11629-018-5361-7

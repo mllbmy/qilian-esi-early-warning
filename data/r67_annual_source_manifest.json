@@ -1,0 +1,1046 @@
+{
+  "bbox": [
+    93.5,
+    36.0,
+    103.5,
+    40.5
+  ],
+  "years": [
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "sources": [
+    {
+      "year": 2004,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2004_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2004_albert.tif?download=1",
+      "provider_md5": "md5:842776ec3cbda29344344980c867cc72",
+      "provider_file_bytes": 791887020,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "594d6a3f60f02ca5486cefc0aba35f44ca694e6bd304693687770a5b02c6a5ee",
+      "crop_file_sha256": "39205ed1bc3e7079babfea8d90d1a525ad51a68b594ce43b211ed2be4b99306c",
+      "class_counts": {
+        "1": 17318084,
+        "2": 5092611,
+        "3": 991332,
+        "4": 155523126,
+        "5": 7694415,
+        "6": 2722936,
+        "7": 256132451,
+        "8": 56140,
+        "9": 352977
+      },
+      "proportions": {
+        "year": 2004,
+        "forest_pct": 1.1421379052983978,
+        "shrub_pct": 0.22232953860706645,
+        "grass_pct": 34.879722279023234,
+        "water_pct": 1.72565370309976,
+        "crop_pct": 3.8839880335532597,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:09:18.729371+00:00",
+      "seconds": 96.16139936447144
+    },
+    {
+      "year": 2005,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2005_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2005_albert.tif?download=1",
+      "provider_md5": "md5:4f0cf4b9b2707e5d554a54a2d4ba94e1",
+      "provider_file_bytes": 792345912,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "b05265035c11c944d68b87268f9eb025520e2140e3dea890db5dceb744dd3f4c",
+      "crop_file_sha256": "5658ed79a52d7b6117c2ad0c78dbcb9cb060f2f9a681b06b365bd236835c7c58",
+      "class_counts": {
+        "1": 17094181,
+        "2": 5112504,
+        "3": 920936,
+        "4": 156203336,
+        "5": 7801736,
+        "6": 3155851,
+        "7": 255183828,
+        "8": 60220,
+        "9": 351480
+      },
+      "proportions": {
+        "year": 2005,
+        "forest_pct": 1.1465993788627642,
+        "shrub_pct": 0.20654157836793058,
+        "grass_pct": 35.03227538480002,
+        "water_pct": 1.7497229638649214,
+        "crop_pct": 3.8337725147535657,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:09:33.714190+00:00",
+      "seconds": 111.14592695236206
+    },
+    {
+      "year": 2006,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2006_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2006_albert.tif?download=1",
+      "provider_md5": "md5:9da1fadc336a2849ca169560a10d0a7e",
+      "provider_file_bytes": 792304599,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "8410980ab3bf2b3b069a939e3c25aa9c9dcf0479264aaefc3e6acaee630b3393",
+      "crop_file_sha256": "e4aac3745f80e94a1337f5ab8b6b3360328abcce2d4b4e193a8cc413684f949f",
+      "class_counts": {
+        "1": 17355067,
+        "2": 5171651,
+        "3": 879238,
+        "4": 156638170,
+        "5": 7965893,
+        "6": 3338670,
+        "7": 254118879,
+        "8": 66370,
+        "9": 350134
+      },
+      "proportions": {
+        "year": 2006,
+        "forest_pct": 1.1598644860316967,
+        "shrub_pct": 0.19718982022753215,
+        "grass_pct": 35.12979714601691,
+        "water_pct": 1.7865390356442246,
+        "crop_pct": 3.8922823419447017,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:09:13.202845+00:00",
+      "seconds": 90.63534212112427
+    },
+    {
+      "year": 2007,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2007_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2007_albert.tif?download=1",
+      "provider_md5": "md5:2b23e1a798023e6f3cdce11064b7f9c4",
+      "provider_file_bytes": 793478688,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "c6095fcf8369e0309ecf338cb92f0d1de095eb3537e49a9d63ae89e0706e54ac",
+      "crop_file_sha256": "ca2d882a03b5c7a2bceef6ac3bf2ed71eefd12c76f220348802fb31ce8014a21",
+      "class_counts": {
+        "1": 17364681,
+        "2": 5212995,
+        "3": 806320,
+        "4": 156816844,
+        "5": 8027126,
+        "6": 3577436,
+        "7": 253652848,
+        "8": 72896,
+        "9": 352926
+      },
+      "proportions": {
+        "year": 2007,
+        "forest_pct": 1.169136851338345,
+        "shrub_pct": 0.18083624211631402,
+        "grass_pct": 35.16986899680059,
+        "water_pct": 1.8002719774210727,
+        "crop_pct": 3.894438507774281,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:11:16.150409+00:00",
+      "seconds": 122.88873791694641
+    },
+    {
+      "year": 2008,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2008_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2008_albert.tif?download=1",
+      "provider_md5": "md5:b0b32a42dc4c6fed6ef2c18d70ba6d16",
+      "provider_file_bytes": 794401990,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "6c6022d133e4c4d6de639c75c4f5df6531701409dbf4c9be1f9c9b1cd65320e1",
+      "crop_file_sha256": "745fd3d475c2f93c38d0dc02dc59fe207f1ea60c4234465db6bc85a85bf11420",
+      "class_counts": {
+        "1": 17381819,
+        "2": 5266654,
+        "3": 792118,
+        "4": 157776570,
+        "5": 8097285,
+        "6": 3616435,
+        "7": 252520442,
+        "8": 82152,
+        "9": 350597
+      },
+      "proportions": {
+        "year": 2008,
+        "forest_pct": 1.1811711453106133,
+        "shrub_pct": 0.17765110927757025,
+        "grass_pct": 35.38511014584975,
+        "water_pct": 1.8160067848308339,
+        "crop_pct": 3.8982821077313567,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:11:17.565378+00:00",
+      "seconds": 118.80311250686646
+    },
+    {
+      "year": 2009,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2009_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2009_albert.tif?download=1",
+      "provider_md5": "md5:cc0e7a72549eeaf59e51e5ed03cd3e4a",
+      "provider_file_bytes": 795813150,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "c6f9b26e2023a9295ce167c7ea2649bf20f9336d3ee5cf1fb4f83bd38c2f56f8",
+      "crop_file_sha256": "894d22ad8b1b902e177536471d05af74006be6cd3e9d84dcd77e6e1f63f689ca",
+      "class_counts": {
+        "1": 17363775,
+        "2": 5317768,
+        "3": 705939,
+        "4": 160874905,
+        "5": 8213069,
+        "6": 3734403,
+        "7": 249243423,
+        "8": 84493,
+        "9": 346297
+      },
+      "proportions": {
+        "year": 2009,
+        "forest_pct": 1.192634663119341,
+        "shrub_pct": 0.15832343973031626,
+        "grass_pct": 36.07998470956819,
+        "water_pct": 1.8419740725791165,
+        "crop_pct": 3.894235315945531,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:11:28.540537+00:00",
+      "seconds": 114.7829053401947
+    },
+    {
+      "year": 2010,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2010_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2010_albert.tif?download=1",
+      "provider_md5": "md5:86f4f1c9d359a51a6eb7803ef9e5d840",
+      "provider_file_bytes": 796024563,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "73579b66565037f381762cac23bb7df2e91ff5266d2bbf30029c679a9787fa26",
+      "crop_file_sha256": "db8e01f4ea16135a52f386514043290f3f1c8e0b695c5512f23a89c7901dd283",
+      "class_counts": {
+        "1": 17460302,
+        "2": 5334103,
+        "3": 706414,
+        "4": 162736094,
+        "5": 8487116,
+        "6": 3621836,
+        "7": 247111144,
+        "8": 86089,
+        "9": 340974
+      },
+      "proportions": {
+        "year": 2010,
+        "forest_pct": 1.196298171422459,
+        "shrub_pct": 0.15842996966260772,
+        "grass_pct": 36.497400158308416,
+        "water_pct": 1.9034355638521216,
+        "crop_pct": 3.9158837681019474,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:13:20.098594+00:00",
+      "seconds": 123.88632607460022
+    },
+    {
+      "year": 2011,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2011_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2011_albert.tif?download=1",
+      "provider_md5": "md5:e69bc6c4ca6f87d204b96a438f001757",
+      "provider_file_bytes": 795940408,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "10a57b92164484ef9939c64644c2a2bf8cc6762a14ba607227eea333ca0a756e",
+      "crop_file_sha256": "b1509af86bbee8a688d31fbb38d42342f21af3d39b0c2e055c15257346a02709",
+      "class_counts": {
+        "1": 17462303,
+        "2": 5351038,
+        "3": 709642,
+        "4": 163369227,
+        "5": 8574023,
+        "6": 3452810,
+        "7": 246538475,
+        "8": 86923,
+        "9": 339631
+      },
+      "proportions": {
+        "year": 2011,
+        "forest_pct": 1.2000962438505764,
+        "shrub_pct": 0.1591539246551063,
+        "grass_pct": 36.639395138564176,
+        "water_pct": 1.9229265045377086,
+        "crop_pct": 3.9163325394588213,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:13:16.538077+00:00",
+      "seconds": 118.95495820045471
+    },
+    {
+      "year": 2012,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2012_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2012_albert.tif?download=1",
+      "provider_md5": "md5:820389e6389f25c8ec83f2bec45c705f",
+      "provider_file_bytes": 797611389,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "f95b3ff82a562953a4d93560d6f6d6db574922dbc2581c25f2e2f0e98fab1e27",
+      "crop_file_sha256": "77b7cd884dcf346ee1446f93730916dfbac804a1dbbd1b4d8c17fd64ae385bd0",
+      "class_counts": {
+        "1": 17490684,
+        "2": 5354254,
+        "3": 736472,
+        "4": 163255194,
+        "5": 8577037,
+        "6": 3227887,
+        "7": 246819243,
+        "8": 89843,
+        "9": 333458
+      },
+      "proportions": {
+        "year": 2012,
+        "forest_pct": 1.2008175075605751,
+        "shrub_pct": 0.16517118377801124,
+        "grass_pct": 36.613820553787356,
+        "water_pct": 1.9236024649922907,
+        "crop_pct": 3.922697646844851,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:13:02.171067+00:00",
+      "seconds": 93.59505462646484
+    },
+    {
+      "year": 2013,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2013_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2013_albert.tif?download=1",
+      "provider_md5": "md5:df9592de7a44e8f79a16f71a93713fc1",
+      "provider_file_bytes": 804093118,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "6c8be38897ed2fdc1bcc9952735dd6073b93d34fc6fa7994974f1125a4636a95",
+      "crop_file_sha256": "1581d4dced39751df4d4bfa783ae6395fc2c47b1dca0aaecf13cdf1710224afd",
+      "class_counts": {
+        "1": 17516082,
+        "2": 5441133,
+        "3": 696168,
+        "4": 163543917,
+        "5": 8618507,
+        "6": 2833141,
+        "7": 246810046,
+        "8": 93298,
+        "9": 331780
+      },
+      "proportions": {
+        "year": 2013,
+        "forest_pct": 1.2203021685869955,
+        "shrub_pct": 0.15613206295469553,
+        "grass_pct": 36.678573483557855,
+        "water_pct": 1.9329030887651892,
+        "crop_pct": 3.9283937462560896,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:15:06.908455+00:00",
+      "seconds": 124.6805477142334
+    },
+    {
+      "year": 2014,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2014_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2014_albert.tif?download=1",
+      "provider_md5": "md5:171538aff195316ad846d057e7d564e8",
+      "provider_file_bytes": 807235619,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "cb5e0c5ffd6740c858b087657eac504ae941b78444b0e8f5a51b4efdeb430609",
+      "crop_file_sha256": "1216b533394e10af8dc1c84e684b7ea3078d4f3bc7171879cc3a7d4ea2e262a1",
+      "class_counts": {
+        "1": 17634087,
+        "2": 5477537,
+        "3": 646787,
+        "4": 162734138,
+        "5": 8590663,
+        "6": 2847872,
+        "7": 247527390,
+        "8": 94303,
+        "9": 331295
+      },
+      "proportions": {
+        "year": 2014,
+        "forest_pct": 1.228466622597813,
+        "shrub_pct": 0.14505721119367548,
+        "grass_pct": 36.49696147926091,
+        "water_pct": 1.9266584162710347,
+        "crop_pct": 3.954859145540413,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:14:34.859964+00:00",
+      "seconds": 78.26352405548096
+    },
+    {
+      "year": 2015,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2015_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2015_albert.tif?download=1",
+      "provider_md5": "md5:fc47b041b552893a7bb65222679ddb7c",
+      "provider_file_bytes": 810512709,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "13e226e8e3924ee64bafc1b36115fd67033a73e7aebc1b5d58026d87e41edbc5",
+      "crop_file_sha256": "d6d7ea603fa282efa83c0aa2a3c336fe644f9ba39110dc8c396eda65e7a40b9b",
+      "class_counts": {
+        "1": 17662341,
+        "2": 5522355,
+        "3": 603787,
+        "4": 163114212,
+        "5": 8613135,
+        "6": 3110530,
+        "7": 246833263,
+        "8": 95206,
+        "9": 329243
+      },
+      "proportions": {
+        "year": 2015,
+        "forest_pct": 1.2385181141882098,
+        "shrub_pct": 0.1354134489020276,
+        "grass_pct": 36.582202021336165,
+        "water_pct": 1.931698291299358,
+        "crop_pct": 3.9611957701866505,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:15:26.434368+00:00",
+      "seconds": 126.28509569168091
+    },
+    {
+      "year": 2016,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2016_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2016_albert.tif?download=1",
+      "provider_md5": "md5:8bb73bacc99c08fe24122fa26c7f1d2e",
+      "provider_file_bytes": 811384193,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "a62f13acc0144063e25e529e96176b2ae35ea18e1602e837370d92b999e06337",
+      "crop_file_sha256": "e61263d4c1ac84012478941d84a7c08ab745705d694d3571013c49e6c177a711",
+      "class_counts": {
+        "1": 17380192,
+        "2": 5575047,
+        "3": 625459,
+        "4": 163648877,
+        "5": 8790443,
+        "6": 3120000,
+        "7": 246322399,
+        "8": 96492,
+        "9": 325163
+      },
+      "proportions": {
+        "year": 2016,
+        "forest_pct": 1.250335535645687,
+        "shrub_pct": 0.14027390509701812,
+        "grass_pct": 36.70211323449114,
+        "water_pct": 1.971463784425114,
+        "crop_pct": 3.8979172146790657,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:16:05.285310+00:00",
+      "seconds": 90.3908679485321
+    },
+    {
+      "year": 2017,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2017_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2017_albert.tif?download=1",
+      "provider_md5": "md5:1d268d60afec65a5a3093fc4181c0c94",
+      "provider_file_bytes": 813926735,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "c606a2ebb3fc452c251cce9f69095eb28ae2b0ca04dd815a5098f0d31fc3f6ef",
+      "crop_file_sha256": "7a1e7cde925878a5686b1f2494c4a47a56b7e35507c332cd51afee06f99ba8f6",
+      "class_counts": {
+        "1": 17235071,
+        "2": 5594521,
+        "3": 694280,
+        "4": 164023816,
+        "5": 8993065,
+        "6": 3036596,
+        "7": 245883639,
+        "8": 98472,
+        "9": 324612
+      },
+      "proportions": {
+        "year": 2017,
+        "forest_pct": 1.2547030385960949,
+        "shrub_pct": 0.15570863450802971,
+        "grass_pct": 36.78620213192993,
+        "water_pct": 2.0169065379846085,
+        "crop_pct": 3.865370414038921,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:17:06.668703+00:00",
+      "seconds": 119.71003770828247
+    },
+    {
+      "year": 2018,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2018_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2018_albert.tif?download=1",
+      "provider_md5": "md5:646127b8903e11cfba03e88ddfec73f2",
+      "provider_file_bytes": 811773293,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "8daae9f69caaa1a37aacbb7dea532445a823d661e9e1493a8f3bb20c3a673499",
+      "crop_file_sha256": "fa1593884cfe1ff2fec9278e35aa3ba76b0cfebfd316b14a71151474c71b1920",
+      "class_counts": {
+        "1": 17291795,
+        "2": 5616162,
+        "3": 745678,
+        "4": 163063937,
+        "5": 9281559,
+        "6": 2609589,
+        "7": 246849454,
+        "8": 102398,
+        "9": 323500
+      },
+      "proportions": {
+        "year": 2018,
+        "forest_pct": 1.2595565423112938,
+        "shrub_pct": 0.16723584600259056,
+        "grass_pct": 36.57092666902889,
+        "water_pct": 2.081608109114066,
+        "crop_pct": 3.8780921064163962,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:16:49.982721+00:00",
+      "seconds": 83.48601746559143
+    },
+    {
+      "year": 2019,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2019_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2019_albert.tif?download=1",
+      "provider_md5": "md5:f83f751e4e01b66a5a2b2838ee31cca1",
+      "provider_file_bytes": 811657603,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "43175376c5b74e8386f00a51069d1b763fc6b328ded39be9dd024510941e5f81",
+      "crop_file_sha256": "1cd09bf55a747471504f07f9cf0ab02ed7b28712fb0873b2465feb7e96c78f98",
+      "class_counts": {
+        "1": 17544621,
+        "2": 5606004,
+        "3": 812802,
+        "4": 161194243,
+        "5": 9532669,
+        "6": 2575764,
+        "7": 248189429,
+        "8": 105348,
+        "9": 323192
+      },
+      "proportions": {
+        "year": 2019,
+        "forest_pct": 1.2572783716750484,
+        "shrub_pct": 0.18228998321339454,
+        "grass_pct": 36.151603773816795,
+        "water_pct": 2.1379254381618726,
+        "crop_pct": 3.9347942888617022,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:17:24.701696+00:00",
+      "seconds": 79.36695981025696
+    },
+    {
+      "year": 2020,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2020_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2020_albert.tif?download=1",
+      "provider_md5": "md5:1274285bb18f9b1d443a3cc906b1310c",
+      "provider_file_bytes": 810739687,
+      "whole_file_md5_locally_verified": true,
+      "selected_pixels_sha256": "5b0ec792acfabe512dcc823e051ecf35b6e11831f85a1909310ebae41cce6b0e",
+      "crop_file_sha256": "187854c19a20e45b42a12cd4629e5664ff584b105a2bf7e45204b34bdbabd832",
+      "class_counts": {
+        "1": 17642662,
+        "2": 5616547,
+        "3": 836686,
+        "4": 159380239,
+        "5": 9681691,
+        "6": 2539937,
+        "7": 249757832,
+        "8": 108578,
+        "9": 319900
+      },
+      "proportions": {
+        "year": 2020,
+        "forest_pct": 1.2596428876248353,
+        "shrub_pct": 0.18764653248255075,
+        "grass_pct": 35.74477067214009,
+        "water_pct": 2.1713471298880576,
+        "crop_pct": 3.956782291160201,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:17:01.530046+00:00",
+      "seconds": 11.516589879989624
+    },
+    {
+      "year": 2021,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2021_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2021_albert.tif?download=1",
+      "provider_md5": "md5:393299c7375c4261a738315380921251",
+      "provider_file_bytes": 812300278,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "eb4dc0f7b0c2f8d25558951525f67d3d55a1a362bca782352fb6b59ea956b381",
+      "crop_file_sha256": "7796d83958a25e023ea9e0ece43b91a2fd800eb45fbc52a43c76eb7a3037965d",
+      "class_counts": {
+        "1": 17747834,
+        "2": 5627567,
+        "3": 828459,
+        "4": 158925432,
+        "5": 9681238,
+        "6": 2472666,
+        "7": 250170626,
+        "8": 110883,
+        "9": 319367
+      },
+      "proportions": {
+        "year": 2021,
+        "forest_pct": 1.2621143820539973,
+        "shrub_pct": 0.1858014340552627,
+        "grass_pct": 35.6427694954755,
+        "water_pct": 2.171245533973683,
+        "crop_pct": 3.9803695880843217,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:19:37.192622+00:00",
+      "seconds": 155.61809301376343
+    },
+    {
+      "year": 2022,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2022_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2022_albert.tif?download=1",
+      "provider_md5": "md5:66780f8e2b9d1086fffda9ebae1e294d",
+      "provider_file_bytes": 813199315,
+      "whole_file_md5_locally_verified": false,
+      "selected_pixels_sha256": "29a3ccf4b5519ef2ed95a8ad5d86458ab9f03365ba3d72ed79b2d7b46e3ea48a",
+      "crop_file_sha256": "151a1cbda062b6e8c3a109fe5b855993d09608a6ae0991aae276b150190d896b",
+      "class_counts": {
+        "1": 17885295,
+        "2": 5679263,
+        "3": 752691,
+        "4": 157752295,
+        "5": 9550307,
+        "6": 2163712,
+        "7": 251663093,
+        "8": 119001,
+        "9": 318415
+      },
+      "proportions": {
+        "year": 2022,
+        "forest_pct": 1.2737084270639747,
+        "shrub_pct": 0.1688086763502958,
+        "grass_pct": 35.3796659056258,
+        "water_pct": 2.1418811748897815,
+        "crop_pct": 4.011198453395303,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:19:26.221110+00:00",
+      "seconds": 139.48701977729797
+    },
+    {
+      "year": 2023,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2023_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2023_albert.tif?download=1",
+      "provider_md5": "md5:114c1e8a4c6fd98f2ef8347e2dc11a2a",
+      "provider_file_bytes": 816094107,
+      "whole_file_md5_locally_verified": true,
+      "selected_pixels_sha256": "6a112294c937f3b7d791ffd0595868340728b25f59ad6aba87c9f9268f6c5803",
+      "crop_file_sha256": "8bc787f857dd9213cdf0784d312c66dda4b2dc42d612b99d2735a85da033fb70",
+      "class_counts": {
+        "1": 18051088,
+        "2": 5690587,
+        "3": 714452,
+        "4": 156940932,
+        "5": 9562758,
+        "6": 2186128,
+        "7": 252298322,
+        "8": 122382,
+        "9": 317423
+      },
+      "proportions": {
+        "year": 2023,
+        "forest_pct": 1.276248100649803,
+        "shrub_pct": 0.16023268039052088,
+        "grass_pct": 35.197698652038866,
+        "water_pct": 2.144673604757068,
+        "crop_pct": 4.048381436688772,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:17:36.801482+00:00",
+      "seconds": 11.995867490768433
+    },
+    {
+      "year": 2024,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2024_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2024_albert.tif?download=1",
+      "provider_md5": "md5:724ee40c48f5149410d721ec6cb693b5",
+      "provider_file_bytes": 811529121,
+      "whole_file_md5_locally_verified": true,
+      "selected_pixels_sha256": "ad173bcede53c138e708d7a72b15e8fef285c7bb31ff1b0aad0fb6bfa7cd92ac",
+      "crop_file_sha256": "c481b2e179dbfb0bc17dbc163a9336305f79b86ad89172abaa42db5c1bab69ea",
+      "class_counts": {
+        "1": 18358301,
+        "2": 5695311,
+        "3": 683047,
+        "4": 154882618,
+        "5": 9533308,
+        "6": 2284768,
+        "7": 253994929,
+        "8": 128922,
+        "9": 322868
+      },
+      "proportions": {
+        "year": 2024,
+        "forest_pct": 1.2773075688606343,
+        "shrub_pct": 0.15318936981449294,
+        "grass_pct": 34.73607328139768,
+        "water_pct": 2.138068748954997,
+        "crop_pct": 4.117281184244679,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:17:48.510113+00:00",
+      "seconds": 11.628089189529419
+    },
+    {
+      "year": 2025,
+      "record": "https://zenodo.org/records/18180184",
+      "version": "1.0.5",
+      "filename": "CLCD_v01_2025_albert.tif",
+      "url": "https://zenodo.org/records/18180184/files/CLCD_v01_2025_albert.tif?download=1",
+      "provider_md5": "md5:293d0375c282e359ccbaa98b68173cce",
+      "provider_file_bytes": 795945432,
+      "whole_file_md5_locally_verified": true,
+      "selected_pixels_sha256": "fef2e472a55c369aacca9493d122c3ab8defa29e5abfb5a92c38594d6a5fa65e",
+      "crop_file_sha256": "e56b889dc72494044d91525ea5367f867b5aa1807fb50e30098d65dfcf80af4d",
+      "class_counts": {
+        "1": 18407605,
+        "2": 5717711,
+        "3": 689961,
+        "4": 153811969,
+        "5": 9446356,
+        "6": 2479597,
+        "7": 254876674,
+        "8": 131385,
+        "9": 322814
+      },
+      "proportions": {
+        "year": 2025,
+        "forest_pct": 1.2823312961939577,
+        "shrub_pct": 0.15473999708157327,
+        "grass_pct": 34.495955038286276,
+        "water_pct": 2.1185677159600353,
+        "crop_pct": 4.128338766942991,
+        "valid_pixels": 445884072
+      },
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "shape": [
+        15019,
+        29688
+      ],
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "support": "same two-corner projected window and nearest-neighbour read as historical extraction",
+      "access_utc": "2026-10-21T13:18:00.494217+00:00",
+      "seconds": 11.90764045715332
+    }
+  ]
+}

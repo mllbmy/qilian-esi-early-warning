@@ -1,0 +1,4 @@
+﻿contrast,n_years,changed_grades,peak_year_a,peak_year_b,max_abs_difference,pearson_r,rmse
+Legacy five-epoch vs annual v1.0.5 (combined contrast),19,10,2010,2017,0.27619469330655622,0.31235343903129653,0.14393180629571434
+"Five-epoch vs annual, both CLCD v1.0.5 (sampling contrast)",19,11,2010,2017,0.24705091417438785,0.43461350529052689,0.1333299190468791
+Legacy vs five-epoch CLCD v1.0.5 (release bridge; first rate zero),19,1,2010,2010,0.087626578144375411,0.90716674111519291,0.045998480918189789
