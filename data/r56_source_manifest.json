@@ -1,0 +1,235 @@
+{
+  "CLCD": [
+    {
+      "filename": "CLCD_v01_2020_albert.tif",
+      "year": 2020,
+      "md5": "1274285bb18f9b1d443a3cc906b1310c",
+      "bytes": 810739687,
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "valid_pixels": 445884072,
+      "class_counts": {
+        "1": 17642662,
+        "2": 5616547,
+        "3": 836686,
+        "4": 159380239,
+        "5": 9681691,
+        "6": 2539937,
+        "7": 249757832,
+        "8": 108578,
+        "9": 319900
+      },
+      "proportions": {
+        "year": 2020,
+        "forest_pct": 1.2596428876248353,
+        "shrub_pct": 0.18764653248255075,
+        "grass_pct": 35.74477067214009,
+        "water_pct": 2.1713471298880576,
+        "crop_pct": 3.956782291160201,
+        "valid_pixels": 445884072,
+        "rows": 15019,
+        "columns": 29688
+      }
+    },
+    {
+      "filename": "CLCD_v01_2023_albert.tif",
+      "year": 2023,
+      "md5": "114c1e8a4c6fd98f2ef8347e2dc11a2a",
+      "bytes": 816094107,
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "valid_pixels": 445884072,
+      "class_counts": {
+        "1": 18051088,
+        "2": 5690587,
+        "3": 714452,
+        "4": 156940932,
+        "5": 9562758,
+        "6": 2186128,
+        "7": 252298322,
+        "8": 122382,
+        "9": 317423
+      },
+      "proportions": {
+        "year": 2023,
+        "forest_pct": 1.276248100649803,
+        "shrub_pct": 0.16023268039052088,
+        "grass_pct": 35.197698652038866,
+        "water_pct": 2.144673604757068,
+        "crop_pct": 4.048381436688772,
+        "valid_pixels": 445884072,
+        "rows": 15019,
+        "columns": 29688
+      }
+    },
+    {
+      "filename": "CLCD_v01_2024_albert.tif",
+      "year": 2024,
+      "md5": "724ee40c48f5149410d721ec6cb693b5",
+      "bytes": 811529121,
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "valid_pixels": 445884072,
+      "class_counts": {
+        "1": 18358301,
+        "2": 5695311,
+        "3": 683047,
+        "4": 154882618,
+        "5": 9533308,
+        "6": 2284768,
+        "7": 253994929,
+        "8": 128922,
+        "9": 322868
+      },
+      "proportions": {
+        "year": 2024,
+        "forest_pct": 1.2773075688606343,
+        "shrub_pct": 0.15318936981449294,
+        "grass_pct": 34.73607328139768,
+        "water_pct": 2.138068748954997,
+        "crop_pct": 4.117281184244679,
+        "valid_pixels": 445884072,
+        "rows": 15019,
+        "columns": 29688
+      }
+    },
+    {
+      "filename": "CLCD_v01_2025_albert.tif",
+      "year": 2025,
+      "md5": "293d0375c282e359ccbaa98b68173cce",
+      "bytes": 795945432,
+      "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+      "window": [
+        53796.387879316,
+        52233.345119573176,
+        29687.903737836095,
+        15018.621034153606
+      ],
+      "valid_pixels": 445884072,
+      "class_counts": {
+        "1": 18407605,
+        "2": 5717711,
+        "3": 689961,
+        "4": 153811969,
+        "5": 9446356,
+        "6": 2479597,
+        "7": 254876674,
+        "8": 131385,
+        "9": 322814
+      },
+      "proportions": {
+        "year": 2025,
+        "forest_pct": 1.2823312961939577,
+        "shrub_pct": 0.15473999708157327,
+        "grass_pct": 34.495955038286276,
+        "water_pct": 2.1185677159600353,
+        "crop_pct": 4.128338766942991,
+        "valid_pixels": 445884072,
+        "rows": 15019,
+        "columns": 29688
+      }
+    }
+  ],
+  "historical_2023_control": {
+    "filename": "CLCD_v01_2023_albert.tif",
+    "year": 2023,
+    "md5": "23abf385627eff72d2fc1d0a3868e145",
+    "bytes": 790333470,
+    "crs": "PROJCS[\"unknown\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Albers_Conic_Equal_Area\"],PARAMETER[\"latitude_of_center\",0],PARAMETER[\"longitude_of_center\",105],PARAMETER[\"standard_parallel_1\",25],PARAMETER[\"standard_parallel_2\",47],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "window": [
+      53796.387879316,
+      52233.345119573176,
+      29687.903737836095,
+      15018.621034153606
+    ],
+    "valid_pixels": 445884072,
+    "class_counts": {
+      "1": 17768152,
+      "2": 5745131,
+      "3": 691870,
+      "4": 158729812,
+      "5": 9453044,
+      "6": 2174130,
+      "7": 250866589,
+      "8": 122919,
+      "9": 332425
+    },
+    "proportions": {
+      "year": 2023,
+      "forest_pct": 1.2884808767064457,
+      "shrub_pct": 0.15516813527261408,
+      "grass_pct": 35.59889710525475,
+      "water_pct": 2.120067657406699,
+      "crop_pct": 3.984926377903896,
+      "valid_pixels": 445884072,
+      "rows": 15019,
+      "columns": 29688
+    }
+  },
+  "CLCD_record": "https://zenodo.org/records/18180184",
+  "historical_2023_record": "https://zenodo.org/records/12779975",
+  "CLCD_new_version": "1.0.5",
+  "climate": [
+    {
+      "filename": "cru_ts4.10.2021.2025.pre.dat.nc",
+      "md5": "b2cc7093f47e69a391c1e2e3c3b6455e",
+      "engine": "scipy",
+      "months": 36,
+      "lat_cells": 7,
+      "lon_cells": 18
+    },
+    {
+      "filename": "cru_ts4.10.2021.2025.tmp.dat.nc",
+      "md5": "9b11c013272a5b6a0676d1a27b5c261d",
+      "engine": "scipy",
+      "months": 36,
+      "lat_cells": 7,
+      "lon_cells": 18
+    }
+  ],
+  "landcover_bbox": [
+    93.5,
+    36.0,
+    103.5,
+    40.5
+  ],
+  "climate_bbox": {
+    "lat": [
+      36.5,
+      40.0
+    ],
+    "lon": [
+      94,
+      103
+    ]
+  },
+  "history": [
+    2005,
+    2023
+  ],
+  "forecast_origin": 2023,
+  "scaling": "historical-anchor affine continuation; same-release 2023 bridge; per-input clipping",
+  "grading": "linear scores outside [0,1] ungraded",
+  "mixture_weights": "r47_mixture_weights.csv unchanged",
+  "independent_temporal_years": 2,
+  "interpretation": "index forecast check with product-version bridge, not ecological-event calibration",
+  "python": "3.13.9",
+  "numpy": "2.4.3",
+  "pandas": "2.3.3",
+  "rasterio": "1.5.1"
+}

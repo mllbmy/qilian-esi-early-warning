@@ -109,8 +109,8 @@ def title_page():
                               "tables, model outputs and figure generators accompany "
                               "the submission reproduction package and the anonymous "
                               "review mirror " + ANON_REPO + ". The regional land-cover "
-                              "table contains five processed epochs; the 2020 tile "
-                              "supports direct raw-data reprocessing. The same code and "
+                              "table contains five historical epochs and 2024-2025 observations; "
+                              "raw-data reprocessing covers 2020, both 2023 versions and 2024-2025. The same code and "
                               "processed tables are archived in a public repository; the persistent "
                               "identifier is reported in the published version."),
         ("Author contributions", CREDIT_EN),
@@ -152,6 +152,7 @@ def cover_letter():
     bt = rows("r47_bootstrap.csv")
     mix = next(float(r["value"]) for r in fc if r["model"] == "Mixture" and r["year"] == "2028")
     env = next(r for r in bt if r["model"] == "Mixture" and r["year"] == "2028")
+    obs = next(r for r in rows("r56_forecast_summary.csv") if r["model"] == "Mixture")
     body = [
         "I submit the above-titled original research article for consideration in the "
         "Journal of Mountain Science.",
@@ -160,7 +161,8 @@ def cover_letter():
         "ecological-security warning grades in the Qilian Mountain region, China. "
         "It combines an eight-indicator regional DPSI index, AHP-entropy weighting, "
         "three forecasting models and a separate six-indicator spatial analysis, "
-        "using CRU TS climate and five CLCD land-cover epochs over 2005-2023.",
+        "using CRU TS climate and five CLCD land-cover epochs over 2005-2023, "
+        "with an observed-input forecast check for 2024-2025.",
         "The study reports three results. Removing a redundant ecological-land "
         "indicator preserves all historical warning grades, whereas changing the "
         "derived grassland-change indicator alters both grades and the peak year. "
@@ -168,7 +170,11 @@ def cover_letter():
         "and drift benchmarks on common time origins. The mixture weighted by rolling five-year errors "
         f"projects a 2028 index of {mix:.3f}, with a central 95% conditional "
         f"bootstrap envelope of {float(env['lo']):.3f}-{float(env['hi']):.3f}. "
-        "Finally, spatial target-overlap diagnostics distinguish associations that "
+        f"The two observed-input years give mixture RMSE of {float(obs['rmse']):.3f}, "
+        f"{float(obs['same_release_rmse']):.3f} and {float(obs['clipped_rmse']):.3f} under historical "
+        "continuation, a land-cover product bridge and input-wise clipping, respectively. "
+        "These results show the difficulty of transferring historical forecast performance "
+        "beyond its input range. Spatial target-overlap diagnostics distinguish associations that "
         "depend on index inputs, while an exhaustive periodic-shift reference and "
         "an independent NDVI comparison describe their spatial context.",
         "The paper concerns mountain environmental change and conservation monitoring, "

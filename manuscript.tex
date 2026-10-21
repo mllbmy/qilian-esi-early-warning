@@ -47,7 +47,7 @@
 % separate Title Page file.
 
 \begin{abstract}
-Sparse environmental records are often converted into ecological-security warning grades, although the effects of index construction and forecast choices remain uncertain. This study assesses the Qilian Mountain region, China, using climate data and five land-cover epochs over 2005--2023. An eight-indicator index combines analytic hierarchy process and entropy weights. The reconstructed index peaks at 0.676 in 2010 and reaches 0.478 in 2023, with mild warning in 16 of 19 years. Removing a redundant ecological-land indicator preserves these grades, whereas removing the derived grassland change rate changes 11 grades and the peak year. Retrospective rolling forecasts compare a first-order grey model (GM(1,1)), a nonlinear grey Bernoulli model (NGBM) and an autoregressive integrated moving average model (ARIMA) with simple benchmarks. Their 2028 point projections are 0.448, 0.428 and 0.485. A mixture weighted by rolling five-year errors gives 0.459, with a central 95\% conditional bootstrap envelope of 0.249--0.779 under the specified residual process. Spatial analysis uses a separate six-indicator index at 1,914 grid points. Barren/degraded and grassland strata have the largest associations with this index, and both overlap its inputs. An independent normalized difference vegetation index (NDVI) product agrees with the spatial pattern ($r=0.705$, effective sample size approximately 23), but its regional annual variation differs from the reconstructed index. The results support using continuous index values and sensitivity checks alongside warning grades, with independent ecological observations needed to evaluate management triggers.
+Sparse environmental records are often converted into ecological-security warning grades, although their sensitivity to index construction and forecasting choices remains uncertain. This study assesses the Qilian Mountain region, China, using climate data and five land-cover epochs over 2005--2023, followed by an observed-input check for 2024--2025. An eight-indicator index combines analytic hierarchy process and entropy weights. The reconstructed index peaks at 0.676 in 2010 and reaches 0.478 in 2023, with mild warning in 16 of 19 years. Removing a redundant ecological-land indicator preserves these grades, whereas removing the derived grassland change rate changes 11 grades and the peak year. Retrospective rolling forecasts compare a first-order grey model (GM(1,1)), a nonlinear grey Bernoulli model (NGBM) and an autoregressive integrated moving average model (ARIMA) with simple benchmarks. Their error-weighted mixture projects 0.459 for 2028, with a central 95\% conditional bootstrap envelope of 0.249--0.779. The 2024--2025 observations exceed several historical input ranges. Mixture RMSE is 0.448 under historical-scale continuation, 0.331 after bridging the land-cover product revision and 0.085 after clipping each normalized input. Spatial analysis uses a separate six-indicator index at 1,914 grid points. Independent normalized difference vegetation index (NDVI) data agree with its spatial pattern ($r=0.705$, effective sample size approximately 23), but regional annual greenness differs from the reconstructed index. The new observations show that historical forecast performance does not transfer directly across changes in input range and data version. Continuous values and sensitivity checks are needed alongside relative warning grades.
 
 \end{abstract}
 
@@ -75,7 +75,7 @@ The pressure--state--response (PSR) and driving force--pressure--state--impact--
 Several choices can alter the interpretation of reserve-scale assessments. A single weighting scheme obscures sensitivity to the subjective--objective balance. Derived or compositionally redundant indicators can count the same environmental information more than once. Forecast comparison requires common time origins and simple benchmarks, and a factor that also enters the target index has a construction-related association with it. Examining these choices together can distinguish persistent patterns from those that depend on one index specification.
 
 \subsection{Objectives of this study}
-This study (1) reconstructs the regional ecological-security index (ESI) and relative warning grades over 2005--2023, (2) evaluates their sensitivity to indicator selection, interpolation, weighting and thresholds, (3) compares retrospective forecasts of the reconstructed index and produces conditional projections for 2024--2028, and (4) examines spatial associations and consistency with an independent normalized difference vegetation index (NDVI) product using a separately defined point-scale index. County-window comparisons provide context for monitoring priorities across the wider park region.
+This study (1) reconstructs the regional ecological-security index (ESI) and relative warning grades over 2005--2023, (2) evaluates their sensitivity to indicator selection, interpolation, weighting and thresholds, (3) compares retrospective forecasts of the reconstructed index, produces conditional projections for 2024--2028 and checks the first two projected years against observed inputs, and (4) examines spatial associations and consistency with an independent normalized difference vegetation index (NDVI) product using a separately defined point-scale index. County-window comparisons provide context for monitoring priorities across the wider park region.
 
 % ============================================================
 \section{Study area and data}
@@ -106,15 +106,15 @@ The Qilian Mountain region, centered on the Qilian Mountain National Park (QMNP)
 \toprule
 Data type & \raggedright Indicators & \raggedright Source (dataset, version, resolution, coverage; access date) & Years used \\
 \midrule
-Climate & \raggedright precipitation (mm), mean temperature ($^{\circ}$C) & \raggedright CRU TS 4.10, monthly, 0.5$^\circ$, 1901--2025; accessed 2026-04-09 \citep{cru_ts410} & 2005--2023 \\
+Climate & \raggedright precipitation (mm), mean temperature ($^{\circ}$C) & \raggedright CRU TS 4.10, monthly, 0.5$^\circ$, 1901--2025; accessed 2026-04-09 \citep{cru_ts410} & 2005--2025 \\
 Terrain & \raggedright elevation, slope & \raggedright Copernicus DEM GLO-90 (2021 release; digital surface model), 3\,arcsec ($\sim$90\,m); accessed 2026-09-07 & static (no temporal dimension) \\
-Land cover & \raggedright proportions of grassland, forest, water, cropland, barren & \raggedright China Land Cover Dataset (CLCD), 30\,m, annual, 1985--2023; accessed 2026-10-07 and 2026-10-18; the 2020 tile re-processed here is Zenodo record 8176941, version 1.0.2 \citep{yang2021clcd,yang2024clcd} & 2005, 2010, 2015, 2020, 2023 \\
+Land cover & \raggedright proportions of grassland, forest, water, cropland, barren & \raggedright China Land Cover Dataset (CLCD), 30\,m; historical versions 1.0.2/1.0.3 and annual version 1.0.5 (1985--2025); accessed 2026-10-07, 2026-10-18 and 2026-10-21 \citep{yang2021clcd,yang2024clcd} & 5 epochs + 2024--2025 \\
 Vegetation & \raggedright independent NDVI & \raggedright NOAA Climate Data Record, daily, 0.05$^\circ$; AVHRR-Land v005 (2005--2013), VIIRS-Land v001 (2014--2023); accessed 2026-10-18 & 2005--2023 \\
 \bottomrule
 \end{tabular}
 
 \vspace{2pt}
-{\scriptsize Notes: Land-cover proportions were computed only at the five epochs listed and linearly interpolated to annual values, so 14 of the 19 years analysed are interpolated rather than observed. The CLCD 2020 tile used here is Zenodo record 8176941 (dataset version 1.0.2), while the annual 1985--2023 collection cited for the other epochs is the parent dataset record 12779975 (version 1.0.3), whose later version supersedes the tile record. The supplied raw-data reprocessing workflow covers the 2020 CLCD tile. The other four epochs are provided as processed regional values, with their source tiles identified by the cited dataset record. Regional climate is the unweighted mean of the 0.5$^\circ$ grid cells within 36.5--40.0$^\circ$N, 94.0--103.0$^\circ$E, which is slightly smaller than the declared study window (36.0--40.5$^\circ$N, 93.5--103.5$^\circ$E); county climate is the nearest 0.5$^\circ$ cell to each county centroid and county land cover is a $\pm$0.1$^\circ$ centroid window, so county values are not area-weighted statistics.}
+{\scriptsize Notes: Historical land-cover proportions use 2005, 2010, 2015, 2020 and 2023, with 14 intervening years linearly interpolated. The 2020 tile is Zenodo record 8176941 (version 1.0.2), and the original 2023 tile is record 12779975 (version 1.0.3). New 2023--2025 tiles are from record 18180184 (version 1.0.5). Reprocessing the original 2023 tile reproduces the historical table; the new 2023 tile supplies the product-version bridge. Raw-data reprocessing covers 2020 and both versions of 2023, plus 2024--2025; the 2005, 2010 and 2015 inputs are supplied as processed regional values. Regional climate is the unweighted mean of the 0.5$^\circ$ grid cells within 36.5--40.0$^\circ$N, 94.0--103.0$^\circ$E, which is slightly smaller than the declared study window (36.0--40.5$^\circ$N, 93.5--103.5$^\circ$E); county climate is the nearest 0.5$^\circ$ cell to each county centroid and county land cover is a $\pm$0.1$^\circ$ centroid window, so county values are not area-weighted statistics.}
 \end{table}
 The data sources used in this study are summarized in Table~\ref{tab:data}. Land-cover proportions were computed per epoch (2005, 2010, 2015, 2020, 2023) from the China Land Cover Dataset (CLCD) \citep{yang2021clcd,yang2024clcd} and linearly interpolated to annual values; 2005 and 2023 are observation epochs of the CLCD record rather than extrapolations, and the 19-year series therefore contains 14 interpolated years. Regional climate was aggregated as the unweighted arithmetic mean of the 0.5$^\circ$ Climatic Research Unit Time Series (CRU TS) 4.10 grid cells within 36.5--40.0$^\circ$N, 94.0--103.0$^\circ$E, and county climate as the nearest 0.5$^\circ$ cell to each county centroid; climate and county land-cover values are therefore centroid or unweighted-grid estimates rather than area-weighted statistics. Re-aggregating regional climate over the declared window (36.0--40.5$^\circ$N, 93.5--103.5$^\circ$E) changes annual precipitation by at most 28\,mm (mean $-19$\,mm, 12\% of the mean) and annual temperature by at most 1.3\,$^{\circ}$C, but changes the ESI by at most 0.003 and leaves all 19 warning grades unchanged; cosine-latitude area weighting changes precipitation and temperature by at most 1.6\,mm and 0.03\,$^{\circ}$C. Raster reprojection and cropping used open Python tooling (xarray, rasterio, pyproj); the analysis scripts and the processed tables are available for inspection, with the re-processing boundary stated in the Data availability section.
 
@@ -202,7 +202,7 @@ and the ESI is the weighted sum
 \mathrm{ESI}_i=\sum_{j=1}^{m}w_j\,x'_{ij},\qquad \mathrm{ESI}\in[0,1].
 \label{eq:esi}
 \end{equation}
-Because the weights are time-invariant, the change between two years decomposes exactly into per-indicator contributions, $\Delta\mathrm{ESI}=\sum_j w_j\,\Delta x'_j$, with no weight-change term; this decomposition is used to interpret the 2005 minimum and the 2010 peak (Sec.~\ref{sec:tempdir}).
+The $[0,1]$ range applies to inputs within the reference bounds; extending the same affine transformation to new observations can produce values outside that range. Because the weights are time-invariant, the change between two years decomposes exactly into per-indicator contributions, $\Delta\mathrm{ESI}=\sum_j w_j\,\Delta x'_j$, with no weight-change term; this decomposition is used to interpret the 2005 minimum and the 2010 peak (Sec.~\ref{sec:tempdir}).
 
 Temporal trends are summarized by Sen's median pairwise slope with a 95\% confidence interval \citep{sen1968slope} and a two-sided Mann--Kendall test with tie correction. Two serial-dependence adjustments are also reported. Hamed--Rao \citep{hamed1998modified} adjusts the test variance using autocorrelations of detrended ranks with absolute magnitude exceeding $1.96/\sqrt{n}$. Results are omitted if the variance-adjustment factor falls outside $[0.2,20]$. Trend-free pre-whitening removes lag-one autocorrelation from the detrended series, restores the trend and applies the test to the resulting series \citep{yue2002autocorrelation}. A Pettitt test examines a possible change point \citep{pettitt1979change}. These exploratory tests use unadjusted $p$ values and are applied to both the full record and the post-peak segment.
 
@@ -218,6 +218,10 @@ GM(1,1) represents an exponential response. The nonlinear grey Bernoulli model (
 The forecasting task is retrospective prediction of a fixed, reconstructed index. The land-cover interpolation, normalization ranges and entropy weights define that target using the full 2005--2023 record. Each forecasting model is then fitted on years up to its origin, and the NGBM exponent is selected within that model-training window. Three error summaries are reported: a 2018-origin forecast of 2019--2023, rolling one-year forecasts with origins 2013--2022, and rolling five-year forecasts with origins 2013--2018. The five-year scheme contains six origins and 30 origin--horizon combinations, with overlapping target years. The inverse RMSE over those combinations determines the normalized weights of the three-model mixture. These weights describe performance on the reconstructed target and its five-year horizon. The annual land-cover values preceding some origins use later observation epochs, so this task represents retrospective index prediction rather than a deployment-time warning evaluation.
 
 For the 2024--2028 projection, each model and the NGBM exponent are estimated from the complete 2005--2023 index. The projection continues its fitted statistical process. Residual resampling characterizes uncertainty conditional on that process. For each model, fitted and observed indices are transformed to the logit scale, the initial-condition residual is excluded, and the remaining residuals are centered. Circular moving blocks of length three generate pseudo-histories, which are inverse-transformed and refitted with the same estimator, including exponent selection. Each of 2,000 replicates also receives an independent resampled block sequence whose cumulative sum is added on the logit scale to represent accumulated future disturbances. The inverse logit bounds every simulated path in $(0,1)$. Parameter-only resampling is retained as a sensitivity. A linear pool samples the three model distributions in proportion to the mixture weights. The central 95\% of these simulations is reported as a conditional bootstrap envelope, and grade frequencies as bootstrap shares. Their scope is the specified residual construction, without an empirical coverage guarantee.
+
+The 2024--2025 observed-input check holds the 2005--2023 indicator definitions, normalization bounds, combined weights, 2023-origin forecasts and mixture weights fixed. CRU TS 4.10 supplies complete monthly climate records for both years. CLCD version 1.0.5 supplies annual land cover, extracted over the same projected raster window and valid-pixel support as the historical data. The original version 1.0.3 tile for 2023 is reprocessed as a historical control. Because version 1.0.5 also revises 2023, its 2023 tile is extracted to distinguish a product revision from the subsequent annual change (Appendix~\ref{app:observed}).
+
+Three target specifications describe this transition. Historical-anchor continuation applies the unchanged affine normalization to new inputs and uses the original 2023 grassland proportion in the 2024 change rate. A same-release bridge instead uses the version 1.0.5 proportion for that rate, retaining all historical bounds and weights. A bounded sensitivity clips each normalized input to $[0,1]$ before weighting. This is input-wise clipping, rather than clipping the final index, and yields the same bounded target under both anchors. Scores outside $[0,1]$ under affine continuation receive no warning grade. Forecast errors are calculated against each specification using the two annual targets; neither the targets nor these errors enter model fitting or mixture weighting. These two years check index forecasts against later climate and land-cover measurements. They do not calibrate warning grades against ecological events, and the 2026 land-cover release makes this a retrospective check rather than a real-time evaluation.
 
 Five relative grades partition the normalized range: safe $[0.8,1]$, relatively safe $[0.6,0.8)$, mild warning $[0.4,0.6)$, medium warning $[0.2,0.4)$ and severe warning $[0,0.2)$. These equal-interval conventions follow reserve-scale index assessment \citep{liu2023integrated}. Grade interpretation is accompanied by the continuous index, threshold sensitivity and model spread.
 
@@ -358,7 +362,7 @@ Substituted five & 5 & 0.64 & 0.235 & 2010 (0.792) & 11 & 0.305 (medium) \\
 {\scriptsize The six-indicator specification drops the barren/degraded, grassland change rate and ecological land indicators; the substituted five-indicator set retains precipitation, temperature, cropland proportion, grassland change rate and ecological land proportion and drops the three composition fractions that those terms are built from. The eight-indicator primary specification is used for the historical assessment and for the robustness tests in Secs.~\ref{sec:alpha}--\ref{sec:tempdir}; the eight-indicator primary series is used throughout, including the forecasting chain of Sec.~\ref{sec:forecast}.}
 \end{table}
 
-\subsection{Forecast comparison on the reconstructed index}
+\subsection{Forecast comparison and the 2024--2025 observations}
 \label{sec:forecast}
 The retrospective errors favor different models at different horizons (Table~\ref{tab:validation}). GM(1,1) has the lowest rolling one-year and five-year RMSE, 0.0362 and 0.0392. In the single 2018-origin holdout, the naive method gives 0.0372 and ARIMA 0.0372. NGBM errors are larger under all three summaries. The full-series fitting diagnostics in Table~\ref{tab:forecast} describe fit to the reconstructed record, whereas the rolling errors describe prediction of its later values from earlier segments.
 
@@ -431,6 +435,37 @@ Mixture, parameter only & 0.422--0.612 & 0.415--0.612 & 0.406--0.612 & 0.396--0.
 {\scriptsize Each model uses 2000 valid replicates. Centered logit residuals are resampled in circular blocks of three to form pseudo-histories and accumulated future disturbances. Every pseudo-history is refitted with the same estimator used for the point projection. The mixture is a linear pool weighted by rolling five-year RMSE, with 6000 simulated paths. The ranges condition on this residual construction. The parameter-only row repeats the pool without the accumulated-disturbance step and is the narrower sensitivity quoted in Sec.~\ref{sec:forecast}. The 2028 mixture bootstrap shares are 0.452 mild, 0.380 medium, 0.140 relatively safe, 0.018 safe and 0.011 severe warning.}
 \end{table}
 
+The new observations differ substantially from continuation of the fitted historical process (Table~\ref{tab:observed-validation}). 4 inputs in 2024 and 3 in 2025 lie outside their historical ranges. Grassland proportion and change rate are below their historical minima, and cropland is above its historical maximum in both years (Table~\ref{tab:observed-inputs}). Historical-anchor continuation gives -0.0832 and 0.1649. The negative 2024 score lies outside the warning scale and is ungraded. Using the same-release 2023 grassland anchor raises the 2024 score to 0.1178; the 2025 score is unchanged. The product revision alone lowers the 2023 grassland proportion by 0.4012 percentage points (Table~\ref{tab:release-bridge}).
+
+Input-wise clipping yields 0.4003 in 2024 and 0.3729 in 2025, classified as mild and medium warning. The 2024 value is only 0.0003 above the mild-warning boundary. All six point forecasts remain in mild warning. Mixture RMSE across the two years is 0.4483 under historical-anchor continuation, 0.3308 with the same-release bridge and 0.0854 against the clipped target. NGBM has the smallest error under each specification, reversing its historical rolling-error ranking, but the comparison comprises only two annual targets. Neither affine target falls inside the corresponding mixture conditional envelope, whereas both clipped targets do. This difference follows the target specification and cannot establish an empirical coverage rate.
+
+\begin{table}[htbp]
+\centering
+\caption{Observed-input scores and unchanged 2023-origin forecasts for 2024--2025. RMSE uses the two annual targets under each scaling specification.}
+\label{tab:observed-validation}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lccccc}
+\toprule
+Series & 2024 & 2025 & RMSE, historical & RMSE, bridge & RMSE, clipped \\
+\midrule
+Historical-anchor score & -0.0832 & 0.1649 & -- & -- & -- \\
+Same-release score & 0.1178 & 0.1649 & -- & -- & -- \\
+Clipped-input index & 0.4003 & 0.3729 & -- & -- & -- \\
+\midrule
+GM(1,1) & 0.4687 & 0.4634 & 0.4437 & 0.3258 & 0.0802 \\
+NGBM & 0.4571 & 0.4497 & 0.4319 & 0.3133 & 0.0676 \\
+ARIMA(0,1,1) & 0.4846 & 0.4846 & 0.4608 & 0.3441 & 0.0990 \\
+Naive & 0.4783 & 0.4783 & 0.4547 & 0.3378 & 0.0927 \\
+Drift & 0.4888 & 0.4994 & 0.4685 & 0.3532 & 0.1092 \\
+Mixture & 0.4729 & 0.4693 & 0.4483 & 0.3308 & 0.0854 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\scriptsize Historical continuation retains the original 2023 grassland anchor. The bridge substitutes the version 1.0.5 anchor only in the 2024 grassland change rate. Clipping limits each normalized input to $[0,1]$ before applying the unchanged weights. Affine scores outside $[0,1]$ are ungraded. Every model predicts mild warning in both years; clipped targets give mild warning in 2024 and medium warning in 2025. All comparisons use two years, with no refitting on those observations.}
+\end{table}
+
 \subsection{Robustness to the weighting ratio $\alpha$}
 \label{sec:alpha}
 The 2023 primary ESI rises from 0.415 with pure entropy weighting ($\alpha=0$) to 0.573 with pure AHP ($\alpha=1$), remaining in mild warning throughout (Fig.~\ref{fig:alpha}). Its historical grades are unchanged over $\alpha=0.4$--$0.8$, change in one year at $\alpha=0.9$ and change in four years at $\alpha=1.0$.
@@ -487,7 +522,7 @@ The 2020 county comparison combines precipitation, temperature, forest, grasslan
 
 County ranks change across 64 combinations of window half-width ($\pm$0.05$^{\circ}$ to $\pm$0.30$^{\circ}$), weighting and land-cover definition. Rank correlation with the reference is 0.68 at $\pm$0.05$^{\circ}$, 0.51 at $\pm$0.20$^{\circ}$ and 0.49 at $\pm$0.30$^{\circ}$. Eight of 11 counties change rank between the extreme windows. Across all combinations, ranks span 7 places for Sunan, 7 for Gangcha and 9 for Delingha. Tianzhu remains in the top three (ranks 1--3) and Aksai in the bottom two (ranks 10--11). Replacing centroid windows with area-weighted polygon means moves Sunan from 1st to 9th and Delingha from 4th to 1st (Table~\ref{tab:countyrank}).
 
-Water is particularly sensitive to window placement. Its entropy weight increases from 0.399 to 0.403 between half-widths of $\pm$0.20$^{\circ}$ and $\pm$0.30$^{\circ}$. Gangcha's water fraction changes from 0.05\% to 16.3\% to 24.2\% as the half-width narrows from $\pm$0.30$^{\circ}$ to $\pm$0.10$^{\circ}$ to $\pm$0.05$^{\circ}$, as the Qinghai Lake shoreline enters and leaves the window. The supplied raw-data workflow covers the 2020 CLCD tile. A boundary-consistent county land-cover series for the other four epochs is not included in this analysis. The county comparison therefore provides a coarse regional contrast. The monitoring priorities in Sec.~\ref{sec:management} follow the park's functional zoning and index components rather than individual county ranks.
+Water is particularly sensitive to window placement. Its entropy weight increases from 0.399 to 0.403 between half-widths of $\pm$0.20$^{\circ}$ and $\pm$0.30$^{\circ}$. Gangcha's water fraction changes from 0.05\% to 16.3\% to 24.2\% as the half-width narrows from $\pm$0.30$^{\circ}$ to $\pm$0.10$^{\circ}$ to $\pm$0.05$^{\circ}$, as the Qinghai Lake shoreline enters and leaves the window. The supplied county raw-data workflow covers the 2020 CLCD tile. A boundary-consistent county land-cover series for the other four epochs is not included in this analysis. The county comparison therefore provides a coarse regional contrast. The monitoring priorities in Sec.~\ref{sec:management} follow the park's functional zoning and index components rather than individual county ranks.
 
 \begin{table}[htbp]
 \centering
@@ -590,24 +625,24 @@ The primary index describes relative ecological-security conditions within a fix
 The spatial index agrees with NDVI across the region, and precipitation has the strongest association when NDVI replaces the constructed target. Annual regional NDVI does not show the same agreement with the reconstructed regional index. Spatial correspondence therefore supports the mapped pattern but does not validate the annual warning trajectory.
 
 \subsection{Comparison with previous assessments}
-Liu et al.\ use DPSIR organization, grey forecasting and GeoDetector in a reserve-scale assessment \citep{liu2023integrated}. Hou et al.\ combine AHP and entropy weights within a DPSIRM wetland assessment \citep{changbai_dpsirm_2024}, while Yang et al.\ link entropy weighting with a DPSIR--DEA assessment of the Three Gorges reservoir area \citep{dpsir_dea_threegorges2023}. Here, indicator deletion, alternative weighting ratios and common forecast origins show how assessment choices affect the Qilian results. Although NGBM allows a nonlinear response \citep{althobaiti_ngbm2022}, its rolling errors exceed those of both the naive benchmark and GM(1,1) (Table~\ref{tab:validation}). Model flexibility alone does not improve prediction of this short reconstructed record.
+Liu et al.\ use DPSIR organization, grey forecasting and GeoDetector in a reserve-scale assessment \citep{liu2023integrated}. Hou et al.\ combine AHP and entropy weights within a DPSIRM wetland assessment \citep{changbai_dpsirm_2024}, while Yang et al.\ link entropy weighting with a DPSIR--DEA assessment of the Three Gorges reservoir area \citep{dpsir_dea_threegorges2023}. Here, indicator deletion, alternative weighting ratios and common forecast origins show how assessment choices affect the Qilian results. Although NGBM allows a nonlinear response \citep{althobaiti_ngbm2022}, its rolling errors exceed those of both the naive benchmark and GM(1,1) (Table~\ref{tab:validation}). NGBM has the lowest error in the two observed-input years (Table~\ref{tab:observed-validation}), so its ranking changes with the evaluation period. The short reconstructed record and the two later targets provide different tests of forecast behavior.
 
 
 
 \subsection{Implications for monitoring and management}
 \label{sec:management}
-The grassland change rate and cropland have the largest mean obstacle degrees in 2011--2023 (0.369 and 0.212). Monitoring these components with independent annual land-cover observations would help determine whether the index signal corresponds to ecological change. The park's functional plan can guide where such measurements are collected and how they are interpreted.
+The grassland change rate and cropland have the largest mean obstacle degrees in 2011--2023 (0.369 and 0.212). The 2024--2025 land-cover observations extend monitoring of these components, but their effects on warning grades depend on the historical scaling range and product version. Ecological field observations would help determine whether the index signal corresponds to ecological change. The park's functional plan can guide where such measurements are collected and how they are interpreted.
 
 Regional grades, county-window contrasts and point-scale maps have distinct supports. The county ordering changes with the sampled window and with area weighting, so the stable extremes provide regional context rather than a basis for county intervention ranks. A management trigger would additionally require independently observed ecological outcomes at the management-unit scale, assessment of false alarms and missed events, and an appropriate cost of intervention. The grade--response relationship is therefore proposed as a monitoring design to evaluate, with the continuous index and conditional projection spread supplied alongside the grade.
 
 \subsection{Scope and future evaluation}
-The evidence concerns reconstructed regional conditions and a separate spatial composite. Five land-cover epochs support annual interpolation, and derived rates depend on the interpolation scheme. Retrospective forecast errors condition on that completed index, while the bootstrap envelope conditions on its residual resampling assumptions. Spatial translation diagnostics assume periodic boundaries, and the correlation-variance approximation depends on lag support. Future evaluation can use an independently observed annual target at matching spatial support and data available at each prediction origin. Such evaluation would establish the connection between relative warning grades and ecological outcomes.
+The evidence concerns reconstructed regional conditions and a separate spatial composite. Five land-cover epochs support annual interpolation, and derived rates depend on the interpolation scheme. Retrospective forecast errors condition on that completed index, while the bootstrap envelope conditions on its residual resampling assumptions. Spatial translation diagnostics assume periodic boundaries, and the correlation-variance approximation depends on lag support. The observed-input check adds two annual targets without refitting the historical estimator. Its large affine errors and sensitivity to clipping show that transfer beyond the historical input range needs an explicit scaling rule. The land-cover product revision also affects the first annual change. A longer sequence at matching spatial support, with data available at each prediction origin and independently observed ecological outcomes, is needed to evaluate operational warning grades.
 
 \section{Conclusion}
 \label{sec:conclusion}
 Open climate data and five land-cover epochs yield a reconstructed eight-indicator ESI that peaks at 0.676 in 2010 and reaches 0.478 in 2023. Mild warning occurs in 16 of the 19 years. Grade agreement after removing the redundant ecological-land indicator persists alongside substantial sensitivity to the derived grassland-change-rate term and other indicator choices. The conventional and Hamed--Rao full-period trend tests have $p=0.184$ and 0.193, while trend-free pre-whitening gives 0.012, so the full-period decline remains dependent on the variance convention.
 
-For 2028, GM(1,1), NGBM and ARIMA project 0.448, 0.428 and 0.485. Their mixture, weighted by rolling five-year RMSE, gives 0.459 with a central 95\% conditional bootstrap envelope of 0.249--0.779. A separate six-indicator spatial index agrees with independent NDVI ($r=0.705$), whereas annual regional greenness differs from the reconstructed ESI. Testing the warning grades against independent ecological observations at the management-unit scale is the next step toward defining intervention triggers.
+For 2028, GM(1,1), NGBM and ARIMA project 0.448, 0.428 and 0.485. Their mixture, weighted by rolling five-year RMSE, gives 0.459 with a central 95\% conditional bootstrap envelope of 0.249--0.779. The 2024--2025 observed-input check gives mixture RMSE of 0.448, 0.331 and 0.085 under historical continuation, a same-release bridge and input-wise clipping. These results show that the historical process does not transfer directly across changes in input range and product version. A separate six-indicator spatial index agrees with independent NDVI ($r=0.705$), whereas annual regional greenness differs from the reconstructed ESI. Ecological observations at the management-unit scale remain necessary to define intervention triggers.
 
 \appendix
 
@@ -828,8 +863,55 @@ Temperature & 0.170 & 4 & 0.066 & 0.274 & 0.1129 \\
 
 
 % ============================================================
+\section{Observed inputs and the land-cover product bridge}
+\label{app:observed}
+Table~\ref{tab:release-bridge} compares the original and revised 2023 land-cover products on the same raster support. The original product reproduces the historical processed proportions. Table~\ref{tab:observed-inputs} gives the new inputs and their unchanged historical normalization. The valid-pixel count describes extraction support, not independent temporal replication. Provider checksums, class counts, complete climate-month counts and forecast comparisons accompany the processed data.
+
+\begin{table}[htbp]
+\centering
+\caption{CLCD 2023 product-version bridge on the common extraction window. Differences are version 1.0.5 minus version 1.0.3, in percentage points.}
+\label{tab:release-bridge}
+\footnotesize
+\begin{tabular}{lccc}
+\toprule
+Land-cover class & Version 1.0.3 (\%) & Version 1.0.5 (\%) & Difference \\
+\midrule
+Forest & 1.2885 & 1.2762 & -0.0122 \\
+Shrub & 0.1552 & 0.1602 & +0.0051 \\
+Grassland & 35.5989 & 35.1977 & -0.4012 \\
+Water & 2.1201 & 2.1447 & +0.0246 \\
+Cropland & 3.9849 & 4.0484 & +0.0635 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Observed 2024--2025 inputs and normalization on the unchanged 2005--2023 reference. Indicator definitions and units are in Table~\ref{tab:indicators}.}
+\label{tab:observed-inputs}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccccc}
+\toprule
+Input & Historical min & Historical max & Raw 2024 & Raw 2025 & Normalized 2024 & Normalized 2025 \\
+\midrule
+X1 & 166.8698 & 284.3912 & 231.8183 & 219.2095 & 0.5527 & 0.4454 \\
+X2 & 0.8072 & 1.9755 & 2.1349 & 1.8202 & 1.1364 & 0.8671 \\
+X3 & 35.0323 & 36.5822 & 34.7361 & 34.4960 & -0.1911 & -0.3460 \\
+X4 & 1.1466 & 1.2885 & 1.2773 & 1.2823 & 0.9212 & 0.9567 \\
+X5 & 1.7497 & 2.1713 & 2.1381 & 2.1186 & 0.9211 & 0.8748 \\
+X6 & 56.2864 & 58.2376 & 57.7313 & 57.9748 & 0.2595 & 0.1347 \\
+X7 & 3.8338 & 3.9849 & 4.1173 & 4.1283 & -0.8756 & -0.9488 \\
+X8 & -0.4664 & 0.8364 & -2.4237 & -0.6913 & -1.5024 & -0.1726 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\scriptsize Negative-direction inputs use $(\max-x)/(\max-\min)$. X6 is the residual after grassland, forest, water and cropland, as in the historical index. X8 in 2024 uses the original 2023 grassland anchor; the same-release bridge gives -1.3115\% per year instead. For the clipped target each normalized value below zero is replaced by zero and each above one by one before weighting.}
+\end{table}
+
 \section*{Data availability}
-Climate data are available from CRU TS 4.10 \citep{cru_ts410} at \url{https://crudata.uea.ac.uk/cru/data/hrg/}. Land cover is supplied by CLCD \citep{yang2021clcd,yang2024clcd}, with the annual collection at \url{https://doi.org/10.5281/zenodo.12779975} and the 2020 tile at Zenodo record 8176941. Terrain is Copernicus DEM GLO-90, and the independent vegetation product is NOAA CDR AVHRR/VIIRS NDVI, available at \url{https://www.ncei.noaa.gov/products/climate-data-records/normalized-difference-vegetation-index}. Analysis code, processed tables, model outputs and figure generators are provided through the anonymized review mirror \url{https://anonymous.4open.science/r/qilian-esi-early-warning-CF60} and the submission reproduction package. The regional land-cover inputs comprise a five-epoch processed table; the 2020 tile supports direct raw-data reprocessing, and the other four epochs are supplied as processed regional values. The same code and processed tables are archived in a public repository, whose persistent identifier will be cited in the published version.
+Climate data are available from CRU TS 4.10 \citep{cru_ts410} at \url{https://crudata.uea.ac.uk/cru/data/hrg/}. Land cover is supplied by CLCD \citep{yang2021clcd,yang2024clcd}, with the annual collection at \url{https://doi.org/10.5281/zenodo.12779975} and the 2020 tile at Zenodo record 8176941. Version 1.0.5, including the 2023 product bridge and 2024--2025 observations, is available at \url{https://zenodo.org/records/18180184}. Terrain is Copernicus DEM GLO-90, and the independent vegetation product is NOAA CDR AVHRR/VIIRS NDVI, available at \url{https://www.ncei.noaa.gov/products/climate-data-records/normalized-difference-vegetation-index}. Analysis code, processed tables, model outputs and figure generators are provided through the anonymized review mirror \url{https://anonymous.4open.science/r/qilian-esi-early-warning-CF60} and the submission reproduction package. The regional land-cover inputs comprise a five-epoch processed table; raw-data reprocessing covers 2020, the original 2023 tile and the new 2023--2025 tiles, while 2005, 2010 and 2015 are supplied as processed regional values. The reproduction package includes extraction class counts, climate summaries, source checksums and the three observed-input comparison specifications. The same code and processed tables are archived in a public repository, whose persistent identifier will be cited in the published version.
 
 \section*{CRediT authorship contribution statement}
 The sole author was responsible for conceptualization, methodology, formal analysis, data curation, visualization, writing -- original draft, and writing -- review \& editing.

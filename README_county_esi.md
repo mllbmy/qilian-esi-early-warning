@@ -1,6 +1,6 @@
-# County-level ecological security index (manuscript Table 6)
+# County-level ecological security index (manuscript county comparison)
 
-`run_county_esi.py` is the **sole producer** of `data/results_county_esi.csv`, the file behind Table 6
+`run_county_esi.py` is the **sole producer** of `data/results_county_esi.csv`, the file behind the county comparison
 and the county ranking discussed in Section 4.
 
 ## Inputs (both committed)
@@ -33,7 +33,7 @@ Outputs:
 ## Run order
 
     run_county_geodetector.py   →  qilian_county_landcover.csv, qilian_climate.csv
-    run_county_esi.py           →  results_county_esi.csv   (Table 6)
+    run_county_esi.py           →  results_county_esi.csv   (the county comparison)
 
 `run_county_geodetector.py` writes its own CLCD-direct county table to
 `data/results_county_esi_from_clcd.csv` and **no longer overwrites** `results_county_esi.csv`.

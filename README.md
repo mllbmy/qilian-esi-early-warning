@@ -15,12 +15,12 @@ pattern with a GeoDetector on a separate six-indicator index.
 | path | content |
 |---|---|
 | `manuscript.tex`, `manuscript.bib`, `manuscript.bbl` | manuscript source (LaTeX, JMS house style) and bibliography |
-| `data/` | processed inputs, weights, model outputs, validation and sensitivity tables; the tables used in the manuscript are `data/r47_*` |
+| `data/` | processed inputs, weights, model outputs, validation and sensitivity tables; the tables used in the manuscript are `data/r47_*` and `data/r56_*` |
 | `figures/` | vector figure masters (PDF) plus the journal figure audit |
 | `run_r47_revision.py` | end-to-end analysis: normalization, combined weighting, ESI series, grey and ARIMA responses with rolling-origin validation, mixture weights, conditional bootstrap, obstacle diagnosis, spatial attribution |
 | `forecast_models.py` | grey (GM(1,1), NGBM) and ARIMA response implementations |
 | `make_r47_figures.py`, `make_equations.py`, `make_bbl_jms.py` | figure masters, equation table and bibliography builder |
-| `run_county_esi.py`, `README_county_esi.md` | static county-level relative index (Table 6) |
+| `run_county_esi.py`, `README_county_esi.md` | static county-level relative index (county comparison) |
 | `eco_security/` | shared utilities |
 
 ## Reproducing the reported results
@@ -39,6 +39,31 @@ python make_bbl_jms.py
 the figure masters in `figures/`. Logs and cached intermediates go to the directory
 named by the optional `QILIAN_WORK` environment variable.
 
+## Observed-input check for 2024-2025
+
+`run_r56_observation_validation.py` compares the unchanged 2023-origin forecasts
+with later observed inputs. It retains historical normalization bounds and weights,
+reports historical-anchor continuation and a same-release 2023 bridge, and evaluates
+input-wise clipping as a sensitivity. Two years do not calibrate warning performance
+against ecological events.
+
+```powershell
+python run_r56_observation_validation.py --from-processed --work ./work/observed
+```
+
+This reproduces `data/r56_*` from the supplied raster class counts and climate
+summaries. The observation script requires rasterio and pyproj; raw climate extraction also
+requires xarray. Full extraction uses:
+
+```powershell
+python run_r56_observation_validation.py --lc-dir /path/to/v105 --old-lc-dir /path/to/v103 --baseline-lc-dir /path/to/2020 --cru-dir /path/to/cru --work ./work/observed
+```
+
+CLCD version 1.0.5 (2023-2025) is Zenodo record 18180184; the original 2023
+control is version 1.0.3, record 12779975. Use the original provider filenames.
+`data/r56_source_manifest.json` records checksums, pixel counts, extraction windows
+and software versions. Historical data and forecast tables remain unchanged.
+
 ## Implementation notes
 
 Choices that matter for reproducing the reported numbers:
@@ -50,7 +75,7 @@ Choices that matter for reproducing the reported numbers:
   excluded from the search.
 - Validation: one 2018 five-year holdout, ten one-year origins and six five-year
   origins; only the rolling five-year errors enter the mixture weights.
-- Evaluation targets: every validation target is the full-period reconstruction, so the
+- Evaluation targets: historical rolling-validation targets use the full-period reconstruction, so the
   exercise is a retrospective evaluation of the fitted process rather than a real-time
   forecasting experiment.
 - Bootstrap: the full estimator, including exponent selection, is refitted on

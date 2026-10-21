@@ -1,0 +1,3 @@
+﻿year,observed_esi,clipped_esi,same_release_esi,grade,grade_label,clipped_grade,clipped_grade_label,out_of_range_inputs
+2024,-0.083183099777745628,0.40031069251359003,0.11775137680513456,,Outside reference scale,2,Mild warning,4
+2025,0.16491877514216916,0.37288337448263953,0.16491877514216916,0,Severe warning,1,Medium warning,3
